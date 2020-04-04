@@ -12,9 +12,9 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/home',
-      name: 'home',
-      component: ()=>import ("@/views/home/index")
+      path: '/index',
+      name: 'index',
+      component: ()=>import ("@/views/index/index")
     }
   ]
 })
