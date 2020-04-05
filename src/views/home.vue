@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="header">
-      <index-head></index-head>
-    </div>
-    <div>
+    <div class="wrap">
       <router-view />
     </div>
     <div class="footer">
@@ -13,14 +10,13 @@
 </template>
 
 <script>
-import IndexHead from "./index/IndexHead.vue";
 import StoreFoot from "./index/StoreFoot.vue";
 
 
 export default {
   components: {
     StoreFoot,
-    IndexHead},
+  },
   name: "home"
 };
 </script>
