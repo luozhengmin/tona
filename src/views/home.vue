@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div class="wrap">
+  <div style="height:100%">
+    <div style="height:100%">
       <router-view />
     </div>
     <div class="footer">
-      <store-foot v-if="showFooter"></store-foot>
+      <store-foot v-if="$route.meta.showFooter"></store-foot>
     </div>
   </div>
 </template>
@@ -16,14 +16,9 @@ export default {
   components: {
     StoreFoot
   },
-  created() {
-    let showFooter = this.$route.meta.showFooter;
-    this.showFooter = showFooter;
-  },
+  created() {},
   data() {
-    return {
-      showFooter: true
-    };
+    return {};
   },
   name: "home"
 };

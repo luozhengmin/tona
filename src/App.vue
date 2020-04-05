@@ -15,6 +15,11 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+
+.mb15 {
+  margin-bottom: 15px;
 }
 
 /* 样式重写 */

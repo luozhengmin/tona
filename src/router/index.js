@@ -64,6 +64,34 @@ export default new Router({
             showFooter: false
           }
         },
+        {
+          path: 'cart',
+          name: 'cart',
+          component: () => import("@/views/cart/index"),
+          meta: {
+            showFooter: true
+          }
+        },
+        {
+          path: 'confirm',
+          name: 'confirm',
+          component: () => import("@/views/cart/confirm")
+        },
+        {
+          path: 'receipt',
+          name: 'receipt',
+          component: () => import("@/views/cart/receipt")
+        }, 
+        {
+          path: 'pay',
+          name: 'pay',
+          component: () => import("@/views/cart/pay")
+        },
+        {
+          path: 'pay-success',
+          name: 'pay-success',
+          component: () => import("@/views/cart/pay-success")
+        },
       ]
     },
 

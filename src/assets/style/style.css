@@ -9,7 +9,7 @@
 }
 a{cursor:pointer;text-decoration: none;color:inherit;}
 a:hover{color:#004ea2;transition:0.3s}
-body,html{font-family:"微软雅黑";font-size:12px;overflow-x:hidden;line-height:1.8;max-width:1920px;margin:0 auto;color:#666;}
+body,html{font-family:"微软雅黑";font-size:12px;overflow-x:hidden;line-height:1.8;max-width:1920px;margin:0 auto;color:#666;height: 100%;}
 p,li,ul,li,h1,h2,h3,h4,h5,img,form{ margin:0; padding:0; list-style:none;border:0;background:none;font-weight:normal;}
 ul{padding-left:0;list-style-type:none;}
 h1,h2,h3,h4,h5{line-height:normal;}
