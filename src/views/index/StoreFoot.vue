@@ -19,15 +19,17 @@
 </script>
 
 <style lang="scss" scoped>
-  .item{
-    .iconfont {
-      display: block;
-      width:30px;
-      height: 30px;
-      line-height: 30px;
-      font-size:30px;
-      text-align: center;
-      margin: 0 auto;
+  .van-tabbar-item{text-align:center;}
+    .item{
+      .iconfont {
+        display: block;
+        width:30px;
+        height: 30px;
+        line-height: 30px;
+        font-size:30px;
+        text-align: center;
+        margin: 0 auto;
+      }
+      .span{font-size:0.6}
     }
-  }
 </style>

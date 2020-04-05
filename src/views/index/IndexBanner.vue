@@ -1,5 +1,5 @@
 <template>
-    <div class="index-banner wrap">
+    <div class="index-banner">
       <van-swipe :autoplay="0">
         <van-swipe-item v-for="(image, index) in images" :key="index">
           <img  :src="image.imgUrl"/>

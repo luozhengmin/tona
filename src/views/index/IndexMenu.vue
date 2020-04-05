@@ -1,5 +1,5 @@
 <template>
-  <div class="menu wrap clear-fix">
+  <div class="menu fix">
     <div class="menu-item" @click="goBrandstore">
       <i class="iconfont bg-1">&#xe7ae;</i>
       <span class="menu-item-title">品牌馆</span>
