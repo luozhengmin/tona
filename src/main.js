@@ -8,6 +8,10 @@ import 'vant/lib/index.css';
 import 'font-awesome/css/font-awesome.css'
 
 Vue.use(Vant);
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// import style
+import 'swiper/css/swiper.css'
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
 import './assets/style/style.css'
 import './assets/style/iconfont/iconfont.css'
