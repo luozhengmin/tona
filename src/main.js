@@ -5,12 +5,18 @@ import App from './App'
 import router from './router'
 import Vant from 'vant';
 import 'vant/lib/index.css';
-
 Vue.use(Vant);
 
+import './assets/style/style.css'
+import './assets/style/iconfont/iconfont.css'
+/*图标应用*/
+import { Icon } from 'vant';
+Vue.use(Icon);
+/*懒加载*/
+import { Lazyload } from 'vant';
+Vue.use(Lazyload);
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
