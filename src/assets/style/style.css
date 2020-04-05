@@ -1,0 +1,39 @@
+@charset "utf-8";
+/*全局样式*/
+*{margin:0;padding:0;list-style:none;border:0;transition:all;-o-transition:all;-ms-transition:all;
+  -moz-transition:all;-webkit-transition:all;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+a{cursor:pointer;text-decoration: none;color:inherit;}
+a:hover{color:#004ea2;transition:0.3s}
+body,html{font-family:"微软雅黑";font-size:12px;overflow-x:hidden;line-height:1.8;max-width:1920px;margin:0 auto;color:#666;}
+p,li,ul,li,h1,h2,h3,h4,h5,img,form{ margin:0; padding:0; list-style:none;border:0;background:none;font-weight:normal;}
+ul{padding-left:0;list-style-type:none;}
+h1,h2,h3,h4,h5{line-height:normal;}
+.fix:before, .fix:after,.clear{display:table;clear:both;content:'';}
+i, em {font-style: normal;}
+article, aside, dialog, footer, header, section, nav, figure, menu, audio, canvas, progress, video{display: block;}
+img{max-width: 100%;height: auto;vertical-align: top;-ms-interpolation-mode: bicubic;border: 0;}
+.imgZoom img{ -moz-transition:all .8s ease 0s; -ms-transition:all .8s ease 0s; -o-transition:all .8s ease 0s; -webkit-transition:all .8s ease 0s;
+  transition:all .8s ease 0s;}
+.imgZoom{ overflow:hidden; }
+.imgZoom:hover img{ -moz-transform:scale(1.1,1.1); -ms-transform:scale(1.1,1.1); -o-transform:scale(1.1,1.1); -webkit-transform:scale(1.1,1.1);
+  transform:scale(1.1,1.1);}
+button, input {line-height: normal;appearance: none;-moz-appearance: none;-webkit-appearance:none;}
+button, input, textarea,select {font-family:inherit;font-size: 100%;margin: 0;outline: none;appearance:none;-moz-appearance:none;
+  -webkit-appearance:none;}
+select{font-size: 100%;margin: 0;outline: none;}
+.l{float:left;}.r{float:right;}
+.wrap{width:92%;margin-right:auto;margin-left:auto;}
+/*全站通用样式*/
+.transition{-webkit-transition: all 0.5s ease;transition: all 0.5s ease;}
+.ab{display:flex;display:-webkit-flex;display:-ms-flex;}
+.ac{flex:1;-ms-flex:1;-webkit-flex:1;}
+*[class*="icon0"]{background-repeat:no-repeat;background-position:0 0;display:block;}
+/*首页banner*/
+.index-banner{padding:12px 0;}
+.index-banner .van-swipe__indicator{width:8px;height:8px;opacity:1;}
+.index-banner .van-swipe__indicator--active{background-color:#b7b7b7;}
