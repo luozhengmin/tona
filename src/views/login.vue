@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <div class="login-box">
       <div class="title">
         <h1>商家账号密码登录</h1>
