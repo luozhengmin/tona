@@ -10,7 +10,7 @@
         <van-field type="tel" label="登录密码" placeholder="请输入商户登录密码" />
         <van-field label="验证码" placeholder="输入验证码">
           <template #right-icon>
-            <van-image width="100" height="100%" :src="require('../assets/yzm.jpg')" />
+            <van-image width="100" height="100%" :src="require('../../assets/image/yzm.jpg')" />
           </template>
         </van-field>
         <div class="btn">

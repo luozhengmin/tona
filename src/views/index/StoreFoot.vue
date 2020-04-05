@@ -1,6 +1,5 @@
 <template>
   <div class="home-base">
-    <router-view/>
     <div class="common-footer-wrap">
       <van-tabbar>
         <van-tabbar-item><router-link :to="{ name: ''}" class='item'><i class='iconfont icon-homepage' /><span class='text'>首页</span></router-link></van-tabbar-item>
