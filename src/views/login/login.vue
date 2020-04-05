@@ -72,6 +72,7 @@ export default {};
   position: fixed;
   width: 100%;
   bottom: 0;
+  left: 0;
 }
 .footer a {
   font-weight: bolder;

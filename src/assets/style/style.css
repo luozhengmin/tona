@@ -27,7 +27,7 @@ button, input, textarea,select {font-family:inherit;font-size: 100%;margin: 0;ou
   -webkit-appearance:none;}
 select{font-size: 100%;margin: 0;outline: none;}
 .l{float:left;}.r{float:right;}
-.wrap{width:92%;margin-right:auto;margin-left:auto;}
+.wrap{padding: 0 15px;}
 /*全站通用样式*/
 .transition{-webkit-transition: all 0.5s ease;transition: all 0.5s ease;}
 .ab{display:flex;display:-webkit-flex;display:-ms-flex;}

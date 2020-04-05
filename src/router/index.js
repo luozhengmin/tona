@@ -19,32 +19,50 @@ export default new Router({
         {
           path: 'login',
           name: 'login',
-          component: () => import("@/views/login/login")
+          component: () => import("@/views/login/login"),
+          meta: {
+            showFooter: false
+          }
         },
         {
           path: 'mima-login',
           name: 'mima-login',
-          component: () => import("@/views/login/mima-login")
+          component: () => import("@/views/login/mima-login"),
+          meta: {
+            showFooter: false
+          }
         },
         {
           path: 'yzm-login',
           name: 'yzm-login',
-          component: () => import("@/views/login/yzm-login")
+          component: () => import("@/views/login/yzm-login"),
+          meta: {
+            showFooter: false
+          }
         },
         {
           path: 'reset',
           name: 'reset',
-          component: () => import("@/views/login/reset")
+          component: () => import("@/views/login/reset"),
+          meta: {
+            showFooter: false
+          }
         },
         {
           path: 'register',
           name: 'register',
-          component: () => import("@/views/login/register")
+          component: () => import("@/views/login/register"),
+          meta: {
+            showFooter: false
+          }
         },
         {
           path: 'protocol',
           name: 'protocol',
-          component: () => import("@/views/login/protocol")
+          component: () => import("@/views/login/protocol"),
+          meta: {
+            showFooter: false
+          }
         },
       ]
     },
