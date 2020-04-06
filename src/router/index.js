@@ -106,7 +106,17 @@ export default new Router({
           path: 'help-detail',
           name: 'help-detail',
           component: () => import("@/views/person/help-detail"),
-        }
+        },
+        {
+          path: 'person-center',
+          name: 'person-center',
+          component: () => import("@/views/person/person-center"),
+        },
+        {
+          path: 'person-edit',
+          name: 'person-edit',
+          component: () => import("@/views/person/person-edit"),
+        },
       ]
     },
 
