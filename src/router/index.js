@@ -117,6 +117,26 @@ export default new Router({
           name: 'person-edit',
           component: () => import("@/views/person/person-edit"),
         },
+        {
+          path: 'update-password',
+          name: 'update-password',
+          component: () => import("@/views/person/update-password"),
+        },
+        {
+          path: 'update-mobile-1',
+          name: 'update-mobile-1',
+          component: () => import("@/views/person/update-mobile-1"),
+        },
+        {
+          path: 'update-mobile-2',
+          name: 'update-mobile-2',
+          component: () => import("@/views/person/update-mobile-2"),
+        },
+        {
+          path: 'third-auth',
+          name: 'third-auth',
+          component: () => import("@/views/person/third-auth"),
+        },
       ]
     },
 

@@ -16,8 +16,8 @@
 
     <div class="form">
       <van-cell-group>
-        <van-field value="8447466" label="用户ID"></van-field>
-        <van-field label="昵称" placeholder="我是夏天" use-button-slot>
+        <van-field label="用户ID" value="8447466"></van-field>
+        <van-field label="昵称" value="我是夏天" use-button-slot>
           <van-button slot="button" type="info" plain size="small">去验证</van-button>
         </van-field>
         <van-field label="性别">
