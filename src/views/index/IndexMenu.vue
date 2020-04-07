@@ -1,5 +1,5 @@
 <template>
-  <div class="menu fix">
+  <div class="menu wrap fix">
     <div class="menu-item" @click="goBrandstore">
       <i class="iconfont bg-1">&#xe7ae;</i>
       <span class="menu-item-title">品牌馆</span>
@@ -24,16 +24,16 @@
       name: "IndexMenu",
       methods: {
         goBrandstore() {
-          this.$router.push({name: ''})
+          this.$router.push({name: 'BrandList'})
         },
         goDesign() {
           this.$router.push({'name': ''})
         },
         goGloble() {
-          this.$router.push({'name': ''})
+          this.$router.push({'name': 'Globalstore'})
         },
         goPartner() {
-          this.$router.push({'name': ''})
+          this.$router.push({'name': 'Investment'})
         },
       }
     }

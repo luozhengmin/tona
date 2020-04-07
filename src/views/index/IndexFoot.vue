@@ -29,14 +29,14 @@
 </script>
 
 <style scoped>
-  .footer{background-color:#323232;width:100%;padding:2rem 0 1.2rem 0;font-size:0.7rem;color:#fff;margin-top:1.2rem;}
+  .footer{background-color:#323232;width:100%;padding:40px 0 24px 0;color:#fff;margin-top:20px;}
     .foot .ew-pic{text-align:center;width:32%;margin:0 auto;}
     .foot .ew-pic img{max-width:100%;}
-    .foot h3{text-align:center;padding-top:0.6rem;}
-    .foot .row{justify-content:space-between;padding:2rem 0 1.2rem 0;}
-    .foot .row li{padding-left:0.1rem;}
+    .erwei h3{text-align:center;padding-top:12px;font-size:14px;}
+    .foot .row{justify-content:space-between;padding:40px 0 24px 0;font-size:14px;}
+    .foot .row li{padding-left:2px;}
     .foot .row li:first-child(1){padding-left:0;}
     .foot a{color:#fff;}
     .foot >p {text-align:center;color:#b7b7b7;}
-    .foot >p a{padding:0 0.2rem;color:#b7b7b7;}
+    .foot >p a{padding:0 4px;color:#b7b7b7;}
 </style>

@@ -1,51 +1,49 @@
 <template>
   <div>
     <div class="index-brand fix">
-      <div class="title-t">
-        <h2>品牌推荐<span class="ml">活动</span></h2>
-      </div>
-      <div class="brand-con ab fix">
-        <div class="brand-con-l">
-          <h3>TONA HOME x <span>品牌季</span></h3>
-          <span></span>
-          <h2>空间有限，选择无线</h2>
-          <p>用我们的设计打造你的专属空间</p>
+      <div class="wrap fix">
+        <div class="title-t">
+          <h2>品牌推荐<span class="ml">活动</span></h2>
         </div>
-        <div class="brand-con-r">
-          <img src="../../assets/image/cp01.jpg">
+        <div class="brand-con ab fix">
+          <div class="brand-con-l">
+            <h3>TONA HOME x <span>品牌季</span></h3>
+            <span></span>
+            <h2>空间有限，选择无线</h2>
+            <p>用我们的设计打造你的专属空间</p>
+          </div>
+          <div class="brand-con-r">
+            <img src="../../assets/image/cp01.jpg">
+          </div>
         </div>
       </div>
       <div class="brand-list fix">
-        <swiper class="swiper" :options="swiperOption">
-          <swiper-slide v-for="(image, index) in productlist" :key="index">
-            <a href=""><img :src="image.imgUrl"></a>
-          </swiper-slide>
-        </swiper>
+        <van-swipe :loop="false" :width="160" :show-indicators="false">
+          <van-swipe-item  v-for="(item,index) in brandlist" :key="index">
+            <img src="../../assets/image/cp02.jpg">
+          </van-swipe-item>
+        </van-swipe>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-  import 'swiper/css/swiper.css'
+import Vue from 'vue';
+import { Swipe, SwipeItem } from 'vant';
+
+Vue.use(Swipe);
+Vue.use(SwipeItem);
   export default {
     name: "",
-    components: {
-      Swiper,
-      SwiperSlide
-    },
     data() {
       return {
-        swiperOption: {
-          slidesPerView:3,
-          spaceBetween:10,
-        },
-        productlist:[
-          { id:1,imgUrl:'http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg'},
-          { id:2,imgUrl:'http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg'},
-          { id:3,imgUrl:'http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg'},
-          { id:4,imgUrl:'http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg'}
+        brandlist:[
+          { id:1,imgUrl:''},
+          { id:2,imgUrl:''},
+          { id:3,imgUrl:''},
+          { id:4,imgUrl:''}
         ]
       }
     }
@@ -53,11 +51,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .brand-list{
-    margin-right:-6%!important;
-    .swiper-slide{
-      width:44%!important;
-    }
-
+  .van-swipe-item{
+    margin-right:10px;
   }
 </style>

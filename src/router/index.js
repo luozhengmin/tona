@@ -81,7 +81,7 @@ export default new Router({
           path: 'receipt',
           name: 'receipt',
           component: () => import("@/views/cart/receipt")
-        }, 
+        },
         {
           path: 'pay',
           name: 'pay',
@@ -91,6 +91,21 @@ export default new Router({
           path: 'pay-success',
           name: 'pay-success',
           component: () => import("@/views/cart/pay-success")
+        },
+        {
+          path: 'BrandList',
+          name: 'BrandList',
+          component: () => import("@/views/index/brand/BrandList")
+        },
+        {
+          path: 'Investment',
+          name: 'Investment',
+          component: () => import("@/views/index/Investment/Investment")
+        },
+        {
+          path: 'Globalstore',
+          name: 'Globalstore',
+          component: () => import("@/views/index/Globalstore/Globalstore")
         },
       ]
     },
