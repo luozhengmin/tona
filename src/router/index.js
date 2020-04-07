@@ -137,6 +137,21 @@ export default new Router({
           name: 'third-auth',
           component: () => import("@/views/person/third-auth"),
         },
+        {
+          path: 'address-list',
+          name: 'address-list',
+          component: () => import("@/views/person/address/list"),
+        },
+        {
+          path: 'address-edit',
+          name: 'address-edit',
+          component: () => import("@/views/person/address/edit"),
+        },
+        {
+          path: 'collect',
+          name: 'collect',
+          component: () => import("@/views/person/collect"),
+        },
       ]
     },
 

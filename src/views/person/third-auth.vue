@@ -24,12 +24,10 @@
         </template>
         <template #title>
           <div class="title">已绑定微信</div>
-          <div class="desc">（您绑定的账号为：Windir）</div>
+          <div class="desc">(您绑定的账号为：Windir)</div>
         </template>
-        <template #button>
-          <div class="icon weixin">
-            <i class="fa fa-weixin"></i>
-          </div>
+        <template #right-icon>
+          <van-button slot="button" type="info" plain size="small">解除绑定</van-button>
         </template>
       </van-cell>
     </div>
@@ -51,6 +49,10 @@ export default {};
       line-height: 50px;
       display: flex;
       align-items: center;
+      .van-button {
+        border: none;
+        font-size: 14px;
+      }
       .icon {
         width: 40px;
         height: 40px;
@@ -71,6 +73,14 @@ export default {};
       }
       .weixin {
         background-color: #58b202;
+      }
+      .title {
+        line-height: 25px;
+      }
+      .desc {
+        font-size: 14px;
+        color: #888888;
+        line-height: 25px;
       }
     }
   }
