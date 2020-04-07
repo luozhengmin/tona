@@ -167,6 +167,16 @@ export default new Router({
           name: 'order-evaluate',
           component: () => import("@/views/person/order/evaluate"),
         },
+        {
+          path: 'order/detail',
+          name: 'order-detail',
+          component: () => import("@/views/person/order/detail"),
+        },
+        {
+          path: 'order/logistics',
+          name: 'logistics',
+          component: () => import("@/views/person/order/logistics"),
+        },
       ]
     },
 
