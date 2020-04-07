@@ -1,67 +1,65 @@
 <template>
   <div class="container">
     <div class="header"></div>
-    <van-search v-model="value" shape="round" show-action placeholder="请输入搜索关键词" @search="onSearch">
-      <template #action>
-        <div @click="onSearch">搜索</div>
-      </template>
-    </van-search>
-    <div class="list">
-      <div class="history" v-if="showHistory">
-        <div class="title">搜索历史</div>
-        <div v-for="i in 5" :key="i">
-          <van-divider />
-          <div class="item">
-            <div class="name">
-              <van-icon name="clock-o" />
-              <span>浴室柜</span>
+    <van-tabs>
+      <van-tab title="全部">
+        <div class="list">
+          <div v-if="list.length==0" class="empty">
+            <div>
+              <img src="../../../assets/image/empty-1.png" />
             </div>
-            <van-icon name="cross" />
+            <div>暂无相关订单记录</div>
           </div>
-        </div>
-      </div>
-      <div v-if="list.length==0" class="empty">
-        <div>
-          <img src="../../../assets/image/empty-1.png" />
-        </div>
-        <div>没有找到相关的订单信息</div>
-        <div>请换一个词再试试吧</div>
-      </div>
-      <div class="product-card" v-for="i in 2" :key="i">
-        <div class="store">
-          <span>TONA官方旗舰店</span>
-          <span class="status">等待买家确认</span>
-        </div>
-        <div class="product" v-for="j in 2" :key="j">
-          <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
-            <template slot="title">
-              <div class="title">
-                <span>TONA-拉米娜浴室柜</span>
-                <div>￥45.9</div>
+          <div class="product-card" v-for="i in 2" :key="i">
+            <div class="store">
+              <span>TONA官方旗舰店</span>
+              <span class="status">等待买家确认</span>
+            </div>
+            <div class="product" v-for="j in 2" :key="j">
+              <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
+                <template slot="title">
+                  <div class="title">
+                    <span>TONA-拉米娜浴室柜</span>
+                    <div>￥45.9</div>
+                  </div>
+                </template>
+                <template slot="desc">
+                  <div class="desc num">
+                    <span>颜色</span>
+                    <span>x 2</span>
+                  </div>
+                  <div class="desc">规格</div>
+                </template>
+              </van-card>
+            </div>
+            <div class="bottom">
+              <div class="info">退款待处理</div>
+              <div class="total">
+                <span>共1件商品</span>
+                <span>合计￥45.9</span>
               </div>
-            </template>
-            <template slot="desc">
-              <div class="desc num">
-                <span>颜色</span>
-                <span>x 2</span>
+              <div class="btn">
+                <van-button plain size="small" round>提醒收货</van-button>
+                <van-button plain size="small" round>查看物流</van-button>
               </div>
-              <div class="desc">规格</div>
-            </template>
-          </van-card>
-        </div>
-        <div class="bottom">
-          <div class="info">退款待处理</div>
-          <div class="total">
-            <span>共1件商品</span>
-            <span>合计￥45.9</span>
-          </div>
-          <div class="btn">
-            <van-button plain size="small" round>提醒收获</van-button>
-            <van-button plain size="small" round>查看物流</van-button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </van-tab>
+      <van-tab title="待付款">
+        <div class="list">
+          <div v-if="list1.length==0" class="empty">
+            <div>
+              <img src="../../../assets/image/empty-1.png" />
+            </div>
+            <div>暂无相关订单记录</div>
+          </div>
+        </div>
+      </van-tab>
+      <van-tab title="待发货"></van-tab>
+      <van-tab title="待收货"></van-tab>
+      <van-tab title="待评价"></van-tab>
+    </van-tabs>
   </div>
 </template>
 
@@ -71,7 +69,8 @@ export default {
     return {
       value: "",
       showHistory: false,
-      list: [{}]
+      list: [{}],
+      list1: []
     };
   },
   methods: {

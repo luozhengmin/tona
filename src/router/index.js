@@ -157,6 +157,11 @@ export default new Router({
           name: 'order-search',
           component: () => import("@/views/person/order/search"),
         },
+        {
+          path: 'order/list',
+          name: 'order-list',
+          component: () => import("@/views/person/order/list"),
+        },
       ]
     },
 
