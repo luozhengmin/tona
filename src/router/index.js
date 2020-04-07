@@ -93,19 +93,79 @@ export default new Router({
           component: () => import("@/views/cart/pay-success")
         },
         {
-          path: 'BrandList',
-          name: 'BrandList',
-          component: () => import("@/views/index/brand/BrandList")
+          path: 'person',
+          name: 'person',
+          component: () => import("@/views/person/index"),
         },
         {
-          path: 'Investment',
-          name: 'Investment',
-          component: () => import("@/views/index/Investment/Investment")
+          path: 'help',
+          name: 'help',
+          component: () => import("@/views/person/help"),
         },
         {
-          path: 'Globalstore',
-          name: 'Globalstore',
-          component: () => import("@/views/index/Globalstore/Globalstore")
+          path: 'help-detail',
+          name: 'help-detail',
+          component: () => import("@/views/person/help-detail"),
+        },
+        {
+          path: 'person-center',
+          name: 'person-center',
+          component: () => import("@/views/person/person-center"),
+        },
+        {
+          path: 'person-edit',
+          name: 'person-edit',
+          component: () => import("@/views/person/person-edit"),
+        },
+        {
+          path: 'update-password',
+          name: 'update-password',
+          component: () => import("@/views/person/update-password"),
+        },
+        {
+          path: 'update-mobile-1',
+          name: 'update-mobile-1',
+          component: () => import("@/views/person/update-mobile-1"),
+        },
+        {
+          path: 'update-mobile-2',
+          name: 'update-mobile-2',
+          component: () => import("@/views/person/update-mobile-2"),
+        },
+        {
+          path: 'third-auth',
+          name: 'third-auth',
+          component: () => import("@/views/person/third-auth"),
+        },
+        {
+          path: 'address-list',
+          name: 'address-list',
+          component: () => import("@/views/person/address/list"),
+        },
+        {
+          path: 'address-edit',
+          name: 'address-edit',
+          component: () => import("@/views/person/address/edit"),
+        },
+        {
+          path: 'collect',
+          name: 'collect',
+          component: () => import("@/views/person/collect"),
+        },
+        {
+          path: 'order/search',
+          name: 'order-search',
+          component: () => import("@/views/person/order/search"),
+        },
+        {
+          path: 'order/list',
+          name: 'order-list',
+          component: () => import("@/views/person/order/list"),
+        },
+        {
+          path: 'order/evaluate',
+          name: 'order-evaluate',
+          component: () => import("@/views/person/order/evaluate"),
         },
       ]
     },

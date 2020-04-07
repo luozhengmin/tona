@@ -25,4 +25,10 @@ export default {
 .login-box .van-field__right-icon {
   height: 30px;
 }
+
+.person-order-status .van-goods-action-icon__icon {
+  font-size: 32px;
+  padding: 5px 0;
+  color: #323232;
+}
 </style>
