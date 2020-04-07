@@ -152,6 +152,11 @@ export default new Router({
           name: 'collect',
           component: () => import("@/views/person/collect"),
         },
+        {
+          path: 'order/search',
+          name: 'order-search',
+          component: () => import("@/views/person/order/search"),
+        },
       ]
     },
 
