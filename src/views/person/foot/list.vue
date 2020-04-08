@@ -1,0 +1,131 @@
+<template>
+  <div class="container">
+    <div class="header"></div>
+    <div>
+      <div v-if="list.length==0" class="empty">
+        <div>
+          <img src="../../../assets/image/empty-1.png" />
+        </div>
+        <div>对不起，您还没有收藏商品哦！</div>
+      </div>
+      <div class="list">
+        <van-row gutter="15">
+          <div class="date-item"  v-for="j in 3 " :key="j">
+            <div class="date">03月5日</div>
+            <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+              <div class="prod">
+                <div>
+                  <img src="../../../assets/image/prod-2.jpg" />
+                </div>
+                <div class="title">欧式悬挂式浴室柜</div>
+                <div class="desc">45度角双抽拉手设计</div>
+                <div class="bottom">
+                  <div>
+                    <span class="fuhao">￥</span>2580.00
+                  </div>
+                </div>
+              </div>
+            </van-col>
+          </div>
+        </van-row>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      active: 0,
+      list: [{}]
+    };
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.container {
+  background-color: #f7f7f7;
+  min-height: 100%;
+  .empty {
+    padding: 50px 15px;
+    font-size: 16px;
+    color: #b7b7b7;
+    text-align: center;
+    img {
+      margin-bottom: 20px;
+    }
+  }
+  .list {
+    height: 100%;
+    padding: 15px;
+    .date-item {
+      .date {
+        font-size: 16px;
+        color: #323232;
+        padding: 15px;
+      }
+    }
+    .card {
+      background-color: #fff;
+      margin-bottom: 15px;
+      .info {
+        padding: 0 15px;
+        .title {
+          font-size: 16px;
+          color: #323232;
+          margin-bottom: 5px;
+        }
+      }
+      .desc {
+        padding: 0 15px 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #888;
+        .left {
+          display: flex;
+          align-items: center;
+          span {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+    .prod {
+      background-color: #fff;
+      .title {
+        font-size: 16px;
+        color: #323232;
+        padding: 10px 15px 5px 15px;
+      }
+      .desc {
+        padding: 0 15px 10px 15px;
+        color: #888;
+      }
+      .bottom {
+        padding: 0 15px 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #f4523b;
+        font-size: 20px;
+        .fuhao {
+          font-size: 12px;
+        }
+        .icon {
+          width: 30px;
+          height: 30px;
+          background-color: #323232;
+          color: #fff;
+          border-radius: 100%;
+          text-align: center;
+          line-height: 36px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+</style>

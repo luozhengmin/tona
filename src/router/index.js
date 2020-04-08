@@ -167,6 +167,36 @@ export default new Router({
           name: 'order-evaluate',
           component: () => import("@/views/person/order/evaluate"),
         },
+        {
+          path: 'order/detail',
+          name: 'order-detail',
+          component: () => import("@/views/person/order/detail"),
+        },
+        {
+          path: 'order/logistics',
+          name: 'logistics',
+          component: () => import("@/views/person/order/logistics"),
+        },
+        {
+          path: 'after-sale/list',
+          name: 'after-sale-list',
+          component: () => import("@/views/person/after-sale/list"),
+        },
+        {
+          path: 'after-sale/edit',
+          name: 'after-sale-edit',
+          component: () => import("@/views/person/after-sale/edit"),
+        },
+        {
+          path: 'after-sale/edit2',
+          name: 'after-sale-edit2',
+          component: () => import("@/views/person/after-sale/edit2"),
+        },
+        {
+          path: 'after-sale/detail',
+          name: 'after-sale-detail',
+          component: () => import("@/views/person/after-sale/detail"),
+        },
       ]
     },
 
