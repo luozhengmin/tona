@@ -197,6 +197,26 @@ export default new Router({
           name: 'after-sale-detail',
           component: () => import("@/views/person/after-sale/detail"),
         },
+        {
+          path: 'integral/index',
+          name: 'integral-index',
+          component: () => import("@/views/person/integral/index"),
+        },
+        {
+          path: 'integral/list',
+          name: 'integral-list',
+          component: () => import("@/views/person/integral/list"),
+        },
+        {
+          path: 'feedback/edit',
+          name: 'feedback-edit',
+          component: () => import("@/views/person/feedback/edit"),
+        },
+        {
+          path: 'foot/list',
+          name: 'foot-list',
+          component: () => import("@/views/person/foot/list"),
+        },
       ]
     },
 
