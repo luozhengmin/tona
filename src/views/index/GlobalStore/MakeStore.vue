@@ -201,6 +201,9 @@
         this.value = time;
         this.showPicker = false;
       },
+      MakeStore() {
+        this.$router.push({'name': 'MakeStore'})
+      },
     }
   }
 </script>

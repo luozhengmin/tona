@@ -9,7 +9,7 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: () => import("@/views/home"),
-      redirect: "index",
+      redirect: "LandPage",
       children: [
         {
           path: 'index',
@@ -63,6 +63,36 @@ export default new Router({
           meta: {
             showFooter: false
           }
+        },
+        {
+          path: 'LandPage',
+          name: 'LandPage',
+          component: () => import("@/views/index/LandPage/LandPage"),
+        },
+        {
+          path: 'BrandList',
+          name: 'BrandList',
+          component: () => import("@/views/index/Brand/BrandList"),
+        },
+        {
+          path: 'BrandChild',
+          name: 'BrandChild',
+          component: () => import("@/views/index/Brand/BrandChild/BrandChild"),
+        },
+        {
+          path: 'GlobalStore',
+          name: 'GlobalStore',
+          component: () => import("@/views/index/GlobalStore/GlobalStore"),
+        },
+        {
+          path: 'Investment',
+          name: 'Investment',
+          component: () => import("@/views/index/Investment/Investment"),
+        },
+        {
+          path: 'MakeStore',
+          name: 'MakeStore',
+          component: () => import("@/views/index/GlobalStore/MakeStore"),
         },
         {
           path: 'cart',
