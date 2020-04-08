@@ -13,12 +13,12 @@
   import BrandListBody from "./BrandListBody.vue";
 
   export default {
+    name:'BrandList',
     components: {
       BrandListBody,
       IndexFoot,
       IndexBanner
     },
-    name:'BrandList',
     data(){
       return{
 

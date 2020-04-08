@@ -46,7 +46,7 @@
         </div>
         <div class="sub-brand-b wrap">
           <div class="col" v-for="(item,index) in subrandlist" :key="index">
-            <a href="">
+            <router-link :to="{name:'BrandChild',query:{id:item.id}}">
               <div class="b-pic">
                 <img src="../../../assets/image/cp01.jpg">
               </div>
@@ -57,7 +57,7 @@
                   <p>{{item.p_information}}</p>
                 </div>
               </div>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>

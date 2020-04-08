@@ -1,6 +1,6 @@
 <template>
   <div class="menu wrap fix">
-    <div class="menu-item" @click="goBrandstore">
+    <div class="menu-item" @click="goBrand">
       <i class="iconfont bg-1">&#xe7ae;</i>
       <span class="menu-item-title">品牌馆</span>
     </div>
@@ -8,7 +8,7 @@
       <i class="iconfont bg-2">&#xe671;</i>
       <span class="menu-item-title">设计方案</span>
     </div>
-    <div class="menu-item" @click="goGloble">
+    <div class="menu-item" @click="goGlobal">
       <i class="iconfont bg-3">&#xe7ae;</i>
       <span class="menu-item-title">全球门店</span>
     </div>
@@ -23,14 +23,14 @@
     export default {
       name: "IndexMenu",
       methods: {
-        goBrandstore() {
-          this.$router.push({name: 'BrandList'})
+        goBrand() {
+          this.$router.push({'name': 'BrandList'})
         },
         goDesign() {
-          this.$router.push({'name': ''})
+          this.$router.push({'name': 'LandPage'})
         },
-        goGloble() {
-          this.$router.push({'name': 'Globalstore'})
+        goGlobal() {
+          this.$router.push({'name': 'GlobalStore'})
         },
         goPartner() {
           this.$router.push({'name': 'Investment'})

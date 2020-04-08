@@ -6,32 +6,31 @@
           <h2><span>设计灵感</span></h2>
         </div>
         <div class="brand-con ab fix">
-          <div class="brand-con-l ac">
+          <div class="brand-con-l">
             <h3>TONA HOME x <span>卫浴家装</span></h3>
             <span></span>
             <h2>致力为全球用户提供</h2>
             <p>自然健康的全屋解决方案</p>
           </div>
           <div class="brand-con-r">
-            <img src="../../assets/image/cp01.jpg">
+            <img src="../../../../assets/image/cp01.jpg">
           </div>
         </div>
       </div>
       <div class="design-list fix">
         <van-swipe :loop="false" :width="300" :show-indicators="false">
-          <van-swipe-item v-for="(item,index) in designlist" :key="index">
+          <van-swipe-item v-for="(item,index) in childlist" :key="index">
             <a href=""><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></a>
             <div class="main ab">
               <div class="infor-l ac">
                 <h2>{{item.d_name}}</h2>
                 <div class="-t">
-                  <span>韵华茶几 | 原创设计</span>
-                  <span><i class="iconfont">&#xe7ae;</i>15402</span>
+                  <span>纯德系，现代卫浴品牌</span>
                 </div>
               </div>
               <div class="infor-r">
-                <div class="dot"></div>
-                <span>数码党</span>
+                <van-tag color="#ee502f">NEW</van-tag>
+                <span class="ab"><van-icon name="eye-o" />15402</span>
               </div>
             </div>
           </van-swipe-item>
@@ -49,14 +48,14 @@
   Vue.use(Swipe);
   Vue.use(SwipeItem);
   export default {
-    name: "",
+    name: "ChildList",
     data() {
       return {
-        designlist:[
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'},
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'},
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'},
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'}
+        childlist:[
+          {id:1,d_name:'TONA卫浴'},
+          {id:1,d_name:'TONA卫浴'},
+          {id:1,d_name:'TONA卫浴'},
+          {id:1,d_name:'TONA卫浴'}
         ]
       }
     }
@@ -74,6 +73,7 @@
   .main{
     color:#888;
     padding:12px 12px;
+    align-items:center;
     .infor-l{
       h2{
         font-size:14px;
@@ -85,8 +85,13 @@
       }
     }
     .infor-r{
-      text-align: center;
-      .dot{width:24px;height:24px;margin:0 auto;background:#aaa;border-radius:50%;}
+      flex-direction:column;
+      text-align:right;
+      .van-tag{border-radius:10px 10px 10px 0;}
+      span{
+        align-items:center;
+        .van-icon{font-size:16px;padding-right:2px;}
+      }
     }
   }
 </style>

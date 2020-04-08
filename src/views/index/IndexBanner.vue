@@ -1,5 +1,5 @@
 <template>
-    <div class="index-banner wrap fix">
+    <div class="index-banner fix">
       <van-swipe :autoplay="0">
         <van-swipe-item v-for="(item, index) in images" :key="index">
           <img  :src="item.imgUrl"/>
@@ -24,4 +24,3 @@
       }
     }
 </script>
-
