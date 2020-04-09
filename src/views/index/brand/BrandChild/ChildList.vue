@@ -3,7 +3,7 @@
     <div class="index-brand fix">
       <div class="wrap fix">
         <div class="title-t">
-          <h2><span>设计灵感</span></h2>
+          <h2><span>推荐方案</span></h2>
         </div>
         <div class="brand-con ab fix">
           <div class="brand-con-l">
@@ -37,6 +37,32 @@
         </van-swipe>
 
       </div>
+
+      <div class="list">
+        <div class="title-t">
+          <h2><span>新品推荐</span></h2>
+        </div>
+        <van-row gutter="15">
+          <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+            <div class="prod">
+              <div>
+                <img src="../../../../assets/image/prod-2.jpg" />
+              </div>
+              <div class="title">欧式悬挂式浴室柜</div>
+              <div class="desc">45度角双抽拉手设计</div>
+              <div class="bottom">
+                <div>
+                  <span class="fuhao">￥</span>2580.00
+                </div>
+                <div class="icon">
+                  <van-icon name="cart" />
+                </div>
+              </div>
+            </div>
+          </van-col>
+        </van-row>
+      </div>
+
     </div>
   </div>
 </template>
@@ -69,28 +95,93 @@
   }
   .van-swipe-item{
     margin-right:10px;
-  }
-  .main{
-    color:#888;
-    padding:12px 12px;
-    align-items:center;
-    .infor-l{
-      h2{
-        font-size:14px;
-        color:#000;
-        padding-bottom:4px;
+    .main{
+      color:#888;
+      padding:12px 12px;
+      align-items:center;
+
+      .infor-l{
+        h2{
+          font-size:14px;
+          color:#000;
+          padding-bottom:4px;
+        }
+        .-t{
+          i{font-size:12px;line-height:12px;padding:0 2px 0 6px;}
+        }
       }
-      .-t{
-        i{font-size:12px;line-height:12px;padding:0 2px 0 6px;}
+      .infor-r{
+        flex-direction:column;
+        text-align:right;
+        .van-tag{border-radius:10px 10px 10px 0;}
+        span{
+          align-items:center;
+          .van-icon{font-size:16px;padding-right:2px;}
+        }
       }
     }
-    .infor-r{
-      flex-direction:column;
-      text-align:right;
-      .van-tag{border-radius:10px 10px 10px 0;}
-      span{
-        align-items:center;
-        .van-icon{font-size:16px;padding-right:2px;}
+  }
+
+  .list {
+    height: 100%;
+    padding: 15px;
+    .card {
+      background-color: #fff;
+      margin-bottom: 15px;
+      .info {
+        padding: 0 15px;
+        .title {
+          font-size: 16px;
+          color: #323232;
+          margin-bottom: 5px;
+        }
+      }
+      .desc {
+        padding: 0 15px 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #888;
+        .left {
+          display: flex;
+          align-items: center;
+          span {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+    .prod {
+      background-color: #fff;
+      .title {
+        font-size: 16px;
+        color: #323232;
+        padding: 10px 15px 5px 15px;
+      }
+      .desc {
+        padding: 0 15px 10px 15px;
+        color: #888;
+      }
+      .bottom {
+        padding: 0 15px 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #f4523b;
+        font-size: 20px;
+        .fuhao {
+          font-size: 12px;
+        }
+        .icon {
+          width: 30px;
+          height: 30px;
+          background-color: #323232;
+          color: #fff;
+          border-radius: 100%;
+          text-align: center;
+          line-height: 36px;
+          font-size: 16px;
+        }
       }
     }
   }

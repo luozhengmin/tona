@@ -1,5 +1,5 @@
 <template>
-      <div class="container">
+      <div>
         <div class="wrap fix">
           <div class="b-child-menu">
             <div class="b-child-top ab">
@@ -24,8 +24,12 @@
             <van-tab title="品牌首页" name="a">
               <brand-home></brand-home>
             </van-tab>
-            <van-tab title="商品" name="b">内容 2</van-tab>
-            <van-tab title="设计师" name="c">内容 3</van-tab>
+            <van-tab title="商品" name="b">
+              <brand-product></brand-product>
+            </van-tab>
+            <van-tab title="设计师" name="c">
+              <brand-design></brand-design>
+            </van-tab>
           </van-tabs>
         </div>
       </div>
@@ -33,9 +37,14 @@
 
 <script>
   import BrandHome from "./BrandHome.vue";
+  import BrandDesign from "./BrandDesign.vue";
+  import BrandProduct from "./BrandProduct.vue";
 
   export default {
-    components: {BrandHome},
+    components: {
+      BrandProduct,
+      BrandDesign,
+      BrandHome},
     name: "BrandChild",
     data(){
       return{

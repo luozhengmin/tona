@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
       <index-banner></index-banner>
       <div class="r-solution fix">
         <child-list></child-list>
