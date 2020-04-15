@@ -156,13 +156,14 @@
             padding-bottom:4px;
           }
           .-t{
+            font-size:14px;
             i{font-size:12px;line-height:12px;padding:0 2px 0 6px;}
           }
         }
         .infor-r{
           flex-direction:column;
           text-align:right;
-          .van-tag{border-radius:10px 10px 10px 0;margin-bottom:2px;}
+          .van-tag{border-radius:10px 10px 10px 0;margin-bottom:3px;}
           span{
             align-items:center;
             .van-icon{font-size:16px;padding-right:2px;}
@@ -213,13 +214,14 @@
       .main{
         border:solid 1px #eee;
         .title {
-          font-size: 16px;
+          font-size: 15px;
           color: #323232;
           padding: 10px 15px 5px 15px;
         }
         .desc {
           padding: 0 15px 10px 15px;
           color: #888;
+          font-size: 13px;
         }
         .bottom {
           padding: 0 15px 10px 15px;

@@ -11,7 +11,9 @@
 </template>
 
 <script>
-export default {};
+  export default {
+    name:''
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -25,13 +27,12 @@ export default {};
       h3 {
         font-size: 16px;
         font-weight: bolder;
-        color: #272727;
+        color: #323232;
         padding: 10px 0;
       }
       div {
-        color: #888;
-        line-height: 28px;
-        font-size: 16px;
+        color: #323232;
+        font-size: 15px;
       }
     }
   }

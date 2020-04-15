@@ -3,19 +3,19 @@
     <div class="header"></div>
     <div class="form">
       <div class="item">
-        <div class="label">物流公司</div>
+        <div class="label ab">物流公司<i>*</i></div>
         <van-field readonly placeholder="请选择" is-link />
       </div>
       <div class="item">
-        <div class="label">物流单号</div>
+        <div class="label ab">物流单号<i>*</i></div>
         <van-field placeholder="请输入您的物流单号" />
       </div>
       <div class="item">
-        <div class="label">联系电话</div>
+        <div class="label ab">联系电话<i>*</i></div>
         <van-field placeholder="请输入您的联系电话" />
       </div>
       <div class="item">
-        <div class="label">退货说明</div>
+        <div class="label ab">退货说明</div>
         <van-field
           rows="3"
           autosize
@@ -24,19 +24,23 @@
         />
       </div>
     </div>
-
-    <div class="upload">
-      <van-uploader v-model="fileList" multiple />
+    <div class="upload-1">
+      <van-uploader v-model="fileList"  :max-count="3" upload-icon="plus" upload-text="添加图片(最多三张)"/>
+    </div>
+    <div class="edit-btn">
+      <van-button color="#e2e2e2" block>提交</van-button>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {};
-  }
-};
+  export default {
+    data() {
+      return {
+        fileList: [],
+      };
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -44,19 +48,30 @@ export default {
   .form {
     padding: 0 15px;
     .item {
-      padding-top: 15px;
+      padding-top: 8px;
       .label {
-        padding: 8px 0;
+        padding: 8px 0 10px 0;
         color: #323232;
-        font-size: 16px;
+        font-size: 15px;
+        align-items:center;
+        i{
+          color:#ff2300;
+          padding-left:2px;
+          display: block;
+          width: 10px;
+          height: 10px;
+          line-height: 14px;
+        }
       }
     }
   }
-  .upload {
-    padding: 10px 15px;
+  .upload-1{
+    padding: 18px 15px;
+    p{color:#888;line-height:1.6;}
   }
   .van-cell {
     border: 1px solid #eeeeee;
   }
+  .edit-btn{padding:0 15px;}
 }
 </style>

@@ -10,8 +10,8 @@
       <ul class="row ab">
         <li><a href="">如何购物</a></li>
         <li><a href="">支付 / 配送方式</a></li>
-        <li><a href=""> 服务承诺</a></li>
-        <li><a href="">加盟招商</a></li>
+        <li><a href="">服务承诺</a></li>
+        <li><router-link to="/Investment">加盟招商</router-link></li>
         <li><a href="">联系我们</a></li>
       </ul>
       <p>

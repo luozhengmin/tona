@@ -29,9 +29,9 @@
     <div class="wuliu">
       <div class="title">审核留言</div>
       <van-divider />
-      <div
-        class="wuliu-info"
-      >亲爱的客户，很抱歉您的商品出现这样的问题。请准备好商品全套（商品、附件、发票原件、包装）按以下地址寄往TONA HOME售后部，不支持到付及平邮。如收到商品后情况属实，我们会尽快为您办理。感谢您对的支持。（注：电子发票及换货发票无需退回）。提示：为避免数据遗失或泄露，请您提前做好数据备份，TONA HOME将不承担相应责任。</div>
+      <div class="wuliu-info">亲爱的客户，很抱歉您的商品出现这样的问题。请准备好商品全套（商品、附件、发票原件、包装）按以下
+        地址寄往TONA HOME售后部，不支持到付及平邮。如收到商品后情况属实，我们会尽快为您办理。感谢您对的支持。（注：电子发票及
+        换货发票无需退回）。提示：为避免数据遗失或泄露，请您提前做好数据备份，TONA HOME将不承担相应责任。</div>
       <div class="item">
         <span>收货地址：</span>广东省深圳市TONA HOME售后服务部
       </div>
@@ -88,22 +88,25 @@ export default {
   .wuliu {
     margin-bottom: 15px;
     .title {
-      padding: 15px;
+      padding:12px 15px;
       background-color: #fff;
-      font-size: 18px;
+      font-size: 15px;
       color: #323232;
     }
     .van-divider {
       margin: 0;
     }
     .wuliu-info {
-      padding: 15px;
+      padding:12px 15px;
       background-color: #fff;
       min-height: 100px;
+      font-size: 13px;
+      color:#888;
     }
     .item {
-      padding: 5px 15px;
+      padding:2px 15px;
       background-color: #fff;
+      color:#888;
       span {
         color: #323232;
       }

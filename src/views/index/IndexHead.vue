@@ -23,25 +23,25 @@
             </li>
             <li>
               <router-link to="">
-                <i class="iconfont bg-7">&#xe7ae;</i>
+                <i class="iconfont bg-7">&#xe508;</i>
                 <span>优秀设计</span>
               </router-link>
             </li>
             <li>
               <router-link to="">
-                <i class="iconfont bg-7">&#xe7ae;</i>
+                <i class="iconfont bg-7">&#xe7b9;</i>
                 <span>全球门店</span>
               </router-link>
             </li>
             <li>
               <router-link to="">
-                <i class="iconfont bg-7">&#xe7ae;</i>
+                <i class="iconfont bg-7">&#xe6b5;</i>
                 <span>招商加盟</span>
               </router-link>
             </li>
             <li>
               <router-link to="">
-                <i class="iconfont bg-7">&#xe7ae;</i>
+                <i class="iconfont bg-7">&#xe602;</i>
                 <span>关于我们</span>
               </router-link>
             </li>

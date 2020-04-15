@@ -279,7 +279,7 @@ export default new Router({
         },
         {
           path: 'after-sale/list',
-          name: 'after-sale-list',
+          name: 'after-sale/list',
           component: () => import("@/views/person/after-sale/list"),
         },
         {
@@ -296,6 +296,11 @@ export default new Router({
           path: 'after-sale/detail',
           name: 'after-sale-detail',
           component: () => import("@/views/person/after-sale/detail"),
+        },
+        {
+          path: 'after-sale/success',
+          name: 'after-sale/success',
+          component: () => import("@/views/person/after-sale/success"),
         },
         {
           path: 'integral/index',

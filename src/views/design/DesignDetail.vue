@@ -29,11 +29,11 @@
          <div class="form-list">
            <h2>装修需求</h2>
            <van-cell-group class="d-request">
-             <van-field v-model="value" placeholder="描述清楚装修需求，设计师会为您提供更好的服务，如：小区名称、面积、常住人员、装修预算、意向风格等。"/>
+             <van-field v-model="value" type="textarea" placeholder="描述清楚装修需求，设计师会为您提供更好的服务，如：小区名称、面积、常住人员、装修预算、意向风格等。"/>
            </van-cell-group>
            <h2>手机号码</h2>
            <van-cell-group>
-             <van-field v-model="value"/>
+             <van-field v-model="tel"/>
            </van-cell-group>
            <h2>温馨提示</h2>
            <p>为保障您的权益，请与设计师充分沟通后在尽量通过TONA HOME官方渠道下单。所有线下私自交易不受TONA HOME平台保护。</p>
@@ -315,6 +315,7 @@
         showshare:false,
         showindex:false,
         value:'',
+        tel:'',
         swiperOptionTop: {
           loop: true,
           loopedSlides: 5,
@@ -448,7 +449,7 @@
         border:solid 1px #b7b7b7;
       }
       .d-request{
-        min-height:120px;
+        .van-cell{line-height:1.4;}
       }
       p{color:#888;font-size:14px;}
       .form-btn{

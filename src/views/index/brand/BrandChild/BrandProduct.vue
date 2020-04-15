@@ -197,13 +197,14 @@
     .prod {
       background-color: #fff;
       .title {
-        font-size: 16px;
+        font-size: 15px;
         color: #323232;
         padding: 10px 15px 5px 15px;
       }
       .desc {
         padding: 0 15px 10px 15px;
         color: #888;
+        font-size: 13px;
       }
       .bottom {
         padding: 0 15px 10px 15px;

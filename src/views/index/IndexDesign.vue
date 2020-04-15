@@ -24,9 +24,9 @@
             <div class="main ab">
               <div class="infor-l ac">
                 <h2>{{item.d_name}}</h2>
-                <div class="-t">
+                <div class="-t ab">
                   <span>韵华茶几 | 原创设计</span>
-                  <span><i class="iconfont">&#xe7ae;</i>15402</span>
+                  <span class="view ab"><i class="van-icon van-icon-eye-o"></i>15402</span>
                 </div>
               </div>
               <div class="infor-r">
@@ -74,6 +74,7 @@
   .main{
     color:#888;
     padding:12px 12px;
+    border:solid 1px #eee;
     .infor-l{
       h2{
         font-size:14px;
@@ -81,7 +82,9 @@
         padding-bottom:4px;
       }
       .-t{
-        i{font-size:12px;line-height:12px;padding:0 2px 0 6px;}
+        align-items:center;
+        i{font-size:16px;line-height:12px;padding:0 2px 0 6px;}
+        .view{align-items:center;}
       }
     }
     .infor-r{

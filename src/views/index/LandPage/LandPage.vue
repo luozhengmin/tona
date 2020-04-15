@@ -13,8 +13,8 @@
           <div class="lp-copy">
             <div class="lp-menu">
               <router-link to="/about">关于我们</router-link>
-              <router-link to="">帮助中心</router-link>
-              <router-link to="">售后服务</router-link>
+              <router-link to="/help">帮助中心</router-link>
+              <router-link to="/after-sale/list">售后服务</router-link>
               <router-link to="/Investment">招商加盟</router-link>
             </div>
             <p>

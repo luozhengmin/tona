@@ -5,11 +5,11 @@
       <span class="menu-item-title">品牌馆</span>
     </div>
     <div class="menu-item" @click="goDesign">
-      <i class="iconfont bg-2">&#xe671;</i>
+      <i class="iconfont bg-2">&#xe508;</i>
       <span class="menu-item-title">设计方案</span>
     </div>
     <div class="menu-item" @click="goGlobal">
-      <i class="iconfont bg-3">&#xe7ae;</i>
+      <i class="iconfont bg-3">&#xe7b9;</i>
       <span class="menu-item-title">全球门店</span>
     </div>
     <div class="menu-item" @click="goPartner">
@@ -45,6 +45,7 @@
     justify-content: space-around;
     background: #FFFFFF;
     padding-top:20px;
+
     .menu-item {
       margin-bottom:20px;
       width:25%;
@@ -54,7 +55,7 @@
         margin:auto;
         width:54px;
         height:54px;
-        line-height:58px;
+        line-height:54px;
         font-size:28px;
         color:#fff;
         overflow: hidden;
@@ -73,6 +74,9 @@
         font-size:14px;
         margin-top:4px;
       }
+    }
+    .menu-item:nth-child(1){
+      .iconfont{line-height:58px;}
     }
   }
   .bg-1{background-image: linear-gradient(to bottom , #f1d690,#e1c48a );}

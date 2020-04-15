@@ -1,11 +1,23 @@
 <template>
   <div class="container">
     <div class="header"></div>
-    <van-search v-model="value" shape="round" show-action placeholder="请输入搜索关键词" @search="onSearch">
-      <template #action>
-        <div @click="onSearch">搜索</div>
-      </template>
-    </van-search>
+
+    <div class="s-search">
+      <van-search
+        v-model="value"
+        show-action
+        shape="round"
+        placeholder="请输入商品关键词或用户名"
+        @search="onSearch">
+        <template #left-icon>
+          <van-icon class="fa fa-search"/>
+        </template>
+        <template #action>
+          <div @click="onSearch">搜索</div>
+        </template>
+      </van-search>
+    </div>
+
     <div class="list">
       <div v-if="list.length==0" class="empty">
         <div>
@@ -66,8 +78,20 @@ export default {
 .container {
   background-color: #f7f7f7;
   min-height: 100%;
-  .van-search__action {
-    margin: 0 5px;
+  .s-search {
+    .van-search{
+      padding:15px 15px;
+      .van-search__action{padding:0 0 0 12px;}
+      .van-search__content{
+        background-color:inherit;
+        padding-left:0;
+        .van-cell{
+          border:solid 1px #eee;
+          border-radius:25px;
+          padding: 5px 8px 5px 10px;
+        }
+      }
+    }
   }
   .list {
     height: 100%;
@@ -98,21 +122,21 @@ export default {
 
     .empty {
       padding: 50px 15px;
-      font-size: 16px;
+      font-size: 15px;
       color: #b7b7b7;
       text-align: center;
       img {
-        margin-bottom: 20px;
+        margin-bottom:6px;
       }
     }
     .product-card {
       padding: 10px 15px;
-      margin-top: 15px;
+      margin-top: 12px;
       background-color: #fff;
       .store {
         padding: 15px 0;
         color: #232323;
-        font-size: 16px;
+        font-size: 15px;
         display: flex;
         justify-content: space-between;
         .status {
@@ -144,6 +168,7 @@ export default {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          font-size: 13px;
         }
         .price {
           text-align: right;
@@ -158,6 +183,7 @@ export default {
           background-color: #f7f7f7;
           padding: 10px;
           text-align: left;
+          font-size: 13px;
         }
         .total {
           span {
@@ -169,6 +195,8 @@ export default {
           button {
             color: #888;
             margin: 5px 5px;
+            font-size:13px;
+            padding:0 12px;
           }
         }
       }

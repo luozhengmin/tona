@@ -13,8 +13,8 @@
                 <swiper-slide><a href="">智能马桶</a></swiper-slide>
                 <swiper-slide><a href="">浴缸</a></swiper-slide>
                 <swiper-slide><a href="">淋浴房</a></swiper-slide>
-                <swiper-slide><a href="">Slide 5</a></swiper-slide>
-                <swiper-slide><a href="">Slide 6</a></swiper-slide>
+                <swiper-slide><a href="">智能马桶</a></swiper-slide>
+                <swiper-slide><a href="">浴室柜</a></swiper-slide>
               </swiper>
             </div>
           </div>
@@ -31,6 +31,20 @@
                 <swiper-slide><a href="">欧洲</a></swiper-slide>
                 <swiper-slide><a href="">马来西亚</a></swiper-slide>
                 <swiper-slide><a href="">日本</a></swiper-slide>
+                <swiper-slide><a href="">美国</a></swiper-slide>
+                <swiper-slide><a href="">德国</a></swiper-slide>
+                <swiper-slide><a href="">韩国</a></swiper-slide>
+                <swiper-slide><a href="">欧洲</a></swiper-slide>
+                <swiper-slide><a href="">马来西亚</a></swiper-slide>
+                <swiper-slide><a href="">日本</a></swiper-slide>
+                <swiper-slide><a href="">美国</a></swiper-slide>
+                <swiper-slide><a href="">美国</a></swiper-slide>
+                <swiper-slide><a href="">德国</a></swiper-slide>
+                <swiper-slide><a href="">韩国</a></swiper-slide>
+                <swiper-slide><a href="">欧洲</a></swiper-slide>
+                <swiper-slide><a href="">马来西亚</a></swiper-slide>
+                <swiper-slide><a href="">日本</a></swiper-slide>
+                <swiper-slide><a href="">美国</a></swiper-slide>
                 <swiper-slide><a href="">美国</a></swiper-slide>
                 <swiper-slide><a href="">德国</a></swiper-slide>
                 <swiper-slide><a href="">韩国</a></swiper-slide>
@@ -95,24 +109,21 @@
 
 <style lang="scss" scoped>
   .sub-brand-t{
-    margin:12px 0 12px 0;
+    margin:0 0 12px 0;
     background-color:#fff;
     padding:2px 0 2px 15px;
     .classify{
       align-items:center;
       margin:12px 0;
       .classify-tltle{
-        width:35%;
+        width:33.5%;
         align-items:center;
         h2{font-size:14px;color:#323232;}
         a{display:block;padding:0 20px;background-color:#f4f4f4;margin:0 12px;font-size:14px;color:#323232;border-radius:25px;height:32px;line-height:32px;}
         a:hover{background-color:red;color:#fff;}
       }
       .classify-list{
-        position:relative;overflow:hidden;width:65%;
-        .swiper{
-
-        }
+        position:relative;overflow:hidden;width:66.5%;
       }
     }
   }
@@ -132,8 +143,8 @@
           .h-pic{width:45px;height:45px;background-color:#aaa;margin:0 12px;}
           .infor{
             padding:18px 10px 18px 0;
-            h2{font-size:14px;color:#323232;padding-bottom:3px;}
-            p{color:#888;}
+            h2{font-size:15px;color:#323232;padding-bottom:3px;}
+            p{color:#888;font-size:14px;}
           }
         }
       }

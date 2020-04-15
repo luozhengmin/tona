@@ -36,7 +36,7 @@
                 </van-field>
                 <van-field v-model="value" placeholder="请输入验证码" />
                 <div class="apply-submit">
-                  <van-button round block type="info" native-type="submit">
+                  <van-button round block type="info" native-type="submit" @click="successPop">
                     立即申请
                   </van-button>
                 </div>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-
+  import { Toast } from 'vant';
   export default {
     name: "Investment",
     data() {
@@ -62,6 +62,9 @@
     methods: {
       showPopup() {
         this.show = true;
+      },
+      successPop(){
+        Toast.success('申请成功');
       }
     }
   }
@@ -92,7 +95,6 @@
           }
         }
       }
-      .van-popup__close-icon--top-right{top:6px!important;}
     }
   }
   .van-button--primary {

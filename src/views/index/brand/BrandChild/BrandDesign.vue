@@ -103,7 +103,8 @@
               padding-bottom:4px;
             }
             .-t{
-              i{font-size:12px;line-height:12px;padding:0 2px 0 6px;}
+              font-size:14px;
+              i{font-size:14px;line-height:12px;padding:0 2px 0 6px;}
             }
           }
           .infor-r{
