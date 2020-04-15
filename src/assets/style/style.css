@@ -9,7 +9,7 @@
 }
 a{cursor:pointer;text-decoration: none;color:inherit;}
 a:hover{color:#004ea2;transition:0.3s}
-body,html{font-family:"微软雅黑";font-size:12px;overflow-x:hidden;line-height:1.8;max-width:1920px;margin:0 auto;color:#666;height: 100%;}
+body,html{font-family:"微软雅黑";font-size:12px;overflow-x:hidden;line-height:1.6;margin:0 auto;color:#666;height:100%;}
 p,li,ul,li,h1,h2,h3,h4,h5,img,form{ margin:0; padding:0; list-style:none;border:0;background:none;font-weight:normal;}
 ul{padding-left:0;list-style-type:none;}
 h1,h2,h3,h4,h5{line-height:normal;}
@@ -28,22 +28,24 @@ button, input, textarea,select {font-family:inherit;font-size: 100%;margin: 0;ou
 select{font-size: 100%;margin: 0;outline: none;}
 .l{float:left;}.r{float:right;}
 .wrap{padding: 0 15px;}
+.del{text-decoration:line-through;}
 /*全站通用样式*/
 .transition{-webkit-transition: all 0.5s ease;transition: all 0.5s ease;}
 .ab{display:flex;display:-webkit-flex;display:-ms-flex;}
 .ac{flex:1;-ms-flex:1;-webkit-flex:1;}
 *[class*="icon0"]{background-repeat:no-repeat;background-position:0 0;display:block;}
 /*首页banner*/
-.index-banner{padding:12px 15px;}
+.index-banner{padding:15px 15px;}
 .index-banner .van-swipe__indicator{width:8px;height:8px;opacity:1;}
 .index-banner .van-swipe__indicator--active{background-color:#b7b7b7;}
 
 /*首页品牌推荐*/
-.index-brand{color:#fff;position:relative;}
-.title-t h2{font-size:16px;color:#888;padding-bottom:12px;}
+.index-brand,.index-brand-1{color:#fff;position:relative;}
+.index-brand-1{padding:15px 0;}
+.title-t h2{font-size:16px;color:#888;padding-bottom:4.5px;}
 .title-t h2 span{color:#323232;font-weight:bold;}
 .ml{padding-left:20px;}
-.brand-con{align-items:center;}
+.brand-con{align-items:center;margin-top:7.5px;}
 .brand-con-l{position:absolute;width:84%;left:8%;}
 .brand-con-l >h3{font-size:12px;}
 .brand-con-l >h3 span{font-weight:bold;padding-left:2px;}
@@ -84,9 +86,74 @@ select{font-size: 100%;margin: 0;outline: none;}
 .s-nav li:nth-child(1){margin-left:0;}
 .s-nav li a{position:relative;font-size:14px;color: #888;align-items:center;}
 .s-nav li a .van-icon{padding-left:5px;}
-.s-nav li:nth-child(1) a .van-icon,.s-nav li:nth-child(2) a .van-icon{display:none;}
 .s-nav li.active{border-bottom:solid 3px #f4523b;}
 .s-nav li.active a{color:#f4523b;}
 
 .tabCard{display:none;}
 .tabCard:nth-child(1){display:block;}
+.s-search .fa-search{color:#b7b7b7;}
+.classify-list .swiper-slide a{font-size:14px;}
+
+.title-r .van-popup .van-popup__close-icon--top-right{top:8px;}
+.message .van-tab{color:#888;font-size:14px;line-height:48px;}
+.message .van-tab--active{color:#f4523b;}
+.message .van-tabs__wrap{border-bottom:solid 1px #eee;height: 48px;}
+.message .van-tabs__line{border-radius:0;}
+
+.detail-cart .van-goods-action-icon__icon{font-size:22px;}
+.d-request .van-cell .van-field__control::-webkit-input-placeholder{font-size:13px;}
+.d-request .van-cell .van-field__control:-moz-placeholder{font-size:13px;}
+.d-request .van-cell .van-field__control::-moz-placeholder{font-size:13px;}
+.d-request .van-cell .van-field__control:-ms-input-placeholder{font-size:13px;}
+
+/*设计方案详情索引*/
+.sy-list{position:relative;}
+.sy-list .van-steps--vertical{padding:0 0 0 21px;}
+.sy-list .van-step--finish .van-step__line{display:none;}
+.sy-list .van-step--vertical .van-step__circle-container{top:21px;}
+.sy-list .van-step__icon--active{font-size:16px;color:#177ef8;}
+.sy-list .van-step__title h3{font-size:14px;color:#323232;}
+.sy-list .van-step:nth-child(1) .van-step__title h3{color:#888;}
+.sy-list .van-step__circle{width:10px;height:10px;border:solid 1px #efefef;background-color:#fff;}
+.sy-list .van-step:nth-child(1) .van-step__circle{background-color:#efefef;}
+.sy-list .van-step__title--active h3{color:#177ef8;}
+.sy-list:before{content:'';width:4px;top:23px;left:4px;background-color: #efefef;display:block;height:100%;
+  position: absolute;
+}
+/*设计师带单*/
+.information-list{margin:6px 0;padding:0 15px;}
+.information-list .van-cell{padding:6px 0;align-items: center;}
+.information-list .van-cell__title{text-align:right;width:78px;padding-right:12px;}
+.information-list .van-cell__title em{color:#f4523b;padding-right:2px;}
+.information-list .van-cell:not(:last-child)::after,.global .van-hairline--top-bottom::after,.global .van-hairline-unset--top-bottom::after{border-bottom:none;}
+.information-list .van-field__value {border: solid 1px #eee;padding:8px 8px;}
+.information-list .van-field__control{font-size:13px;line-height:1.4;}
+.information-list .van-field__control::-webkit-input-placeholder {color:#b7b7b7;}
+.information-list .van-field__control:-moz-placeholder{color:#b7b7b7;}
+.information-list .van-field__control::-moz-placeholder{color:#b7b7b7;}
+.information-list .van-field__control:-ms-input-placeholder{color:#b7b7b7;}
+.van-picker__cancel, .van-picker__confirm{color:#6d5f5f;}
+
+.information-list .van-checkbox__icon,.information-list .van-checkbox__icon .van-icon{width:16px;height:16px;font-size:14px;}
+.information-list .van-checkbox__icon{line-height:16px;margin:4px 0;padding-left:78px;}
+.information-list .van-checkbox__label{margin-left: 24px;line-height: 16px;color:#888;}
+.information-list .van-field__button {position: absolute;right: 0;padding:5px 0;}
+.information-list .van-button--primary{background-color:#f4523b;border:solid 1px #f4523b;}
+.information-list .van-button--small{height:39px;line-height:37px;border-radius:0;}
+.t-remark.van-cell{align-items:inherit!important;min-height:140px;}
+.d-information > .van-button{margin:6px 0 12px 0;}
+.upload .van-uploader__upload{border-radius:4px;}
+
+.sign-list .van-cell__title{width:68px;}
+.sign-list .van-checkbox__icon{padding-left:68px;}
+
+.van-toast{background-color:#2f2f2f!important;width:56%!important;}
+
+.person-id .id-list .id-item .van-uploader__upload{width:139px;}
+.person-id .id-list .id-item .van-uploader__upload-icon{font-size:28px;color:#fff;}
+.person-id .id-list:nth-child(1) .id-item .van-uploader__upload{background:url("../../assets/image/zm.png")#e7ebf5 no-repeat center center;
+ background-size:cover;
+}
+.person-id .id-list:nth-child(2) .id-item .van-uploader__upload{background:url("../../assets/image/fm.png")#e7ebf5 no-repeat center center;
+  background-size:cover;
+}

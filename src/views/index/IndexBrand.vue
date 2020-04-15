@@ -51,7 +51,10 @@ Vue.use(SwipeItem);
 </script>
 
 <style lang="scss" scoped>
-  .van-swipe-item{
-    margin-right:10px;
+  .brand-list{
+    .van-swipe-item{
+      margin-right:10px;
+    }
   }
+
 </style>

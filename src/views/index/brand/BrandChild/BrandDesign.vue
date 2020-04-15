@@ -6,7 +6,7 @@
           <div class="item-l">
             <h2>报备带单</h2>
             <p>一键报备 快速带单</p>
-            <van-button color="linear-gradient(to right, #ff6d2d, #ff3506)">立即带单</van-button>
+            <van-button color="linear-gradient(to right, #ff6d2d, #ff3506)" @click="recordTape">立即带单</van-button>
           </div>
           <div class="item-r">
             <img src="../../../../assets/image/fa01.png"/>
@@ -16,7 +16,7 @@
           <div class="item-l">
             <h2>签约带单</h2>
             <p>专享优惠 极速成单</p>
-            <van-button color="linear-gradient(to right, #ff6d2d, #ff3506)">签约带单</van-button>
+            <van-button color="linear-gradient(to right, #ff6d2d, #ff3506)" @click="signUp">签约带单</van-button>
           </div>
           <div class="item-r">
             <img src="../../../../assets/image/fa02.png"/>
@@ -47,17 +47,25 @@
 </template>
 
 <script>
-    import IndexBanner from "../../IndexBanner.vue";
+  import IndexBanner from "../../IndexBanner.vue";
 
-    export default {
-      components: {IndexBanner},
-      name: "BrandDesign",
-      data(){
-        return{
-          list:[{}]
-        }
+  export default {
+    components: {IndexBanner},
+    name: "BrandDesign",
+    data(){
+      return{
+        list:[{}]
       }
+    },
+    methods: {
+      recordTape() {
+        this.$router.push({'name': 'Tape'})
+      },
+      signUp() {
+        this.$router.push({'name': 'sign-up'})
+      },
     }
+  }
 </script>
 
 <style lang="scss" scoped>

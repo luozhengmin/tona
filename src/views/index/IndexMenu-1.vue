@@ -2,41 +2,41 @@
   <div class="menu wrap fix">
     <div class="menu-item" @click="goBrand">
       <i class="iconfont bg-1">&#xe7ae;</i>
-      <span class="menu-item-title">品牌馆</span>
+      <span class="menu-item-title">硬装建材</span>
     </div>
     <div class="menu-item" @click="goDesign">
       <i class="iconfont bg-2">&#xe671;</i>
-      <span class="menu-item-title">设计方案</span>
+      <span class="menu-item-title">软装家居</span>
     </div>
     <div class="menu-item" @click="goGlobal">
       <i class="iconfont bg-3">&#xe7ae;</i>
-      <span class="menu-item-title">全球门店</span>
+      <span class="menu-item-title">智能家电</span>
     </div>
     <div class="menu-item" @click="goPartner">
       <i class="iconfont bg-4">&#xe6b5;</i>
-      <span class="menu-item-title">招商加盟</span>
+      <span class="menu-item-title">全屋定制</span>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
-      name: "IndexMenu",
-      methods: {
-        goBrand() {
-          this.$router.push({'name': 'BrandList'})
-        },
-        goDesign() {
-          this.$router.push({'name': 'ProductList'})
-        },
-        goGlobal() {
-          this.$router.push({'name': 'GlobalStore'})
-        },
-        goPartner() {
-          this.$router.push({'name': 'collect'})
-        },
-      }
+  export default {
+    name: "IndexMenu-1",
+    methods: {
+      goBrand() {
+        this.$router.push({'name': 'BrandList'})
+      },
+      goDesign() {
+        this.$router.push({'name': 'ProductList'})
+      },
+      goGlobal() {
+        this.$router.push({'name': 'GlobalStore'})
+      },
+      goPartner() {
+        this.$router.push({'name': 'collect'})
+      },
     }
+  }
 </script>
 
 <style lang="scss" scoped>

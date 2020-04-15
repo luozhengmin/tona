@@ -1,6 +1,6 @@
 <template>
     <div class="index-banner fix">
-      <van-swipe :autoplay="0">
+      <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(item, index) in images" :key="index">
           <img  :src="item.imgUrl"/>
         </van-swipe-item>

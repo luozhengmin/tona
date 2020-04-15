@@ -25,7 +25,7 @@
                 <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
               </template>
               <template #right-icon>
-                <van-icon name="question-o" />
+                <van-icon class="fa fa-caret-down" />
               </template>
               <div class="add-detail fix">
                 <div class="add-tag">
@@ -52,7 +52,7 @@
                 <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
               </template>
               <template #right-icon>
-                <van-icon name="question-o" />
+                <van-icon class="fa fa-caret-down" />
               </template>
               <div class="add-detail fix">
                 <div class="add-tag">
@@ -81,7 +81,7 @@
                 </div>
               </template>
               <template #right-icon>
-                <van-icon name="question-o" />
+                <van-icon class="fa fa-caret-down" />
               </template>
               <div class="add-detail fix">
                 <div class="add-tag">

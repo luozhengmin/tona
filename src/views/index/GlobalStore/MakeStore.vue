@@ -84,93 +84,7 @@
           <van-datetime-picker type="date" @confirm="onConfirmDate" @cancel="showPicker = false"  />
         </van-popup>
       </div>
-      <div class="global-list">
-        <van-collapse v-model="activeName" accordion>
-          <van-collapse-item>
-            <template #title>
-              <div class="global-title">TONA国际卫浴上海虹桥店</div>
-              <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
-            </template>
-            <template #right-icon>
-              <van-icon name="question-o" />
-            </template>
-            <div class="add-detail fix">
-              <div class="add-tag">
-                <van-tag round>纯德系</van-tag>
-                <van-tag round>现代简约</van-tag>
-                <van-tag round>北欧风</van-tag>
-              </div>
-              <div class="add-tel">
-                <p class="ab"><van-icon name="question-o" /><span>全屋家具、卫浴、衣柜</span></p>
-                <p class="ab"><van-icon name="question-o" /><span>021-60299001</span></p>
-                <p class="ab"><van-icon name="question-o" /><span>上海市虹桥世界中心5369号L3A区二楼202</span></p>
-              </div>
-              <div class="add-pic">
-                <img src="../../../assets/image/cp01.jpg">
-              </div>
-              <div class="add-btn">
-                <van-button type="info" @click="MakeStore">预约到店</van-button>
-              </div>
-            </div>
-          </van-collapse-item>
-          <van-collapse-item>
-            <template #title>
-              <div class="global-title">TONA国际卫浴上海虹桥店</div>
-              <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
-            </template>
-            <template #right-icon>
-              <van-icon name="question-o" />
-            </template>
-            <div class="add-detail fix">
-              <div class="add-tag">
-                <van-tag round>纯德系</van-tag>
-                <van-tag round>现代简约</van-tag>
-                <van-tag round>北欧风</van-tag>
-              </div>
-              <div class="add-tel">
-                <p class="ab"><van-icon name="question-o" /><span>全屋家具、卫浴、衣柜</span></p>
-                <p class="ab"><van-icon name="question-o" /><span>021-60299001</span></p>
-                <p class="ab"><van-icon name="question-o" /><span>上海市虹桥世界中心5369号L3A区二楼202</span></p>
-              </div>
-              <div class="add-pic">
-                <img src="../../../assets/image/cp01.jpg">
-              </div>
-              <div class="add-btn">
-                <van-button type="info">预约到店</van-button>
-              </div>
-            </div>
-          </van-collapse-item>
-          <van-collapse-item>
-            <template #title>
-              <div class="infor">
-                <div class="global-title">TONA国际卫浴上海虹桥店</div>
-                <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
-              </div>
-            </template>
-            <template #right-icon>
-              <van-icon name="question-o" />
-            </template>
-            <div class="add-detail fix">
-              <div class="add-tag">
-                <van-tag round>纯德系</van-tag>
-                <van-tag round>现代简约</van-tag>
-                <van-tag round>北欧风</van-tag>
-              </div>
-              <div class="add-tel">
-                <p class="ab"><van-icon name="question-o" /><span>全屋家具、卫浴、衣柜</span></p>
-                <p class="ab"><van-icon name="question-o" /><span>021-60299001</span></p>
-                <p class="ab"><van-icon name="question-o" /><span>上海市虹桥世界中心5369号L3A区二楼202</span></p>
-              </div>
-              <div class="add-pic">
-                <img src="../../../assets/image/cp01.jpg">
-              </div>
-              <div class="add-btn">
-                <van-button type="info">预约到店</van-button>
-              </div>
-            </div>
-          </van-collapse-item>
-        </van-collapse>
-      </div>
+
     </div>
   </div>
 </template>
@@ -226,5 +140,5 @@
     .van-button{width:47%;border-radius:5px;}
     .van-button:nth-child(1){margin-right:6%;}
   }
-  .global-list{margin-top:32px;padding:16px 15px;background-color:#f7f7f7;}
+
 </style>

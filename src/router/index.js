@@ -75,9 +75,54 @@ export default new Router({
           component: () => import("@/views/index/Brand/BrandList"),
         },
         {
+          path: 'BrandList-1',
+          name: 'BrandList-1',
+          component: () => import("@/views/index/Brand/BrandList-1"),
+        },
+        {
           path: 'BrandChild',
           name: 'BrandChild',
           component: () => import("@/views/index/Brand/BrandChild/BrandChild"),
+        },
+        {
+          path: 'Tape',
+          name: 'Tape',
+          component: () => import("@/views/index/Brand/BrandChild/BrandForm/Tape"),
+        },
+        {
+          path: 'sign-up',
+          name: 'sign-up',
+          component: () => import("@/views/index/Brand/BrandChild/BrandForm/sign-up"),
+        },
+        {
+          path: 'real-name',
+          name: 'real-name',
+          component: () => import("@/views/index/Brand/BrandChild/BrandForm/real-name"),
+        },
+        {
+          path: 'Recommend',
+          name: 'Recommend',
+          component: () => import("@/views/design/DesignChild/Recommend"),
+        },
+        {
+          path: 'Activity',
+          name: 'Activity',
+          component: () => import("@/views/design/DesignChild/Activity"),
+        },
+        {
+          path: 'ActivityDetail',
+          name: 'ActivityDetail',
+          component: () => import("@/views/design/DesignChild/ActivityDetail"),
+        },
+        {
+          path: 'DesignPlan',
+          name: 'DesignPlan',
+          component: () => import("@/views/design/DesignChild/DesignPlan"),
+        },
+        {
+          path: 'DesignDetail',
+          name: 'DesignDetail',
+          component: () => import("@/views/design/DesignDetail"),
         },
         {
           path: 'GlobalStore',
@@ -93,6 +138,31 @@ export default new Router({
           path: 'MakeStore',
           name: 'MakeStore',
           component: () => import("@/views/index/GlobalStore/MakeStore"),
+        },
+        {
+          path: 'ProductList',
+          name: 'ProductList',
+          component: () => import("@/views/category/ProductList"),
+        },
+        {
+          path: 'ProductList-Item',
+          name: 'ProductList-Item',
+          component: () => import("@/views/category/ProductList-Item"),
+        },
+        {
+          path: 'ProductSearch',
+          name: 'ProductSearch',
+          component: () => import("@/views/category/ProductSearch"),
+        },
+        {
+          path: 'ProductDetail',
+          name: 'ProductDetail',
+          component: () => import("@/views/category/ProductDetail"),
+        },
+        {
+          path: 'DetailMessage',
+          name: 'DetailMessage',
+          component: () => import("@/views/category/DetailMessage"),
         },
         {
           path: 'cart',

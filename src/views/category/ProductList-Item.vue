@@ -14,11 +14,28 @@
           </template>
         </van-search>
       </div>
+
+      <div class="classify ab fix">
+        <div class="classify-tltle ac">
+          <a href="">全部</a>
+        </div>
+        <div class="classify-list">
+          <swiper class="swiper" :options="swiperOption">
+            <swiper-slide><router-link to="/ProductSearch">浴室柜</router-link></swiper-slide>
+            <swiper-slide><a href="">智能马桶</a></swiper-slide>
+            <swiper-slide><a href="">浴缸</a></swiper-slide>
+            <swiper-slide><a href="">淋浴房</a></swiper-slide>
+            <swiper-slide><a href="">淋浴房</a></swiper-slide>
+            <swiper-slide><a href="">淋浴房</a></swiper-slide>
+          </swiper>
+        </div>
+      </div>
+
       <div class="s-select">
         <ul class="s-nav ab fix">
           <li class="ab" v-for="(tab,index) in tabsName" :key="tab.id" @click="tabsSwitch(index)"
               :class="{active:num === index}">
-            <a href="javascript:;" class="ab"><span>{{tab.tabTitle}}</span><van-icon name="chat-o" /></a>
+            <a href="javascript:;" class="ab"><span>{{tab.tabTitle}}</span><van-icon  class="fa fa-caret-up" /></a>
           </li>
         </ul>
         <div class="listItem fix">
@@ -27,7 +44,7 @@
               <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
                 <div class="prod">
                   <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
+                    <img src="../../assets/image/prod-2.jpg" />
                   </div>
                   <div class="title">欧式悬挂式浴室柜11</div>
                   <div class="desc">45度角双抽拉手设计</div>
@@ -48,7 +65,7 @@
               <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
                 <div class="prod">
                   <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
+                    <img src="../../assets/image/prod-2.jpg" />
                   </div>
                   <div class="title">欧式悬挂式浴室柜</div>
                   <div class="desc">45度角双抽拉手设计</div>
@@ -69,28 +86,7 @@
               <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
                 <div class="prod">
                   <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
-                  </div>
-                  <div class="title">欧式悬挂式浴室柜</div>
-                  <div class="desc">45度角双抽拉手设计</div>
-                  <div class="bottom">
-                    <div>
-                      <span class="fuhao">￥</span>2580.00
-                    </div>
-                    <div class="icon">
-                      <van-icon name="cart" />
-                    </div>
-                  </div>
-                </div>
-              </van-col>
-            </van-row>
-          </div>
-          <div class="list tabCard">
-            <van-row gutter="15">
-              <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                <div class="prod">
-                  <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
+                    <img src="../../assets/image/prod-2.jpg" />
                   </div>
                   <div class="title">欧式悬挂式浴室柜</div>
                   <div class="desc">45度角双抽拉手设计</div>
@@ -114,20 +110,29 @@
 
 <script>
   import { Toast } from 'vant';
+  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+  import 'swiper/css/swiper.css'
   export default {
-    name: "BrandProduct",
-    data() {
-      return {
-        value: '',
+    name: "ProductList-Item",
+    components: {
+      Swiper,
+      SwiperSlide
+    },
+    data(){
+      return{
+        swiperOption: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
         tabsName:[
-          {tabTitle:'综合',isActive:true,},
-          {tabTitle:'商品',isActive:false,},
+          {tabTitle:'新品',isActive:false,},
           {tabTitle:'销量',isActive:false,},
           {tabTitle:'价格',isActive:false,}
         ],
         active: false,
         num:0,
-      };
+        value:''
+      }
     },
     methods: {
       onSearch(val) {
@@ -149,10 +154,12 @@
 </script>
 
 <style lang="scss" scoped>
-  .s-search {
+  .listItem{background-color:#f7f7f7;}
+  .s-search{
     .van-search{
       padding:12px 15px;
       .van-search__action{padding:0 0 0 12px;}
+      .van-search__action:active{background-color:inherit;}
       .van-search__content{
         background-color:inherit;
         padding-left:0;
@@ -164,7 +171,25 @@
       }
     }
   }
-  .s-nav li:nth-child(1) a .van-icon,.s-nav li:nth-child(2) a .van-icon{display:none;}
+  .classify{
+    align-items:center;
+    margin:6px 0;
+    padding:12px 0 12px 15px;
+    border-top:solid 1px #eee;
+    border-bottom:solid 1px #eee;
+    .classify-tltle{
+      align-items:center;
+      a{display:block;padding:0 20px;background-color:#f4f4f4;margin:0 12px 0 0;font-size:14px;color:#323232;
+        border-radius:25px;height:32px;line-height:32px;width:70px;}
+      a:hover{background-color:red;color:#fff;}
+    }
+    .classify-list{
+      position:relative;overflow:hidden;width:76%;
+      .swiper{
+
+      }
+    }
+  }
   .list {
     height: 100%;
     padding: 15px;
@@ -174,7 +199,7 @@
       .info {
         padding: 0 15px;
         .title {
-          font-size: 16px;
+          font-size: 14px;
           color: #323232;
           margin-bottom: 5px;
         }
@@ -197,7 +222,7 @@
     .prod {
       background-color: #fff;
       .title {
-        font-size: 16px;
+        font-size: 14px;
         color: #323232;
         padding: 10px 15px 5px 15px;
       }
@@ -211,7 +236,7 @@
         align-items: center;
         justify-content: space-between;
         color: #f4523b;
-        font-size: 20px;
+        font-size:18px;
         .fuhao {
           font-size: 12px;
         }
@@ -223,9 +248,10 @@
           border-radius: 100%;
           text-align: center;
           line-height: 36px;
-          font-size: 16px;
+          font-size: 14px;
         }
       }
     }
   }
+  .s-nav li:nth-child(1) a .van-icon{display:none;}
 </style>
