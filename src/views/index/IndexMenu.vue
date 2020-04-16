@@ -27,13 +27,13 @@
           this.$router.push({'name': 'BrandList'})
         },
         goDesign() {
-          this.$router.push({'name': 'ProductList'})
+          this.$router.push({'name': 'Design'})
         },
         goGlobal() {
           this.$router.push({'name': 'GlobalStore'})
         },
         goPartner() {
-          this.$router.push({'name': 'collect'})
+          this.$router.push({'name': 'Investment'})
         },
       }
     }

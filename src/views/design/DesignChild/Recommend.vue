@@ -16,7 +16,7 @@
                 </div>
               </div>
               <div class="infor-r">
-                <van-icon name="clock-o" />
+                <i class="iconfont">&#xe629;</i>
                 <span class="ab">参与人数<span>15402</span></span>
               </div>
             </div>
@@ -103,9 +103,9 @@
         background-color:#f7f7f7;
         .infor-l{
           h2{
-            font-size:14px;
+            font-size:15px;
             color:#000;
-            padding-bottom:4px;
+            padding-bottom:5px;
           }
           .-t{
             span{align-items:center;}
@@ -115,7 +115,7 @@
         .infor-r{
           flex-direction:column;
           text-align:right;
-          i{font-size:17px;padding-bottom:2px;color:#f4523b;}
+          i{font-size:15px;color:#f4523b;}
           span{
             align-items:center;
             span{padding-left:2px;}
@@ -143,8 +143,9 @@
           border:solid 1px #eee;
           .infor-l{
             padding:8px 12px;
-            h2{font-size:14px;color:#000;padding-bottom:4px;}
+            h2{font-size:14px;color:#000;padding-bottom:4px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;}
             .-t{
+              font-size:13px;
               i{font-size:12px;line-height:12px;padding:0 2px 0 6px;}
             }
           }
@@ -165,6 +166,21 @@
   .choice-list{
     .van-divider{
       margin:0 0 6px 0;
+    }
+    .van-row {
+      .van-col:last-child{margin:6px 0;}
+      .van-col {
+        .main {
+          border:none;
+          .infor-l {
+            padding:6px 0 0 0;
+          }
+          .infor-r {
+            padding:0;
+            border-top:none;
+          }
+        }
+      }
     }
   }
 </style>

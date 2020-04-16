@@ -13,7 +13,7 @@
                 </div>
               </div>
               <div class="infor-r">
-                <van-icon name="clock-o" />
+                <i class="iconfont">&#xe629;</i>
                 <span class="ab">参与人数<span>15402</span></span>
               </div>
             </div>
@@ -56,9 +56,9 @@
           background-color: #f7f7f7;
           .infor-l {
             h2 {
-              font-size: 14px;
+              font-size: 15px;
               color: #000;
-              padding-bottom: 4px;
+              padding-bottom: 5px;
             }
             .-t {
               span {
@@ -74,9 +74,9 @@
           .infor-r {
             flex-direction: column;
             text-align: right;
+            line-height: 1.4;
             i {
-              font-size: 17px;
-              padding-bottom: 2px;
+              font-size: 15px;
               color: #f4523b;
             }
             span {

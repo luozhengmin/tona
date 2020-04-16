@@ -14,99 +14,106 @@
           </template>
         </van-search>
       </div>
+
       <div class="s-select">
-        <ul class="s-nav ab fix">
-          <li class="ab" v-for="(tab,index) in tabsName" :key="tab.id" @click="tabsSwitch(index)"
-              :class="{active:num === index}">
-            <a href="javascript:;" class="ab"><span>{{tab.tabTitle}}</span><van-icon name="chat-o" /></a>
-          </li>
-        </ul>
-        <div class="listItem fix">
-          <div class="list tabCard">
-            <van-row gutter="15">
-              <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                <div class="prod">
-                  <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
-                  </div>
-                  <div class="title">欧式悬挂式浴室柜11</div>
-                  <div class="desc">45度角双抽拉手设计</div>
-                  <div class="bottom">
+        <van-tabs v-model="active" color="#f4523b">
+          <van-tab>
+            <template #title>综合 </template>
+            <div class="list">
+              <van-row gutter="15">
+                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+                  <div class="prod">
                     <div>
-                      <span class="fuhao">￥</span>2580.00
+                      <img src="../../../../assets/image/prod-2.jpg" />
                     </div>
-                    <div class="icon">
-                      <van-icon name="cart" />
+                    <div class="title">欧式悬挂式浴室柜11</div>
+                    <div class="desc">45度角双抽拉手设计</div>
+                    <div class="bottom">
+                      <div>
+                        <span class="fuhao">￥</span>2580.00
+                      </div>
+                      <div class="icon">
+                        <van-icon name="cart" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </van-col>
-            </van-row>
-          </div>
-          <div class="list tabCard">
-            <van-row gutter="15">
-              <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                <div class="prod">
-                  <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
-                  </div>
-                  <div class="title">欧式悬挂式浴室柜</div>
-                  <div class="desc">45度角双抽拉手设计</div>
-                  <div class="bottom">
+                </van-col>
+              </van-row>
+            </div>
+          </van-tab>
+          <van-tab>
+            <template #title>新品</template>
+            <div class="list">
+              <van-row gutter="15">
+                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+                  <div class="prod">
                     <div>
-                      <span class="fuhao">￥</span>2580.00
+                      <img src="../../../../assets/image/prod-2.jpg" />
                     </div>
-                    <div class="icon">
-                      <van-icon name="cart" />
+                    <div class="title">欧式悬挂式浴室柜22</div>
+                    <div class="desc">45度角双抽拉手设计</div>
+                    <div class="bottom">
+                      <div>
+                        <span class="fuhao">￥</span>2580.00
+                      </div>
+                      <div class="icon">
+                        <van-icon name="cart" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </van-col>
-            </van-row>
-          </div>
-          <div class="list tabCard">
-            <van-row gutter="15">
-              <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                <div class="prod">
-                  <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
-                  </div>
-                  <div class="title">欧式悬挂式浴室柜</div>
-                  <div class="desc">45度角双抽拉手设计</div>
-                  <div class="bottom">
+                </van-col>
+              </van-row>
+            </div>
+          </van-tab>
+          <van-tab>
+            <template #title>销量<i class="fa fa-sort-desc"></i></template>
+            <div class="list">
+              <van-row gutter="15">
+                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+                  <div class="prod">
                     <div>
-                      <span class="fuhao">￥</span>2580.00
+                      <img src="../../../../assets/image/prod-2.jpg" />
                     </div>
-                    <div class="icon">
-                      <van-icon name="cart" />
+                    <div class="title">欧式悬挂式浴室柜11</div>
+                    <div class="desc">45度角双抽拉手设计</div>
+                    <div class="bottom">
+                      <div>
+                        <span class="fuhao">￥</span>2580.00
+                      </div>
+                      <div class="icon">
+                        <van-icon name="cart" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </van-col>
-            </van-row>
-          </div>
-          <div class="list tabCard">
-            <van-row gutter="15">
-              <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                <div class="prod">
-                  <div>
-                    <img src="../../../../assets/image/prod-2.jpg" />
-                  </div>
-                  <div class="title">欧式悬挂式浴室柜</div>
-                  <div class="desc">45度角双抽拉手设计</div>
-                  <div class="bottom">
+                </van-col>
+              </van-row>
+            </div>
+          </van-tab>
+          <van-tab>
+            <template #title>价格<i class="fa fa-sort-asc"></i></template>
+            <div class="list">
+              <van-row gutter="15">
+                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+                  <div class="prod">
                     <div>
-                      <span class="fuhao">￥</span>2580.00
+                      <img src="../../../../assets/image/prod-2.jpg" />
                     </div>
-                    <div class="icon">
-                      <van-icon name="cart" />
+                    <div class="title">欧式悬挂式浴室柜11</div>
+                    <div class="desc">45度角双抽拉手设计</div>
+                    <div class="bottom">
+                      <div>
+                        <span class="fuhao">￥</span>2580.00
+                      </div>
+                      <div class="icon">
+                        <van-icon name="cart" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </van-col>
-            </van-row>
-          </div>
-        </div>
+                </van-col>
+              </van-row>
+            </div>
+          </van-tab>
+        </van-tabs>
       </div>
 
     </div>
@@ -119,30 +126,12 @@
     data() {
       return {
         value: '',
-        tabsName:[
-          {tabTitle:'综合',isActive:true,},
-          {tabTitle:'商品',isActive:false,},
-          {tabTitle:'销量',isActive:false,},
-          {tabTitle:'价格',isActive:false,}
-        ],
-        active: false,
-        num:0,
-      };
+        active:false,
+      }
     },
     methods: {
       onSearch(val) {
         Toast(val);
-      },
-      tabsSwitch: function(tabIndex) {
-        var tabCardCollection = document.querySelectorAll(".tabCard"),
-          len = tabCardCollection.length;
-        for(var i = 0; i < len; i++) {
-          tabCardCollection[i].style.display = "none";
-          this.tabsName[i].isActive = false;
-        }
-        this.tabsName[tabIndex].isActive = true;
-        tabCardCollection[tabIndex].style.display = "block";
-        this.num = tabIndex;
       },
     }
   }
@@ -164,7 +153,6 @@
       }
     }
   }
-  .s-nav li:nth-child(1) a .van-icon,.s-nav li:nth-child(2) a .van-icon{display:none;}
   .list {
     height: 100%;
     padding: 15px;

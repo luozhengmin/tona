@@ -79,9 +79,9 @@
       .item-l{
         width:46%;
         padding-right:2%;
-        h2{font-size:16px;font-weight:bold;color:#000;}
-        p{font-size:14px;color:#000;margin:4px 0;}
-        .van-button{height:28px;border-radius:25px;line-height:26px;font-size:12px;}
+        h2{font-size:17px;font-weight:bold;color:#000;}
+        p{font-size:15px;color:#000;margin:5px 0;}
+        .van-button{height:28px;border-radius:25px;line-height:28px;font-size:13px;}
       }
       .item-r{width:54%;}
     }

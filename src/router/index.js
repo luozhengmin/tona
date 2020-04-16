@@ -120,6 +120,11 @@ export default new Router({
           component: () => import("@/views/design/DesignChild/DesignPlan"),
         },
         {
+          path: 'Design',
+          name: 'Design',
+          component: () => import("@/views/design/Design"),
+        },
+        {
           path: 'DesignDetail',
           name: 'DesignDetail',
           component: () => import("@/views/design/DesignDetail"),
