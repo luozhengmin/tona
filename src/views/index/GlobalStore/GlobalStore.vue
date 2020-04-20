@@ -1,8 +1,57 @@
 <template>
     <div class="container">
+      <div class="head fix">
+        <div class="wrap fix">
+          <div class="head-ss fix">
+            <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          </div>
+          <div class="head-logo">
+            全球门店
+          </div>
+          <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
+            <span></span>
+          </div>
+        </div>
+        <transition name="van-slide-down">
+          <div class="slideNav" v-if="isActive">
+            <ul class="ab fix">
+              <li>
+                <router-link to="/BrandList">
+                  <i class="iconfont bg-7">&#xe7ae;</i>
+                  <span>品牌馆</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/Design">
+                  <i class="iconfont bg-7">&#xe508;</i>
+                  <span>优秀设计</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/GlobalStore">
+                  <i class="iconfont bg-7">&#xe7b9;</i>
+                  <span>全球门店</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/Investment">
+                  <i class="iconfont bg-7">&#xe6b5;</i>
+                  <span>招商加盟</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="">
+                  <i class="iconfont bg-7">&#xe602;</i>
+                  <span>关于我们</span>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+        </transition>
+      </div>
       <div class="wrap fix">
         <div class="global-choose">
-          <van-cell title="TONA 门店" is-link @click="showPopup">
+          <van-cell title="TONA 门店" is-link @click="showArea = true">
             <template #default>
               <span class="custom-title">上海</span>
               <span class="line"></span>
@@ -10,16 +59,17 @@
             </template>
           </van-cell>
           <van-popup
-            v-model="show"
+            v-model="showArea"
             position="bottom"
             :style="{ height: '30%' }">
-            <van-area :area-list="areaList" :columns-num="2" title="地址" />
+            <van-area :area-list="areaList" :columns-num="2" title="地址" @confirm="onConfirm"
+                      @cancel="showArea = false"/>
           </van-popup>
 
         </div>
         <div class="global-list">
           <van-collapse v-model="activeName" accordion>
-            <van-collapse-item>
+            <van-collapse-item v-for="i in 3" :key="i">
               <template #title>
                 <div class="global-title">TONA国际卫浴上海虹桥店</div>
                 <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
@@ -34,71 +84,15 @@
                   <van-tag round>北欧风</van-tag>
                 </div>
                 <div class="add-tel">
-                  <p class="ab"><van-icon name="question-o" /><span>全屋家具、卫浴、衣柜</span></p>
-                  <p class="ab"><van-icon name="question-o" /><span>021-60299001</span></p>
-                  <p class="ab"><van-icon name="question-o" /><span>上海市虹桥世界中心5369号L3A区二楼202</span></p>
+                  <p class="ab"><i class="iconfont">&#xe62c;</i><span>全屋家具、卫浴、衣柜</span></p>
+                  <p class="ab"><i class="iconfont">&#xe60a;</i><span>021-60299001</span></p>
+                  <p class="ab"><i class="iconfont">&#xe614;</i><span>上海市虹桥世界中心5369号L3A区二楼202</span></p>
                 </div>
                 <div class="add-pic">
                   <img src="../../../assets/image/cp01.jpg">
                 </div>
                 <div class="add-btn">
                   <van-button type="info" @click="MakeStore">预约到店</van-button>
-                </div>
-              </div>
-            </van-collapse-item>
-            <van-collapse-item>
-              <template #title>
-                <div class="global-title">TONA国际卫浴上海虹桥店</div>
-                <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
-              </template>
-              <template #right-icon>
-                <van-icon class="fa fa-caret-down" />
-              </template>
-              <div class="add-detail fix">
-                <div class="add-tag">
-                  <van-tag round>纯德系</van-tag>
-                  <van-tag round>现代简约</van-tag>
-                  <van-tag round>北欧风</van-tag>
-                </div>
-                <div class="add-tel">
-                  <p class="ab"><van-icon name="question-o" /><span>全屋家具、卫浴、衣柜</span></p>
-                  <p class="ab"><van-icon name="question-o" /><span>021-60299001</span></p>
-                  <p class="ab"><van-icon name="question-o" /><span>上海市虹桥世界中心5369号L3A区二楼202</span></p>
-                </div>
-                <div class="add-pic">
-                  <img src="../../../assets/image/cp01.jpg">
-                </div>
-                <div class="add-btn">
-                  <van-button type="info">预约到店</van-button>
-                </div>
-              </div>
-            </van-collapse-item>
-            <van-collapse-item>
-              <template #title>
-                <div class="infor">
-                  <div class="global-title">TONA国际卫浴上海虹桥店</div>
-                  <div class="global-add">上海市虹桥世界中心5369号L3A区二楼202</div>
-                </div>
-              </template>
-              <template #right-icon>
-                <van-icon class="fa fa-caret-down" />
-              </template>
-              <div class="add-detail fix">
-                <div class="add-tag">
-                  <van-tag round>纯德系</van-tag>
-                  <van-tag round>现代简约</van-tag>
-                  <van-tag round>北欧风</van-tag>
-                </div>
-                <div class="add-tel">
-                  <p class="ab"><van-icon name="question-o" /><span>全屋家具、卫浴、衣柜</span></p>
-                  <p class="ab"><van-icon name="question-o" /><span>021-60299001</span></p>
-                  <p class="ab"><van-icon name="question-o" /><span>上海市虹桥世界中心5369号L3A区二楼202</span></p>
-                </div>
-                <div class="add-pic">
-                  <img src="../../../assets/image/cp01.jpg">
-                </div>
-                <div class="add-btn">
-                  <van-button type="info">预约到店</van-button>
                 </div>
               </div>
             </van-collapse-item>
@@ -115,16 +109,17 @@
     name: "GlobalStore",
     data() {
       return {
+        isActive:false,
         activeName: '',
-        show: false,
+        showArea: false,
         areaList: areaList,
         value:'',
       }
     },
 
     methods: {
-      showPopup() {
-        this.show = true;
+      showArea() {
+        this.showArea = true;
       },
       MakeStore() {
         this.$router.push({name: 'MakeStore'})

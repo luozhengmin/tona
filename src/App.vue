@@ -31,7 +31,9 @@ export default {
   padding: 5px 0;
   color: #323232;
 }
-
+.person-order-status .van-goods-action-icon__icon  .van-info{
+  top:12px;right:2px;
+}
 .step .van-step--finish .van-step__circle,
 .step .van-step--finish .van-step__line {
   background-color: #323232;

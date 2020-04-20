@@ -1,5 +1,15 @@
 <template>
     <div class="container">
+      <div class="head fix">
+        <div class="wrap fix">
+          <div class="head-ss fix">
+            <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          </div>
+          <div class="head-logo">
+            TONA 拉米娜浴室柜...
+          </div>
+        </div>
+      </div>
       <div class="detail-banner">
         <van-swipe @change="onChange" :autoplay="3000">
           <van-swipe-item v-for="(item, index) in images" :key="index">

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <index-banner></index-banner>
+      <index-banner :images="images"></index-banner>
       <div class="design-list fix">
         <div class="title-t">
           <h2><span>活动推荐</span></h2>
@@ -82,6 +82,12 @@
           {id:2,d_name:'优秀设计发方案活动'},
           {id:3,d_name:'优秀设计发方案活动'},
           {id:4,d_name:'优秀设计发方案活动'}
+        ],
+        images:[
+          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
         ]
       }
     }

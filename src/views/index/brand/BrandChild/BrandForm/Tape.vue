@@ -1,6 +1,55 @@
 <template>
-    <div>
-      <index-banner></index-banner>
+    <div class="container">
+      <div class="head fix">
+        <div class="wrap fix">
+          <div class="head-ss fix">
+            <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          </div>
+          <div class="head-logo">
+            填写报备信息
+          </div>
+          <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
+            <span></span>
+          </div>
+        </div>
+        <transition name="van-slide-down">
+          <div class="slideNav" v-if="isActive">
+            <ul class="ab fix">
+              <li>
+                <router-link to="/BrandList">
+                  <i class="iconfont bg-7">&#xe7ae;</i>
+                  <span>品牌馆</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/Design">
+                  <i class="iconfont bg-7">&#xe508;</i>
+                  <span>优秀设计</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/GlobalStore">
+                  <i class="iconfont bg-7">&#xe7b9;</i>
+                  <span>全球门店</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/Investment">
+                  <i class="iconfont bg-7">&#xe6b5;</i>
+                  <span>招商加盟</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="">
+                  <i class="iconfont bg-7">&#xe602;</i>
+                  <span>关于我们</span>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+        </transition>
+      </div>
+      <index-banner :images="images"></index-banner>
       <div class="d-tape wrap fix">
         <div class="register-brand ab">
           报备品牌<span>TONA卫浴</span>
@@ -171,6 +220,7 @@
     name: "Tape",
     data(){
       return{
+        isActive: false,
         design_name:'',
         design_tel:'',
         design_code:'',
@@ -191,7 +241,13 @@
         fileList: [{ url: 'https://img.yzcdn.cn/vant/leaf.jpg' }],
         toastShow:false,
         toastText: '已提交',
-        toastState:'带单信息提交成功，请耐心等待'
+        toastState:'带单信息提交成功，请耐心等待',
+        images:[
+          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.68design.com'},
+          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
+        ]
       }
     },
     methods: {

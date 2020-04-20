@@ -1,50 +1,97 @@
 <template>
-    <div>
-      <div class="container">
-        <div class="apply">
-          <a href=""><img src="../../../assets/image/jm01.jpg"/></a>
+  <div class="container">
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
         </div>
-        <div class="apply-adv">
-          <a href=""><img src="../../../assets/image/jm02.jpg"/></a>
+        <div class="head-logo">
+          招商加盟
         </div>
-        <div class="apply-condition">
-          <a href=""><img src="../../../assets/image/jm03.jpg"/></a>
-        </div>
-        <div class="apply- process">
-          <a href=""><img src="../../../assets/image/jm04.jpg"/></a>
-        </div>
-        <div class="apply-btn wrap fix">
-          <div class="btn" @click="showPopup">TONA HOME 招商申请</div>
-          <van-popup
-            v-model="show"
-            closeable
-            position="bottom"
-            :style="{ height: '47%' }">
-            <div class="apply-tel fix">
-              <h2>TONA HOME招商申请</h2>
-              <p>你还可拨打电话咨询 400-000-0267</p>
-              <div class="message">
-                <van-field v-model="value" placeholder="请输入您所在企业名称" />
-                <van-field
-                  center
-                  clearable
-                  placeholder="请输入您的联系方式"
-                >
-                  <template #button>
-                    <van-button size="small" type="primary">获取验证码</van-button>
-                  </template>
-                </van-field>
-                <van-field v-model="value" placeholder="请输入验证码" />
-                <div class="apply-submit">
-                  <van-button round block type="info" native-type="submit" @click="successPop">
-                    立即申请
-                  </van-button>
-                </div>
-              </div>
-            </div>
-          </van-popup>
+        <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
+          <span></span>
         </div>
       </div>
+      <transition name="van-slide-down">
+        <div class="slideNav" v-if="isActive">
+          <ul class="ab fix">
+            <li>
+              <router-link to="/BrandList">
+                <i class="iconfont bg-7">&#xe7ae;</i>
+                <span>品牌馆</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Design">
+                <i class="iconfont bg-7">&#xe508;</i>
+                <span>优秀设计</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/GlobalStore">
+                <i class="iconfont bg-7">&#xe7b9;</i>
+                <span>全球门店</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Investment">
+                <i class="iconfont bg-7">&#xe6b5;</i>
+                <span>招商加盟</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="">
+                <i class="iconfont bg-7">&#xe602;</i>
+                <span>关于我们</span>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </transition>
+    </div>
+    <div class="apply">
+      <a href=""><img src="../../../assets/image/jm01.jpg"/></a>
+    </div>
+    <div class="apply-adv">
+      <a href=""><img src="../../../assets/image/jm02.jpg"/></a>
+    </div>
+    <div class="apply-condition">
+      <a href=""><img src="../../../assets/image/jm03.jpg"/></a>
+    </div>
+    <div class="apply- process">
+      <a href=""><img src="../../../assets/image/jm04.jpg"/></a>
+    </div>
+    <div class="apply-btn wrap fix">
+      <div class="btn" @click="showPopup">TONA HOME 招商申请</div>
+      <van-popup
+        v-model="show"
+        closeable
+        position="bottom"
+        :style="{ height: '47%' }">
+        <div class="apply-tel fix">
+          <h2>TONA HOME招商申请</h2>
+          <p>你还可拨打电话咨询 400-000-0267</p>
+          <div class="message">
+            <van-field v-model="value" placeholder="请输入您所在企业名称" />
+            <van-field
+              center
+              clearable
+              placeholder="请输入您的联系方式"
+            >
+              <template #button>
+                <van-button size="small" type="primary">获取验证码</van-button>
+              </template>
+            </van-field>
+            <van-field v-model="value" placeholder="请输入验证码" />
+            <div class="apply-submit">
+              <van-button round block type="info" native-type="submit" @click="successPop">
+                立即申请
+              </van-button>
+            </div>
+          </div>
+        </div>
+      </van-popup>
+    </div>
     </div>
 </template>
 
@@ -54,6 +101,7 @@
     name: "Investment",
     data() {
       return {
+        isActive:false,
         show: false,
         value:''
       }

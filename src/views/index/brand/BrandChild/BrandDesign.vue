@@ -1,6 +1,6 @@
 <template>
     <div>
-      <index-banner></index-banner>
+      <index-banner :images="images"></index-banner>
       <div class="w-ticket wrap fix">
         <div class="ticket-item ab">
           <div class="item-l">
@@ -54,7 +54,13 @@
     name: "BrandDesign",
     data(){
       return{
-        list:[{}]
+        list:[{}],
+        images:[
+          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.68design.com'},
+          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
+        ]
       }
     },
     methods: {

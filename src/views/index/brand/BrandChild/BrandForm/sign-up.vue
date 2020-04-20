@@ -1,5 +1,54 @@
 <template>
-    <div>
+    <div class="container">
+      <div class="head fix">
+        <div class="wrap fix">
+          <div class="head-ss fix">
+            <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          </div>
+          <div class="head-logo">
+            签约品牌
+          </div>
+          <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
+            <span></span>
+          </div>
+        </div>
+        <transition name="van-slide-down">
+          <div class="slideNav" v-if="isActive">
+            <ul class="ab fix">
+              <li>
+                <router-link to="/BrandList">
+                  <i class="iconfont bg-7">&#xe7ae;</i>
+                  <span>品牌馆</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/Design">
+                  <i class="iconfont bg-7">&#xe508;</i>
+                  <span>优秀设计</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/GlobalStore">
+                  <i class="iconfont bg-7">&#xe7b9;</i>
+                  <span>全球门店</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/Investment">
+                  <i class="iconfont bg-7">&#xe6b5;</i>
+                  <span>招商加盟</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="">
+                  <i class="iconfont bg-7">&#xe602;</i>
+                  <span>关于我们</span>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+        </transition>
+      </div>
       <div class="sign-step fix">
         <div class="step-item active">
           <div class="item-line l">
@@ -76,7 +125,7 @@
           </van-checkbox>
         </div>
 
-        <van-button type="primary" block color="#323232">下一步</van-button>
+        <van-button type="primary" block color="#323232" @click="realName">下一步</van-button>
       </div>
       <!--地址区域开始-->
       <van-popup
@@ -145,6 +194,7 @@
     name: "sign-up",
     data(){
       return{
+        isActive: false,
         sign_name:'',
         sign_tel:'',
         sign_code:'',
@@ -167,13 +217,16 @@
       closeDeclare() {
         this.showDeclare = false;
       },
+      realName(){
+        this.$router.push({'name': 'real-name'})
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
   .sign-step{
-    width:86%;margin:12px auto;
+    width:86%;margin:12px auto;padding-top: 20px;
     .step-item{
       float:left;
       .item-num{width:24px;height:24px;background-color:#b7b7b7;text-align:center;line-height:24px;color:#fff;

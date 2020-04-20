@@ -1,6 +1,6 @@
 <template>
   <div style="height:100%">
-    <div style="height:100%">
+    <div>
       <router-view />
     </div>
     <div class="footer">

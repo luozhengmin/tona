@@ -14,7 +14,10 @@ export default new Router({
         {
           path: 'index',
           name: 'Index',
-          component: () => import("@/views/index/index")
+          component: () => import("@/views/index/index"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'login',
@@ -123,6 +126,9 @@ export default new Router({
           path: 'Design',
           name: 'Design',
           component: () => import("@/views/design/Design"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'DesignDetail',
@@ -201,11 +207,15 @@ export default new Router({
           path: 'person',
           name: 'person',
           component: () => import("@/views/person/index"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'help',
           name: 'help',
           component: () => import("@/views/person/help"),
+
         },
         {
           path: 'help-detail',

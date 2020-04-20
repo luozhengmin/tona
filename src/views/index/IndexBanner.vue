@@ -2,7 +2,7 @@
     <div class="index-banner fix">
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(item, index) in images" :key="index">
-          <img  :src="item.imgUrl"/>
+          <a :href="item.index_link"><img  :src="item.imgUrl"/></a>
         </van-swipe-item>
       </van-swipe>
 
@@ -12,14 +12,14 @@
 <script>
     export default {
       name: "IndexBanner",
+      props:{
+        images:{
+          type:Array,
+          default:[],
+        }
+      },
       data() {
         return {
-          images:[
-            { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg'},
-            { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg'},
-            { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg'},
-            { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg'}
-          ]
         }
       }
     }

@@ -1,19 +1,19 @@
 <template>
   <div class="menu wrap fix">
     <div class="menu-item" @click="goBrand">
-      <i class="iconfont bg-1">&#xe7ae;</i>
+      <i class="iconfont bg-5">&#xe7ae;</i>
       <span class="menu-item-title">硬装建材</span>
     </div>
     <div class="menu-item" @click="goDesign">
-      <i class="iconfont bg-2">&#xe671;</i>
+      <i class="iconfont bg-6">&#xe671;</i>
       <span class="menu-item-title">软装家居</span>
     </div>
     <div class="menu-item" @click="goGlobal">
-      <i class="iconfont bg-3">&#xe7ae;</i>
+      <i class="iconfont bg-7">&#xe7ae;</i>
       <span class="menu-item-title">智能家电</span>
     </div>
     <div class="menu-item" @click="goPartner">
-      <i class="iconfont bg-4">&#xe6b5;</i>
+      <i class="iconfont bg-8">&#xe6b5;</i>
       <span class="menu-item-title">全屋定制</span>
     </div>
   </div>
@@ -60,7 +60,7 @@
         overflow: hidden;
         display:block;
         text-align: center;
-        border-radius:50%;
+        border-radius:5px;
       }
       .menu-item-icon {
         width:54px;
@@ -75,8 +75,8 @@
       }
     }
   }
-  .bg-1{background-image: linear-gradient(to bottom , #f1d690,#e1c48a );}
-  .bg-2{background-image: linear-gradient(to bottom , #35e7ba,#2cddca );}
-  .bg-3{background-image: linear-gradient(to bottom , #6fc7ff,#5a91fe );}
-  .bg-4{background-image: linear-gradient(to bottom , #ff9d74,#fd5d53 );}
+  .bg-5{background-image: linear-gradient(to bottom , #f1d690,#e1c48a );}
+  .bg-6{background-image: linear-gradient(to bottom , #35e7ba,#2cddca );}
+  .bg-7{background-image: linear-gradient(to bottom , #6fc7ff,#5a91fe );}
+  .bg-8{background-image: linear-gradient(to bottom , #ff9d74,#fd5d53 );}
 </style>

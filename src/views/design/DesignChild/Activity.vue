@@ -1,6 +1,6 @@
 <template>
     <div>
-      <index-banner></index-banner>
+      <index-banner :images="images"></index-banner>
       <div class="activity-list">
         <van-row>
           <van-col v-for="i in 4 " :key="i">
@@ -30,7 +30,12 @@
     name: "Activity",
     data(){
       return{
-
+        images:[
+          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
+          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
+        ]
       }
     }
   }
