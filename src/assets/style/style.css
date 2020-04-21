@@ -244,5 +244,11 @@ select{font-size: 100%;margin: 0;outline: none;}
 /*我的收藏夹*/
 .collect-list .van-tab--active{color:#f4523b;}
 /*我的信息中心*/
+.p-information .van-cell:nth-child(1) .van-cell__value{display:none;}
 .p-information .van-cell__value span{display:inline-block;width:16px;height:16px;background-color:red;border-radius:50%;
   color: #fff;text-align:center;line-height: 16px;font-size:13px;}
+.p-information .van-cell{padding:10px 15px;margin:12px 0;}
+.p-information .van-cell:not(:last-child)::after{border:none;}
+.p-information .van-cell .iconfont{font-size:24px;padding-right:8px;color:#bcbcbc;}
+.p-information .van-cell .van-cell__title{font-size:15px;}
+.p-information .van-cell .van-cell__label{margin-top:0;font-size:13px;color:#bcbcbc;}

@@ -16,7 +16,31 @@
             <span class="custom-title">在线客服</span>
           </template>
           <template #icon>
-            <van-icon name="point-gift-o" />
+            <i class="iconfont">&#xe61b;</i>
+          </template>
+        </van-cell>
+        <van-cell value="8" is-link center label="你的地球福利来啦">
+          <template #title>
+            <span class="custom-title">活动消息</span>
+          </template>
+          <template #icon>
+            <i class="iconfont">&#xe629;</i>
+          </template>
+        </van-cell>
+        <van-cell value="8" is-link center label="秒杀专区暂时下线公告">
+          <template #title>
+            <span class="custom-title">系统消息</span>
+          </template>
+          <template #icon>
+            <i class="iconfont">&#xe6cb;</i>
+          </template>
+        </van-cell>
+        <van-cell value="8" is-link center label="您有一条客户留言">
+          <template #title>
+            <span class="custom-title">私信</span>
+          </template>
+          <template #icon>
+            <i class="iconfont">&#xe656;</i>
           </template>
         </van-cell>
       </div>
@@ -36,5 +60,5 @@
 </script>
 
 <style scoped>
-
+  .container{background-color:#f7f7f7;height:100%;}
 </style>
