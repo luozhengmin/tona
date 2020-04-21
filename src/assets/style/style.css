@@ -243,3 +243,6 @@ select{font-size: 100%;margin: 0;outline: none;}
 .address-list .van-address-item__name{font-size:15px;}
 /*我的收藏夹*/
 .collect-list .van-tab--active{color:#f4523b;}
+/*我的信息中心*/
+.p-information .van-cell__value span{display:inline-block;width:16px;height:16px;background-color:red;border-radius:50%;
+  color: #fff;text-align:center;line-height: 16px;font-size:13px;}

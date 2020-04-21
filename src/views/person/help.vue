@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          帮助中心
+        </div>
+      </div>
+    </div>
     <div class="top">
       <div class="item">
         <i class="iconfont">&#xe61b;</i>

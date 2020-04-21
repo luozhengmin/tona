@@ -333,6 +333,11 @@ export default new Router({
           component: () => import("@/views/person/integral/record"),
         },
         {
+          path: 'information/list',
+          name: 'information-list',
+          component: () => import("@/views/person/information/list"),
+        },
+        {
           path: 'feedback/edit',
           name: 'feedback-edit',
           component: () => import("@/views/person/feedback/edit"),

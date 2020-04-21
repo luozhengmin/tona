@@ -57,7 +57,6 @@
 export default {
   data() {
     return {
-      isActive:false,
       value3: "",
       columns3: ["淋浴房", "浴缸", "智能马桶", "浴室柜", "建材", "家居"],
       showPicker3: false,

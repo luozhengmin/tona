@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          帮助详情
+        </div>
+      </div>
+    </div>
     <div class="q-list">
       <div class="item" v-for="i in 5" :key="i">
         <h3>Q：你们的商品是正品么？</h3>

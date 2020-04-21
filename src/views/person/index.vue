@@ -3,7 +3,7 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="p-warn">
-          <i class='iconfont icon-big-clock'/>
+          <router-link to="/information/list"><i class='iconfont icon-big-clock'/></router-link>
         </div>
         <div class="head-logo">
           我的
