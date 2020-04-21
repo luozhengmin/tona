@@ -1,6 +1,18 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          浏览足迹
+        </div>
+        <div class="p-btn">
+          <router-link to="">清空</router-link>
+        </div>
+      </div>
+    </div>
     <div>
       <div v-if="list.length==0" class="empty">
         <div>
@@ -96,13 +108,14 @@ export default {
     .prod {
       background-color: #fff;
       .title {
-        font-size: 16px;
+        font-size: 15px;
         color: #323232;
         padding: 10px 15px 5px 15px;
       }
       .desc {
-        padding: 0 15px 10px 15px;
+        padding: 0 15px 6px 15px;
         color: #888;
+        font-size:13px;
       }
       .bottom {
         padding: 0 15px 10px 15px;
@@ -110,7 +123,7 @@ export default {
         align-items: center;
         justify-content: space-between;
         color: #f4523b;
-        font-size: 20px;
+        font-size: 18px;
         .fuhao {
           font-size: 12px;
         }

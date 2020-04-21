@@ -1,6 +1,18 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          我的积分
+        </div>
+        <div class="p-btn">
+          <router-link to="">删除</router-link>
+        </div>
+      </div>
+    </div>
     <div class="form">
       <van-cell-group>
         <van-field label="姓名" placeholder="输入收货人姓名"></van-field>
@@ -67,10 +79,11 @@ export default {
   background-color: #f7f7f7;
   height: 100%;
   .form {
-    font-size: 16px;
+    font-size: 15px;
     .van-cell {
-      font-size: 16px;
-      line-height: 30px;
+      font-size: 15px;
+      line-height: 1.8;
+      padding:10px 16px;
       .van-button {
         border: none;
         font-size: 14px;
@@ -85,11 +98,13 @@ export default {
     span {
       margin-left: 10px;
       color: #888888;
+      font-size: 13px;
     }
   }
   .btn {
     margin-top: 30px;
-    padding: 0 16px;
+    padding: 0 15px;
+    button{border-radius:4px;}
   }
 }
 </style>

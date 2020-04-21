@@ -77,22 +77,22 @@
       <van-goods-action-icon class="item" icon="flower-o" text="售后服务" />
     </div>
     <div class="group1">
-      <van-cell title="我的积分" is-link>
+      <van-cell title="我的积分" is-link to="/integral/index">
         <template #icon>
           <i class="iconfont">&#xe74e;</i>
         </template>
       </van-cell>
-      <van-cell title="地址管理" is-link>
+      <van-cell title="地址管理" is-link to="/address-list">
         <template #icon>
           <i class="iconfont">&#xe614;</i>
         </template>
       </van-cell>
-      <van-cell title="收藏夹" is-link>
+      <van-cell title="收藏夹" is-link to="/collect">
         <template #icon>
           <i class="iconfont">&#xe628;</i>
         </template>
       </van-cell>
-      <van-cell title="浏览足迹" is-link>
+      <van-cell title="浏览足迹" is-link to="foot/list">
         <template #icon>
           <i class="iconfont">&#xe62c;</i>
         </template>
@@ -104,12 +104,12 @@
           <i class="iconfont">&#xe60a;</i>
         </template>
       </van-cell>
-      <van-cell title="帮助中心" is-link>
+      <van-cell title="帮助中心" is-link to="/help">
         <template #icon>
           <i class="iconfont">&#xe7e5;</i>
         </template>
       </van-cell>
-      <van-cell title="意见反馈" is-link>
+      <van-cell title="意见反馈" is-link to="/feedback/edit">
         <template #icon>
           <i class="iconfont">&#xe6f3;</i>
         </template>
@@ -192,7 +192,8 @@ export default {
         font-size: 18px;
         color:#b7b7b7;
       }
-      i{font-size:18px;padding-right:8px;}
+      .iconfont{font-size:18px;padding-right:8px;}
+      .van-icon{margin-right:-4px;}
     }
   }
   .footer {

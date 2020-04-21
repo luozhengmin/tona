@@ -57,6 +57,9 @@ select{font-size: 100%;margin: 0;outline: none;}
 .head .active.menu-ico span {opacity: 0;}
 .head .active.menu-ico::before {-webkit-transform: rotate3d(0, 0, 1, 45deg);transform: rotate3d(0, 0, 1, 45deg);}
 .head .active.menu-ico::after {-webkit-transform: rotate3d(0, 0, 1, -45deg);transform: rotate3d(0, 0, 1, -45deg);width:100%;}
+.head .p-btn{padding:2px 0;position:absolute;right:4%;cursor:pointer;z-index:180;top:8px;}
+.head .p-btn a{font-size:16px;color:#fff;}
+.head .p-btn a i{font-size:20px;color:#fff;}
 
 .slideNav{position:absolute;top:50px;width:100%;background-color:rgba(50,50,50,0.9);z-index:175;padding:12px 0;}
 .slideNav ul{width:92%;height:100%;z-index:99;position: relative;text-align:center;margin:0 auto;}
@@ -235,3 +238,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 .common-login .van-nav-bar__text{padding:0 7px;color:#323232;}
 .common-login .van-nav-bar .van-icon{color:#323232;font-size:20px;}
 .common-login .van-nav-bar__title img{height:18px;vertical-align: middle;}
+/*我的地址管理*/
+.address-list .van-address-item .van-radio__icon--checked .van-icon{background-color: #f4523b;border-color: #f4523b;}
+.address-list .van-address-item__name{font-size:15px;}
+/*我的收藏夹*/
+.collect-list .van-tab--active{color:#f4523b;}

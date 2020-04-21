@@ -1,8 +1,56 @@
 <template>
   <div class="container">
-    <div class="header"></div>
-    <div>
-      <van-tabs v-model="active">
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          收藏夹
+        </div>
+        <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
+          <span></span>
+        </div>
+      </div>
+      <transition name="van-slide-down">
+        <div class="slideNav" v-if="isActive">
+          <ul class="ab fix">
+            <li>
+              <router-link to="/BrandList">
+                <i class="iconfont bg-7">&#xe7ae;</i>
+                <span>品牌馆</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Design">
+                <i class="iconfont bg-7">&#xe508;</i>
+                <span>优秀设计</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/GlobalStore">
+                <i class="iconfont bg-7">&#xe7b9;</i>
+                <span>全球门店</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Investment">
+                <i class="iconfont bg-7">&#xe6b5;</i>
+                <span>招商加盟</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="">
+                <i class="iconfont bg-7">&#xe602;</i>
+                <span>关于我们</span>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </transition>
+    </div>
+    <div class="collect-list">
+      <van-tabs v-model="active" color="#f4523b">
         <van-tab title="设计方案">
           <div v-if="list.length==0" class="empty">
             <div>
@@ -68,6 +116,7 @@
 export default {
   data() {
     return {
+      isActive:false,
       active: 0,
       list: [{}]
     };
@@ -93,7 +142,8 @@ export default {
     padding: 15px;
     .card {
       background-color: #fff;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      .van-divider{margin:12px 0;border-color:#eee;}
       .info {
         padding: 0 15px;
         .title {
@@ -101,9 +151,10 @@ export default {
           color: #323232;
           margin-bottom: 5px;
         }
+        .meta{font-size:14px;}
       }
       .desc {
-        padding: 0 15px 10px 15px;
+        padding: 0 12px 10px 12px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -152,4 +203,5 @@ export default {
     }
   }
 }
+
 </style>

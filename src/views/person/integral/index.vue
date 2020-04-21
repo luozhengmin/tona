@@ -1,6 +1,18 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          我的积分
+        </div>
+        <div class="p-btn">
+          <router-link to="/integral/record"><i class="iconfont bg-7">&#xe7e5;</i></router-link>
+        </div>
+      </div>
+    </div>
     <div class="top">
       <div class="icon">
         <img src="../../../assets/image/jf.png" />
@@ -10,7 +22,7 @@
     </div>
     <div class="title">
       <span>近30天记录</span>
-      <span>更多</span>
+      <router-link to="/integral/list"><span>更多</span></router-link>
     </div>
     <div class="list">
       <van-cell v-for="i in 5" :key="i" title="完成每日登录" size="large" label="2020-02-02 20:20">
@@ -55,21 +67,30 @@ export default {
       }
     }
     .count {
-      font-size: 33px;
+      font-size: 32px;
     }
   }
   .title {
-    font-size: 16px;
-    padding: 15px;
+    font-size: 14px;
+    padding:12px 15px;
     color: #323232;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    a{
+      span{color:#909090;}
+    }
   }
   .list {
     background-color: #fff;
+    .van-cell{
+      border-bottom:solid 1px #eee;
+      .van-cell__title{font-size:15px;}
+      .van-cell__label{font-size:13px;margin-top:1px;}
+    }
+    .van-cell:not(:last-child)::after{border:none;}
     .value {
-      font-size: 16px;
+      font-size: 18px;
       color: #f4523b;
       line-height: 45px;
     }

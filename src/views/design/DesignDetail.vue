@@ -359,6 +359,7 @@
     },
     data(){
       return{
+        isActive:false,
         show:false,
         showform:false,
         showshare:false,

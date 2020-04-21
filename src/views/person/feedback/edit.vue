@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          意见反馈
+        </div>
+      </div>
+    </div>
     <div class="form">
       <div class="item">
         <van-field
@@ -25,11 +34,11 @@
         <van-field placeholder="手机/邮箱/QQ(选填)" />
       </div>
     </div>
-    <div class="upload">
-      <van-uploader v-model="fileList" multiple />
+    <div class="upload-1">
+      <van-uploader v-model="fileList"  :max-count="6" upload-icon="plus" upload-text="添加图片(最多六张)"/>
     </div>
     <div class="btn">
-      <van-button color="#1b1b1b" block @click="save()">保存</van-button>
+      <van-button color="#1b1b1b" block @click="save()">提交</van-button>
     </div>
 
     <van-popup v-model="showPicker3" position="bottom">
@@ -48,9 +57,11 @@
 export default {
   data() {
     return {
+      isActive:false,
       value3: "",
       columns3: ["淋浴房", "浴缸", "智能马桶", "浴室柜", "建材", "家居"],
-      showPicker3: false
+      showPicker3: false,
+      fileList: [],
     };
   },
   methods: {
@@ -78,13 +89,14 @@ export default {
       }
     }
   }
-  .upload {
-    background-color: #ffffff;
-    padding: 10px 15px;
+  .upload-1{
+    padding: 18px 15px;
+    p{color:#888;line-height:1.6;}
   }
   .btn {
     margin-top: 30px;
     padding: 0 16px;
+    button{border-radius:4px;}
   }
   .van-cell {
     border: 1px solid #eeeeee;

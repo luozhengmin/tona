@@ -328,6 +328,11 @@ export default new Router({
           component: () => import("@/views/person/integral/list"),
         },
         {
+          path: 'integral/record',
+          name: 'integral-record',
+          component: () => import("@/views/person/integral/record"),
+        },
+        {
           path: 'feedback/edit',
           name: 'feedback-edit',
           component: () => import("@/views/person/feedback/edit"),
