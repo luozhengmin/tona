@@ -9,7 +9,7 @@ import 'font-awesome/css/font-awesome.css'
 import moment from 'moment'
 Vue.use(Vant);
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import style
+//滑动效果
 import 'swiper/css/swiper.css'
 Vue.use(VueAwesomeSwiper,)
 
