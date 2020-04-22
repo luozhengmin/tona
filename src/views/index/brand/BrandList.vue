@@ -49,7 +49,7 @@
         </div>
       </transition>
     </div>
-    <index-banner :images="images"></index-banner>
+    <index-banner :banners="banners"></index-banner>
     <brand-list-body></brand-list-body>
     <index-foot></index-foot>
   </div>
@@ -58,6 +58,7 @@
   import IndexBanner from "../IndexBanner.vue";
   import IndexFoot from "../IndexFoot.vue";
   import BrandListBody from "./BrandListBody.vue";
+  import axios from "@/utils/request";
 
   export default {
     name:'BrandList',
@@ -66,15 +67,21 @@
       IndexFoot,
       IndexBanner
     },
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
         isActive: false,
-        images:[
-          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.68design.com'},
-          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
-        ]
+        banners: []
+      }
+    },
+    methods: {
+      getBanners() {
+        axios.get("/api/Index/getIndexAdList").then(res => {
+          let banners = res.result.banners;
+          this.banners = banners;
+        });
       }
     }
   }
