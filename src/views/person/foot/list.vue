@@ -8,7 +8,7 @@
         <div class="head-logo">
           浏览足迹
         </div>
-        <div class="p-btn">
+        <div class="p-btn" @click="showAction">
           <router-link to="">清空</router-link>
         </div>
       </div>
@@ -42,18 +42,36 @@
         </van-row>
       </div>
     </div>
+    <van-popup v-model="show" position="bottom" :style="{ height: '24%' }" class="track">
+      <div class="track-confirm">
+        <p>确定要清空浏览足迹吗？</p>
+        <h2>确定</h2>
+      </div>
+      <div class="track-cancel" @click="onCancel">
+        取消
+      </div>
+    </van-popup>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      active: 0,
-      list: [{}]
-    };
-  }
-};
+  export default {
+    data() {
+      return {
+        show: false,
+        active: 0,
+        list: [{}],
+      };
+    },
+    methods: {
+      showAction(){
+        this.show = true;
+      },
+      onCancel() {
+        this.show = false;
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -141,4 +159,23 @@ export default {
     }
   }
 }
+.track{
+  color:#0076ff;
+  text-align:center;
+  background-color:initial;
+  padding:0 15px;
+  .track-confirm{
+    background-color:rgba(255,255,255,0.85);
+    border-radius:4px;
+    margin-bottom:12px;
+    p,h2{padding:12px 0;font-size:14px;}
+    h2{color:#f52525;border-top:solid 1px #d5d5d5;}
+  }
+  .track-cancel{
+    background-color:rgba(255,255,255,0.85);font-size:14px;
+    padding:12px 0;
+    border-radius:4px;
+  }
+}
+
 </style>

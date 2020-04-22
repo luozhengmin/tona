@@ -76,6 +76,7 @@ export default {
       .van-cell__left-icon,
       .van-cell__right-icon {
         font-size:18px;
+        margin-right: -5px;
       }
     }
   }

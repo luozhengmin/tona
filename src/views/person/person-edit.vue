@@ -27,7 +27,7 @@
       <van-cell-group>
         <van-field label="用户ID" value="8447466"></van-field>
         <van-field label="昵称" value="我是夏天" use-button-slot>
-          <van-button slot="button" type="info" plain size="small">去认证</van-button>
+          <van-button slot="button" type="info" plain size="small" @click="onidentify">去认证</van-button>
         </van-field>
         <van-field label="性别">
           <template #input>
@@ -115,6 +115,9 @@ export default {
         message: "保存成功",
         icon: "passed"
       });
+    },
+    onidentify(){
+      this.$router.push({'name': 'identify'})
     }
   }
 };
@@ -153,6 +156,7 @@ export default {
         border: none;
         font-size: 14px;
         padding:0;
+        text-align: right;
       }
     }
   }

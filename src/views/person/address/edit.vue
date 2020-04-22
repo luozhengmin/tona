@@ -8,7 +8,7 @@
         <div class="head-logo">
           我的积分
         </div>
-        <div class="p-btn">
+        <div class="p-btn" @click="showAction">
           <router-link to="">删除</router-link>
         </div>
       </div>
@@ -43,6 +43,15 @@
     <van-popup v-model="showArea" position="bottom">
       <van-area :area-list="areaList" @confirm="onConfirmArea" @cancel="showArea = false" />
     </van-popup>
+    <van-popup v-model="show" position="bottom" :style="{ height: '24%' }" class="track">
+      <div class="track-confirm">
+        <p>确定要删除该收货人信息吗？</p>
+        <h2>确定</h2>
+      </div>
+      <div class="track-cancel" @click="onCancel">
+        取消
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -53,6 +62,7 @@ export default {
   name: "",
   data() {
     return {
+      show: false,
       value: "",
       showArea: false,
       areaList: areaList,
@@ -69,7 +79,13 @@ export default {
         message: "保存成功",
         icon: "passed"
       });
-    }
+    },
+    showAction(){
+      this.show = true;
+    },
+    onCancel() {
+      this.show = false;
+    },
   }
 };
 </script>
@@ -105,6 +121,24 @@ export default {
     margin-top: 30px;
     padding: 0 15px;
     button{border-radius:4px;}
+  }
+}
+.track{
+  color:#0076ff;
+  text-align:center;
+  background-color:initial;
+  padding:0 15px;
+  .track-confirm{
+    background-color:rgba(255,255,255,0.85);
+    border-radius:4px;
+    margin-bottom:12px;
+    p,h2{padding:12px 0;font-size:14px;}
+    h2{color:#f52525;border-top:solid 1px #d5d5d5;}
+  }
+  .track-cancel{
+    background-color:rgba(255,255,255,0.85);font-size:14px;
+    padding:12px 0;
+    border-radius:4px;
   }
 }
 </style>
