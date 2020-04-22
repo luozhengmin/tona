@@ -41,7 +41,7 @@
             </li>
             <li>
               <router-link to="">
-                <i class="iconfont bg-7">&#xe602;</i>
+                <i class="iconfont bg-7">&#xe604;</i>
                 <span>关于我们</span>
               </router-link>
             </li>
@@ -56,11 +56,14 @@
         width="55px"
         height="55px"
         src="https://img.yzcdn.cn/vant/cat.jpeg"
+        @click="onPerson"
       />
       <div class="info">
         <div>
-          <div class="name">你是夏天</div>
-          <div class="id">ID：84458566</div>
+          <router-link to="/person-center">
+            <div class="name">你是夏天</div>
+            <div class="id">ID：84458566</div>
+          </router-link>
         </div>
         <div class="sq ab">
           <van-button round size="small" color="#f4523b">设计师会员申请</van-button>
@@ -70,11 +73,31 @@
       </div>
     </div>
     <div class="order person-order-status">
-      <van-goods-action-icon class="item" icon="balance-list-o" text="全部订单" />
-      <van-goods-action-icon class="item" icon="paid" text="待付款" info="5" />
-      <van-goods-action-icon class="item" icon="logistics" text="待收货" />
-      <van-goods-action-icon class="item" icon="comment-o" text="待评价" />
-      <van-goods-action-icon class="item" icon="flower-o" text="售后服务" />
+      <van-goods-action-icon class="item" text="全部订单" to="order/list">
+        <template #icon>
+          <i class="iconfont">&#xe615;</i>
+        </template>
+      </van-goods-action-icon>
+      <van-goods-action-icon class="item" text="待付款" info="5">
+        <template #icon>
+          <i class="iconfont">&#xe639;</i>
+        </template>
+      </van-goods-action-icon>
+      <van-goods-action-icon class="item" text="待收货">
+        <template #icon>
+          <i class="iconfont">&#xe602;</i>
+        </template>
+      </van-goods-action-icon>
+      <van-goods-action-icon class="item" text="待评价">
+        <template #icon>
+          <i class="iconfont">&#xe611;</i>
+        </template>
+      </van-goods-action-icon>
+      <van-goods-action-icon class="item" text="售后服务" to="/after-sale/list">
+        <template #icon>
+          <i class="iconfont">&#xe603;</i>
+        </template>
+      </van-goods-action-icon>
     </div>
     <div class="group1">
       <van-cell title="我的积分" is-link to="/integral/index">
@@ -101,7 +124,7 @@
     <div class="group2">
       <van-cell title="在线客服" is-link>
         <template #icon>
-          <i class="iconfont">&#xe60a;</i>
+          <i class="iconfont">&#xe61b;</i>
         </template>
       </van-cell>
       <van-cell title="帮助中心" is-link to="/help">
@@ -128,6 +151,11 @@ export default {
     return{
       isActive:false,
     }
+  },
+  methods:{
+    onPerson() {
+      this.$router.push({'name': 'person-center'})
+    },
   }
 };
 </script>
@@ -143,7 +171,7 @@ export default {
     align-items: center;
     margin-bottom: 12px;
     .info {
-      margin-left: 15px;
+      margin-left: 12px;
       flex: 1;
       display: flex;
       align-items: center;
@@ -157,12 +185,12 @@ export default {
         }
       }
       .name {
-        padding-bottom:3px;
         font-size:16px;
         color: #363636;
       }
       .id {
-        color: #888888;
+        color: #888;
+        font-size:13px;
       }
     }
   }
@@ -178,12 +206,12 @@ export default {
       align-items: center;
       flex-direction: column;
       font-size: 14px;
-      color: #888888;
+      color: #888;
     }
   }
   .group1,
   .group2 {
-    margin-bottom: 12px;
+    margin-bottom:12px;
     .van-cell {
       font-size: 14px;
       line-height:1.8;

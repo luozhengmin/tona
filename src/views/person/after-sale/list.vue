@@ -1,7 +1,18 @@
 <template>
   <div class="container">
-    <div class="header"></div>
-
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          售后申请
+        </div>
+        <div class="p-btn">
+          <router-link to=""><i class="iconfont bg-7">&#xe603;</i></router-link>
+        </div>
+      </div>
+    </div>
     <div class="s-search">
       <van-search
         v-model="value"

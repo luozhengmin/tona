@@ -1,6 +1,18 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          售后详情
+        </div>
+        <div class="p-btn">
+          <router-link to=""><i class="iconfont bg-7">&#xe603;</i></router-link>
+        </div>
+      </div>
+    </div>
     <div class="log">
       <div class="item">服务单号：123456946361</div>
       <div class="item">申请时间：2020-02-02 02:02:02</div>
@@ -90,7 +102,7 @@ export default {
     .title {
       padding:12px 15px;
       background-color: #fff;
-      font-size: 15px;
+      font-size: 14px;
       color: #323232;
     }
     .van-divider {

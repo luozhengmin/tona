@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          第三方授权
+        </div>
+      </div>
+    </div>
     <div class="group">
       <van-cell title="绑定新浪微博">
         <template #icon>
@@ -45,13 +54,14 @@ export default {};
   .group {
     font-size: 16px;
     .van-cell {
-      font-size: 16px;
+      font-size: 14px;
       line-height: 50px;
       display: flex;
       align-items: center;
       .van-button {
         border: none;
         font-size: 14px;
+        padding:0;
       }
       .icon {
         width: 40px;
@@ -78,9 +88,9 @@ export default {};
         line-height: 25px;
       }
       .desc {
-        font-size: 14px;
-        color: #888888;
-        line-height: 25px;
+        font-size: 13px;
+        color: #888;
+        line-height:1.5;
       }
     }
   }

@@ -1,6 +1,18 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          修改密码
+        </div>
+        <div class="p-btn">
+          <router-link to="">完成</router-link>
+        </div>
+      </div>
+    </div>
 
     <div class="form">
       <van-field label="旧密码" placeholder="请输入旧密码"></van-field>
@@ -45,36 +57,17 @@ export default {
 .container {
   background-color: #f7f7f7;
   height: 100%;
-  .user {
-    padding: 15px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    flex-direction: column;
-    .info {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 10px;
-      .name {
-        padding: 3px 0;
-        font-size: 18px;
-        color: #363636;
-      }
-    }
-  }
   .form {
-    font-size: 16px;
+    font-size: 14px;
     .van-cell {
-      font-size: 16px;
-      line-height: 30px;
+      font-size: 14px;
+      line-height:1.8;
     }
   }
   .btn {
     margin-top: 30px;
-    padding: 0 16px;
+    padding: 0 15px;
+    .van-button{border-radius:4px;}
   }
 }
 </style>

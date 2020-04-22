@@ -233,6 +233,11 @@ export default new Router({
           component: () => import("@/views/person/person-edit"),
         },
         {
+          path: 'identify',
+          name: 'identify',
+          component: () => import("@/views/person/identify"),
+        },
+        {
           path: 'update-password',
           name: 'update-password',
           component: () => import("@/views/person/update-password"),
@@ -336,6 +341,26 @@ export default new Router({
           path: 'information/list',
           name: 'information-list',
           component: () => import("@/views/person/information/list"),
+        },
+        {
+          path: 'information/active',
+          name: 'information-active',
+          component: () => import("@/views/person/information/active"),
+        },
+        {
+          path: 'information/active-detail',
+          name: 'information-active-detail',
+          component: () => import("@/views/person/information/active-detail"),
+        },
+        {
+          path: 'information/system',
+          name: 'information-system',
+          component: () => import("@/views/person/information/system"),
+        },
+        {
+          path: 'information/private',
+          name: 'information-private',
+          component: () => import("@/views/person/information/private"),
         },
         {
           path: 'feedback/edit',

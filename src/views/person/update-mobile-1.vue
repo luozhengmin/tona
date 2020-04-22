@@ -1,7 +1,21 @@
 <template>
   <div class="container">
-    <div class="header"></div>
-    <div class="step">第一步，样式待定</div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          修改手机号
+        </div>
+      </div>
+    </div>
+
+    <div class="step ab">
+      <div class="step-1 step-active">1.验证原号码</div>
+      <div class="step-1">2.绑定新号码</div>
+    </div>
+
     <div class="form">
       <van-field readonly value="188****7686">
         <template #button>
@@ -14,11 +28,11 @@
           >{{smsBtn}}</van-button>
         </template>
       </van-field>
-      <van-field placeholder="验证码"></van-field>
+      <van-field placeholder="请输入验证码"></van-field>
     </div>
 
     <div class="btn">
-      <van-button color="#d0d0d0" block @click="next()">下一步</van-button>
+      <van-button color="#d0d0d0" block @click="next()">确定</van-button>
     </div>
 
     <div class="tips">
@@ -65,31 +79,22 @@ export default {
 .container {
   background-color: #f7f7f7;
   height: 100%;
-  .user {
-    padding: 15px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    flex-direction: column;
-    .info {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 10px;
-      .name {
-        padding: 3px 0;
-        font-size: 18px;
-        color: #363636;
-      }
-    }
+  .step{
+    text-align:center;
+    font-size:14px;color:#888;
+    margin-bottom:12px;
+    background: url("../../assets/image/step-bj.jpg");
+    background-size:cover;
+    width:100%;height:40px;
+    .step-1,.step-2{width:50%;height:40px;line-height:40px;position:relative;}
+    .step-active{color:#323232;}
   }
   .form {
-    font-size: 16px;
+    font-size: 14px;
     .van-cell {
-      font-size: 16px;
-      line-height: 30px;
+      font-size: 14px;
+      line-height:1.8px;
+      border-bottom:solid 1px #eee;
     }
     .van-button--disabled {
       color: #fff !important;
@@ -98,8 +103,9 @@ export default {
     }
   }
   .btn {
-    margin-top: 30px;
-    padding: 0 16px;
+    margin-top:20px;
+    padding: 0 15px;
+    .van-button{border-radius:4px;}
   }
   .tips {
     padding: 0 15px;

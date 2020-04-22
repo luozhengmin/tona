@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="container">
       <index-head></index-head>
       <index-banner :banners="banners"></index-banner>
@@ -9,7 +8,6 @@
       <indexDesign></indexDesign>
       <index-foot></index-foot>
     </div>
-  </div>
 </template>
 
 <script>

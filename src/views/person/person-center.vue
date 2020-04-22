@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          个人中心
+        </div>
+      </div>
+    </div>
     <div class="user">
       <van-image
         round
@@ -9,7 +18,7 @@
         height="55px"
         src="https://img.yzcdn.cn/vant/cat.jpeg"
       />
-      <div class="info">
+      <div class="info ab ac">
         <div>
           <div class="name">你是夏天</div>
           <div class="id">ID：84458566</div>
@@ -17,13 +26,13 @@
       </div>
     </div>
     <div class="group1">
-      <van-cell title="个人信息" is-link />
-      <van-cell title="修改密码" is-link />
-      <van-cell title="修改手机" is-link value="188****5256" />
-      <van-cell title="认证资料" is-link value="未认证" />
+      <van-cell title="个人信息" is-link to="/person-edit"/>
+      <van-cell title="修改密码" is-link to="/update-password"/>
+      <van-cell title="修改手机" is-link value="188****5256" to="/update-mobile-1"/>
+      <van-cell title="认证资料" is-link value="未认证" to="/identify"/>
     </div>
     <div class="group2">
-      <van-cell title="第三方授权" is-link />
+      <van-cell title="第三方授权" is-link to="/third-auth"/>
     </div>
   </div>
 </template>
@@ -43,32 +52,30 @@ export default {
     background-color: #fff;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     .info {
-      margin-left: 15px;
-      flex: 1;
-      display: flex;
+      margin-left: 12px;
       align-items: center;
       justify-content: space-between;
       .name {
-        padding: 3px 0;
-        font-size: 18px;
+        font-size: 16px;
         color: #363636;
       }
       .id {
-        color: #888888;
+        color: #888;
+        font-size:13px;
       }
     }
   }
   .group1,
   .group2 {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     .van-cell {
-      font-size: 16px;
-      line-height: 30px;
+      font-size: 14px;
+      line-height:1.8;
       .van-cell__left-icon,
       .van-cell__right-icon {
-        font-size: 20px;
+        font-size:18px;
       }
     }
   }

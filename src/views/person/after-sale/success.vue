@@ -1,5 +1,15 @@
 <template>
     <div class="container">
+      <div class="head fix">
+        <div class="wrap fix">
+          <div class="head-ss fix">
+            <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          </div>
+          <div class="head-logo">
+            提交成功
+          </div>
+        </div>
+      </div>
       <div class="commit-success fix">
         <i class="van-icon van-icon-checked"></i>
         <h2>售后申请提交成功</h2>

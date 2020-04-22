@@ -1,6 +1,18 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          填写物流信息
+        </div>
+        <div class="p-btn">
+          <router-link to=""><i class="iconfont bg-7">&#xe603;</i></router-link>
+        </div>
+      </div>
+    </div>
     <div class="form">
       <div class="item">
         <div class="label ab">物流公司<i>*</i></div>
@@ -52,7 +64,7 @@
       .label {
         padding: 8px 0 10px 0;
         color: #323232;
-        font-size: 15px;
+        font-size: 14px;
         align-items:center;
         i{
           color:#ff2300;

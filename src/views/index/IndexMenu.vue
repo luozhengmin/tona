@@ -43,9 +43,8 @@
   .menu {
     overflow: hidden;
     justify-content: space-around;
-    background: #FFFFFF;
-    padding-top:20px;
-
+    background: #fff;
+    padding-top:8px;
     .menu-item {
       margin-bottom:20px;
       width:25%;

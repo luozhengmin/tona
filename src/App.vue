@@ -26,10 +26,13 @@ export default {
   height: 30px;
 }
 
-.person-order-status .van-goods-action-icon__icon {
-  font-size: 32px;
-  padding: 5px 0;
+.person-order-status .van-goods-action-icon__icon{
+  font-size: 28px;
+  padding:4px 0;
   color: #323232;
+}
+.person-order-status .van-goods-action-icon__icon i{
+  font-size: 30px;
 }
 .person-order-status .van-goods-action-icon__icon  .van-info{
   top:12px;right:2px;

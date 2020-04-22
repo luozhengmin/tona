@@ -1,12 +1,21 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          个人信息
+        </div>
+      </div>
+    </div>
     <div class="user">
       <van-image
         round
         fit="cover"
-        width="55px"
-        height="55px"
+        width="60px"
+        height="60px"
         src="https://img.yzcdn.cn/vant/cat.jpeg"
       />
       <div class="info">
@@ -18,7 +27,7 @@
       <van-cell-group>
         <van-field label="用户ID" value="8447466"></van-field>
         <van-field label="昵称" value="我是夏天" use-button-slot>
-          <van-button slot="button" type="info" plain size="small">去验证</van-button>
+          <van-button slot="button" type="info" plain size="small">去认证</van-button>
         </van-field>
         <van-field label="性别">
           <template #input>
@@ -39,23 +48,23 @@
           placeholder="选择生日"
           @click="showPicker = true"
         />
-        <van-field
-          readonly
-          clickable
-          is-link
-          name="datetimePicker"
-          :value="currentDate"
-          label="所在地"
-          placeholder="选择城市"
-          @click="showPicker = true"
-        />
+        <!--<van-field-->
+          <!--readonly-->
+          <!--clickable-->
+          <!--is-link-->
+          <!--name="datetimePicker"-->
+          <!--:value="currentDate"-->
+          <!--label="所在地"-->
+          <!--placeholder="选择城市"-->
+          <!--@click="showPicker = true"-->
+        <!--/>-->
         <van-field
           readonly
           clickable
           is-link
           name="area"
           :value="value"
-          label="地区选择"
+          label="所在地"
           placeholder="点击选择省市区"
           @click="showArea = true"
         />
@@ -120,35 +129,37 @@ export default {
     background-color: #fff;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     flex-direction: column;
     .info {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 10px;
+      margin-top:6px;
       .name {
-        padding: 3px 0;
-        font-size: 18px;
-        color: #363636;
+        font-size:14px;
+        color: #888;
       }
     }
   }
   .form {
     font-size: 16px;
     .van-cell {
-      font-size: 16px;
-      line-height: 30px;
+      font-size: 14px;
+      line-height:1.6;
+      .van-cell__right-icon{margin-right:-5px;}
       .van-button {
         border: none;
         font-size: 14px;
+        padding:0;
       }
     }
   }
   .btn {
     margin-top: 30px;
-    padding: 0 16px;
+    padding: 0 15px;
+    .van-button{border-radius:4px;}
   }
 }
 </style>

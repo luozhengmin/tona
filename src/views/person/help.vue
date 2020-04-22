@@ -85,7 +85,7 @@
   .q-list {
     background-color: #fff;
     .van-cell {
-      font-size: 15px;
+      font-size: 14px;
       padding: 12px 15px;
     }
     .van-cell:not(:last-child)::after{border-bottom:solid 1px #eee;}

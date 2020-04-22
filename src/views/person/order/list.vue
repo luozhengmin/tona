@@ -1,7 +1,16 @@
 <template>
   <div class="container">
-    <div class="header"></div>
-    <van-tabs>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          我的订单
+        </div>
+      </div>
+    </div>
+    <van-tabs color="#f4523b" class="my-order">
       <van-tab title="全部">
         <div class="list">
           <div v-if="list.length==0" class="empty">
@@ -129,12 +138,12 @@ export default {
       .store {
         padding: 15px 0;
         color: #232323;
-        font-size: 16px;
+        font-size: 14px;
         display: flex;
         justify-content: space-between;
         .status {
           color: #f4523b;
-          font-size: 14px;
+          font-size: 13px;
         }
       }
       .product {
@@ -148,7 +157,7 @@ export default {
         }
         .title {
           color: #1b1b1b;
-          font-size: 16px;
+          font-size: 15px;
           display: flex;
           span {
             flex-grow: 1;
@@ -170,6 +179,7 @@ export default {
       .bottom {
         text-align: right;
         color: #888;
+        font-size:13px;
         .info {
           color: #f4523b;
           margin: 5px 5px;
@@ -183,6 +193,7 @@ export default {
           button {
             color: #888;
             margin: 5px 5px;
+            font-size:13px;
           }
         }
       }

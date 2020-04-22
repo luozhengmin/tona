@@ -16,7 +16,7 @@
                 </div>
               </div>
               <div class="infor-r">
-                <i class="iconfont">&#xe629;</i>
+                <i class='iconfont icon-fire'></i>
                 <span class="ab">参与人数<span>15402</span></span>
               </div>
             </div>

@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="p-information fix">
-        <van-cell value="8" is-link center label="查看与客服的沟通记录">
+        <van-cell value="8" is-link center label="查看与客服的沟通记录" to="/information/system">
           <template #title>
             <span class="custom-title">在线客服</span>
           </template>
@@ -19,15 +19,15 @@
             <i class="iconfont">&#xe61b;</i>
           </template>
         </van-cell>
-        <van-cell value="8" is-link center label="你的地球福利来啦">
+        <van-cell value="8" is-link center label="你的地球福利来啦" to="/information/active">
           <template #title>
             <span class="custom-title">活动消息</span>
           </template>
           <template #icon>
-            <i class="iconfont">&#xe629;</i>
+            <i class="iconfont">&#xe64a;</i>
           </template>
         </van-cell>
-        <van-cell value="8" is-link center label="秒杀专区暂时下线公告">
+        <van-cell value="8" is-link center label="秒杀专区暂时下线公告" to="/information/system">
           <template #title>
             <span class="custom-title">系统消息</span>
           </template>
@@ -35,7 +35,7 @@
             <i class="iconfont">&#xe6cb;</i>
           </template>
         </van-cell>
-        <van-cell value="8" is-link center label="您有一条客户留言">
+        <van-cell value="8" is-link center label="您有一条客户留言" to="/information/private">
           <template #title>
             <span class="custom-title">私信</span>
           </template>
@@ -55,7 +55,6 @@
 
       }
     }
-
   }
 </script>
 

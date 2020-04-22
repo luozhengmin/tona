@@ -1,8 +1,6 @@
 <template>
   <div style="height:100%">
-    <div>
-      <router-view />
-    </div>
+    <router-view />
     <div class="footer">
       <store-foot v-if="$route.meta.showFooter"></store-foot>
     </div>

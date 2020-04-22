@@ -60,7 +60,7 @@
             <activity></activity>
           </van-tab>
           <van-tab>
-            <template #title>设计方案 <i class="iconfont">&#xe629;</i> </template>
+            <template #title>设计方案 <i class='iconfont icon-fire'></i> </template>
             <design-plan></design-plan>
           </van-tab>
         </van-tabs>
