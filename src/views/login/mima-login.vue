@@ -18,8 +18,8 @@
           <h1>账号密码登录</h1>
           <div class="tips">为了您的账号安全，请用手机号登录</div>
         </div>
-        <div class="form">
-          <van-field placeholder="请输入手机号">
+        <div class="form" >
+          <van-field placeholder="请输入手机号" v-model="username">
             <template #label>
               <span>
                 中国 +86
@@ -29,7 +29,7 @@
           </van-field>
           <van-field placeholder="请输入密码" type="password" v-model="password"/>
           <div class="btn">
-            <van-button color="#1b1b1b" block>登录</van-button>
+            <van-button color="#1b1b1b" block @click="onLogin">登录</van-button>
           </div>
           <div class="other">
             <router-link to="yzm-login">验证码登录</router-link>
@@ -61,21 +61,82 @@
   </div>
 </template>
 
+
 <script>
+  import axios from "@/utils/request"
+  import { login, wechatLogin } from '../../api/memberLogin'
+  import { Toast } from 'vant'
   export default {
-    name:'',
+    name:'Login',
     data(){
       return{
-        password: ''
+        username: '15000441997',
+        password: '12345678'
       }
     },
     methods:{
       onLogin() {
-        this.$router.push({'name': 'login'})
+        let username = this.username
+        let password = this.password
+
+        if (username.length === 0) {
+          Toast('请输入用户名/邮箱/手机号')
+          return
+        }
+        if (password.length === 0) {
+          Toast('请输入密码')
+          return
+        }
+        if (password.length < 6) {
+          Toast('至少输入6位密码')
+          return
+        }
+        Toast.loading({
+          mask: true,
+          message: '登录中...',
+          forbidClick: true,
+          loadingType: 'spinner'
+        });
+        login(username, password).then(
+           response => {
+            if(response.code == 10000){
+              $cookies.set('token', response.result.token)
+              $cookies.set('user_info',response.result.info)
+              Toast.success('登录成功')
+            }else{
+              Toast.fail(response.message);
+            }
+             // this.goHome()
+
+           },
+           error => {
+             Toast.fail(error.message)
+           }
+         )
       },
+      goHome () {
+        let referrer = this.utils.getCookie('referrer')
+        if (referrer) { // 返回之前的页面
+
+        } else {
+          this.$router.push({'name': 'Index'})
+        }
+      },
+      onWechat () {
+        let ref = encodeURIComponent(window.location.href)
+        wechatLogin(ref, this.inviter_id).then(res => {
+          window.location.href = res.result
+        }).catch(function (error) {
+          Toast(error.message)
+        })
+      },
+      onSina (){
+          Toast('微博登录')
+      }
     }
   };
 </script>
+
 
 <style scoped>
   .login-box {
