@@ -1,6 +1,6 @@
 <template>
   <div>
-    <index-banner :images="images"></index-banner>
+    <index-banner :banners="banners"></index-banner>
     <div class="sieve-list">
       <van-dropdown-menu active-color="#f4523b">
         <van-dropdown-item v-model="value1" :options="option1" title="排序"/>
@@ -50,10 +50,13 @@
 
 <script>
   import IndexBanner from "../../index/IndexBanner";
-
+  import axios from "@/utils/request";
   export default {
     components: {IndexBanner},
     name: "DesignPlan",
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
         overlay:false,
@@ -86,12 +89,15 @@
           { text: '80-130m²', value: 'D' },
           { text: '130m以上', value: 'E' },
         ],
-        images:[
-          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
-        ]
+        banners:[]
+      }
+    },
+    methods:{
+      getBanners() {
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+          let banners = res.result.banners;
+          this.banners = banners;
+        });
       }
     }
   }

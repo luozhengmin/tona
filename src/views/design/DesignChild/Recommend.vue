@@ -1,6 +1,6 @@
 <template>
     <div>
-      <index-banner :images="images"></index-banner>
+      <index-banner :banners="banners"></index-banner>
       <div class="design-list fix">
         <div class="title-t">
           <h2><span>活动推荐</span></h2>
@@ -71,10 +71,13 @@
 
 <script>
   import IndexBanner from "../../index/IndexBanner";
-
+  import axios from "@/utils/request";
   export default {
     components: {IndexBanner},
     name: "Recommend",
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
         childlist:[
@@ -83,12 +86,15 @@
           {id:3,d_name:'优秀设计发方案活动'},
           {id:4,d_name:'优秀设计发方案活动'}
         ],
-        images:[
-          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
-        ]
+        banners: []
+      }
+    },
+    methods:{
+      getBanners() {
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+          let banners = res.result.banners;
+          this.banners = banners;
+        });
       }
     }
   }

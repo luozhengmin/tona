@@ -1,6 +1,6 @@
 <template>
     <div>
-      <index-banner :images="images"></index-banner>
+      <index-banner :banners="banners"></index-banner>
       <div class="w-ticket wrap fix">
         <div class="ticket-item ab">
           <div class="item-l">
@@ -48,19 +48,17 @@
 
 <script>
   import IndexBanner from "../../IndexBanner.vue";
-
+  import axios from "@/utils/request";
   export default {
     components: {IndexBanner},
     name: "BrandDesign",
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
         list:[{}],
-        images:[
-          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.68design.com'},
-          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
-        ]
+        banners:[]
       }
     },
     methods: {
@@ -70,6 +68,13 @@
       signUp() {
         this.$router.push({'name': 'sign-up'})
       },
+      getBanners() {
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+          let banners = res.result.banners;
+          this.banners = banners;
+        });
+      }
+
     }
   }
 </script>

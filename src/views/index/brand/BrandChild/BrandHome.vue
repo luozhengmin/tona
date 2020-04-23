@@ -1,6 +1,6 @@
 <template>
     <div>
-      <index-banner :images="images"></index-banner>
+      <index-banner :banners="banners"></index-banner>
       <div class="r-solution fix">
         <div class="index-brand fix">
           <div class="wrap fix">
@@ -117,6 +117,7 @@
   import IndexBanner from "../../IndexBanner";
   import Vue from 'vue';
   import { Swipe, SwipeItem } from 'vant';
+  import axios from "@/utils/request";
 
   Vue.use(Swipe);
   Vue.use(SwipeItem);
@@ -125,6 +126,9 @@
       IndexBanner
     },
     name: "BrandHome",
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
         childlist:[
@@ -133,12 +137,15 @@
           {id:3,d_name:'TONA卫浴'},
           {id:4,d_name:'TONA卫浴'}
         ],
-        images:[
-          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
-        ]
+        banners:[]
+      }
+    },
+    methods:{
+      getBanners() {
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+          let banners = res.result.banners;
+          this.banners = banners;
+        });
       }
     }
   }

@@ -12,5 +12,4 @@ GoodsClassApi.list = (params) => {
   })
 }
 
-
 export default GoodsClassApi

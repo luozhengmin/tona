@@ -49,7 +49,7 @@
           </div>
         </transition>
       </div>
-      <index-banner :images="images"></index-banner>
+      <index-banner :banners="banners"></index-banner>
       <div class="d-tape wrap fix">
         <div class="register-brand ab">
           报备品牌<span>TONA卫浴</span>
@@ -214,10 +214,14 @@
   import IndexBanner from "../../../IndexBanner.vue";
   import areaList from "@/json/area";
   import { Toast } from 'vant';
+  import axios from "@/utils/request";
 
   export default {
     components: {IndexBanner},
     name: "Tape",
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
         isActive: false,
@@ -242,12 +246,7 @@
         toastShow:false,
         toastText: '已提交',
         toastState:'带单信息提交成功，请耐心等待',
-        images:[
-          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.68design.com'},
-          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
-        ]
+        banners:[]
       }
     },
     methods: {
@@ -266,6 +265,12 @@
       tapeCommit(){
         this.toastShow = true;
       },
+      getBanners() {
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+          let banners = res.result.banners;
+          this.banners = banners;
+        });
+      }
     }
   }
 </script>
