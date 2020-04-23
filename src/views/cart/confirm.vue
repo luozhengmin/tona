@@ -1,15 +1,29 @@
 <template>
   <div class="container">
-    <div class="header"></div>
-    <div class="contact">
-      <div class="top">
-        <span>飞扬</span>
-        <span>133****8795</span>
-        <van-tag color="#f4523b">默认</van-tag>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          确认订单
+        </div>
       </div>
-      <div class="bottom">
-        <van-icon name="location" color="#f4523b" size="20" />
-        <span>广东省深圳市南山区科兴科学园</span>
+    </div>
+    <div class="contact ab">
+      <div class="contact-l ac">
+        <div class="top">
+          <span>飞扬</span>
+          <span>133****8795</span>
+          <van-tag color="#f4523b">默认</van-tag>
+        </div>
+        <div class="bottom">
+          <van-icon name="location" color="#f4523b" size="20" />
+          <span>广东省深圳市南山区科兴科学园</span>
+        </div>
+      </div>
+      <div class="contact-r">
+        <router-link to="/address-list"><van-icon name="arrow"/></router-link>
       </div>
     </div>
     <div class="card-list">
@@ -39,6 +53,8 @@
           clickable
           input-align="right"
           label="发票信息"
+          right-icon="arrow"
+          placeholder="不开发票"
           :value="value"
           @click="showPicker = true"
         />
@@ -99,28 +115,32 @@ export default {
   .contact {
     background-color: #fff;
     padding: 20px 15px;
-    margin-bottom: 15px;
-    .top {
-      font-size: 16px;
-      font-weight: bolder;
-      color: #232323;
-      display: flex;
-      align-items: center;
-      padding-left: 20px;
-      span {
-        margin: 0 5px;
+    margin-bottom: 12px;
+    align-items:center;
+    .contact-l{
+      .top {
+        font-size: 16px;
+        font-weight: bolder;
+        color: #232323;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        span {
+          margin: 0 5px;
+        }
+      }
+      .bottom {
+        font-size: 14px;
+        color: #b7b7b7;
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+        span {
+          margin-left: 10px;
+        }
       }
     }
-    .bottom {
-      font-size: 14px;
-      color: #b7b7b7;
-      display: flex;
-      align-items: center;
-      padding: 5px 0;
-      span {
-        margin-left: 10px;
-      }
-    }
+    .contact-r{font-size:18px;color:#b7b7b7;}
   }
   .card-list {
     .product-card {
@@ -179,6 +199,9 @@ export default {
     bottom: 50px;
     .van-submit-bar__bar {
       padding-right: 0;
+      .van-submit-bar__text{
+        color:#b7b7b7;
+      }
       .van-button {
         border-radius: 0;
         background: #323232;
@@ -192,6 +215,7 @@ export default {
     .num-text {
       margin-right: 12px;
       margin-top: 5px;
+      color:#b7b7b7;
     }
     .van-submit-bar__text {
       flex: none;

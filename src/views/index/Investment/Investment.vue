@@ -64,7 +64,7 @@
     <div class="apply-btn wrap fix">
       <div class="btn" @click="showPopup">TONA HOME 招商申请</div>
       <van-popup
-        v-model="show"
+        v-model="showForm"
         closeable
         position="bottom"
         :style="{ height: '47%' }">
@@ -72,17 +72,18 @@
           <h2>TONA HOME招商申请</h2>
           <p>你还可拨打电话咨询 400-000-0267</p>
           <div class="message">
-            <van-field v-model="value" placeholder="请输入您所在企业名称" />
+            <van-field v-model="company" placeholder="请输入您所在企业名称" />
             <van-field
               center
               clearable
               placeholder="请输入您的联系方式"
             >
               <template #button>
-                <van-button size="small" type="primary">获取验证码</van-button>
+                <van-button size="small" type="primary" :disabled="disabled"
+                            @click="sendSms">{{smsBtn}}</van-button>
               </template>
             </van-field>
-            <van-field v-model="value" placeholder="请输入验证码" />
+            <van-field v-model="code" placeholder="请输入验证码" />
             <div class="apply-submit">
               <van-button round block type="info" native-type="submit" @click="successPop">
                 立即申请
@@ -102,18 +103,36 @@
     data() {
       return {
         isActive:false,
-        show: false,
-        value:''
+        showForm: false,
+        company:'',
+        code:'',
+        disabled: false,
+        smsBtn: "获取验证码",
       }
     },
 
     methods: {
       showPopup() {
-        this.show = true;
+        this.showForm = true;
       },
       successPop(){
         Toast.success('申请成功');
-      }
+      },
+      sendSms() {
+        var count = 60;
+        var that = this;
+        let interVal = setInterval(function() {
+          that.disabled = true;
+          that.smsBtn = count + "秒后重试";
+          count--;
+          if (count == 0) {
+            that.smsBtn = "获取验证码";
+            that.disabled = false;
+            clearInterval(interVal);
+          }
+        }, 1000);
+      },
+      next() {}
     }
   }
 </script>
@@ -137,7 +156,7 @@
           margin-top:16px;
           .van-cell{border:solid 1px #eee;margin-bottom:12px;padding:8px 16px;}
           .apply-submit{
-            .van-button{background-color:#323232;text-align:center;font-size:14px;font-weight:bold;color:#fff;border-radius:5px;
+            .van-button{background-color:#323232;text-align:center;font-size:14px;color:#fff;border-radius:4px;
               border:inherit;
             }
           }

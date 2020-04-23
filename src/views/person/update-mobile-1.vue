@@ -70,7 +70,8 @@ export default {
         }
       }, 1000);
     },
-    next() {}
+    next() {},
+
   }
 };
 </script>

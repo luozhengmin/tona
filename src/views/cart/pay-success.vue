@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          支付完成
+        </div>
+      </div>
+    </div>
     <div class="tips">
       <div>
         <i class="fa fa-check-circle"></i>
@@ -18,8 +27,8 @@
       </div>
     </div>
     <div class="btns">
-      <van-button type="default" size="small">查看订单</van-button>
-      <van-button type="default" size="small">回到首页</van-button>
+      <van-button type="default" size="small" color="#888" plain>查看订单</van-button>
+      <van-button type="default" size="small" color="#888" plain>回到首页</van-button>
     </div>
     <div class="info">
       <van-icon name="warning" />
@@ -47,16 +56,16 @@ export default {
     color: #f4523b;
     font-size: 17px;
     i {
-      font-size: 64px;
+      font-size:52px;
       padding: 10px;
-      margin-top: 60px;
+      margin-top:40px;
     }
   }
   .pay {
     background-color: #fff;
     text-align: center;
-    font-size: 16px;
-    padding: 15px 0 30px 0;
+    font-size: 15px;
+    padding: 12px 0 24px 0;
     .item {
       display: flex;
       align-items: center;
@@ -82,9 +91,9 @@ export default {
     padding-bottom: 30px;
     .van-button {
       color: #888;
-      margin: 0 5px;
+      margin: 0 6px;
       font-size: 14px;
-      padding: 3px 20px;
+      padding:2px 24px;
       height: auto;
     }
   }

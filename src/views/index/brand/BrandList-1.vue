@@ -49,7 +49,7 @@
           </div>
         </transition>
       </div>
-      <index-banner :images="images"></index-banner>
+      <index-banner :banners="banners"></index-banner>
       <index-menu-1></index-menu-1>
       <div class="index-brand fix">
         <div class="wrap fix">
@@ -130,6 +130,7 @@
 <script>
   import IndexBanner from "../IndexBanner.vue";
   import IndexMenu1 from "../IndexMenu-1.vue";
+  import axios from "@/utils/request";
 
   export default {
     components: {
@@ -137,6 +138,9 @@
       IndexBanner
     },
     name: "BrandList-1",
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
         isActive: false,
@@ -146,12 +150,15 @@
           {id:3,d_name:'TONA卫浴'},
           {id:4,d_name:'TONA卫浴'}
         ],
-        images:[
-          { id:1,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.68design.com'},
-          { id:2,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:3,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'},
-          { id:4,imgUrl:'https://img.yzcdn.cn/vant/apple-1.jpg',index_link:'http://www.baidu.com'}
-        ]
+        banners:[]
+      }
+    },
+    methods: {
+      getBanners() {
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+          let banners = res.result.banners;
+          this.banners = banners;
+        });
       }
     }
   }

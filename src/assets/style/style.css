@@ -284,3 +284,5 @@ select{font-size: 100%;margin: 0;outline: none;}
 .identify-id .id-list:nth-child(4) .id-item .van-uploader__upload{background:url("../../assets/image/zz.png")#e7ebf5 no-repeat center center;
   background-size:cover;
 }
+/*购物车订单详情*/
+.product-card .van-cell .van-field__right-icon{margin-right:-4px;padding:0 0 0 5px;}

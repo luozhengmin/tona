@@ -29,7 +29,7 @@
       />
     </div>
     <div class="footer">
-      <van-button color="#1b1b1b" block @click="onAddress">+ 添加收货人</van-button>
+      <van-button color="#1b1b1b" block @click="onAddress">+ 添加新收货人</van-button>
     </div>
   </div>
 </template>

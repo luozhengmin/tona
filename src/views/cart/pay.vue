@@ -1,25 +1,36 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          支付订单
+        </div>
+      </div>
+    </div>
     <div class="tips">
       <van-notice-bar
         background="#ffffcc"
         color="#f4523b"
-        mode="link"
+        mode="closeable"
         left-icon="warning"
       >请2小时内完成付款，超时订单将被取消。</van-notice-bar>
     </div>
 
-    <van-field input-align="right" value="共 2 件">
+    <div class="pay-num">
+      <van-field input-align="right" value="共 2 件">
       <template #label>
         <div style="width:200px">子订单号：1901101772920975</div>
       </template>
     </van-field>
-    <van-field input-align="right" style="margin-bottom:15px" value="共 2 件">
-      <template #label>
-        <div style="width:200px">子订单号：1901101772920975</div>
-      </template>
-    </van-field>
+      <van-field input-align="right" style="margin-bottom:12px" value="共 2 件">
+        <template #label>
+          <div style="width:200px">子订单号：1901101772920975</div>
+        </template>
+      </van-field>
+    </div>
 
     <div class="pay">
       <van-field readonly label="支付方式"></van-field>
@@ -72,7 +83,7 @@ export default {
   name: "",
   data() {
     return {
-      checked: true,
+      checked: false,
       value: "",
       columns: ["不开发票", "电子发票", "纸质发票"],
       showPicker: false
@@ -91,11 +102,16 @@ export default {
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
+  height:100%;
   .tips {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+  }
+  .pay-num{
+    .van-cell{border-bottom:solid 1px #e8e8e8;}
   }
   .pay {
-    margin-bottom: 50px;
+    margin-bottom:12px;
+    .van-cell{border-bottom:solid 1px #e8e8e8;}
     i {
       font-size: 24px;
     }

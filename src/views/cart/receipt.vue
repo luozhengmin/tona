@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          发票信息
+        </div>
+      </div>
+    </div>
     <div class="form">
       <van-field
         readonly
@@ -9,7 +18,7 @@
         label="发票信息"
         :value="value1"
         @click="showPicker1 = true"
-        style="margin-bottom:15px"
+        style="margin-bottom:12px"
       >
         <template #left-icon>
           <span class="require"></span>
@@ -22,7 +31,7 @@
         label="抬头类型"
         :value="value2"
         @click="showPicker2 = true"
-        style="margin-bottom:15px"
+        style="margin-bottom:12px"
       >
         <template #left-icon>
           <span class="require"></span>
@@ -64,6 +73,7 @@
         input-align="right"
         label="发票内容"
         :value="value3"
+        right-icon="arrow"
         @click="showPicker3 = true"
         style="margin-bottom:15px"
       >
@@ -177,6 +187,7 @@ export default {
     }
     .btn {
       padding: 0 15px;
+      .van-button{border-radius:4px;}
     }
     .tips {
       padding: 0 15px;

@@ -1,6 +1,54 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="p-warn">
+          <router-link to="">编辑</router-link>
+        </div>
+        <div class="head-logo">
+          我的
+        </div>
+        <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
+          <span></span>
+        </div>
+      </div>
+      <transition name="van-slide-down">
+        <div class="slideNav" v-if="isActive">
+          <ul class="ab fix">
+            <li>
+              <router-link to="/BrandList">
+                <i class="iconfont bg-7">&#xe7ae;</i>
+                <span>品牌馆</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Design">
+                <i class="iconfont bg-7">&#xe508;</i>
+                <span>优秀设计</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/GlobalStore">
+                <i class="iconfont bg-7">&#xe7b9;</i>
+                <span>全球门店</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Investment">
+                <i class="iconfont bg-7">&#xe6b5;</i>
+                <span>招商加盟</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="">
+                <i class="iconfont bg-7">&#xe604;</i>
+                <span>关于我们</span>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </transition>
+    </div>
     <div class="tips">
       <van-notice-bar
         background="#ffffcc"
@@ -10,7 +58,7 @@
       >自营商品单笔订单金额满88元可免邮费</van-notice-bar>
     </div>
     <div class="card-list">
-      <div class="product-card" v-for="i in 3" :key="i">
+      <div class="product-card" v-for="i in 2" :key="i">
         <div class="store">
           <van-checkbox v-model="checked" checked-color="#f4523b">TONA官方旗舰店</van-checkbox>
         </div>
@@ -38,9 +86,9 @@
     </div>
     <div class="like">
       <div class="title">
-        <van-icon name="ellipsis" color="#f4523b" size="30" />
+        <van-icon name="ellipsis" color="#f4523b" size="26" />
         <span>猜你喜欢</span>
-        <van-icon name="ellipsis" color="#f4523b" size="30" />
+        <van-icon name="ellipsis" color="#f4523b" size="26" />
       </div>
       <div class="like-list">
         <van-row>
@@ -85,6 +133,7 @@ export default {
   name: "",
   data() {
     return {
+      isActive:false,
       checked: true,
       value: 1,
       edit: true
@@ -108,6 +157,11 @@ export default {
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
+  .tips{
+    .van-notice-bar__right-icon {
+      margin-right: -5px;
+    }
+  }
   .card-list {
     .product-card {
       padding: 10px 15px;
@@ -116,7 +170,7 @@ export default {
       .store {
         padding: 15px 0;
         color: #b7b7b7;
-        font-size: 16px;
+        font-size: 15px;
       }
       .product {
         display: flex;
@@ -127,6 +181,7 @@ export default {
         }
         .desc {
           color: #b7b7b7;
+          font-size: 13px;
         }
         .price {
           color: #f4523b;
@@ -143,12 +198,12 @@ export default {
     padding: 0 15px;
     margin-bottom: 30px;
     .title {
-      font-size: 16px;
+      font-size: 15px;
       text-align: center;
       color: #363636;
       display: flex;
       justify-content: center;
-      padding: 20px 0;
+      padding:20px 0 4px 0;
       span {
         margin: 0 20px;
       }
@@ -212,10 +267,17 @@ export default {
 .van-card {
   background-color: #fff;
   flex-grow: 1;
+  padding:8px 0 8px 12px;
 }
 .van-card__bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.p-warn{
+  position:absolute;right:50px;top:0;line-height:50px;
+  a{
+    font-size:14px;color:#fff;
+  }
 }
 </style>
