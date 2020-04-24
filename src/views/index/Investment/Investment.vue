@@ -146,6 +146,7 @@ export default {
       };
       InvestmentApi.submit(params).then(res => {
         Toast.success("申请成功");
+        this.showForm = false;
       });
     },
     sendSms() {
