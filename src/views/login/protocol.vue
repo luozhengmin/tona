@@ -6,11 +6,11 @@
         @click-left="$router.go(-1)"
       >
         <template #title>
-          用户协议
+          {{proTitle}}
         </template>
       </van-nav-bar>
     </div>
-    <div class="login-protocol fix">
+    <div class="login-protocol fix" v-html="proList">
       本协议是您与“TONA HOME”的所有者“上海朵纳国际卫浴有限公司”（以下简称为“TONA HOME”）之间就TONA HOME所提供的服务及相关事宜所立订的契约，请您仔细阅读本注册协议，在您确认阅读并选择注册后，本协议即构成对双方有约束力的法律文件。
       <h3>第一条 TONA HOME服务条款的确认和接纳</h3>
       <p>1.TONA HOME的各项电子服务的所有权和运作权归“TONA HOME”所有。客户同意所有注册协议条款并完成注册程序，才能成为TONA HOME的正式客户。客户确认：本协议条款是处理双方权利义务的契约，始终有效，法律另有强制性规定或双方另有特别约定的，依其规定。</p>
@@ -53,10 +53,42 @@
 </template>
 
 <script>
+  import axios from "@/utils/request"
+  import { protocol } from '../../api/memberProtocol'
+  import { Toast } from 'vant'
   export default {
 
+    name:'Protocol',
+    created() {
+      this.getProtocol();
+    },
+    data(){
+      return{
+        proList : '',
+        proTitle : ''
+      }
+    },
+    methods:{
+      getProtocol(){
+        let type = 1;
+        protocol(type).then(
+           response => {
+           console.log(response)
+            let proList = response.result.document_content;
+            let proTitle = response.result.document_title
+            this.proList = proList;
+            this.proTitle = proTitle;
+           },
+           error => {
+             Toast(error.message)
+           }
+        )
+      }
+      
+    }
   };
 </script>
+
 
 <style scoped>
 .login-protocol {
