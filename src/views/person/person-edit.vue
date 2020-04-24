@@ -16,7 +16,7 @@
         fit="cover"
         width="60px"
         height="60px"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        v-bind:src="user.member_avatar+'?'+time"
       />
       <div class="info">
         <div class="name">点击修改头像</div>
@@ -25,8 +25,8 @@
 
     <div class="form">
       <van-cell-group>
-        <van-field label="用户ID" value="8447466"></van-field>
-        <van-field label="昵称" value="我是夏天" use-button-slot>
+        <van-field label="用户ID" :value="user.member_id" readonly></van-field>
+        <van-field label="昵称" :value="user.member_truename" v-model="nickname" use-button-slot>
           <van-button slot="button" type="info" plain size="small" @click="onidentify">去认证</van-button>
         </van-field>
         <van-field label="性别">
@@ -43,9 +43,10 @@
           clickable
           is-link
           name="datetimePicker"
-          :value="currentDate"
+          :value="birthday"
           label="生日"
           placeholder="选择生日"
+          :formatter="formatter"
           @click="showPicker = true"
         />
         <!--<van-field-->
@@ -88,18 +89,42 @@
 
 <script>
 import areaList from "@/json/area";
+import { updateMemberInfo,getMemberdetailInfo } from '../../api/memberInfo'
+import { timestampToTime } from '../../utils/util.js'
 import { Toast } from "vant";
 export default {
   name: "",
   data() {
     return {
+      user : {},
       radio: "1",
       currentDate: "",
       showPicker: false,
       value: "",
       showArea: false,
-      areaList: areaList
+      areaList: areaList,
+      nickname: ''
     };
+  },
+  created: function () {
+    this.time = new Date().getTime();
+    // this.utils.clearCookie('user_info')
+    // this.utils.clearCookie('key')
+
+      getMemberdetailInfo().then(
+        response => {
+          if (response && response.result.member_info) {
+            this.user = response.result.member_info
+          }
+        },
+        error => {}
+      )
+  },
+  computed: {
+    birthday (){
+
+      return this.currentDate = timestampToTime(this.user.member_birthday)
+    }
   },
   methods: {
     onConfirm(time) {
@@ -110,7 +135,38 @@ export default {
       this.value = values.map(item => item.name).join("/");
       this.showArea = false;
     },
+    onConfirmDate(values){
+
+    },
+    formatter(type, val) {
+      if (type === 'year') {
+        return `${val}-`;
+      } else if (type === 'month') {
+        return `${val}`;
+      }
+      return val;
+    },
     save() {
+      let nickname = this.nickname;
+      let memqq = ''
+      let memww = ''
+      let membirth = this.currentDate
+      updateMemberInfo(nickname,memqq,memww,membirth).then(
+        response => {
+          console.log(response)
+
+          if(response.code != 10000){
+            Toast.fail(response.message)
+              return ;
+          }else{
+            Toast({
+              message: "保存成功",
+              icon: "passed"
+            });
+          }
+        },
+        error => {}
+      )
       Toast({
         message: "保存成功",
         icon: "passed"

@@ -1,4 +1,31 @@
 import Moment from 'moment'
+  /**
+   *
+   * @param date 日期
+   * @param format 显示的格式
+   * @returns {string}
+   */
+export function formatDate (date, format) {
+  if (date) {
+    return Moment(date).format(format)
+  }
+}
+
+ /**
+ *
+ * @param timestamp 时间戳转化为日期
+ * @returns {string}
+ */
+export function timestampToTime (timestamp) {
+  var date = new Date(timestamp * 1000) // 时间戳为10位需*1000，时间戳为13位的话不需乘1000
+  var	Y = date.getFullYear() + '-'
+  var	M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+  var D = date.getDate() + ' '
+  var h = date.getHours() + ':'
+  var m = date.getMinutes() + ':'
+  var s = date.getSeconds()
+  return Y + M + D + h + m + s
+}
 export default {
 
   fetch (key) {
@@ -132,21 +159,7 @@ export default {
       scoped.key = ret
     })
   },
-  /**
-   *
-   * @param timestamp 时间戳转化为日期
-   * @returns {string}
-   */
-  timestampToTime (timestamp) {
-    var date = new Date(timestamp * 1000) // 时间戳为10位需*1000，时间戳为13位的话不需乘1000
-	  var	Y = date.getFullYear() + '-'
-    var	M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
-    var D = date.getDate() + ' '
-    var h = date.getHours() + ':'
-    var m = date.getMinutes() + ':'
-    var s = date.getSeconds()
-    return Y + M + D + h + m + s
-  },
+
 
   // 设置cookie
   setCookie: function (cname, cvalue, exdays) {

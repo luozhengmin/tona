@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getMemberInfo } from '../../api/memberInfo'
+import { getMemberdetailInfo } from '../../api/memberInfo'
 import { phoneNumFilter } from '@/utils/common'
 export default {
   name: "",
@@ -53,7 +53,7 @@ export default {
     // this.utils.clearCookie('user_info')
     // this.utils.clearCookie('key')
       if($cookies.get('user_info')){
-        getMemberInfo().then(
+        getMemberdetailInfo().then(
           response => {
             console.log(response)
             if (response && response.result.member_info) {
