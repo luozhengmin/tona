@@ -98,6 +98,7 @@
 
 <script>
   import { Toast } from 'vant';
+  import InvestmentApi from "@/api/InvestmentApi";
   export default {
     name: "Investment",
     data() {

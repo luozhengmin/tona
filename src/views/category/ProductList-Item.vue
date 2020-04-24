@@ -53,7 +53,7 @@
         <van-search
           v-model="value"
           show-action
-          placeholder="请输入商品关键词或用户名"
+          placeholder="请输入商品关键词"
           @search="onSearch">
           <template #left-icon>
             <van-icon class="fa fa-search"/>
@@ -81,7 +81,7 @@
       </div>
 
       <div class="s-select">
-        <van-tabs v-model="active" color="#f4523b">
+        <van-tabs color="#f4523b">
           <van-tab>
             <template #title>新品</template>
             <div class="list">
@@ -177,7 +177,6 @@
           slidesPerView: 4,
           spaceBetween: 10,
         },
-        active: false,
         value:''
       }
     },

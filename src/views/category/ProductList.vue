@@ -51,7 +51,7 @@
       <van-search
         v-model="value"
         show-action
-        placeholder="请输入商品关键词或用户名"
+        placeholder="请输入商品关键词"
         @search="onSearch"
         @cancel="onCancel"
       >
