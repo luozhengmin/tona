@@ -54,7 +54,7 @@
       <div class="index-brand fix">
         <div class="wrap fix">
         <div class="title-t">
-          <h2><span>推荐方案</span></h2>
+          <h2><span>品牌推荐</span></h2>
         </div>
         <div class="brand-con ab fix">
           <div class="brand-con-l">
@@ -91,12 +91,13 @@
       </div>
 
       <div class="index-brand-1 fix">
+        <div class="wrap fix">
+          <div class="title-t">
+            <h2><span>发现品牌</span></h2>
+          </div>
+        </div>
         <div class="brand-item" v-for="i in 3" :key="i">
-          <div class="wrap fix">
-            <div class="title-t">
-              <h2><span>发现品牌</span></h2>
-            </div>
-            <div class="brand-con ab fix">
+          <div class="brand-con wrap ab fix">
               <div class="brand-con-l">
                 <h3>TONA HOME x <span>品牌季</span></h3>
                 <span></span>
@@ -107,7 +108,6 @@
                 <img src="../../../assets/image/cp01.jpg">
               </div>
             </div>
-          </div>
           <div class="brand-list fix">
             <van-swipe :loop="false" :width="110" :show-indicators="false">
               <van-swipe-item  v-for="i in 5" :key="i">

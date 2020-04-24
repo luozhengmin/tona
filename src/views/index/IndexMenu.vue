@@ -24,7 +24,7 @@
       name: "IndexMenu",
       methods: {
         goBrand() {
-          this.$router.push({'name': 'BrandList'})
+          this.$router.push({'name': 'BrandList-1'})
         },
         goDesign() {
           this.$router.push({'name': 'Design'})
