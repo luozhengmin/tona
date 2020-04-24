@@ -72,20 +72,16 @@
           <h2>TONA HOME招商申请</h2>
           <p>你还可拨打电话咨询 400-000-0267</p>
           <div class="message">
-            <van-field v-model="company" placeholder="请输入您所在企业名称" />
-            <van-field
-              center
-              clearable
-              placeholder="请输入您的联系方式"
-            >
+            <van-field value="" v-model="company" placeholder="请输入您所在企业名称" />
+            <van-field center clearable placeholder="请输入您的联系方式">
               <template #button>
                 <van-button size="small" type="primary" :disabled="disabled"
-                            @click="sendSms">{{smsBtn}}</van-button>
+                  @click="sendSms">{{smsBtn}}</van-button>
               </template>
             </van-field>
-            <van-field v-model="code" placeholder="请输入验证码" />
+            <van-field v-model="code" value="" placeholder="请输入验证码" />
             <div class="apply-submit">
-              <van-button round block type="info" native-type="submit" @click="successPop">
+              <van-button round block type="info" native-type="submit" @click="successPop($event)">
                 立即申请
               </van-button>
             </div>
@@ -107,6 +103,7 @@
         showForm: false,
         company:'',
         code:'',
+        value:'',
         disabled: false,
         smsBtn: "获取验证码",
       }
@@ -116,7 +113,12 @@
       showPopup() {
         this.showForm = true;
       },
-      successPop(){
+      successPop(event){
+        event.preventDefault();
+        let formData = new FormData();
+        formData.append('company', this.company);
+        formData.append('code', this.code);
+
         Toast.success('申请成功');
       },
       sendSms() {
