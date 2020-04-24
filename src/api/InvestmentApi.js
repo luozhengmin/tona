@@ -1,13 +1,21 @@
 import request from '@/utils/request'
 
-const baseUrl = '/api/Investment'
+// const baseUrl = '/api/Investment'
 
 const InvestmentApi = {}
 
-InvestmentApi.list = (params) => {
+InvestmentApi.sendSms = (params) => {
   return request({
-    url: `${baseUrl}`,
-    params: params,
+    url: "/api/Connect/get_sms_captcha",
+    data: params,
+    method: 'post'
+  })
+}
+
+InvestmentApi.submit = (params) => {
+  return request({
+    url: "/api/MallConsult/add_mallconsult",
+    data: params,
     method: 'post'
   })
 }
