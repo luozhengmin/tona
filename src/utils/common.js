@@ -62,3 +62,20 @@ export function loadScript (code, url, callback) {
     callback()
   }
 }
+
+export function phoneNumFilter (phone) {
+    // 1字符串转化成数组
+    let phoneArr = [...phone]
+    let str = ''
+    // 2.将数组中的4-7位变成*
+    phoneArr.map((res, index) => {
+      if (index > 2 && index < 7) {
+        str += '*';
+        // return '*';
+      } else {
+        str += res;
+        // return res;
+      }
+    });
+    return str;
+  }

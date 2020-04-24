@@ -106,7 +106,7 @@
             }else{
               Toast.fail(response.message);
             }
-             // this.goHome()
+             this.goHome()
 
            },
            error => {

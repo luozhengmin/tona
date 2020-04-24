@@ -55,14 +55,14 @@
         fit="cover"
         width="55px"
         height="55px"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        v-bind:src="user.member_avatar+'?'+time"
         @click="onPerson"
       />
       <div class="info">
         <div>
           <router-link to="/person-center">
-            <div class="name">你是夏天</div>
-            <div class="id">ID：84458566</div>
+            <div class="name">{{nickname}}</div>
+            <div class="id">{{userid}}</div>
           </router-link>
         </div>
         <div class="sq ab">
@@ -145,17 +145,74 @@
 </template>
 
 <script>
+import { getMemberInfo } from '../../api/memberInfo'
 export default {
   name: "",
   data(){
     return{
+      user: {},
       isActive:false,
+    }
+  },
+  created: function () {
+    this.time = new Date().getTime();
+    // this.utils.clearCookie('user_info')
+    // this.utils.clearCookie('key')
+      if($cookies.get('user_info')){
+        getMemberInfo().then(
+          response => {
+            console.log(response)
+            if (response && response.result.member_info) {
+              this.user = response.result.member_info
+            }
+          },
+          error => {}
+        )
+      }else{
+        this.user = $.cookies.get('user_info')
+      }
+
+
+  },
+  computed: {
+
+    nickname () {
+      let title = '登录/注册'
+      if (true) {
+        if (
+          this.user &&
+          typeof this.user !== 'undefined' &&
+          JSON.stringify(this.user) !== '{}'
+        ) {
+          if (this.user.member_truename) {
+            title = this.user.member_truename
+          } else if (this.user.member_name) {
+            title = this.user.member_name
+          }
+        }
+      }
+      return title
+    },
+    userid(){
+      let title = 'ID:'
+      if(true){
+         if (
+           this.user &&
+           typeof this.user !== 'undefined' &&
+           JSON.stringify(this.user) !== '{}'
+         ) {
+           title = 'ID:'+this.user.member_id
+         }
+         return title
+      }
+
     }
   },
   methods:{
     onPerson() {
       this.$router.push({'name': 'person-center'})
     },
+
   }
 };
 </script>
