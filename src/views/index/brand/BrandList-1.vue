@@ -81,7 +81,7 @@
                 </div>
                 <div class="infor-r">
                   <van-tag color="#ee502f">NEW</van-tag>
-                  <span class="ab"><van-icon name="eye-o" />15402</span>
+                  <span class="ab">德国</span>
                 </div>
               </div>
             </van-swipe-item>
@@ -191,7 +191,8 @@
               .van-tag{border-radius:10px 10px 10px 0;margin-bottom: 2px;}
               span{
                 align-items:center;
-                .van-icon{font-size:16px;padding-right:2px;}
+                display: block;
+                /*.van-icon{font-size:16px;padding-right:2px;}*/
               }
             }
           }

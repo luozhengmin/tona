@@ -14,7 +14,7 @@ InvestmentApi.sendSms = (params) => {
 
 InvestmentApi.submit = (params) => {
   return request({
-    url: "/api/MallConsult/add_mallconsult",
+    url: "/api/Mall_Consult/add_mallconsult",
     data: params,
     method: 'post'
   })

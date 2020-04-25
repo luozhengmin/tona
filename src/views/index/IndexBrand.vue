@@ -19,8 +19,8 @@
       </div>
       <div class="brand-list fix">
         <van-swipe :loop="false" :width="160" :show-indicators="false">
-          <van-swipe-item  v-for="(item,index) in brandlist" :key="index">
-            <img src="../../assets/image/cp02.jpg">
+          <van-swipe-item  v-for="(item,index) in brandList" :key="index">
+            <img :src="item.store_banner">
           </van-swipe-item>
         </van-swipe>
 
@@ -32,19 +32,27 @@
 <script>
 import Vue from 'vue';
 import { Swipe, SwipeItem } from 'vant';
-
+import StoreApi from "@/api/HomeStoreApi";
 Vue.use(Swipe);
 Vue.use(SwipeItem);
   export default {
     name: "",
+    created() {
+      this.getStore();
+    },
     data() {
       return {
-        brandlist:[
-          { id:1,imgUrl:''},
-          { id:2,imgUrl:''},
-          { id:3,imgUrl:''},
-          { id:4,imgUrl:''}
-        ]
+        value:'',
+        brandList:[]
+      }
+    },
+    methods:{
+      getStore() {
+        StoreApi.store().then(res => {
+          this.brandList = res.result;
+        }).catch((error)=>{
+          console.log("error")
+        });
       }
     }
   }

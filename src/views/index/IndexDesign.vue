@@ -19,19 +19,20 @@
       </div>
       <div class="design-list fix">
         <van-swipe :loop="false" :width="300" :show-indicators="false">
-          <van-swipe-item v-for="(item,index) in designlist" :key="index">
-            <a href=""><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></a>
+          <van-swipe-item v-for="(item,index) in designList" :key="index">
+            <router-link :to="{name:'DesignDetail',query:{id:item.id}}"><img :src="item.thumb"></router-link>
             <div class="main ab">
               <div class="infor-l ac">
-                <h2>{{item.d_name}}</h2>
+                <h2>{{item.fan_name}}</h2>
                 <div class="-t ab">
-                  <span>韵华茶几 | 原创设计</span>
-                  <span class="view ab"><i class="van-icon van-icon-eye-o"></i>15402</span>
+                  <router-link :to="{name:'DesignDetail',query:{id:item.id}}">{{item.style}}</router-link>
+                  <span class="style-line"></span><span>原创设计</span>
+                  <span class="view ab"><i class="van-icon van-icon-eye-o"></i>{{item.see_num}}</span>
                 </div>
               </div>
               <div class="infor-r">
-                <div class="dot"></div>
-                <span>数码党</span>
+                <div class="dot"><img :src="item.member_avatar"></div>
+                <span>{{item.member_name}}</span>
               </div>
             </div>
           </van-swipe-item>
@@ -45,19 +46,26 @@
 <script>
   import Vue from 'vue';
   import { Swipe, SwipeItem } from 'vant';
-
+  import StoreApi from "@/api/HomeStoreApi";
   Vue.use(Swipe);
   Vue.use(SwipeItem);
   export default {
     name: "",
+    created() {
+      this.getDesign();
+    },
     data() {
       return {
-        designlist:[
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'},
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'},
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'},
-          {id:1,d_name:'GDC Award 2019 评审奖 获奖作品'}
-        ]
+        designList:[]
+      }
+    },
+    methods:{
+      getDesign() {
+        StoreApi.design().then(res => {
+          this.designList = res.result;
+        }).catch((error)=>{
+          console.log("error")
+        });
       }
     }
   }
@@ -83,13 +91,20 @@
       }
       .-t{
         align-items:center;
+        font-size:13px;
+        .style-line{
+          display:block;width:1px;height:13px;background-color:#888;margin:0 6px;
+        }
         i{font-size:16px;line-height:12px;padding:0 2px 0 6px;}
         .view{align-items:center;}
       }
     }
     .infor-r{
       text-align: center;
-      .dot{width:24px;height:24px;margin:0 auto;background:#aaa;border-radius:50%;}
+      .dot{
+        width:24px;height:24px;margin:0 auto;border-radius:50%;text-align:center;
+        img{border-radius:50%;}
+      }
     }
   }
 </style>
