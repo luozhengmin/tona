@@ -55,14 +55,14 @@
         fit="cover"
         width="55px"
         height="55px"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        v-bind:src="user.member_avatar+'?'+time"
         @click="onPerson"
       />
       <div class="info">
         <div>
           <router-link to="/person-center">
-            <div class="name">你是夏天</div>
-            <div class="id">ID：84458566</div>
+            <div class="name">{{nickname}}</div>
+            <div class="id">{{userid}}</div>
           </router-link>
         </div>
         <div class="sq ab">
@@ -78,17 +78,17 @@
           <i class="iconfont">&#xe615;</i>
         </template>
       </van-goods-action-icon>
-      <van-goods-action-icon class="item" text="待付款" info="5">
+      <van-goods-action-icon class="item" text="待付款" :badge="user.order_nopay_count==0?'':user.order_nopay_count">
         <template #icon>
           <i class="iconfont">&#xe639;</i>
         </template>
       </van-goods-action-icon>
-      <van-goods-action-icon class="item" text="待收货">
+      <van-goods-action-icon class="item" text="待收货" :badge="user.order_noreceipt_count==0?'':user.order_noreceipt_count">
         <template #icon>
           <i class="iconfont">&#xe602;</i>
         </template>
       </van-goods-action-icon>
-      <van-goods-action-icon class="item" text="待评价">
+      <van-goods-action-icon class="item" text="待评价" :badge="user.order_noeval_count==0?'':user.order_noeval_count">
         <template #icon>
           <i class="iconfont">&#xe611;</i>
         </template>
@@ -145,17 +145,75 @@
 </template>
 
 <script>
+import { getMemberInfo } from '../../api/memberInfo'
 export default {
   name: "",
   data(){
     return{
-      isActive:false,
+      user: {},
+      isActive : false,
+      isShow : true,
+    }
+  },
+  created: function () {
+    this.time = new Date().getTime();
+    // this.utils.clearCookie('user_info')
+    // this.utils.clearCookie('key')
+      if($cookies.get('user_info')){
+        getMemberInfo().then(
+          response => {
+            console.log(response)
+            if (response && response.result.member_info) {
+              this.user = response.result.member_info
+            }
+          },
+          error => {}
+        )
+      }else{
+        this.user = $.cookies.get('user_info')
+      }
+
+
+  },
+  computed: {
+
+    nickname () {
+      let title = '登录/注册'
+      if (true) {
+        if (
+          this.user &&
+          typeof this.user !== 'undefined' &&
+          JSON.stringify(this.user) !== '{}'
+        ) {
+          if (this.user.member_truename) {
+            title = this.user.member_truename
+          } else if (this.user.member_name) {
+            title = this.user.member_name
+          }
+        }
+      }
+      return title
+    },
+    userid(){
+      let title = 'ID:'
+      if(true){
+         if (
+           this.user &&
+           typeof this.user !== 'undefined' &&
+           JSON.stringify(this.user) !== '{}'
+         ) {
+           title = 'ID:'+this.user.member_id
+         }
+         return title
+      }
+
     }
   },
   methods:{
     onPerson() {
       this.$router.push({'name': 'person-center'})
     },
+
   }
 };
 </script>
