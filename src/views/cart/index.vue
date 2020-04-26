@@ -92,19 +92,19 @@
       </div>
       <div class="like-list">
         <van-row>
-          <van-col span="12" v-for="i in 4" :key="i">
-            <div class="like-item">
+          <van-col span="12" v-for="(itemguess,g) in guessList" :key="g" >
+            <div class="like-item" @click="toProductDetail(itemguess.goods_id)">
               <div class="img">
                 <van-image
                   width="130px"
                   height="130px"
                   fit="cover"
-                  src="https://img.yzcdn.cn/vant/cat.jpeg"
+                  :src="itemguess.goods_image"
                 />
               </div>
-              <div class="prod-title">拉米娜浴室柜</div>
+              <div class="prod-title">{{itemguess.goods_name.slice(0,15)+'...'}}</div>
               <div class="price">
-                <span class="fuhao">￥</span>45.9
+                <span class="fuhao">￥</span>{{itemguess.goods_price}}
               </div>
             </div>
           </van-col>
@@ -129,12 +129,13 @@
 
 <script>
 import { Toast } from "vant";
-import { cartGet } from '../../api/memberCart'
+import { cartGet,getGuesslike } from '../../api/memberCart'
 export default {
 
   data() {
     return {
       cartList: [], // 购物车列表
+      guessList: [],
       itemchecked: true,
       storechecked: true,
       checked: true,
@@ -148,7 +149,8 @@ export default {
     };
   },
   created () {
-    this.getCartList(true)
+    this.getCartList(true),
+    this.getGuesslike()
   },
   methods: {
     onSubmit() {},
@@ -164,7 +166,6 @@ export default {
     // 获取购物车列表
     getCartList (value) {
       cartGet().then(res => {
-        console.log(res)
         if (res && res.result.cart_val.length > 0) {
           this.cartList = Object.assign([], res.result.cart_val)
           this.addChecked(value)
@@ -176,6 +177,14 @@ export default {
         }
         this.$parent.$emit('list-is-empty', this.cartList)
       })
+    },
+    getGuesslike(){
+      getGuesslike().then(res => {
+        this.guessList = res.result
+        console.log(this.guessList)
+      },error => {
+         Toast.fail(error.message)
+       })
     },
     /*
     	 * addChecked: 为每个商品添加checked 属性
@@ -222,6 +231,10 @@ export default {
       this.totalAmount = totalAmount
       this.$parent.$emit('calcu-cart-data', { totalPrice: this.totalPrice, totalAmount: this.totalAmount, cartId: this.cartId })
     },
+    // 商品详情页
+    toProductDetail(id) {
+      this.$router.push({ name: 'ProductDetail', query: { id : id }})
+    }
   },
 
 

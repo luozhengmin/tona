@@ -19,7 +19,7 @@
             </div>
             <div>暂无相关订单记录</div>
           </div>
-          <div class="product-card" v-for="i in 2" :key="i">
+          <div class="product-card" v-for="(itemall, i) in list" :key="i">
             <div class="store">
               <span>TONA官方旗舰店</span>
               <span class="status">等待买家确认</span>
@@ -57,7 +57,7 @@
       </van-tab>
       <van-tab title="待付款">
         <div class="list">
-          <div v-if="list1.length==0" class="empty">
+          <div v-if="listpay.length==0" class="empty">
             <div>
               <img src="../../../assets/image/empty-1.png" />
             </div>
@@ -65,26 +65,81 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待发货"></van-tab>
-      <van-tab title="待收货"></van-tab>
-      <van-tab title="待评价"></van-tab>
+      <van-tab title="待发货">
+        <div class="list">
+          <div v-if="listsend.length==0" class="empty">
+            <div>
+              <img src="../../../assets/image/empty-1.png" />
+            </div>
+            <div>暂无相关订单记录</div>
+          </div>
+        </div>
+      </van-tab>
+      <van-tab title="待收货">
+        <div class="list">
+          <div v-if="listreceive.length==0" class="empty">
+            <div>
+              <img src="../../../assets/image/empty-1.png" />
+            </div>
+            <div>暂无相关订单记录</div>
+          </div>
+        </div>
+      </van-tab>
+      <van-tab title="待评价">
+        <div class="list">
+          <div v-if="listevaluate.length==0" class="empty">
+            <div>
+              <img src="../../../assets/image/empty-1.png" />
+            </div>
+            <div>暂无相关订单记录</div>
+          </div>
+        </div>
+      </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
+import { Toast } from "vant";
+import { memberOrderList } from "../../../api/memberOrderinfo.js"
 export default {
+
   data() {
     return {
+
       value: "",
       showHistory: false,
       list: [{}],
-      list1: []
+      listpay: [],
+      listsend: [],
+      listreceive: [],
+      listevaluate: [],
+      page: 1,   //当前页数
+      perpage: 10, //每页数量
+
     };
   },
+  created () {
+    this.getOrderList(true)
+  },
   methods: {
-    onSearch() {}
-  }
+    onSearch() {},
+    onSubmit() {},
+    getOrderList() {  //获取订单列表
+      memberOrderList().then(res => {
+        console.log(res)
+        if(res.result.order_group_list){
+            this.list = res.result.order_group_list
+          }
+        },error => {
+          Toast.fail(error.message)
+        }
+      )
+    }
+
+  },
+
+
 };
 </script>
 

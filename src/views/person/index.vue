@@ -157,26 +157,24 @@ export default {
   },
   created: function () {
     this.time = new Date().getTime();
-    // this.utils.clearCookie('user_info')
-    // this.utils.clearCookie('key')
-      if($cookies.get('user_info')){
-        getMemberInfo().then(
-          response => {
-            console.log(response)
-            if (response && response.result.member_info) {
-              this.user = response.result.member_info
-            }
-          },
-          error => {}
-        )
-      }else{
-        this.$router.push({'name': 'mima-login'})
-      }
+
+    if($cookies.get('user_info')){
+      getMemberInfo().then(
+        response => {
+          console.log(response)
+          if (response && response.result.member_info) {
+            this.user = response.result.member_info
+          }
+        },
+        error => {}
+      )
+    }else{
+      this.$router.push({'name': 'mima-login'})
+    }
 
 
   },
   computed: {
-
     nickname () {
       let title = '登录/注册'
       if (true) {
