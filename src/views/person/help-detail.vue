@@ -19,9 +19,29 @@
   </div>
 </template>
 
+
 <script>
+  import { getArticleinfo  } from '../../api/Articleclass'
   export default {
-    name:''
+    name:'',
+    data(){
+      return{
+        ArticleData:[],
+        article_id : ''
+      }
+    },
+    created: function () {
+        this.article_id = this.$route.query.id
+        console.log(this.article_id);
+        getArticleinfo(this.article_id).then(
+          response => {
+            console.log(response)
+
+          },
+          error => {}
+        )
+
+    },
   };
 </script>
 

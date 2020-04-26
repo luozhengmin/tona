@@ -37,13 +37,28 @@
 </template>
 
 <script>
+  import { getMemberMessageList } from '../../../api/memberMessage'
   export default {
     name: "private",
     data(){
       return{
-
+        messageList : [],
+        page : 1,
+        perpage : 10
       }
-    }
+    },
+    created: function () {
+
+        getMemberMessageList().then(
+          response => {
+            
+            console.log(response)
+
+          },
+          error => {}
+        )
+
+    },
   }
 </script>
 
