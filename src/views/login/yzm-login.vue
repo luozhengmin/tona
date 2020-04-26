@@ -18,7 +18,7 @@
           <div class="tips">为了您的账号安全，请用手机号登录</div>
         </div>
         <div class="form">
-          <van-field placeholder="请输入手机号">
+          <van-field placeholder="请输入手机号" v-model="username">
             <template #label>
               <span>
                 中国 +86
@@ -26,13 +26,13 @@
               </span>
             </template>
           </van-field>
-          <van-field placeholder="请输入验证码">
+          <van-field placeholder="请输入验证码" v-model="code">
             <template #button>
-              <van-button size="small">获取验证码</van-button>
+              <van-button size="small" @click="sendVerifyCodeMobile">{{sendStateTextMobile}}</van-button>
             </template>
           </van-field>
           <div class="btn">
-            <van-button color="#1b1b1b" block>登录</van-button>
+            <van-button color="#1b1b1b" block v-on:click="onSubmit">登录</van-button>
           </div>
           <div class="other">
             <router-link to="/mima-login">密码登录</router-link>
@@ -63,18 +63,98 @@
 </template>
 
 <script>
-  export default{
-    name:'',
+  import axios from "@/utils/request"
+  import { yzmlogin } from '../../api/memberLogin'
+  import { getSmsCaptcha,checkCaptcha } from '../../api/common'
+  import { Toast } from 'vant'
+  export default {
+    name:'Register',
     data(){
       return{
-
+        username: '18356015272',
+        code: '',
+        canSendMobile: true,
+        timeIntervalMobile: false,
+        sendStateTextMobile: '获取验证码'
       }
     },
-    methods: {
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        $cookies.set('referrer', encodeURIComponent(from.fullPath), 1 / 24)
+      })
+    },
+    methods:{
       onLogin() {
-        this.$router.push({'name': 'login'})
+        this.$router.push({ name: 'Login' })
       },
-    }
+      signIn() {
+        if(!this.check()){
+          return
+        }
+        // 验证码登录
+        yzmlogin(this.username,this.code).then(
+           response => {
+            console.log(response)
+           },
+           error => {
+             Toast.fail(error.message)
+           }
+         )
+      },
+      sendVerifyCodeMobile () {
+        if (!this.username) {
+          Toast.fail('请先输入手机号')
+          return
+        }
+        if (!this.canSendMobile) {
+          return
+        }
+        getSmsCaptcha(2, this.username).then(res => {
+          if(res.code == 10001){
+            Toast(res.message)
+            return ;
+          }
+          Toast.success(res.message)
+          this.canSendMobile = false
+          let second = 60
+
+          let _this = this
+          this.timeIntervalMobile = setInterval(function () {
+            if (second <= 0) {
+              _this.canSendMobile = true
+              _this.sendStateTextMobile = '获取验证码'
+              clearInterval(_this.timeIntervalMobile)
+            } else {
+              _this.sendStateTextMobile = second + 's'
+            }
+            second--
+          }, 1000)
+        }).catch(function (error) {
+          Toast.fail(error.message)
+        })
+      },
+      check () {
+        let phone = this.username
+        let code = this.code
+        if (phone.length === 0) {
+          Toast('请输入手机号')
+          return false
+        }
+        if (code.length === 0) {
+          Toast('请输入验证码')
+          return false
+        }
+        if (code.length !== 6) {
+          Toast('请输入6位验证码')
+          return false
+        }
+        return true
+      },
+      onSubmit () {
+        this.signIn()
+      },
+    },
+
   };
 </script>
 

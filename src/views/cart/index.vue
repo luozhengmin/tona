@@ -64,15 +64,15 @@
         </div>
         <div class="product" v-for="(item, index) in cartItem.goods" :key="index" >
           <van-checkbox v-model="itemchecked" :value="item.cart_id" checked-color="#f4523b"></van-checkbox>
-          <van-card :thumb="item.goods_image_url" @click="toProductDetail(item.goods_id)">
+          <van-card :thumb="item.goods_image_url" >
             <template slot="title">
-              <div class="title">{{item.goods_name.slice(0,15)+'...'}}</div>
+              <div class="title"  @click="toProductDetail(item.goods_id)">{{item.goods_name.slice(0,15)+'...'}}</div>
             </template>
-            <template slot="desc">
+            <template slot="desc" @click="toProductDetail(item.goods_id)">
               <div class="desc">颜色</div>
               <div class="desc">规格</div>
             </template>
-            <template slot="price">
+            <template slot="price" @click="toProductDetail(item.goods_id)">
               <div class="price">
                 <span class="fuhao">￥</span>{{item.goods_price}}
               </div>
