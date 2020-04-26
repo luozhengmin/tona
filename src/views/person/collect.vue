@@ -87,16 +87,16 @@
           </div>
           <div class="list">
             <van-row gutter="15">
-              <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+              <van-col span="12" style="margin-bottom:15px" v-for="(itemgood,g) in collectGoodsList" :key="g">
                 <div class="prod">
                   <div>
-                    <img src="../../assets/image/prod-2.jpg" />
+                    <img :src="itemgood.goods_image_url" />
                   </div>
-                  <div class="title">欧式悬挂式浴室柜</div>
-                  <div class="desc">45度角双抽拉手设计</div>
+                  <div class="title">{{itemgood.goods_name.slice(0,15)+'...'}}</div>
+                  <div class="desc">{{itemgood.goods_name}}</div>
                   <div class="bottom">
                     <div>
-                      <span class="fuhao">￥</span>2580.00
+                      <span class="fuhao">￥</span>{{itemgood.goods_price}}
                     </div>
                     <div class="icon">
                       <van-icon name="cart" />
@@ -113,13 +113,37 @@
 </template>
 
 <script>
+import { getMemberCollectlist } from '../../api/memberInfo'
 export default {
   data() {
     return {
       isActive:false,
       active: 0,
-      list: [{}]
+      list: [{}],
+      collectGoodsList:[],
+      perpage:10,
+      page:1,
     };
+  },
+  created() {
+    this.getCollect()
+  },
+  methods:{
+    getCollect(){  //获取用户收藏列表
+      getMemberCollectlist(this.perpage,this.page).then(
+        response => {
+          console.log(response)
+          if(response.result.favorites_list){
+            this.collectGoodsList = response.result.favorites_list
+          }
+
+        },
+        error => {
+          Toast(error.message)
+        }
+      )
+    }
+
   }
 };
 </script>
