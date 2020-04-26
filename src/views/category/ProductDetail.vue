@@ -12,8 +12,8 @@
       </div>
       <div class="detail-banner">
         <van-swipe @change="onChange" :autoplay="3000">
-          <van-swipe-item v-for="(item, index) in images" :key="index">
-            <img src="../../assets/image/xq01.jpg">
+          <van-swipe-item v-for="(itemimage, index) in images" :key="index">
+            <img :src="itemimage.imgUrl" width="100%">
           </van-swipe-item>
           <template #indicator>
             <div class="custom-indicator">
@@ -159,7 +159,7 @@
       </div>
 
       <div class="detail-remark fix">
-        <van-cell is-link value="查看全部">
+        <van-cell is-link value="查看全部" @click="$router.push({ name: 'DetailMessage', query: { id : goodsinfo.goods_id }})">
           <template #title>
             <span class="remark-title">商品评价<span class="remark-con">({{evaluateinfo.all}})</span></span>
           </template>
@@ -228,7 +228,7 @@
           response => {
 
             console.log(response.result)
-            
+
             this.evaluateinfo = response.result.goods_evaluate_info
             this.evalList = response.result.goods_eval_list
             this.goodsinfo = response.result.goods_info
