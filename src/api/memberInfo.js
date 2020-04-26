@@ -29,6 +29,7 @@ export const getMemberInfo =
   })
 }
 
+// 获取用户基本信息
 export const getMemberdetailInfo =
 () => {
  return request({
@@ -47,6 +48,7 @@ export const updateMemberInfo =
  return request({
     url: `/api/Member/edit_information`,
     headers: {
+      
        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
     },
     params: {
@@ -54,6 +56,61 @@ export const updateMemberInfo =
         'member_qq' : member_qq,
         'member_ww' : member_ww,
         'member_birthday' : member_birthday
+    },
+    method: 'POST'
+  })
+}
+
+
+// 获取用户地址列表
+export const getMemberAddressList =
+() => {
+ return request({
+    url: `/api/memberaddress/address_list`,
+    headers: {
+       'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+    },
+    params: {},
+    method: 'POST'
+  })
+}
+
+// 获取用户地址详情
+export const getMemberAddressInfo =
+(address_id) => {
+ return request({
+    url: `/api/memberaddress/address_info`,
+    headers: {
+       'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+    },
+    params: {
+      'address_id' : address_id
+    },
+    method: 'POST'
+  })
+}
+
+// 新增收货地址
+export const getMemberAddressAdd =
+(address_realname,city_id,area_id,area_info,address_detail,address_tel_phone,address_mob_phone,address_is_default,address_longitude,address_latitude) => {
+ console.log(address_realname)
+ return request({
+    url: `/api/memberaddress/address_add`,
+    headers: {
+       'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+       'Content-Type': 'application/json',//设置请求头请求格式为JSON
+    },
+    params: {
+      'address_realname' : address_realname,
+      'city_id,' : city_id,
+      'area_id' : area_id,
+      'area_info' : area_info,
+      'address_detail' : address_detail,
+      'address_tel_phone' : address_tel_phone,
+      'address_mob_phone' : address_mob_phone,
+      'address_is_default' : address_is_default,
+      'address_longitude' : address_longitude,
+      'address_latitude' : address_latitude
     },
     method: 'POST'
   })

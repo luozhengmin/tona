@@ -36,27 +36,39 @@
 
 <script>
 import { Toast } from "vant";
+import { getMemberAddressList } from '../../../api/memberInfo'
 export default {
   name: "",
   data() {
     return {
-      chosenAddressId: "1",
+      disabledList : [],
+      chosenAddressId: "",
       list: [
-        {
-          id: "1",
-          name: "张三",
-          tel: "13000000000",
-          address: "浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室",
-          isDefault: true
-        },
-        {
-          id: "2",
-          name: "李四",
-          tel: "1310000000",
-          address: "浙江省杭州市拱墅区莫干山路 50 号"
-        }
       ]
     };
+  },
+  created: function () {
+
+      getMemberAddressList().then(
+        response => {
+          console.log(response)
+          let addresslist = []
+          response.result.address_list.forEach((item, index ,a) => {
+
+          })
+          this.list = response.result.address_list.map(item => {
+            if(item.address_is_default == 1){
+              item.address_is_default = true
+            }else{
+              item.address_is_default = false
+            }
+            return { id: item.address_id, name: item.address_realname, 'tel': item.address_mob_phone, 'address': item.address_detail+item.area_info, 'isDefault': item.address_is_default };
+          });
+
+        },
+        error => {}
+      )
+
   },
   methods: {
     onAdd() {
@@ -66,7 +78,9 @@ export default {
       this.$router.push({'name': 'address-edit'})
     },
     onEdit(item, index) {
-      Toast("编辑地址:" + index);
+
+      this.$router.push({ name: 'address-edit', query: { id : item.id }})
+
     }
   }
 };
