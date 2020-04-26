@@ -66,7 +66,7 @@
           <van-checkbox v-model="itemchecked" :value="item.cart_id" checked-color="#f4523b"></van-checkbox>
           <van-card :thumb="item.goods_image_url">
             <template slot="title">
-              <div class="title">{{item.goods_name.slice(0,15)}}</div>
+              <div class="title">{{item.goods_name.slice(0,15)+'...'}}</div>
             </template>
             <template slot="desc">
               <div class="desc">颜色</div>
