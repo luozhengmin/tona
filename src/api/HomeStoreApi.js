@@ -1,10 +1,18 @@
 import request from '@/utils/request'
-
+const baseUrl = '/api/store'
 const StoreApi = {}
 
 StoreApi.store = (params) => {
   return request({
-    url: "/api/store/recommend_store?shownum=5",
+    url:`${baseUrl}/recommend_store?shownum=5`,
+    params: params,
+    method: 'get'
+  })
+}
+
+StoreApi.area = (params) => {
+  return request({
+    url: `${baseUrl}/get_store_area`,
     params: params,
     method: 'get'
   })
