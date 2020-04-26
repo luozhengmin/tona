@@ -64,7 +64,7 @@
         </div>
         <div class="product" v-for="(item, index) in cartItem.goods" :key="index" >
           <van-checkbox v-model="itemchecked" :value="item.cart_id" checked-color="#f4523b"></van-checkbox>
-          <van-card :thumb="item.goods_image_url">
+          <van-card :thumb="item.goods_image_url" @click="toProductDetail(item.goods_id)">
             <template slot="title">
               <div class="title">{{item.goods_name.slice(0,15)+'...'}}</div>
             </template>

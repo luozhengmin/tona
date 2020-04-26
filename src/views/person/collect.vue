@@ -59,20 +59,20 @@
             <div>对不起，您还没有设计方案哦！</div>
           </div>
           <div class="list">
-            <div class="card" v-for="i in 3" :key="i">
-              <van-image width="100%" :src="require('../../assets/image/prd-1.jpg')" />
+            <div class="card" v-for="(itemfan,f) in collectFanList" :key="f">
+              <van-image width="100%" :src="itemfan.thumb" />
               <div class="info">
-                <div class="title">GDC Award 2019 评审奖 获奖作品</div>
-                <div class="meta">韵华茶几 | 原创设计</div>
+                <div class="title">{{itemfan.goods_name}}</div>
+                <div class="meta">{{itemfan.fan_name}} | {{itemfan.style}}</div>
               </div>
               <van-divider />
               <div class="desc">
                 <div class="left">
-                  <van-image width="35px" height="35px" round fit="cover" src="src" />
-                  <span>数码党</span>
+                  <van-image width="35px" height="35px" round fit="cover" :src="itemfan.member_avatar" />
+                  <span>{{itemfan.member_name}}</span>
                 </div>
                 <div>
-                  <i class="fa fa-eye"></i>15402
+                  <i class="fa fa-eye"></i>{{itemfan.see_num}}
                 </div>
               </div>
             </div>
@@ -113,9 +113,10 @@
 </template>
 
 <script>
-import { getMemberCollectlist } from '../../api/memberInfo'
+import { getMemberCollectlist,getMemberFangctlist } from '../../api/memberInfo'
 import { stringInterception } from '../../utils/common'
 import { setGoodsInCart } from '../../api/memberCart'
+import { Toast } from "vant";
 export default {
   data() {
     return {
@@ -123,18 +124,19 @@ export default {
       active: 0,
       list: [{}],
       collectGoodsList:[],
+      collectFanList:[],
       perpage:10,
       page:1,
     };
   },
   created() {
     this.getCollect()
+    this.getFanCollect()
   },
   methods:{
-    getCollect(){  //获取用户收藏列表
+    getCollect(){  //获取用户商品收藏列表
       getMemberCollectlist(this.perpage,this.page).then(
         response => {
-          console.log(response)
 
           if(response.result.favorites_list){
             this.collectGoodsList = response.result.favorites_list.map(item=>{
@@ -149,13 +151,30 @@ export default {
         }
       )
     },
+    getFanCollect(){  //获取用户设计方案
+      getMemberFangctlist(this.perpage,this.page).then(
+        response => {
+          console.log(response)
+
+          this.collectFanList = response.result.fan_list
+
+        },
+        error => {
+          Toast(error.message)
+        }
+      )
+    },
     toMemCart(goodsid){  //加入购物车
-      console.log(goodsid)
+
       let goods_id = goodsid
       let quantity = 1
       setGoodsInCart(goods_id,quantity).then(
         response => {
-          console.log(response)
+          if(response.code == 10000){
+            Toast.success(response.message)
+          }else{
+            Toast.fail(response.message)
+          }
         },
         error => {
           Toast(error.message)

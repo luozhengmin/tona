@@ -136,3 +136,20 @@ export const getMemberCollectlist =
     method: 'POST'
   })
 }
+
+// 获取用户收藏设计方案
+export const getMemberFangctlist =
+(perpage,page) => {
+
+ return request({
+    url: `/api/memberfavorites/favorites_fan_list`,
+    headers: {
+       'X-DS-KEY':$cookies.get('token'),
+    },
+    params: {
+      'per_page':perpage,
+      'page':page
+    },
+    method: 'GET'
+  })
+}
