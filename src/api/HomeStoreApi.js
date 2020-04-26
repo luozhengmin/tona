@@ -9,12 +9,4 @@ StoreApi.store = (params) => {
     method: 'get'
   })
 }
-
-StoreApi.design = (params) => {
-  return request({
-    url: "/api/design/recommend_design",
-    params: params,
-    method: 'get'
-  })
-}
 export default StoreApi

@@ -20,7 +20,7 @@
       <div class="design-list fix">
         <van-swipe :loop="false" :width="300" :show-indicators="false">
           <van-swipe-item v-for="(item,index) in designList" :key="index">
-            <router-link :to="{name:'DesignDetail',query:{id:item.id}}"><img :src="item.thumb"></router-link>
+            <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}"><img :src="item.thumb"></router-link>
             <div class="main ab">
               <div class="infor-l ac">
                 <h2>{{item.fan_name}}</h2>
@@ -46,7 +46,7 @@
 <script>
   import Vue from 'vue';
   import { Swipe, SwipeItem } from 'vant';
-  import StoreApi from "@/api/HomeStoreApi";
+  import DesignApi from "@/api/DesignApi";
   Vue.use(Swipe);
   Vue.use(SwipeItem);
   export default {
@@ -61,7 +61,7 @@
     },
     methods:{
       getDesign() {
-        StoreApi.design().then(res => {
+        DesignApi.list().then(res => {
           this.designList = res.result;
         }).catch((error)=>{
           console.log("error")

@@ -51,38 +51,38 @@
      </div>
      <div class="design-detail fix">
        <div class="detail-item">
-         <img src="../../assets/image/xq02.jpg">
-         <div class="title">一篇全是硬货的另类硬装整屋案例，堪称装修小百科！</div>
+         <img :src="desginInfo.thumb">
+         <div class="title">{{desginInfo.fan_name}}</div>
          <div class="item ab fix">
            <div class="item-pic">
-             <img src="../../assets/image/xq02.jpg">
+             <img :src="desginInfo.member_avatar">
            </div>
            <div class="item-title ac">
-             <h3>Miumiu</h3>
-             <p>更新与<time> 2020-01-12</time></p>
+             <h3>{{desginInfo.member_name}}</h3>
+             <p>更新于<span> {{desginInfo.updated_at}}</span></p>
            </div>
-           <van-button round type="info" color="#f4523b" is-link @click="showCommit">找TA设计</van-button>
+           <van-button round type="info" color="#f4523b" is-link @click="show = true;">找TA设计</van-button>
          </div>
        </div>
        <!--找TA设计开始-->
        <van-popup class="design-form" v-model="show" closeable close-icon="cross">
          <div class="item ab fix">
            <div class="item-pic">
-             <img src="../../assets/image/xq02.jpg">
+             <img :src="desginInfo.member_avatar">
            </div>
            <div class="item-title">
-             <h3>Miumiu</h3>
-             <p>更新与<time> 2020-01-12</time></p>
+             <h3>{{desginInfo.member_name}}</h3>
+             <p>更新于<time> {{desginInfo.updated_at}}</time></p>
            </div>
          </div>
          <div class="form-list">
            <h2>装修需求</h2>
            <van-cell-group class="d-request">
-             <van-field v-model="value" type="textarea" placeholder="描述清楚装修需求，设计师会为您提供更好的服务，如：小区名称、面积、常住人员、装修预算、意向风格等。"/>
+             <van-field v-model="consult.consult_content" type="textarea" placeholder="描述清楚装修需求，设计师会为您提供更好的服务，如：小区名称、面积、常住人员、装修预算、意向风格等。"/>
            </van-cell-group>
            <h2>手机号码</h2>
            <van-cell-group>
-             <van-field v-model="tel"/>
+             <van-field v-model="consult.phone"/>
            </van-cell-group>
            <h2>温馨提示</h2>
            <p>为保障您的权益，请与设计师充分沟通后在尽量通过TONA HOME官方渠道下单。所有线下私自交易不受TONA HOME平台保护。</p>
@@ -102,8 +102,8 @@
             <br>
            注：交易相关内容由用户与设计师/商家自行协商。朵纳对任何私自交易所产生的法律问题和纠纷不承担责任。</p>
          <div class="confim-btn">
-           <van-button color="#b7b7b7" plain>取消</van-button>
-           <van-button color="#f4523b">确认</van-button>
+           <van-button color="#b7b7b7" plain @click="showform = false;">取消</van-button>
+           <van-button color="#f4523b" @click="consultSubmit">确认</van-button>
          </div>
        </van-popup>
 
@@ -207,17 +207,17 @@
              <h2><span>房屋信息</span></h2>
            </div>
            <dl>
-             <dd>小区：未知小区</dd>
-             <dd>户型：3室2厅2卫1厨</dd>
-             <dd>面积：125.00m²</dd>
-             <dd>标签：现代简约、家装</dd>
+             <dd>小区：{{desginInfo.region}}</dd>
+             <dd>户型：{{desginInfo.huxing}}</dd>
+             <dd>面积：{{desginInfo.area}}</dd>
+             <dd>标签：{{desginInfo.style}}</dd>
            </dl>
          </div>
          <div class="detail-profile fix">
            <div class="title-t">
              <h2><span>房屋信息</span></h2>
            </div>
-           <p>室内墙面、地面、顶棚以及家具陈设乃至灯具器皿等均以简洁的造型、纯洁的质地、精细的工艺为其特征。</p>
+           <p>{{desginInfo.description}}</p>
          </div>
          <div class="detail-floor fix">
            <div class="floor-item">
@@ -325,11 +325,11 @@
        <div class="detail-menu ab fix">
          <div class="menu-item ab">
            <i class="van-icon van-icon-eye-o"></i>
-           <span>1654</span>
+           <span>{{desginInfo.see_num}}</span>
          </div>
-         <div class="menu-item ab" @click="collect()">
+         <div class="menu-item ab" @click="collect">
            <i class="van-icon van-icon-star-o"></i>
-           <span>1654</span>
+           <span>{{desginInfo.collection_num}}</span>
          </div>
          <div class="menu-item ab" is-link @click="showShare">
            <i class="van-icon van-icon-home-o"></i>
@@ -351,6 +351,8 @@
   import 'swiper/css/swiper.css'
   import { Toast } from 'vant';
 
+  import DesignApi from "@/api/DesignApi";
+
   export default {
     name: "DesignDetail",
     components: {
@@ -364,8 +366,11 @@
         showform:false,
         showshare:false,
         showindex:false,
-        value:'',
-        tel:'',
+        desginInfo:{},
+        consult:{
+          consult_content:'',
+          phone:''
+        },
         swiperOptionTop: {
           loop: true,
           loopedSlides: 5,
@@ -383,12 +388,6 @@
       }
     },
     methods: {
-      showCommit() {
-        this.show = true;
-      },
-      showForm() {
-        this.showform = true;
-      },
       showShare() {
         this.showshare = true;
       },
@@ -396,11 +395,41 @@
         this.showindex = true;
       },
       collect() {
-        Toast({
-          message: "收藏成功",
-          icon: "star"
+        let params = {fid:this.desginInfo.fan_id}
+        DesignApi.collect(params).then(res=>{
+          Toast({
+            message: "收藏成功",
+            icon: "star"
+          });
+        })
+      },
+      getDesignDetail(id){
+        DesignApi.get(id).then(res=>{
+          this.desginInfo = res.result.design_info;
+          console.log(this.desginInfo)
+        })
+      },
+      showForm(){
+        if (!this.consult.consult_content) {
+          Toast.fail("请输入描述");
+          return;
+        }
+        if (!this.consult.phone) {
+          Toast.fail("请输入手机号");
+          return;
+        }
+        this.showform = true;
+
+      },
+      consultSubmit(){
+        this.consult.fan_id = this.desginInfo.fan_id;
+        DesignApi.consult(this.consult).then(res => {
+          Toast.success("申请成功");
+          this.showForm = false;
         });
-      }
+      },
+
+
     },
     mounted() {
       this.$nextTick(() => {
@@ -409,6 +438,10 @@
         swiperTop.controller.control = swiperThumbs
         swiperThumbs.controller.control = swiperTop
       })
+    },
+    created(){
+      let id = this.$route.query.id;
+      this.getDesignDetail(id)
     }
   }
 </script>
