@@ -6,7 +6,7 @@ const GlobalStoreApi = {}
 
 GlobalStoreApi.city = (params) => {
   return request({
-    url: `${baseUrl}/recommend_design`,
+    url: `${baseUrl}/mendian_region_list`,
     params: params,
     method: 'get'
   })
