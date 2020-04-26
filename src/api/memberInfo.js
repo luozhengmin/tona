@@ -115,3 +115,21 @@ export const getMemberAddressAdd =
     method: 'POST'
   })
 }
+
+
+// 获取用户收藏列表
+export const getMemberCollectlist =
+(perpage,page) => {
+
+ return request({
+    url: `/api/memberfavorites/favorites_list`,
+    headers: {
+       'X-DS-KEY':$cookies.get('token'),
+    },
+    params: {
+      'per_page':perpage,
+      'page':page
+    },
+    method: 'POST'
+  })
+}
