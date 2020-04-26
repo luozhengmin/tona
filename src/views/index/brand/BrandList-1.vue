@@ -70,7 +70,7 @@
       </div>
         <div class="design-list fix">
           <van-swipe :loop="false" :width="300" :show-indicators="false">
-            <van-swipe-item v-for="(item,index) in childlist" :key="index">
+            <van-swipe-item v-for="(item,index) in childList" :key="index">
               <a href=""><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></a>
               <div class="main ab">
                 <div class="infor-l ac">
@@ -131,6 +131,7 @@
   import IndexBanner from "../IndexBanner.vue";
   import IndexMenu1 from "../IndexMenu-1.vue";
   import axios from "@/utils/request";
+  import StoreApi from "@/api/HomeStoreApi";
 
   export default {
     components: {
@@ -140,16 +141,12 @@
     name: "BrandList-1",
     created() {
       this.getBanners();
+      this.getStore();
     },
     data(){
       return{
         isActive: false,
-        childlist:[
-          {id:1,d_name:'TONA卫浴'},
-          {id:2,d_name:'TONA卫浴'},
-          {id:3,d_name:'TONA卫浴'},
-          {id:4,d_name:'TONA卫浴'}
-        ],
+        childList:[],
         banners:[]
       }
     },
@@ -158,6 +155,13 @@
         axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
           let banners = res.result.banners;
           this.banners = banners;
+        });
+      },
+      getStore() {
+        StoreApi.area().then(res => {
+          this.childList = res.result;
+        }).catch((error)=>{
+          console.log("error")
         });
       }
     }

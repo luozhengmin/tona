@@ -16,7 +16,7 @@
          <div class="slideNav" v-if="isActive">
            <ul class="ab fix">
              <li>
-               <router-link to="/BrandList">
+               <router-link to="/BrandList-1">
                  <i class="iconfont bg-7">&#xe7ae;</i>
                  <span>品牌馆</span>
                </router-link>
