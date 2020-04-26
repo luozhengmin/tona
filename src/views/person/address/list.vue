@@ -53,7 +53,9 @@ export default {
         response => {
           console.log(response)
           let addresslist = []
-          
+          response.result.address_list.forEach((item, index ,a) => {
+
+          })
           this.list = response.result.address_list.map(item => {
             if(item.address_is_default == 1){
               item.address_is_default = true
@@ -72,10 +74,10 @@ export default {
     onAdd() {
       Toast("新增地址");
     },
-    onAddress(){  //地址添加
+    onAddress(){
       this.$router.push({'name': 'address-edit'})
     },
-    onEdit(item, index) {  //地址编辑
+    onEdit(item, index) {  
 
       this.$router.push({ name: 'address-edit', query: { id : item.id }})
 

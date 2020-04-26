@@ -15,9 +15,9 @@
     </div>
     <div class="form">
       <van-cell-group>
-        <van-field label="姓名" placeholder="输入收货人姓名" v-model="name"></van-field>
+        <van-field label="姓名" placeholder="输入收货人姓名" v-model="name" ></van-field>
         <van-field label="手机号码" placeholder="输入手机号码" v-model="phone"></van-field>
-        <van-field label="邮政编码" placeholder="输入邮政编码" v-model="zipcode"></van-field>
+        <van-field label="邮政编码" placeholder="输入邮政编码" v-model="zipcode" ></van-field>
         <van-field
           readonly
           clickable
@@ -29,10 +29,10 @@
           @click="showArea = true"
         />
       </van-cell-group>
-      <van-field label="详细地址" placeholder="街道楼牌号等详细地址" v-model="address"></van-field>
+      <van-field label="详细地址" placeholder="街道楼牌号等详细地址" v-model="address" ></van-field>
     </div>
     <div class="default">
-      <van-checkbox v-model="checked" checked-color="#f4523b" ></van-checkbox>
+      <van-checkbox v-model="checked"  checked-color="#f4523b" ></van-checkbox>
       <span>设为默认地址</span>
     </div>
 
@@ -58,7 +58,7 @@
 <script>
 import areaList from "@/json/area";
 import { Toast } from "vant";
-import { getMemberAddressInfo,getMemberAddressAdd } from '../../../api/memberInfo'
+import { getMemberAddressInfo,getMemberAddressAdd,getMemberAddressEdit } from '../../../api/memberInfo'
 export default {
   name: "",
   data() {
@@ -75,21 +75,36 @@ export default {
       areaid: '',
       address: '',
       isdefault: '',
+      addressInfo: [],
+      params: {}
     };
   },
+  
   created: function () {
-     this.getAddressInfo();
+    let addressid = this.$route.query.id
+    this.getAddressInfo(addressid);
 
   },
+  
   methods: {
-    getAddressInfo(){
-      let addressid = this.$route.query.id
+    getAddressInfo(addressid){
+
       if(addressid){
         getMemberAddressInfo(addressid).then(
           response => {
-            console.log(response)
+
+            let addressInfo = response.result.address_info
+            this.address = addressInfo.address_detail
+            this.name= addressInfo.address_realname
+            this.phone = addressInfo.address_mob_phone
+            this.value = addressInfo.area_info
+            if(addressInfo.address_is_default != 1){
+              this.checked = false
+            }
           },
-          error => {}
+          error => {
+            Toast.fail(response.message)
+          }
         )
       }
     },
@@ -98,19 +113,65 @@ export default {
       this.showArea = false;
     },
     save() {
-      let phone = this.phone
-      let name = this.name
-      let address = this.address
-      let isdefault = this.isdefault
-      let cityid = this.cityid
-      let areaid = this.areaid
-      console.log(name)
-      getMemberAddressAdd(name,cityid,areaid,address).then(
+
+
+      let tel = ''
+      let toMod = ''
+      let message = ''
+      let address_longitude = ''
+      let address_latitude = ''
+      if(this.$route.query.id){
+        toMod = getMemberAddressEdit
+        message = '修改成功'
+
+        this.params = {
+          'address_id' : this.$route.query.id,
+          'address_realname' : this.name,
+          'city_id,' : this.cityid,
+          'area_id' : this.areaid,
+          'area_info' : this.value,
+          'address_detail' : this.address,
+          'address_tel_phone' : this.phone,
+          'address_mob_phone' : this.phone,
+          'address_is_default' : '',
+          'address_longitude' : address_longitude,
+          'address_latitude' : address_latitude
+        }
+      }else{
+        this.params = {
+          'address_realname' : this.name,
+          'city_id,' : this.cityid,
+          'area_id' : this.areaid,
+          'area_info' : this.value,
+          'address_detail' : this.address,
+          'address_tel_phone' : this.phone,
+          'address_mob_phone' : this.phone,
+          'address_is_default' : '',
+          'address_longitude' : address_longitude,
+          'address_latitude' : address_latitude
+        }
+        toMod = getMemberAddressAdd
+        message = '新增成功'
+      }
+      if(this.checked == true){
+        this.params.address_is_default = 1
+      }
+      toMod(this.params).then(
         response => {
+          if(response.result && response.code == 10000){
+            Toast.success(message)
+            let router = this.$router
+            setTimeout(function() {
+              router.push({'name': 'address-list'})
+            }, 1000);
+          }else{
+            Toast(response.message)
+          }
           console.log(response)
-          Toast.fail(response.message)
         },
-        error => {}
+        error => {
+          Toast.fail(response.message)
+        }
       )
     },
     showAction(){

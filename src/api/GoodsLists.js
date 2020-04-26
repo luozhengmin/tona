@@ -24,3 +24,19 @@ export const getGoodsDetail =
     method: 'POST'
   })
 }
+
+
+// 获取商品评论列表
+export const getGoodsEvaluateList =
+(goodsid,type,page,perpage) => {
+ return request({
+    url: `/api/Goods/goods_evaluate`,
+    params: {
+      'goods_id':goodsid,
+      'goods_idtype':type,
+      'page':page,
+      'perpage':perpage,
+    },
+    method: 'POST'
+  })
+}
