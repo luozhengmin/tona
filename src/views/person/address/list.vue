@@ -74,10 +74,10 @@ export default {
     onAdd() {
       Toast("新增地址");
     },
-    onAddress(){
+    onAddress(){  //地址添加
       this.$router.push({'name': 'address-edit'})
     },
-    onEdit(item, index) {
+    onEdit(item, index) {  //地址编辑
 
       this.$router.push({ name: 'address-edit', query: { id : item.id }})
 

@@ -74,7 +74,7 @@ export default {
       cityid: '',
       areaid: '',
       address: '',
-      isdefault: ''
+      isdefault: '',
     };
   },
   created: function () {
@@ -87,6 +87,7 @@ export default {
       if(addressid){
         getMemberAddressInfo(addressid).then(
           response => {
+            console.log(response)
           },
           error => {}
         )

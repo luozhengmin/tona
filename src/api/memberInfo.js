@@ -48,7 +48,7 @@ export const updateMemberInfo =
  return request({
     url: `/api/Member/edit_information`,
     headers: {
-      
+
        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
     },
     params: {
@@ -77,14 +77,15 @@ export const getMemberAddressList =
 
 // 获取用户地址详情
 export const getMemberAddressInfo =
-(address_id) => {
+(addressid) => {
+
  return request({
     url: `/api/memberaddress/address_info`,
     headers: {
-       'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+       'X-DS-KEY':$cookies.get('token'),
     },
     params: {
-      'address_id' : address_id
+      'address_id':addressid
     },
     method: 'POST'
   })
@@ -98,7 +99,6 @@ export const getMemberAddressAdd =
     url: `/api/memberaddress/address_add`,
     headers: {
        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
-       'Content-Type': 'application/json',//设置请求头请求格式为JSON
     },
     params: {
       'address_realname' : address_realname,
