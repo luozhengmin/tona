@@ -88,8 +88,8 @@
           <div class="list">
             <van-row gutter="15">
               <van-col span="12" style="margin-bottom:15px" v-for="(itemgood,g) in collectGoodsList" :key="g">
-                <div class="prod" @click="toProductDetail(itemgood.goods_id)">
-                  <div>
+                <div class="prod">
+                  <div @click="toProductDetail(itemgood.goods_id)">
                     <img :src="itemgood.goods_image_url" />
                   </div>
                   <div class="title">{{itemgood.goods_name.slice(0,15)+'...'}}</div>
@@ -98,7 +98,7 @@
                     <div>
                       <span class="fuhao">￥</span>{{itemgood.goods_price}}
                     </div>
-                    <div class="icon">
+                    <div class="icon" @click="toMemCart(itemgood.goods_id)">
                       <van-icon name="cart" />
                     </div>
                   </div>
@@ -114,6 +114,8 @@
 
 <script>
 import { getMemberCollectlist } from '../../api/memberInfo'
+import { stringInterception } from '../../utils/common'
+import { setGoodsInCart } from '../../api/memberCart'
 export default {
   data() {
     return {
@@ -133,8 +135,12 @@ export default {
       getMemberCollectlist(this.perpage,this.page).then(
         response => {
           console.log(response)
+
           if(response.result.favorites_list){
-            this.collectGoodsList = response.result.favorites_list
+            this.collectGoodsList = response.result.favorites_list.map(item=>{
+              item.goods_name = stringInterception(item.goods_name,10)
+              return item
+            })
           }
 
         },
@@ -143,6 +149,20 @@ export default {
         }
       )
     },
+    toMemCart(goodsid){  //加入购物车
+      console.log(goodsid)
+      let goods_id = goodsid
+      let quantity = 1
+      setGoodsInCart(goods_id,quantity).then(
+        response => {
+          console.log(response)
+        },
+        error => {
+          Toast(error.message)
+        }
+      )
+    },
+
     // 商品详情页
     toProductDetail(id) {
       this.$router.push({ name: 'ProductDetail', query: { id : id }})

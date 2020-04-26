@@ -84,34 +84,37 @@ export const getMemberAddressInfo =
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    params: {
+    data: {
       'address_id':addressid
     },
     method: 'POST'
   })
 }
 
+// 修改收货地址
+export const getMemberAddressEdit =
+(params) => {
+
+ return request({
+    url: `/api/memberaddress/address_edit`,
+    headers: {
+       'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+    },
+    data: params,
+    method: 'POST'
+  })
+}
+
 // 新增收货地址
 export const getMemberAddressAdd =
-(address_realname,city_id,area_id,area_info,address_detail,address_tel_phone,address_mob_phone,address_is_default,address_longitude,address_latitude) => {
- console.log(address_realname)
+(params) => {
+
  return request({
     url: `/api/memberaddress/address_add`,
     headers: {
        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
     },
-    params: {
-      'address_realname' : address_realname,
-      'city_id,' : city_id,
-      'area_id' : area_id,
-      'area_info' : area_info,
-      'address_detail' : address_detail,
-      'address_tel_phone' : address_tel_phone,
-      'address_mob_phone' : address_mob_phone,
-      'address_is_default' : address_is_default,
-      'address_longitude' : address_longitude,
-      'address_latitude' : address_latitude
-    },
+    data:params,
     method: 'POST'
   })
 }
