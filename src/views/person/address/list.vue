@@ -53,9 +53,7 @@ export default {
         response => {
           console.log(response)
           let addresslist = []
-          response.result.address_list.forEach((item, index ,a) => {
-
-          })
+          
           this.list = response.result.address_list.map(item => {
             if(item.address_is_default == 1){
               item.address_is_default = true

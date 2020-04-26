@@ -170,7 +170,9 @@ export default {
       },
       active: 0,
       items: [],
-      children: []
+      children: [],
+      params:{},
+      recommend:[]
     };
   },
   created() {
@@ -179,11 +181,21 @@ export default {
   methods: {
     getList() {
       GoodsClassApi.list().then(res => {
+
         this.items = res.result.class_list.map(o => {
           o.text = o.value;
           return o;
         });
+        console.log(this.items)
         this.items.unshift({ text: "推荐" });
+      });
+    },
+    getRecommend(parentid){
+      // this.params.parent_id = parentid
+      GoodsClassApi.recommendClass(this.params).then(res => {
+        this.recommend = res.result
+      },error=>{
+
       });
     }
   }

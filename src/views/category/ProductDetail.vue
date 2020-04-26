@@ -6,7 +6,7 @@
             <van-icon name="arrow-left" @click="$router.go(-1)"/>
           </div>
           <div class="head-logo">
-            TONA 拉米娜浴室柜...
+            {{goodsinfo.shortname}}
           </div>
         </div>
       </div>
@@ -17,18 +17,18 @@
           </van-swipe-item>
           <template #indicator>
             <div class="custom-indicator">
-              {{ current + 1 }}/5
+              {{ current + 1 }}/{{images.length}}
             </div>
           </template>
         </van-swipe>
       </div>
       <div class="detail-title ab fix">
         <div class="title-l ac">
-          <h2>TONA-拉米娜浴室柜洗手台抽拉悬浮式洗手台</h2>
-          <p>45度角双抽拉手设计，黑色封边条</p>
+          <h2>{{goodsinfo.goods_name}}</h2>
+          <p>{{goodsinfo.goods_advword}}</p>
           <div class="t-price ab">
-            <p class="jg">￥<span>1289.00</span></p>
-            <p class="jg-1">￥<del>2030.00</del></p>
+            <p class="jg">￥<span>{{goodsinfo.goods_promotion_price}}</span></p>
+            <p class="jg-1">￥<del>{{goodsinfo.goods_price}}</del></p>
           </div>
         </div>
         <div class="title-r">
@@ -161,11 +161,11 @@
       <div class="detail-remark fix">
         <van-cell is-link value="查看全部">
           <template #title>
-            <span class="remark-title">商品评价<span class="remark-con">(55665)</span></span>
+            <span class="remark-title">商品评价<span class="remark-con">({{evaluateinfo.all}})</span></span>
           </template>
         </van-cell>
         <div class="remark-list">
-          <div class="list-item" v-for="i in 4" :key="i">
+          <div class="list-item" v-for="(itemeval,e) in evalList" :key="">
             <div class="item ab fix">
               <div class="r-pic">
                 <img src="../../assets/image/xq01.jpg">
@@ -193,6 +193,8 @@
 
 <script>
   import { skuData, initialSku } from './data';
+  import { stringInterception } from  '../../utils/common'
+  import { getGoodsDetail } from '../../api/GoodsLists'
   export default {
     name: "ProductDetail",
     data() {
@@ -200,13 +202,7 @@
       this.initialSku = initialSku;
       return {
         current: 0,
-        images: [
-          {id: 1, imgUrl: ''},
-          {id: 2, imgUrl: ''},
-          {id: 3, imgUrl: ''},
-          {id: 4, imgUrl: ''},
-          {id: 5, imgUrl: ''}
-        ],
+        images: [{}],
         show: false,
         checked: true,
         showBase: false,
@@ -214,10 +210,42 @@
         showStepper: false,
         showSoldout: false,
         closeOnClickOverlay: true,
+        goodsid: '',
+        goodsinfo: [], //商品基础信息
+        evaluateinfo: [], //商品评论
+        evalList:[{}], //商品评论列表
+        goodsimages: [] //商品图片集
       };
 
     },
+    created(){
+      this.goodsid = this.$route.query.id
+      this.getGoodsDetail()
+    },
     methods: {
+      getGoodsDetail(){
+        getGoodsDetail(this.goodsid).then(
+          response => {
+
+            console.log(response.result)
+            
+            this.evaluateinfo = response.result.goods_evaluate_info
+            this.evalList = response.result.goods_eval_list
+            this.goodsinfo = response.result.goods_info
+            this.goodsinfo.shortname = stringInterception(this.goodsinfo.goods_name,9)
+
+            response.result.goods_image.split(',').map((item, index)=>{
+              this.images[index].id = index
+              this.images[index].imgUrl = item
+            })
+
+          },
+          error => {
+            Toast(error.message)
+          }
+        )
+      },
+
       onChange(index) {
         this.current = index;
       },

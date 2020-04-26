@@ -88,7 +88,7 @@
           <div class="list">
             <van-row gutter="15">
               <van-col span="12" style="margin-bottom:15px" v-for="(itemgood,g) in collectGoodsList" :key="g">
-                <div class="prod">
+                <div class="prod" @click="toProductDetail(itemgood.goods_id)">
                   <div>
                     <img :src="itemgood.goods_image_url" />
                   </div>
@@ -142,6 +142,10 @@ export default {
           Toast(error.message)
         }
       )
+    },
+    // 商品详情页
+    toProductDetail(id) {
+      this.$router.push({ name: 'ProductDetail', query: { id : id }})
     }
 
   }

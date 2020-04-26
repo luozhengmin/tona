@@ -12,4 +12,12 @@ GoodsClassApi.list = (params) => {
   })
 }
 
+GoodsClassApi.recommendClass = (params) =>{
+  return request({
+    url: `/api/Goodsclass/getRecommendClass`,
+    params: params,
+    method: 'POST'
+  })
+}
+
 export default GoodsClassApi

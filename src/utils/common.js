@@ -63,6 +63,12 @@ export function loadScript (code, url, callback) {
   }
 }
 
+export function stringInterception (str,len){
+  
+    return str.slice(0,len) + '...'
+  
+}
+
 export function phoneNumFilter (phone) {
     // 1字符串转化成数组
     let phoneArr = [...phone]

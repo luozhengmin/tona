@@ -6,7 +6,7 @@
             <van-icon name="arrow-left" @click="$router.go(-1)"/>
           </div>
           <div class="head-logo">
-            品类
+            商品列表
           </div>
           <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
             <span></span>
@@ -66,7 +66,7 @@
 
       <div class="classify ab fix">
         <div class="classify-tltle ac">
-          <a href="">全部</a>
+          <a>全部</a>
         </div>
         <div class="classify-list">
           <swiper class="swiper" :options="swiperOption">
@@ -86,16 +86,16 @@
             <template #title>新品</template>
             <div class="list">
               <van-row gutter="15">
-                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                  <div class="prod">
+                <van-col span="12" style="margin-bottom:15px" v-for="(goodsitem,i) in goodslist" :key="i">
+                  <div class="prod" @click="$router.push({ name: 'ProductDetail', query: { id : goodsitem.goods_id }})">
                     <div>
-                      <img src="../../assets/image/prod-2.jpg" />
+                      <img :src="goodsitem.goods_image_url" />
                     </div>
-                    <div class="title">欧式悬挂式浴室柜22</div>
-                    <div class="desc">45度角双抽拉手设计</div>
+                    <div class="title">{{goodsitem.goods_name}}</div>
+                    <div class="desc">{{goodsitem.goods_advword}}</div>
                     <div class="bottom">
                       <div>
-                        <span class="fuhao">￥</span>2580.00
+                        <span class="fuhao">￥</span>{{goodsitem.goods_price}}
                       </div>
                       <div class="icon">
                         <van-icon name="cart" />
@@ -161,9 +161,12 @@
 </template>
 
 <script>
-  import { Toast } from 'vant';
+  import { Toast } from 'vant'
+  import { stringInterception } from '../../utils/common.js'
+  import { getGoodsList } from '../../api/GoodsLists'
   import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
   import 'swiper/css/swiper.css'
+
   export default {
     name: "ProductList-Item",
     components: {
@@ -177,13 +180,37 @@
           slidesPerView: 4,
           spaceBetween: 10,
         },
-        value:''
+        value:'',
+        goodslist:[{}], //商品列表
+        catid:'', //品类ID
+        keyword:'', //关键字
+        hasmore:'', //是否还有更多
+        pagetotal:'' //总页数
       }
     },
+    created(){
+      this.getGoodslist()
+    },
     methods: {
+      getGoodslist(){  //获取商品列表
+        getGoodsList(this.catid,this.keyword).then(
+          response => {
+            console.log(response.result.goods_list)
+            this.goodslist = response.result.goods_list.map(item => {
+              item.goods_name = stringInterception(item.goods_name,9)
+              item.goods_advword = stringInterception(item.goods_advword,10)
+              return item;
+            });
+          },
+          error => {
+            Toast(error.message)
+          }
+        )
+      },
       onSearch(val) {
         Toast(val);
       },
+
     }
   }
 </script>
