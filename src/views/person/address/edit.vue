@@ -6,18 +6,18 @@
           <van-icon name="arrow-left" @click="$router.go(-1)"/>
         </div>
         <div class="head-logo">
-          我的积分
+          地址管理
         </div>
-        <div class="p-btn" @click="showAction">
+        <div class="p-btn" @click="showAction" v-if="this.$route.query.id">
           <router-link to="">删除</router-link>
         </div>
       </div>
     </div>
     <div class="form">
       <van-cell-group>
-        <van-field label="姓名" placeholder="输入收货人姓名"></van-field>
-        <van-field label="手机号码" placeholder="输入手机号码"></van-field>
-        <van-field label="邮政编码" placeholder="输入邮政编码"></van-field>
+        <van-field label="姓名" placeholder="输入收货人姓名" v-model="name"></van-field>
+        <van-field label="手机号码" placeholder="输入手机号码" v-model="phone"></van-field>
+        <van-field label="邮政编码" placeholder="输入邮政编码" v-model="zipcode"></van-field>
         <van-field
           readonly
           clickable
@@ -29,10 +29,10 @@
           @click="showArea = true"
         />
       </van-cell-group>
-      <van-field label="详细地址" placeholder="街道楼牌号等详细地址"></van-field>
+      <van-field label="详细地址" placeholder="街道楼牌号等详细地址" v-model="address"></van-field>
     </div>
     <div class="default">
-      <van-checkbox v-model="checked" checked-color="#f4523b"></van-checkbox>
+      <van-checkbox v-model="checked" checked-color="#f4523b" ></van-checkbox>
       <span>设为默认地址</span>
     </div>
 
@@ -58,6 +58,7 @@
 <script>
 import areaList from "@/json/area";
 import { Toast } from "vant";
+import { getMemberAddressInfo,getMemberAddressAdd } from '../../../api/memberInfo'
 export default {
   name: "",
   data() {
@@ -66,19 +67,50 @@ export default {
       value: "",
       showArea: false,
       areaList: areaList,
-      checked: true
+      checked: true,
+      name: '',
+      phone: '',
+      zipcode: '',
+      cityid: '',
+      areaid: '',
+      address: '',
+      isdefault: ''
     };
   },
+  created: function () {
+     this.getAddressInfo();
+
+  },
   methods: {
+    getAddressInfo(){
+      let addressid = this.$route.query.id
+      if(addressid){
+        getMemberAddressInfo(addressid).then(
+          response => {
+          },
+          error => {}
+        )
+      }
+    },
     onConfirmArea(values) {
       this.value = values.map(item => item.name).join("/");
       this.showArea = false;
     },
     save() {
-      Toast({
-        message: "保存成功",
-        icon: "passed"
-      });
+      let phone = this.phone
+      let name = this.name
+      let address = this.address
+      let isdefault = this.isdefault
+      let cityid = this.cityid
+      let areaid = this.areaid
+      console.log(name)
+      getMemberAddressAdd(name,cityid,areaid,address).then(
+        response => {
+          console.log(response)
+          Toast.fail(response.message)
+        },
+        error => {}
+      )
     },
     showAction(){
       this.show = true;
