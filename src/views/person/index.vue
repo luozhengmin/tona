@@ -170,7 +170,7 @@ export default {
           error => {}
         )
       }else{
-        this.user = $.cookies.get('user_info')
+        this.$router.push({'name': 'mima-login'})
       }
 
 

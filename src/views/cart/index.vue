@@ -6,7 +6,7 @@
           <router-link to="">编辑</router-link>
         </div>
         <div class="head-logo">
-          我的
+          购物车
         </div>
         <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
           <span></span>
@@ -58,15 +58,15 @@
       >自营商品单笔订单金额满88元可免邮费</van-notice-bar>
     </div>
     <div class="card-list">
-      <div class="product-card" v-for="i in 2" :key="i">
+      <div class="product-card" v-for="(cartItem, i) in cartList" :key="i">
         <div class="store">
-          <van-checkbox v-model="checked" checked-color="#f4523b">TONA官方旗舰店</van-checkbox>
+          <van-checkbox v-model="storechecked" :value="cartItem.store_id" checked-color="#f4523b">{{cartItem.store_name}}</van-checkbox>
         </div>
-        <div class="product" v-for="j in 2" :key="j">
-          <van-checkbox v-model="checked" checked-color="#f4523b"></van-checkbox>
-          <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
+        <div class="product" v-for="(item, index) in cartItem.goods" :key="index" >
+          <van-checkbox v-model="itemchecked" :value="item.cart_id" checked-color="#f4523b"></van-checkbox>
+          <van-card :thumb="item.goods_image_url">
             <template slot="title">
-              <div class="title">商品标题</div>
+              <div class="title">{{item.goods_name.slice(0,15)}}</div>
             </template>
             <template slot="desc">
               <div class="desc">颜色</div>
@@ -74,11 +74,11 @@
             </template>
             <template slot="price">
               <div class="price">
-                <span class="fuhao">￥</span>45.9
+                <span class="fuhao">￥</span>{{item.goods_price}}
               </div>
             </template>
             <template slot="num">
-              <van-stepper v-model="value" />
+              <van-stepper  :value="item.goods_num"/>
             </template>
           </van-card>
         </div>
@@ -129,15 +129,26 @@
 
 <script>
 import { Toast } from "vant";
+import { cartGet } from '../../api/memberCart'
 export default {
-  name: "",
+
   data() {
     return {
-      isActive:false,
+      cartList: [], // 购物车列表
+      itemchecked: true,
+      storechecked: true,
       checked: true,
+      isActive: false,
       value: 1,
-      edit: true
+      edit: true,
+      totalPrice: 0, // 购物车总价
+      cartId: '', // 购物车中选中的商品
+      totalAmount: 0, // 购物车数量
+
     };
+  },
+  created () {
+    this.getCartList(true)
   },
   methods: {
     onSubmit() {},
@@ -149,8 +160,71 @@ export default {
     },
     del() {
       Toast("所选商品已删除");
-    }
-  }
+    },
+    // 获取购物车列表
+    getCartList (value) {
+      cartGet().then(res => {
+        console.log(res)
+        if (res && res.result.cart_val.length > 0) {
+          this.cartList = Object.assign([], res.result.cart_val)
+          this.addChecked(value)
+          this.renderCart()
+        } else {
+          this.cartList = []
+          // this.getAmount(0)
+          // this.getPrice(0.0)
+        }
+        this.$parent.$emit('list-is-empty', this.cartList)
+      })
+    },
+    /*
+    	 * addChecked: 为每个商品添加checked 属性
+    	 * @param: isSelectedall 是否选中商品 Boolean
+    	 */
+    addChecked (isSelectedall) {
+      let temp = this.cartList
+      for (var j in temp) {
+        let list = temp[j].goods
+    	  let k = 0
+        for (var i in list) {
+          if (list[i].goods_storage == 0 && !this.isCheckedAll) {
+            list[i].checked = false
+    		  k++
+          } else {
+            list[i].checked = isSelectedall
+          }
+        }
+    	  temp[j].checked = (k == list.length) ? false : isSelectedall
+      }
+      this.cartList = Object.assign([], temp)
+    },
+    /*
+    	 *  renderCart: 修改商品数量和点击是否选中后 重新计算商品价格和数量
+    	 */
+    renderCart () {
+      let temp = this.cartList
+      this.promosIds = []
+      let cartGoods = []
+      let totalAmount = 0
+      let totalPrice = 0
+      for (var j in temp) {
+        let data = temp[j].goods
+        for (var i in data) {
+          if (data[i].checked) {
+            totalAmount += parseInt(data[i].goods_num)
+            totalPrice += parseInt(data[i].goods_num) * parseFloat(data[i].goods_price)
+            cartGoods.push(data[i].cart_id + '|' + data[i].goods_num)
+          }
+        }
+      }
+      this.cartId = cartGoods.toString()
+      this.totalPrice = totalPrice.toFixed(2)
+      this.totalAmount = totalAmount
+      this.$parent.$emit('calcu-cart-data', { totalPrice: this.totalPrice, totalAmount: this.totalAmount, cartId: this.cartId })
+    },
+  },
+
+
 };
 </script>
 
