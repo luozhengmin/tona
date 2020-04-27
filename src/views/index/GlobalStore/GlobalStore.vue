@@ -58,6 +58,7 @@
         </van-cell>
         <van-popup v-model="showArea" position="bottom" :style="{ height: '30%' }">
           <van-picker
+            v-if="pageShow"
             show-toolbar
             title="地址"
             :columns="columns"
@@ -146,7 +147,7 @@ export default {
         return {text:e.area_name}
       })
       // 默认展示二级的数据
-      this.columns[1].values = Object.values(res.area_list[0].child).map(function(e){
+      this.columns[1].values = Object.values(res.result.area_list[0].child).map(function(e){
         return {text:e.area_name}
       })
       this.$nextTick(function(){
@@ -168,38 +169,23 @@ export default {
     },
 
     onChange(picker, values,index) {
-      // 这里我有可能渲染的有问题，导致回调每次都修改了当前列，其他值没有修改，当前列？？（当前列什么鬼呀，什么垃圾啊？？？） 解释一下 ↓↓
-      // 因为vant的 van-picker 回调只会返回你修改的那一列，比如现在为 [北京，北京，东城区]，你修改了省为[天津市，天津市，和平区]，但是vant的change回调会得到[天津市,北京,东城区],后面两个在回调中没有修改，不知道我的渲染方法有问题还是什么问题。
-      // 所以我在这里判断change事件触发后，如果你修改了省份的话，回调里面省份会改变，但是市和区还是上一个省份的 市和区，这时我们执行回调修改省，市，区的时候，因为回调只有省改变了，市和区DOM改变了，但是回调里面没改变的问题（不晓得什么问题）,这时我们去找省下面的 市，我们取回调的市名称，如果在省下面没有找到这个市，默认展示第一个市，区也默认展示第一个市下面的区，如果遍历市能查到，就去展示对应的市。
+
       console.log(picker, values,index);
       // 回调时修改第2列数据
       picker.setColumnValues(1, this.cityDate(this.data,values[0].text));
     },
-    cityDate(data,province){
+    // 修改市 这里不再多说什么了根据自己的数据格式来
+    cityDate(data,province) {
       var that = this;
-      data.forEach(function(res){
-        if(res.area_list.area_name == province){
+      data.result.area_list.child.forEach(function (res) {
+        if (res.area_name == province) {
           console.log(res)
-          that.cityDates =  res;
+          that.cityDates = res;
         }
       });
-
-      return that.cityDates.area_list.child.map(function(res){
-        return {text:res.area_name};
+      return that.cityDates.result.area_list[0].child.map(function (res) {
+        return {text: res.area_name};
       })
-      // return 返回数据格式，因为我需要省市区code，所以我return的格式是对象,例:[{text:'北京市',code:'1'},{text:'河南省',code:'2'},...],如果你不需要code直接这样就可以 例['北京市','河南省',.....]
-    },
-    // 修改县 这里不再多说什么了根据自己的数据格式来
-    county(data,county){
-      var that = this;
-      var countyDate = '';
-      // 因为vant的 van-picker 回调只会返回你修改的那一列，比如现在为 [北京，北京，东城区]，你修改了省为[天津市，天津市，和平区]，但是vant的change回调会得到[天津市,北京,东城区],后面两个在回调中没有修改，不知道我的渲染方法有问题还是什么问题。
-      // 所以我在这里判断change事件触发后，如果你修改了省份的话，回调里面省份会改变，但是市和区还是上一个省份的 市和区，这时我们执行回调修改省，市，区的时候，因为回调只有省改变了，市和区DOM改变了，但是回调里面没改变的问题（不晓得什么问题）,这时我们去找省下面的 市，我们取回调的市名称，如果在省下面没有找到这个市，默认展示第一个市，区也默认展示第一个市下面的区，如果遍历市能查到，就去展示对应的市。
-      that.cityDates.area_list.child.forEach(function(res){
-        if(res.area_list.area_name == county){
-          countyDate =  res;
-        }
-      });
     },
 
 
