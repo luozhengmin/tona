@@ -3,7 +3,7 @@ import request from '@/utils/request'
 const baseUrl = '/api/design'
 
 const DesignApi = {}
-
+/*推荐设计*/
 DesignApi.list = (params) => {
   return request({
     url: `${baseUrl}/recommend_design`,
@@ -32,6 +32,22 @@ DesignApi.collect = (params) => {
     url: `/api/memberfavorites/favoritesfan`,
     data: params,
     method: 'post'
+  })
+}
+
+DesignApi.active = (params) => {
+  return request({
+    url: `${baseUrl}/zhuanti?page`,
+    params: params,
+    method: 'get'
+  })
+}
+
+DesignApi.activeDetail = (params) => {
+  return request({
+    url: `${baseUrl}/zhuanti_show?zhuanti_id=4`,
+    params: params,
+    method: 'get'
   })
 }
 export default DesignApi

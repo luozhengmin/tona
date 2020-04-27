@@ -61,12 +61,25 @@
 </template>
 
 <script>
+  import DesignApi from "@/api/DesignApi";
   export default {
     name: "ActivityDetail",
     data(){
       return{
         isActive: false,
       }
+    },
+    methods:{
+      getActiveDetail(id){
+        DesignApi.get(id).then(res=>{
+          this.activeInfo = res.result.active_info;
+          console.log(this.activeInfo)
+        })
+      },
+    },
+    created(){
+      let id = this.$route.query.id;
+      this.getActiveDetail(id)
     }
   }
 </script>

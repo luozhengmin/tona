@@ -2,11 +2,48 @@
   <div>
     <index-banner :banners="banners"></index-banner>
     <div class="sieve-list">
-      <van-dropdown-menu active-color="#f4523b">
-        <van-dropdown-item v-model="value1" :options="option1" title="排序"/>
-        <van-dropdown-item v-model="value2" :options="option2" title="风格"/>
-        <van-dropdown-item v-model="value3" :options="option3" title="面积"/>
-      </van-dropdown-menu>
+      <div class="sieve-item fix">
+        <ul class="sieve-nav ab fix">
+          <li v-for="(item,index) in tabsName" :key="item.id" @click="tabsSwitch(index)"
+              :class="{active:num === index}">
+            <a href="javascript:;">{{item.tabTitle}}<i class="fa fa-sort-desc"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="listItem fix">
+        <div class="tabCard fix">
+          <ul>
+            <li><a href="">默认</a></li>
+            <li><a href="">收藏数</a></li>
+            <li><a href="">浏览数</a></li>
+          </ul>
+        </div>
+        <div class="tabCard fix">
+          <ul>
+            <li><a href="">不限</a></li>
+            <li><a href="">现代风格</a></li>
+            <li><a href="">新中式</a></li>
+            <li><a href="">北欧</a></li>
+            <li><a href="">简欧</a></li>
+            <li><a href="">日式</a></li>
+            <li><a href="">地中海</a></li>
+            <li><a href="">田园</a></li>
+            <li><a href="">美式</a></li>
+            <li><a href="">简美</a></li>
+            <li><a href="">混搭</a></li>
+          </ul>
+        </div>
+        <div class="tabCard fix">
+          <ul>
+            <li><a href="">不限</a></li>
+            <li><a href="">50-80m²</a></li>
+            <li><a href="">80-100m²</a></li>
+            <li><a href="">100-130m²</a></li>
+            <li><a href="">130m²及以上</a></li>
+          </ul>
+        </div>
+      </div>
+
     </div>
     <div class="list">
       <van-row>
@@ -59,37 +96,14 @@
     },
     data(){
       return{
-        overlay:false,
-        value1: 0,
-        value2: 'a',
-        value3: 'A',
-        option1: [
-          { text: '默认', value: 0 },
-          { text: '收藏数', value: 1 },
-          { text: '浏览数', value: 2 }
+        active:false,
+        num:'',
+        banners:[],
+        tabsName:[
+          {tabTitle:'排序',active:false,},
+          {tabTitle:'风格',active:false,},
+          {tabTitle:'面积',active:false,},
         ],
-        option2: [
-          { text: '不限', value: 'a' },
-          { text: '现代风格', value: 'b' },
-          { text: '新中式', value: 'c' },
-          { text: '北欧', value: 'd' },
-          { text: '欧式', value: 'e' },
-          { text: '简欧', value: 'f' },
-          { text: '日式', value: 'g' },
-          { text: '地中海', value: 'h' },
-          { text: '田园', value: 'i' },
-          { text: '美式', value: 'j' },
-          { text: '简美', value: 'k' },
-          { text: '混搭', value: 'l' },
-        ],
-        option3: [
-          { text: '不限', value: 'A' },
-          { text: '50-80m²', value: 'B' },
-          { text: '80-100m²', value: 'C' },
-          { text: '80-130m²', value: 'D' },
-          { text: '130m以上', value: 'E' },
-        ],
-        banners:[]
       }
     },
     methods:{
@@ -98,18 +112,23 @@
           let banners = res.result.banners;
           this.banners = banners;
         });
-      }
+      },
+      tabsSwitch: function(tabIndex) {
+        var tabCardCollection = document.querySelectorAll(".tabCard"),
+          len = tabCardCollection.length;
+        for(var i = 0; i < len; i++) {
+          tabCardCollection[i].style.display = "none";
+          this.tabsName[i].active = false;
+        }
+        this.tabsName[tabIndex].active = true;
+        tabCardCollection[tabIndex].style.display = "block";
+        this.num = tabIndex;
+      },
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .sieve-list{
-    padding:0 15px;
-    .van-dropdown-menu{
-      background-color:#f7f7f7;
-    }
-  }
   .list {
     height: 100%;
     padding:10px 15px 0 15px;

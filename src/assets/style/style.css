@@ -130,8 +130,6 @@ select{font-size: 100%;margin: 0;outline: none;}
 .s-nav li.active{border-bottom:solid 3px #f4523b;}
 .s-nav li.active a{color:#f4523b;}
 
-.tabCard{display:none;}
-.tabCard:nth-child(1){display:block;}
 .s-search .fa-search{color:#b7b7b7;}
 /*品牌馆滑动*/
 .classify-list .swiper-slide{text-align:center;}
@@ -217,17 +215,23 @@ select{font-size: 100%;margin: 0;outline: none;}
 .design-tab .van-tabs__nav--line{padding-bottom:0;}
 .design-tab .van-tab i{margin-left:1px;vertical-align:-1px;color:#f4523b;}
 /*设计方案筛选*/
-.sieve-list .van-popup{background-color:#eee;padding:12px 8px;}
-.sieve-list .van-cell__value{display:none;}
-.sieve-list .van-cell{width:25%;background-color:inherit;float:left;padding:6px 4px;text-align:center;color:#888;}
-.sieve-list .van-cell .van-cell__title{padding:2px 0;}
-.sieve-list .van-cell:first-child .van-cell__title{background-color:#fff;border-radius:25px;}
+.sieve-list{padding:0 15px;}
+.sieve-item{background-color:#f7f7f7;padding:8px 8px;position:relative;}
+.sieve-list .listItem{position:absolute;left:4%;width:92%;}
+.sieve-nav li{padding:0 6px;width:33.33333%;}
+.sieve-nav li a{height:36px;line-height:36px;position:relative;font-size:15px;color: #888;display:block;text-align:center;}
+.sieve-nav li a i{margin-left:5px;vertical-align:3px;}
+.sieve-nav li.active a{color:#323232;}
+.sieve-nav li.active a i{-webkit-transform:rotate(-180deg);transform:rotate(-180deg);vertical-align:-3px;}
+.tabCard{display:none;}
+/*.tabCard:nth-child(1){display:block;}*/
+.tabCard{padding:12px 12px;background-color:#eee;}
+.tabCard a{font-size:14px;color:#888;display:block;}
+.tabCard > ul{align-items:center;flex-wrap: wrap;}
+.tabCard > ul > li{padding:0 3px;width:25%;margin:6px 0;text-align:center;height:28px;line-height:28px;float:left;}
+.tabCard > ul > li:first-child{background-color:#fff;border-radius:25px;}
+.tabCard:last-child > ul > li{width:33.33333%;}
 
-.s-select .van-tab{color:#888;}
-.s-select .van-tab--active{color:#f4523b;}
-.s-select .van-tab__text i{vertical-align:4px;padding-left:3px;}
-.s-select .van-tab:nth-child(4) .van-tab__text i{vertical-align:-3px;}
-.s-select .van-tabs__line{border-radius:0;}
 /*底部高度*/
 .common-footer-wrap{height:50px;}
 .common-footer-wrap .van-info{top:6px;right:-9px;}

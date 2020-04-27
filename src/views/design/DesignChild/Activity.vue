@@ -3,18 +3,18 @@
       <index-banner :banners="banners"></index-banner>
       <div class="activity-list">
         <van-row>
-          <van-col v-for="i in 4 " :key="i">
-            <a href=""><img src="../../../assets/image/cp04.jpg"></a>
+          <van-col v-for="(item,index) in activeList " :key="index">
+            <router-link :to="{name:'ActivityDetail',query:{id:item.zhuanti_id}}"><img :src="item.zhuanti_image"></router-link>
             <div class="main ab">
               <div class="infor-l ac">
-                <h2>优秀设计发方案活动</h2>
+                <h2><router-link :to="{name:'ActivityDetail',query:{id:item.zhuanti_id}}">{{item.zhuanti_name}}</router-link></h2>
                 <div class="-t">
-                  <span class="ab"><van-icon name="clock-o" />活动时间：2020.01.15-02.03</span>
+                  <span class="ab"><van-icon name="clock-o" />活动时间：{{item.zhuanti_start_time}}-{{item.zhuanti_end_time}}</span>
                 </div>
               </div>
               <div class="infor-r">
                 <i class="iconfont">&#xe629;</i>
-                <span class="ab">参与人数<span>15402</span></span>
+                <!--<span class="ab">参与人数<span>15402</span></span>-->
               </div>
             </div>
           </van-col>
@@ -26,15 +26,18 @@
 <script>
   import IndexBanner from "../../index/IndexBanner";
   import axios from "@/utils/request";
+  import DesignApi from "@/api/DesignApi";
   export default {
     components: {IndexBanner},
     name: "Activity",
     created() {
       this.getBanners();
+      this.getDesign();
     },
     data(){
       return{
-        banners:[]
+        banners:[],
+        activeList:[]
       }
     },
     methods:{
@@ -42,6 +45,13 @@
         axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
           let banners = res.result.banners;
           this.banners = banners;
+        });
+      },
+      getDesign() {
+        DesignApi.active().then(res => {
+          this.activeList = res.result.list;
+        }).catch((error)=>{
+          console.log("error")
         });
       }
     }
