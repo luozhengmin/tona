@@ -20,4 +20,12 @@ GlobalStoreApi.list = (params) => {
   })
 }
 
+GlobalStoreApi.yuyue = (params) => {
+  return request({
+    url: `${baseUrl}/mendian_list`,
+    data: params,
+    method: 'post'
+  })
+}
+
 export default GlobalStoreApi

@@ -51,19 +51,18 @@
       <div class="global-choose">
         <van-cell title="TONA 门店" is-link @click="showArea = true">
           <template #default>
-            <span class="custom-title">上海</span>
+            <span class="custom-title">{{selectedAddress[0]}}</span>
             <span class="line"></span>
-            <span class="custom-title">上海市</span>
+            <span class="custom-title">{{selectedAddress[1]}}</span>
           </template>
         </van-cell>
         <van-popup v-model="showArea" position="bottom" :style="{ height: '30%' }">
           <van-picker
-            v-if="pageShow"
             show-toolbar
             title="地址"
-            :columns="columns"
+            value-key="area_name"
+            :columns="areaList"
             @confirm="onConfirm"
-            @change="onChange"
             @cancel="showArea = false"
           />
         </van-popup>
@@ -100,7 +99,10 @@
                 <img :src="item.mendian_pic" />
               </div>
               <div class="add-btn">
-                <van-button type="info" @click="MakeStore">预约到店</van-button>
+                <van-button
+                  type="info"
+                  @click="$router.push('/MakeStore?mendian_id=' + item.mendian_id+'&mendian_name='+ item.mendian_name)"
+                >预约到店</van-button>
               </div>
             </div>
           </van-collapse-item>
@@ -121,43 +123,14 @@ export default {
       activeName: "",
       value: "",
       list: [],
-      showArea: false,
-      columns: [
-        {
-          values: '',
-          className: 'column1'
-        },
-        {
-          values: '',
-          className: 'column2',
-          defaultIndex: 0
-        },
-      ],
-      pageShow:false, //省市区三级联动是否显示（因为是接口返回的数据，等省市区数据渲染完毕之后，在显示三级联动）
-      cityDates:'', //联动当前选中市的所有区所有数据
-      data:'',//接口返回所有省市区数据
+      areaList: [],
+      selectedAddress: ["全国", "所有门店"],
+      showArea: false
     };
   },
-  beforeCreate(){
-    // 接口请求数据
-      GlobalStoreApi.city().then(res => {
-        this.list = res.result.area_list;
-      // 默认展示一级的数据
-      this.columns[0].values = Object.values(res.result.area_list).map(function(e){
-        return {text:e.area_name}
-      })
-      // 默认展示二级的数据
-      this.columns[1].values = Object.values(res.result.area_list[0].child).map(function(e){
-        return {text:e.area_name}
-      })
-      this.$nextTick(function(){
-        this.pageShow = true;
-      })
-    });
-  },
-
 
   created() {
+    this.getAddressList();
     this.getList();
   },
 
@@ -167,33 +140,19 @@ export default {
         this.list = res.result.mendian_list;
       });
     },
-
-    onChange(picker, values,index) {
-
-      console.log(picker, values,index);
-      // 回调时修改第2列数据
-      picker.setColumnValues(1, this.cityDate(this.data,values[0].text));
-    },
-    // 修改市 这里不再多说什么了根据自己的数据格式来
-    cityDate(data,province) {
-      var that = this;
-      data.result.area_list.child.forEach(function (res) {
-        if (res.area_name == province) {
-          console.log(res)
-          that.cityDates = res;
-        }
+    getAddressList() {
+      GlobalStoreApi.city().then(res => {
+        this.areaList = res.result.area_list;
+        this.areaList.map(p => {
+          p.children = p.child;
+        });
       });
-      return that.cityDates.result.area_list[0].child.map(function (res) {
-        return {text: res.area_name};
-      })
     },
 
-
-    onConfirm(val){
-      console.log(val)
-    },
-    MakeStore() {
-      this.$router.push({ name: "MakeStore" });
+    onConfirm(val, index) {
+      this.selectedAddress = val;
+      this.showArea = false;
+      this.getList();
     }
   }
 };
