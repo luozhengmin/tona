@@ -27,7 +27,7 @@
             <i class="iconfont">&#xe64a;</i>
           </template>
         </van-cell>
-        <van-cell value="8" is-link center label="秒杀专区暂时下线公告" to="/information/system">
+        <van-cell :value="messageInfo.sys_message" is-link center label="秒杀专区暂时下线公告" to="/information/system">
           <template #title>
             <span class="custom-title">系统消息</span>
           </template>
@@ -35,7 +35,7 @@
             <i class="iconfont">&#xe6cb;</i>
           </template>
         </van-cell>
-        <van-cell value="8" is-link center label="您有一条客户留言" to="/information/private">
+        <van-cell :value="messageInfo.per_message" is-link center label="您有一条客户留言" to="/information/private">
           <template #title>
             <span class="custom-title">私信</span>
           </template>
@@ -47,14 +47,33 @@
     </div>
 </template>
 
+
 <script>
+  import { getMessageisreadList } from '../../../api/memberMessage'
   export default {
-    name: "",
+    name: "message",
     data(){
       return{
-
+        messageInfo:[],
       }
+    },
+    created() {
+      this.getMessageList()
+    },
+    methods: {
+        getMessageList(){
+          getMessageisreadList().then(
+            response => {
+              console.log(response)
+              this.messageInfo = response.result
+            },
+            error => {
+
+            }
+          )
+        }
     }
+
   }
 </script>
 

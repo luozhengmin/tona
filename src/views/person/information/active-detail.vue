@@ -12,14 +12,12 @@
       </div>
       <div class="active-detail wrap fix">
         <div class="detail-title">
-          <h2>秒杀专区暂时下线公告</h2>
-          <time>2017年5月5日 10:00</time>
+          <h2>{{activeData.zhuanti_name}}</h2>
+          <time>{{activeData.zhuanti_start_time}}</time>
         </div>
 
         <div class="detail-con">
-          <p>尊敬的用户，为了给您带来更好的体验，秒杀专区业务将于2017年4月26日22：00-2017年4月27日09:00期间进行系统升级，升
-            级期间秒杀专区入口将暂时下线。升级后可正常充值和查看充值记录，请有需要的用户提前充值或者在系统升级后再充值。给您带
-            来的不便，敬请谅解。感谢您一如既往的支持。</p>
+          <p>{{activeData.zhuanti_content}}</p>
         </div>
 
       </div>
@@ -27,12 +25,40 @@
 </template>
 
 <script>
+  import { getMemberActiveDetail } from '../../../api/memberMessage'
   export default {
-    name: "active-detail",
+    name: "active_detail",
+    data(){
+      return{
+        activeData:[],
+        hd_id: '',
+        hasmore:false,
+
+      }
+    },
+    created() {
+       this.getActiveDetail()
+    },
+    mounted(){
+
+    },
+    methods: {
+        getActiveDetail(){
+          this.hd_id = this.$route.query.id
+          getMemberActiveDetail(this.hd_id).then(
+            response => {
+              console.log(response)
+              this.activeData = response.result
+            },
+            error => {
+
+            }
+          )
+        }
+    }
 
   }
 </script>
-
 <style lang="scss" scoped>
   .active-detail{
     .detail-title{
