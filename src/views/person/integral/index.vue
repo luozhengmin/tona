@@ -25,9 +25,9 @@
       <router-link to="/integral/list"><span>更多</span></router-link>
     </div>
     <div class="list">
-      <van-cell v-for="i in 5" :key="i" title="完成每日登录" size="large" label="2020-02-02 20:20">
+      <van-cell v-for="(itemscore,i) in scoreList" :key="i" :title="itemscore.pl_desc" size="large" :label="itemscore.addtimetext">
         <template>
-          <span class="value">+5</span>
+          <span class="value">+{{itemscore.pl_points}}</span>
         </template>
       </van-cell>
     </div>
@@ -36,14 +36,31 @@
 
 <script>
 import { Toast } from "vant";
+import { getMemberScoreList } from '../../../api/memberInfo'
 export default {
   name: "",
   data() {
     return {
-      active: 2
+      active: 2,
+      scoreList: [],
+      page:1,
+      mx:0
     };
   },
-  methods: {}
+  created: function () {
+
+      getMemberScoreList(this.page,this.mx).then(
+        response => {
+          console.log(response)
+          this.scoreList = response.result.log_list
+        },
+        error => {}
+      )
+
+  },
+  methods: {
+
+  }
 };
 </script>
 

@@ -8,7 +8,7 @@
         <div class="head-logo">
           浏览足迹
         </div>
-        <div class="p-btn" @click="showAction">
+        <div class="p-btn" @click="showAction" v-if="list.length!=0">
           <router-link to="">清空</router-link>
         </div>
       </div>
@@ -18,22 +18,22 @@
         <div>
           <img src="../../../assets/image/empty-1.png" />
         </div>
-        <div>对不起，您还没有收藏商品哦！</div>
+        <div>对不起，您还没有浏览商品哦！</div>
       </div>
       <div class="list">
         <van-row gutter="15">
-          <div class="date-item"  v-for="j in 3 " :key="j">
-            <div class="date">03月5日</div>
-            <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
+          <div class="date-item"  v-for="(itemfoot,j) in list" :key="j">
+            <div class="date">{{itemfoot.browsetime_day}}</div>
+            <van-col span="12" style="margin-bottom:15px" v-for="(itemchild,i) in itemfoot.child" :key="i">
               <div class="prod">
-                <div>
-                  <img src="../../../assets/image/prod-2.jpg" />
+                <div @click="toProductDetail(itemchild.goods_id)">
+                  <img :src="itemchild.goods_image_url" />
                 </div>
-                <div class="title">欧式悬挂式浴室柜</div>
-                <div class="desc">45度角双抽拉手设计</div>
+                <div class="title">{{itemchild.goods_name}}</div>
+                <div class="desc">{{itemchild.goods_name}}</div>
                 <div class="bottom">
                   <div>
-                    <span class="fuhao">￥</span>2580.00
+                    <span class="fuhao">￥</span>{{itemchild.goods_promotion_price}}
                   </div>
                 </div>
               </div>
@@ -45,7 +45,7 @@
     <van-popup v-model="show" position="bottom" :style="{ height: '24%' }" class="track">
       <div class="track-confirm">
         <p>确定要清空浏览足迹吗？</p>
-        <h2>确定</h2>
+        <h2 @click="toClearbrowse">确定</h2>
       </div>
       <div class="track-cancel" @click="onCancel">
         取消
@@ -55,13 +55,25 @@
 </template>
 
 <script>
+  import { getMemberbrowseList,setMemberbrowseClear } from '../../../api/memberInfo'
+  import { stringInterception } from '../../../utils/common'
+  import { Toast } from "vant";
   export default {
-    data() {
-      return {
+    name: "private",
+    data(){
+      return{
+        messageList : [],
+        page : 1,
+        perpage : 10,
         show: false,
         active: 0,
         list: [{}],
-      };
+      }
+    },
+    created: function () {
+        //获取浏览足迹
+
+        this.getBrowseList()
     },
     methods: {
       showAction(){
@@ -70,8 +82,51 @@
       onCancel() {
         this.show = false;
       },
+      toClearbrowse() { //清空足迹
+
+        setMemberbrowseClear().then(
+          response => {
+            if(response.code == 10000 && response.result == 1){
+              Toast.success('清除成功')
+              this.getBrowseList()
+              this.show = false
+            }else{
+              Toast.fail('清除失败')
+              return
+            }
+
+          },
+          error => {}
+        )
+      },
+
+      getBrowseList(){
+        getMemberbrowseList().then(
+          response => {
+            let dataInfo = {};
+            response.result.goodsbrowse_list.forEach((item, index) => {
+              item.goods_name = stringInterception(item.goods_name,10)
+              let { browsetime_day } = item
+              if (!dataInfo[browsetime_day]) {
+                dataInfo[browsetime_day] = {
+                  browsetime_day,
+                  child: []
+                }
+              }
+              dataInfo[browsetime_day].child.push(item);
+            });
+            this.list = Object.values(dataInfo)
+
+          },
+          error => {}
+        )
+      },
+      // 商品详情页
+      toProductDetail(id) {
+        this.$router.push({ name: 'ProductDetail', query: { id : id }})
+      }
     },
-  };
+  }
 </script>
 
 <style lang="scss" scoped>
