@@ -12,12 +12,12 @@
       </div>
       <div class="detail-banner">
         <van-swipe @change="onChange" :autoplay="3000">
-          <van-swipe-item v-for="(itemimage, index) in images" :key="index">
+          <van-swipe-item v-for="(itemimage, index) in goodsimages" :key="index">
             <img :src="itemimage.imgUrl" width="100%">
           </van-swipe-item>
           <template #indicator>
             <div class="custom-indicator">
-              {{ current + 1 }}/{{images.length}}
+              {{ current + 1 }}/{{goodsimages.length}}
             </div>
           </template>
         </van-swipe>
@@ -223,20 +223,19 @@
       this.getGoodsDetail()
     },
     methods: {
-      getGoodsDetail(){
+      getGoodsDetail(){  //获取商品详情
         getGoodsDetail(this.goodsid).then(
           response => {
 
-            console.log(response.result)
 
             this.evaluateinfo = response.result.goods_evaluate_info
             this.evalList = response.result.goods_eval_list
             this.goodsinfo = response.result.goods_info
             this.goodsinfo.shortname = stringInterception(this.goodsinfo.goods_name,9)
 
-            response.result.goods_image.split(',').map((item, index)=>{
-              this.images[index].id = index
-              this.images[index].imgUrl = item
+            
+            this.goodsimages = response.result.goods_image.split(',').map((item, index)=>{
+              return { id: index, imgUrl: item }
             })
 
           },

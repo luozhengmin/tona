@@ -153,3 +153,52 @@ export const getMemberFangctlist =
     method: 'GET'
   })
 }
+
+// 获取用户积分
+export const getMemberScoreList =
+(page,mx) => {
+
+ return request({
+    url: `/api/Memberpoints/pointslog`,
+    headers: {
+       'X-DS-KEY':$cookies.get('token'),
+    },
+    params: {
+      'page':page,
+      'mx': mx
+    },
+    method: 'GET'
+  })
+}
+
+//获取用户浏览记录
+export const getMemberbrowseList =
+(page,mx) => {
+
+ return request({
+    url: `/api/membergoodsbrowse/browse_list`,
+    headers: {
+       'X-DS-KEY':$cookies.get('token'),
+    },
+    params: {
+      'page':page,
+      'mx': mx
+    },
+    method: 'GET'
+  })
+}
+
+export const setMemberbrowseClear =
+() => {
+
+ return request({
+    url: `/api/membergoodsbrowse/browse_clearall`,
+    headers: {
+       'X-DS-KEY':$cookies.get('token'),
+    },
+    params: {
+      
+    },
+    method: 'GET'
+  })
+}

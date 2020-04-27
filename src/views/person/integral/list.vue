@@ -13,17 +13,17 @@
         </div>
       </div>
     </div>
-    <div v-for="i in 3" :key="i">
+    <div v-for="(itemlist,i) in scoreList" :key="i">
       <div class="title">
         <span>
-         <i class="iconfont" aria-hidden="true">&#xe64d;</i> 2019年1月
+         <i class="iconfont" aria-hidden="true">&#xe64d;</i> {{i}}
         </span>
         <span>获得：500</span>
       </div>
       <div class="list">
-        <van-cell v-for="j in 5" :key="j" title="完成每日登录" size="large" label="2020-02-02 20:20">
+        <van-cell v-for="(childlist,j) in itemlist" :key="j" :title="childlist.stagetext" size="large" :label="childlist.addtimetext">
           <template>
-            <span class="value">+5</span>
+            <span class="value">+{{childlist.pl_points}}</span>
           </template>
         </van-cell>
       </div>
@@ -33,14 +33,31 @@
 
 <script>
 import { Toast } from "vant";
+import { getMemberScoreList } from '../../../api/memberInfo'
 export default {
   name: "",
   data() {
     return {
-      active: 2
+      active: 2,
+      scoreList: [],
+      page:1,
+      mx:1
     };
   },
-  methods: {}
+  created: function () {
+
+      getMemberScoreList(this.page,this.mx).then(
+        response => {
+          console.log(response)
+          this.scoreList = response.result.log_list
+        },
+        error => {}
+      )
+
+  },
+  methods: {
+
+  }
 };
 </script>
 

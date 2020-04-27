@@ -6,14 +6,14 @@
           <van-icon name="arrow-left" @click="$router.go(-1)"/>
         </div>
         <div class="head-logo">
-          帮助详情
+          {{title}}
         </div>
       </div>
     </div>
     <div class="q-list">
-      <div class="item" v-for="i in 5" :key="i">
-        <h3>Q：你们的商品是正品么？</h3>
-        <div>A：TONA HOME所售商品都是正品，和专卖店销售的一样，请您放心~</div>
+      <div class="item" v-for="(itemdetail,i) in ArticleData" :key="i">
+        <!-- <h3>{{title}}</h3> -->
+        <div v-html="itemdetail.article_content"></div>
       </div>
     </div>
   </div>
@@ -21,27 +21,33 @@
 
 
 <script>
-  import { getArticleinfo  } from '../../api/Articleclass'
+  import { getArticleinfo,getHelpCenter  } from '../../api/Articleclass'
   export default {
     name:'',
     data(){
       return{
         ArticleData:[],
-        article_id : ''
+        article_id : '',
+        title: '',
+        message: ''
       }
     },
     created: function () {
         this.article_id = this.$route.query.id
         console.log(this.article_id);
-        getArticleinfo(this.article_id).then(
+        getHelpCenter(this.article_id).then(
           response => {
             console.log(response)
-
+            this.ArticleData = response.result.article_list
+            this.title = response.result.article_type_name
           },
           error => {}
         )
 
     },
+    mounted:function(){
+      
+    }
   };
 </script>
 
