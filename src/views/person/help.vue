@@ -22,28 +22,34 @@
       </div>
     </div>
     <div class="q-title">问题分类</div>
-    <div class="q-list">
-      <van-cell title="常见问题" is-link to="/help-detail"/>
-      <van-cell title="配送问题" is-link />
-      <van-cell title="售后问题" is-link />
-      <van-cell title="优惠问题" is-link />
-      <van-cell title="秒杀问题" is-link />
-      <van-cell title="支付问题" is-link />
-      <van-cell title="优币问题" is-link />
-      <van-cell title="会员问题" is-link />
-      <van-cell title="活动问题" is-link />
-      <van-cell title="其他问题" is-link />
+    <div class="q-list" v-for="(itemhelp, i) in helpList" :key="i">
+      <van-cell :title="itemhelp.article_title"  is-link :to="{path:'/help-detail',query: {id: itemhelp.ac_id}}" />
     </div>
   </div>
 </template>
 
 <script>
+  import { getHelpCenter  } from '../../api/Articleclass'
   export default {
     name:'',
     data(){
       return{
+        helpList:[],
+        ac_id : 2
       }
-    }
+    },
+    created: function () {
+
+        getHelpCenter(this.ac_id).then(
+          response => {
+            console.log(response.result.article_list)
+            this.helpList = response.result.article_list
+
+          },
+          error => {}
+        )
+
+    },
   };
 </script>
 

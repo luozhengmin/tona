@@ -1,6 +1,22 @@
 import request from '@/utils/request'
 
-// 获取用户购物车信息
+
+// 获取用户购物车商品数量
+export const cartNumGet =
+() => {
+ return request({
+    url: `/api/Membercart/cart_count`,
+    headers: {
+       'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+    },
+    params: {
+
+    },
+    method: 'POST'
+  })
+}
+
+// 获取用户购物车商品信息
 export const cartGet =
 () => {
  return request({
@@ -47,5 +63,3 @@ export const getGuesslike =
     method: 'POST'
   })
 }
-
-

@@ -3,6 +3,7 @@ import request from '@/utils/request'
 const loginUrl = '/api/Login/index'
 const wechatUrl = '/api/Wxauto/login'
 
+// 密码登录
 export const login =
 (userName, password) => {
  return request({
@@ -15,6 +16,7 @@ export const login =
     method: 'post'
   })
 }
+// 微信登录
 export const wechatLogin =
 (ref, inviterId) => {
  return request({
@@ -24,5 +26,19 @@ export const wechatLogin =
       'inviter_id': inviterId
     },
     method: 'get'
+  })
+}
+
+// 验证码登录
+export const yzmlogin =
+(userName, password) => {
+ return request({
+    url: `${loginUrl}`,
+    params: {
+      'username': userName,
+      'password': password,
+      'client_type': 'wap',
+    },
+    method: 'post'
   })
 }
