@@ -12,21 +12,20 @@
       </div>
       <div class="message">
         <van-tabs v-model="active" color="#f4523b">
-            <div class="message-list" v-for="(itemeva,i) in evaluateList" :key="i">
+            <div class="message-list" v-for="(itemeval,i) in evaluateList" :key="i">
               <div class="list-item ab fix">
                 <div class="m-head">
-                  <img src="../../assets/image/xq01.jpg"/>
+                  <img :src="itemeval.member_avatar"/>
                 </div>
                 <div class="m-title ac">
-                  <h2>小小少年</h2>
+                  <h2>{{itemeval.geval_frommembername}}</h2>
                   <p><span>颜色分类：</span>900mm盆柜+880mm铝镜柜</p>
                 </div>
                 <div class="m-date">
                   2020-03-06  19:56
                 </div>
               </div>
-              <p>柜子整体设计风格很喜欢，家里简约风格设计，所以整体很搭，下边抽屉设计的很合理非常喜欢，里面套有小抽屉，这样针对平时
-                不经常使用的物品可以放到里面柜子，也比较安全！非常喜欢，客服人员非常有耐心！售后也非常到位！</p>
+              <p>{{itemeval.geval_content}}</p>
 
               <van-row gutter="5">
                 <van-col span="8" v-for="i in 4" :key="i">

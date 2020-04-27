@@ -31,18 +31,29 @@
 </template>
 
 <script>
+  import { getMemberMessageList } from '../../../api/memberMessage'
   export default {
     name: "system",
     data(){
       return{
         systemList:[
-          {id:1,},
-          {id:2,},
-          {id:3,},
-          {id:4,}
         ]
       }
+    },
+    created() {
+      this.getSystemList()
+    },
+    methods: {
+        getSystemList(){
+          getMemberMessageList().then(
+            response => {
+              this.systemList = response.result.notice_list
+            },
+            error => {}
+          )
+        }
     }
+
   }
 </script>
 

@@ -186,7 +186,6 @@ export default {
           o.text = o.value;
           return o;
         });
-        console.log(this.items)
         this.items.unshift({ text: "推荐" });
       });
     },

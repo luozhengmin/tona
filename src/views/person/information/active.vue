@@ -11,20 +11,20 @@
         </div>
       </div>
       <div class="active-list fix">
-        <div class="active-item" v-for="(item,index) in activeList" :key="index">
-          <time>今天 10:00</time>
+        <div class="active-item" v-for="(itemactive,index) in activeList" :key="index">
+          <time>{{itemactive.zhuanti_start_time}}</time>
           <div class="active-main">
             <div class="title ab">
-              <h2 class="ac">你的地球日优惠福利来啦</h2>
-              <van-tag round>进行中</van-tag>
+              <h2 class="ac">{{itemactive.zhuanti_name}}</h2>
+              <van-tag round>{{itemactive.status_str}}</van-tag>
             </div>
             <div class="pic">
-              <img src="../../../assets/image/cp01.jpg"/>
+              <img :src="itemactive.zhuanti_image"/>
             </div>
-            <p>部分绿色环保商品限时免单，饮食、居家类目等满减。福利天天有！最高直减160元，赶紧来看看吧！</p>
+            <p>{{itemactive.zhuanti_describe}}</p>
           </div>
           <div class="active-link">
-            <router-link class="ab" :to="{name:'information-active-detail',query:{id:item.id}}">
+            <router-link class="ab" :to="{name:'information-active-detail',query:{id:itemactive.zhuanti_id}}">
               <span class="ac">查看详情</span><van-icon name="arrow" />
             </router-link>
           </div>
@@ -34,18 +34,34 @@
 </template>
 
 <script>
+  import { getMemberMessageList,getMemberActiveList } from '../../../api/memberMessage'
   export default {
-    name: "",
+    name: "active",
     data(){
       return{
         activeList:[
-          {id:1,},
-          {id:2,},
-          {id:3,},
-          {id:4,}
-        ]
+        ],
+        hasmore:false,
+
       }
+    },
+    created() {
+      this.getActiveList()
+    },
+    methods: {
+        getActiveList(){
+          getMemberActiveList().then(
+            response => {
+              this.activeList = response.result.list
+              console.log(response)
+            },
+            error => {
+              
+            }
+          )
+        }
     }
+
   }
 </script>
 

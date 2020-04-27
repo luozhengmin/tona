@@ -165,15 +165,14 @@
           </template>
         </van-cell>
         <div class="remark-list">
-          <div class="list-item" v-for="(itemeval,e) in evalList" :key="">
+          <div class="list-item" v-for="(itemeval,e) in evalList" :key="e">
             <div class="item ab fix">
               <div class="r-pic">
                 <img src="../../assets/image/xq01.jpg">
               </div>
-              <h2>love 雨欣</h2>
+              <h2>{{itemeval.geval_frommembername}}</h2>
             </div>
-            <p>洗手台太高大上了，洗手盆表面光滑，设计美观，整体色
-              彩很完美……</p>
+            <p>{{itemeval.geval_content}}</p>
           </div>
 
         </div>
@@ -182,10 +181,10 @@
       <div class="detail-cart fix">
         <van-goods-action>
           <van-goods-action-icon icon="service-o"/>
-          <van-goods-action-icon icon="shopping-cart-o" badge="5" />
+          <van-goods-action-icon icon="shopping-cart-o" :badge="carNum==0?'':carNum" @click="$router.push({ name: 'cart'})"/>
           <van-goods-action-icon icon="star-o" />
-          <van-goods-action-button type="warning" color="#323232" text="加入购物车" />
-          <van-goods-action-button type="danger" color="#f4523b" text="立即购买" />
+          <van-goods-action-button type="warning" color="#323232" text="加入购物车" @click="onAddCartClicked"/>
+          <van-goods-action-button type="danger" color="#f4523b" @click="onBuyClicked" text="立即购买" />
         </van-goods-action>
       </div>
     </div>
@@ -195,6 +194,8 @@
   import { skuData, initialSku } from './data';
   import { stringInterception } from  '../../utils/common'
   import { getGoodsDetail } from '../../api/GoodsLists'
+  import { cartNumGet,setGoodsInCart } from '../../api/memberCart'
+  import { Toast } from 'vant'
   export default {
     name: "ProductDetail",
     data() {
@@ -211,37 +212,49 @@
         showSoldout: false,
         closeOnClickOverlay: true,
         goodsid: '',
-        goodsinfo: [], //商品基础信息
+        goodsinfo: [],    //商品基础信息
         evaluateinfo: [], //商品评论
-        evalList:[{}], //商品评论列表
-        goodsimages: [] //商品图片集
+        evalList:[{}],    //商品评论列表
+        goodsimages: [],   //商品图片集
+        carNum: ''         //获取购物车数量
       };
 
     },
     created(){
       this.goodsid = this.$route.query.id
       this.getGoodsDetail()
+      this.getCarNum()
     },
     methods: {
-      getGoodsDetail(){  //获取商品详情
+
+      getGoodsDetail(){     //获取商品详情
+
         getGoodsDetail(this.goodsid).then(
           response => {
-
-
-            this.evaluateinfo = response.result.goods_evaluate_info
-            this.evalList = response.result.goods_eval_list
-            this.goodsinfo = response.result.goods_info
+            this.evaluateinfo = response.result.goods_evaluate_info  //全部评论信息 （好评，差评等）
+            this.evalList = response.result.goods_eval_list   //商品评论列表
+            this.goodsinfo = response.result.goods_info    //产品基础信息
             this.goodsinfo.shortname = stringInterception(this.goodsinfo.goods_name,9)
-
-            
-            this.goodsimages = response.result.goods_image.split(',').map((item, index)=>{
+            this.goodsimages = response.result.goods_image.split(',').map((item, index)=>{  //格式化图片集
               return { id: index, imgUrl: item }
             })
 
+            console.log(this.evalList)
           },
           error => {
             Toast(error.message)
           }
+        )
+      },
+
+      getCarNum() {  //获取购物车商品数量
+        cartNumGet().then(
+          response => {
+
+            this.carNum = response.result.cart_count
+
+          },
+          error => {}
         )
       },
 
@@ -256,9 +269,25 @@
         this.$toast('buy:' + JSON.stringify(data));
       },
 
-      onAddCartClicked(data) {
-        this.$toast('add cart:' + JSON.stringify(data));
+      onAddCartClicked(data) {  //添加到购物车
+        setGoodsInCart(this.goodsid,1).then(
+          response => {
+            console.log(response)
+            if(response.code == 10000 ){
+                Toast.success('加入购物车成功')
+                this.getCarNum()
+            }else{
+              Toast.fail(response.message)
+              return
+            }
+
+          },
+          error => {}
+        )
+
+        // this.$toast('add cart:' + JSON.stringify(data));
       },
+
 
     }
   }
