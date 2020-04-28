@@ -3,7 +3,7 @@ import request from '@/utils/request'
 const baseUrl = '/api/design'
 
 const DesignApi = {}
-/*设计灵感*/
+
 DesignApi.list = (params) => {
   return request({
     url: `${baseUrl}/recommend_design`,
@@ -11,7 +11,7 @@ DesignApi.list = (params) => {
     method: 'get'
   })
 }
-/*设计详情*/
+
 DesignApi.get = (params) => {
   return request({
     url: `${baseUrl}/designdetail`,
@@ -19,7 +19,7 @@ DesignApi.get = (params) => {
     method: 'get'
   })
 }
-/*找他设计*/
+
 DesignApi.consult = (params) => {
   return request({
     url: `/api/Mall_Consult/add_fan_consult`,
@@ -50,10 +50,24 @@ DesignApi.activeDetail = (params) => {
     method: 'get'
   })
 }
-/*优秀设计*/
 DesignApi.excellentDesign = (params) => {
   return request({
     url: `${baseUrl}/gooddesign`,
+    params: params,
+    method: 'get'
+  })
+}
+DesignApi.shaixuan = (params) => {
+  return request({
+    url: `${baseUrl}/fan_shuaixuan`,
+    params: params,
+    method: 'get'
+  })
+}
+
+DesignApi.designList = (params) => {
+  return request({
+    url: `${baseUrl}/fan_list`,
     params: params,
     method: 'get'
   })
