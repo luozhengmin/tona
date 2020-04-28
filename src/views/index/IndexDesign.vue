@@ -5,16 +5,8 @@
         <div class="title-t">
           <h2><span>设计灵感</span></h2>
         </div>
-        <div class="brand-con ab fix">
-          <div class="brand-con-l ac">
-            <h3>TONA HOME x <span>卫浴家装</span></h3>
-            <span></span>
-            <h2>致力为全球用户提供</h2>
-            <p>自然健康的全屋解决方案</p>
-          </div>
-          <div class="brand-con-r">
-            <img src="../../assets/image/cp01.jpg">
-          </div>
+        <div class="brand-con" v-for="(item,index) in bannerItem" :key="index">
+          <a href=""><img :src="item.adv_code"></a>
         </div>
       </div>
       <div class="design-list fix">
@@ -47,19 +39,27 @@
   import Vue from 'vue';
   import { Swipe, SwipeItem } from 'vant';
   import DesignApi from "@/api/DesignApi";
+  import axios from "@/utils/request";
   Vue.use(Swipe);
   Vue.use(SwipeItem);
   export default {
     name: "",
     created() {
       this.getDesign();
+      this.getBanners();
     },
     data() {
       return {
+        bannerItem:[],
         designList:[]
       }
     },
     methods:{
+      getBanners() {
+        axios.post("/api/Index/getIndexAdList/ap_id", {ap_id:10,}).then(res => {
+          this.bannerItem = res.result.banners;
+        });
+      },
       getDesign() {
         DesignApi.list().then(res => {
           this.designList = res.result;

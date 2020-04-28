@@ -6,13 +6,13 @@
           <h2><span>活动推荐</span></h2>
         </div>
         <van-swipe :loop="false" :width="300" :show-indicators="false">
-          <van-swipe-item v-for="(item,index) in childlist" :key="index">
-            <a href=""><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></a>
+          <van-swipe-item v-for="(item,index) in childList" :key="index">
+            <router-link to=""><img :src="item.zhuanti_image"></router-link>
             <div class="main ab">
               <div class="infor-l ac">
-                <h2>{{item.d_name}}</h2>
+                <h2> <router-link to="">{{item.zhuanti_name}}</router-link></h2>
                 <div class="-t">
-                  <span class="ab"><van-icon name="clock-o" />活动时间：2020.01.15-02.03</span>
+                  <span class="ab"><van-icon name="clock-o" />活动时间：{{item.zhuanti_start_time}}-{{item.zhuanti_end_time}}</span>
                 </div>
               </div>
               <div class="infor-r">
@@ -80,22 +80,18 @@
     created() {
       this.getBanners();
       this.getDesign();
+      this.getEvent();
     },
     data(){
       return{
-        childlist:[
-          {id:1,d_name:'优秀设计发方案活动'},
-          {id:2,d_name:'优秀设计发方案活动'},
-          {id:3,d_name:'优秀设计发方案活动'},
-          {id:4,d_name:'优秀设计发方案活动'}
-        ],
+        childList:[],
         banners: [],
         excellentList:[]
       }
     },
     methods: {
       getBanners() {
-        axios.post("/api/Index/getIndexAdList/ap_id", {ap_id: 1,}).then(res => {
+        axios.post("/api/Index/getIndexAdList/ap_id", {ap_id:12,}).then(res => {
           let banners = res.result.banners;
           this.banners = banners;
         });
@@ -103,6 +99,13 @@
       getDesign() {
         DesignApi.excellentDesign().then(res => {
           this.excellentList = res.result.gooddesign;
+        }).catch((error) => {
+          console.log("error")
+        });
+      },
+      getEvent() {
+        DesignApi.eventRecommend().then(res => {
+          this.childList = res.result.list;
         }).catch((error) => {
           console.log("error")
         });

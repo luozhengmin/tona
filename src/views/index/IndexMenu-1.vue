@@ -22,6 +22,11 @@
 <script>
   export default {
     name: "IndexMenu-1",
+    data(){
+      return{
+
+      }
+    },
     methods: {
       goBrand() {
         this.$router.push({'name': 'BrandList'})
@@ -35,7 +40,7 @@
       goPartner() {
         this.$router.push({'name': 'BrandList'})
       },
-    }
+    },
   }
 </script>
 

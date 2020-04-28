@@ -85,7 +85,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .title-t h2{font-size:16px;color:#888;padding-bottom:6px;}
 .title-t h2 span{color:#323232;font-weight:bold;}
 .ml{padding-left:20px;}
-.brand-con{align-items:center;margin-top:7.5px;}
+.brand-con{align-items:center;margin-top:6px;}
 .brand-con-l{position:absolute;width:84%;left:8%;}
 .brand-con-l >h3{font-size:12px;}
 .brand-con-l >h3 span{font-weight:bold;padding-left:2px;}
@@ -94,7 +94,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 .brand-con-l >p{font-size:14px;}
 .brand-con-r img{max-width:100%;}
 .brand-list{width:100%;margin:12px 0 16px 15px;position:relative;overflow:hidden;}
-.row-1 li{margin-bottom:24px;}
+.row_1{padding:6px 0;}
+.row_1 li{margin-bottom:12px;}
 
 /*全球门店*/
 .global-list .van-cell{align-items:center;padding:12px 16px;}

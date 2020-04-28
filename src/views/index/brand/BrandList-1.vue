@@ -150,7 +150,7 @@
     },
     methods: {
       getBanners() {
-        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:7,}).then(res => {
           let banners = res.result.banners;
           this.banners = banners;
         });

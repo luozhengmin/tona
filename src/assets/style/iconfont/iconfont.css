@@ -270,6 +270,18 @@
   url('iconfont.ttf?t=1587455645378') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
   url('iconfont.svg?t=1587455645378#iconfont') format('svg'); /* iOS 4.1- */
 }
+/*微信*/
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1588057563218'); /* IE9 */
+  src: url('iconfont.eot?t=1588057563218#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAM8AAsAAAAABvAAAALtAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBfIICATYCJAMICwYABCAFhG0HMBsoBhHVk7Vkf4I4bk8BpBZLT+3jzIxFAD3F9X4zY9uheXQjfUFVBa4CCQAAAAAQPM/rfZ378kZgNbWdnylhrFUCqrcCXILltuF5t/XGH7IaBUM2xAu9elmQxJUAMu46Obj88PnZAy0OOfe2pnvsW4SJUF2yhy6ebTvyYzcNy3FA2O5vZKNwmQ61LMGMq0EWBpiUCycpOQB4GAC5k9X8P5fTu6uAApkfKJc5th71AowDCnDMTVYgBcANYzcROIT1EMCdaJmkuLTaZNCAbgLIYF9PG5PzotFWwhXBuWasRvYAV7VVHoPd/PPym4qgcDIAJfXdJZ3sbw5TjN9visCbzwxYk8AAMoEGMWujtQSxyAbu0SYe+yoU+JZtUz2y1z8PcQbkewIQqXLviYf5t/pLBYAGnAETTI56IjiHSH72zPakt8t6Pcw302E237qjpsPyLqxT51bPbju/dsEk4u0Z5ViXJmfuda1n0b4m9ZoU6eZ2rMlpXeMh6iNvZvvtMvfKckgeduuocrYwO94v5jqf+okTqT1/JH9g9J/9sOyd4dB/+Rnue33Tl/ctqr+cb2pIJcqSRxz1Q+054Y/e4t4dnfD74ruAI866oXg43uGHn9aZDcA+z7/7O7zW1eJz+KEB+Pj/rbntm352cL0pm8DP5fWs0KEA6JT2ebVJhcm6abE7DIANOP19HasMehOz4JrjWaBwIQoMXElENSkTnPAgB5xxJQ/cyVA22YMA4wTRbkC6jQoIvq6AwpvbYODrCapJX8CJYH/BGd8CuGPJfk4Pkouy8hCOjAtMX7BzTgoZWIrCE+pnGCkr4JQb0mYD0FZNMXHEhDTHgO2lO2YFinKEQdkMQ8hQKDucuTLMpa9rVfeias5RSA7hyLjA9AU756RobZal959QP8NILbgB8w1ps41DWzU90KM09cLdyyXbS3fMChTlCINixgCjGUp9K4czV2ZEuPS1Vk31lVbry+PXrQPcASolsFmsGbQfm4QAAAAA') format('woff2'),
+  url('iconfont.woff?t=1588057563218') format('woff'),
+  url('iconfont.ttf?t=1588057563218') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1588057563218#iconfont') format('svg'); /* iOS 4.1- */
+}
+.icon-weixin:before {
+  content: "\e659";
+}
 
 .icon-quanbudingdan:before {
   content: "\e615";

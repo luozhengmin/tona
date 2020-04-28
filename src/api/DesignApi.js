@@ -58,4 +58,12 @@ DesignApi.excellentDesign = (params) => {
     method: 'get'
   })
 }
+/*活动推荐*/
+DesignApi.eventRecommend = (params) => {
+  return request({
+    url: `${baseUrl}/zhuanti_tuijian?show_num=30`,
+    params: params,
+    method: 'get'
+  })
+}
 export default DesignApi

@@ -113,50 +113,50 @@
            <div class="share-list fix">
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>微信好友</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>微信朋友圈</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>QQ空间</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>新浪微博</span>
              </div>
 
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>支付宝好友</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>生活圈</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>QQ好友</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <img src="../../assets/image/cp02.jpg">
+                 <i class='iconfont icon-weixin' />
                </a>
                <span>复制链接</span>
              </div>
@@ -582,7 +582,10 @@
           float:left;
           padding:0 4%;
           margin-bottom:6px;
-          a{display:block;}
+          a{
+            display:block;
+            i{font-size:32px;}
+          }
           span{
             display:block;
             padding-top:6px;
