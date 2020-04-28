@@ -58,4 +58,20 @@ DesignApi.excellentDesign = (params) => {
     method: 'get'
   })
 }
+
+DesignApi.shaixuan = (params) => {
+  return request({
+    url: `${baseUrl}/fan_shuaixuan`,
+    params: params,
+    method: 'get'
+  })
+}
+
+DesignApi.designList = (params) => {
+  return request({
+    url: `${baseUrl}/fan_list`,
+    params: params,
+    method: 'get'
+  })
+}
 export default DesignApi

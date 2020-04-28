@@ -28,4 +28,15 @@ GlobalStoreApi.yuyue = (params) => {
   })
 }
 
+GlobalStoreApi.upload = (params) => {
+  return request({
+    url: `/api/fileupload/upload`,
+    data: params,
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    method: 'post'
+  })
+}
+
 export default GlobalStoreApi
