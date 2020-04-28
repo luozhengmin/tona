@@ -126,7 +126,7 @@
 </template>
 
 <script>
-import { Toast } from 'vant';
+import { Toast } from "vant";
 import GlobalStoreApi from "@/api/GlobalStoreApi";
 export default {
   name: "MakeStore",
@@ -164,9 +164,12 @@ export default {
       this.yuyueParams.date_time = this.$moment(time).format("YYYY-MM-DD");
     },
     afterRead(file) {
-      // 此时可以自行将文件上传至服务器
       console.log(file);
-      // this.fileList.push(file);
+      let formData = new FormData();
+      formData.append("file", file.file);
+      GlobalStoreApi.upload(formData).then(res => {
+        console.log(res);
+      });
     },
     confirmSubmit() {
       if (this.fileList.length > 0) {
