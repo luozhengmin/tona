@@ -17,7 +17,7 @@
               </div>
               <div class="infor-r">
                 <i class='iconfont icon-fire'></i>
-                <span class="ab">参与人数<span>15402</span></span>
+                <!--<span class="ab">参与人数<span>15402</span></span>-->
               </div>
             </div>
           </van-swipe-item>
@@ -27,22 +27,23 @@
       <div class="list">
         <div class="title-t ab">
           <h2 class="ac"><span>方案推荐</span></h2>
-          <p>换一换</p>
+          <p @click="changeFlag">换一换</p>
         </div>
         <van-row>
-          <van-col v-for="i in 3 " :key="i">
-            <a href=""><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></a>
+          <van-col v-for="(item,index) in excellentList" :key="index">
+            <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}"><img :src="item.thumb"></router-link>
             <div class="main">
               <div class="infor-l">
-                <h2>GDC Award 2019 评审奖 获奖作品</h2>
-                <div class="-t">
-                  <span>韵华茶几 | 原创设计</span>
+                <h2>{{item.fan_name}}</h2>
+                <div class="-t ab">
+                  <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}">{{item.style}}</router-link>
+                  <span class="style-line"></span><span>原创设计</span>
                 </div>
               </div>
               <div class="infor-r ab">
-                <div class="dot"></div>
-                <span class="ac">数码党</span>
-                <div class="view ab"><van-icon name="eye-o" />15402</div>
+                <div class="dot"><img :src="item.member_avatar"></div>
+                <span class="ac">{{item.style}}</span>
+                <div class="view ab"><van-icon name="eye-o" />{{item.see_num}}</div>
               </div>
             </div>
           </van-col>
@@ -58,7 +59,7 @@
                 <h2>GDC Award 2019 评审奖 获奖作品</h2>
               </div>
               <div class="infor-r ab">
-                <div class="dot"></div>
+                <div class="dot"><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></div>
                 <span class="ac">数码党</span>
                 <div class="view ab"><van-icon name="eye-o" />15402</div>
               </div>
@@ -72,11 +73,13 @@
 <script>
   import IndexBanner from "../../index/IndexBanner";
   import axios from "@/utils/request";
+  import DesignApi from "@/api/DesignApi";
   export default {
     components: {IndexBanner},
     name: "Recommend",
     created() {
       this.getBanners();
+      this.getDesign();
     },
     data(){
       return{
@@ -86,15 +89,25 @@
           {id:3,d_name:'优秀设计发方案活动'},
           {id:4,d_name:'优秀设计发方案活动'}
         ],
-        banners: []
+        banners: [],
+        excellentList:[]
       }
     },
-    methods:{
+    methods: {
       getBanners() {
-        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:1,}).then(res => {
+        axios.post("/api/Index/getIndexAdList/ap_id", {ap_id: 1,}).then(res => {
           let banners = res.result.banners;
           this.banners = banners;
         });
+      },
+      getDesign() {
+        DesignApi.excellentDesign().then(res => {
+          this.excellentList = res.result.gooddesign;
+        }).catch((error) => {
+          console.log("error")
+        });
+      },
+      changeFlag() {
       }
     }
   }
@@ -157,15 +170,20 @@
             padding:8px 12px;
             h2{font-size:14px;color:#000;padding-bottom:4px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;}
             .-t{
+              align-items:center;
               font-size:13px;
-              i{font-size:12px;line-height:12px;padding:0 2px 0 6px;}
+              .style-line{
+                display:block;width:1px;height:13px;background-color:#888;margin:0 6px;
+              }
             }
           }
           .infor-r{
             padding:8px 12px;
             align-items:center;
             border-top:solid 1px #eee;
-            .dot{width:24px;height:24px;background:#aaa;border-radius:50%;margin-right:8px;}
+            .dot{width:24px;height:24px;border-radius:50%;margin-right:8px;text-align:center;
+              img{border-radius:50%;width:24px;height:24px;}
+            }
             .view{
               align-items:center;
               .van-icon{font-size:16px;padding-right:2px;}

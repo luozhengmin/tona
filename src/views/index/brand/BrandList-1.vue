@@ -131,7 +131,6 @@
   import IndexBanner from "../IndexBanner.vue";
   import IndexMenu1 from "../IndexMenu-1.vue";
   import axios from "@/utils/request";
-  import StoreApi from "@/api/HomeStoreApi";
 
   export default {
     components: {
@@ -141,12 +140,11 @@
     name: "BrandList-1",
     created() {
       this.getBanners();
-      this.getStore();
     },
     data(){
       return{
         isActive: false,
-        childList:[],
+        childList:[{d_name:'朵纳卫浴'},{d_name:'朵纳卫浴'},{d_name:'朵纳卫浴'},{d_name:'朵纳卫浴'},],
         banners:[]
       }
     },
@@ -157,13 +155,6 @@
           this.banners = banners;
         });
       },
-      getStore() {
-        StoreApi.area().then(res => {
-          this.childList = res.result;
-        }).catch((error)=>{
-          console.log("error")
-        });
-      }
     }
   }
 </script>
