@@ -42,6 +42,7 @@ Vue.use(SwipeItem);
     methods:{
       getBanners() {
         axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:8,}).then(res => {
+          
           this.brandList = res.result.banners;
         });
         axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:7,}).then(res => {

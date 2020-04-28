@@ -48,6 +48,7 @@
           getMemberMessageList().then(
             response => {
               this.systemList = response.result.notice_list
+              console.log(response)
             },
             error => {}
           )
