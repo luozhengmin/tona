@@ -41,7 +41,7 @@
               </li>
               <li>
                 <router-link to="">
-                  <i class="iconfont bg-7">&#xe602;</i>
+                  <i class="iconfont bg-7">&#xe703;</i>
                   <span>关于我们</span>
                 </router-link>
               </li>
@@ -56,32 +56,24 @@
         <div class="title-t">
           <h2><span>品牌推荐</span></h2>
         </div>
-        <div class="brand-con ab fix">
-          <div class="brand-con-l">
-            <h3>TONA HOME x <span>卫浴家装</span></h3>
-            <span></span>
-            <h2>致力为全球用户提供</h2>
-            <p>自然健康的全屋解决方案</p>
+          <div class="brand-con" v-for="(item,index) in bannerItem">
+            <a href=""><img :src="item.adv_code"></a>
           </div>
-          <div class="brand-con-r">
-            <img src="../../../assets/image/cp01.jpg">
-          </div>
-        </div>
       </div>
         <div class="design-list fix">
           <van-swipe :loop="false" :width="300" :show-indicators="false">
-            <van-swipe-item v-for="(item,index) in childList" :key="index">
-              <a href=""><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></a>
+            <van-swipe-item v-for="(item,index) in brandList" :key="index">
+              <a href=""><img :src="item.store_avatar"></a>
               <div class="main ab">
                 <div class="infor-l ac">
-                  <h2>{{item.d_name}}</h2>
+                  <h2>{{item.store_name}}</h2>
                   <div class="-t">
-                    <span>纯德系，现代卫浴品牌</span>
+                    <span>{{item.store_description}}</span>
                   </div>
                 </div>
                 <div class="infor-r">
                   <van-tag color="#ee502f">NEW</van-tag>
-                  <span class="ab">德国</span>
+                  <span class="ab">{{item.store_address}}</span>
                 </div>
               </div>
             </van-swipe-item>
@@ -131,7 +123,7 @@
   import IndexBanner from "../IndexBanner.vue";
   import IndexMenu1 from "../IndexMenu-1.vue";
   import axios from "@/utils/request";
-
+  import StoreApi from "@/api/HomeStoreApi";
   export default {
     components: {
       IndexMenu1,
@@ -139,13 +131,17 @@
     },
     name: "BrandList-1",
     created() {
+      let cat_id = this.$route.query.cat_id;
       this.getBanners();
+      this.getList(cat_id);
+      this.getBrand();
     },
     data(){
       return{
         isActive: false,
-        childList:[{d_name:'朵纳卫浴'},{d_name:'朵纳卫浴'},{d_name:'朵纳卫浴'},{d_name:'朵纳卫浴'},],
-        banners:[]
+        brandList:[],
+        banners:[],
+        bannerItem:[],
       }
     },
     methods: {
@@ -154,6 +150,20 @@
           let banners = res.result.banners;
           this.banners = banners;
         });
+        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:8,}).then(res => {
+          this.bannerItem = res.result.banners;
+        });
+      },
+      getBrand(){
+        StoreApi.store().then(res => {
+          this.brandList = res.result;
+        }).catch((error) => {
+          console.log("error")
+        });
+      },
+
+      getList(cat_id) {
+
       },
     }
   }

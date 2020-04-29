@@ -50,6 +50,14 @@ DesignApi.activeDetail = (params) => {
     method: 'get'
   })
 }
+DesignApi.eventRecommend = (params) => {
+  return request({
+    url: `${baseUrl}/zhuanti_tuijian?show_num=30`,
+    params: params,
+    method: 'get'
+  })
+}
+
 DesignApi.excellentDesign = (params) => {
   return request({
     url: `${baseUrl}/gooddesign`,

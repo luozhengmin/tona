@@ -39,7 +39,7 @@
             </li>
             <li>
               <router-link to>
-                <i class="iconfont bg-7">&#xe602;</i>
+                <i class="iconfont bg-7">&#xe703;</i>
                 <span>关于我们</span>
               </router-link>
             </li>

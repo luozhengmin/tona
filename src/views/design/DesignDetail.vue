@@ -41,7 +41,7 @@
              </li>
              <li>
                <router-link to="">
-                 <i class="iconfont bg-7">&#xe602;</i>
+                 <i class="iconfont bg-7">&#xe703;</i>
                  <span>关于我们</span>
                </router-link>
              </li>
@@ -119,44 +119,50 @@
              </div>
              <div class="list-item">
                <a href="">
-                 <i class='iconfont icon-weixin' />
+                 <i class='iconfont icon-pengyouquan' />
                </a>
                <span>微信朋友圈</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <i class='iconfont icon-weixin' />
+                 <i class='iconfont icon-QQkongjian' />
                </a>
                <span>QQ空间</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <i class='iconfont icon-weixin' />
+                 <i class='iconfont icon-weibo' />
                </a>
                <span>新浪微博</span>
              </div>
 
              <div class="list-item">
                <a href="">
-                 <i class='iconfont icon-weixin' />
+                 <i class='iconfont icon-umidd17' />
                </a>
                <span>支付宝好友</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <i class='iconfont icon-weixin' />
+                 <i class='iconfont icon-zhimaxinyongshenghuoquan' />
                </a>
                <span>生活圈</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <i class='iconfont icon-weixin' />
+                 <i class='iconfont icon-qq' />
                </a>
                <span>QQ好友</span>
              </div>
              <div class="list-item">
                <a href="">
-                 <i class='iconfont icon-weixin' />
+                 <i class='iconfont icon-yixin' />
+               </a>
+               <span>易信</span>
+             </div>
+             <div class="list-item">
+               <a href="">
+                 <i class='iconfont icon-fuzhilianjie' />
                </a>
                <span>复制链接</span>
              </div>
@@ -332,7 +338,7 @@
            <span>{{desginInfo.collection_num}}</span>
          </div>
          <div class="menu-item ab" is-link @click="showShare">
-           <i class="van-icon van-icon-home-o"></i>
+           <i class='iconfont icon-fenxiang' />
            <span>分享</span>
          </div>
        </div>
@@ -404,7 +410,7 @@
         })
       },
       getDesignDetail(id){
-        DesignApi.get(id).then(res=>{
+        DesignApi.get({design_id:id}).then(res=>{
           this.desginInfo = res.result.design_info;
           console.log(this.desginInfo)
         })
@@ -574,21 +580,22 @@
       padding:24px 15px 12px 15px;
       h2{font-size:14px;color:#888;text-align:center;}
       .share-list{
-        padding:12px 0 40px 0;
+        padding:12px 0 0 0;
         .list-item{
           text-align:center;
           font-size:14px;color:#888;
           width:33.33333%;
           float:left;
           padding:0 4%;
-          margin-bottom:6px;
+          margin:8px 0;
           a{
             display:block;
-            i{font-size:32px;}
+            line-height:1.2;
+            i{font-size:32px;color:#ccc;}
           }
           span{
             display:block;
-            padding-top:6px;
+            padding-top:2px;
           }
         }
       }
