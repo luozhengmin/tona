@@ -16,7 +16,7 @@
         fit="cover"
         width="55px"
         height="55px"
-        v-bind:src="user.member_avatar+'?'+time"
+        v-bind:src="user.member_avatar"
       />
       <div class="info ab ac">
         <div>

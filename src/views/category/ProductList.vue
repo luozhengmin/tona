@@ -181,18 +181,20 @@ export default {
   methods: {
     getList() {
       GoodsClassApi.list().then(res => {
-
+        console.log(res.result)
         this.items = res.result.class_list.map(o => {
           o.text = o.value;
+          
           return o;
         });
         this.items.unshift({ text: "推荐" });
       });
     },
     getRecommend(parentid){
-      // this.params.parent_id = parentid
+      
       GoodsClassApi.recommendClass(this.params).then(res => {
         this.recommend = res.result
+        
       },error=>{
 
       });
