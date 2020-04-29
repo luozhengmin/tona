@@ -88,33 +88,64 @@
             <h2><span>发现品牌</span></h2>
           </div>
         </div>
-        <div class="brand-item" v-for="i in 3" :key="i">
-          <div class="brand-con wrap ab fix">
-              <div class="brand-con-l">
-                <h3>TONA HOME x <span>品牌季</span></h3>
-                <span></span>
-                <h2>空间有限，选择无线</h2>
-                <p>用我们的设计打造你的专属空间</p>
-              </div>
-              <div class="brand-con-r">
-                <img src="../../../assets/image/cp01.jpg">
-              </div>
-            </div>
+
+        <div class="brand-item">
+          <div class="brand-con wrap" v-for="(item,index) in bannerItem01" :key="index">
+            <a href=""><img :src="item.adv_code"></a>
+          </div>
           <div class="brand-list fix">
             <van-swipe :loop="false" :width="110" :show-indicators="false">
-              <van-swipe-item  v-for="i in 5" :key="i">
+              <van-swipe-item  v-for="(item,index) in bannerItem02" :key="index">
                 <div class="p-pic">
-                  <img src="../../../assets/image/cp02.jpg">
+                  <a href=""><img :src="item.adv_code"></a>
                 </div>
                 <div class="p-infor">
-                  <h2>TONA卫浴</h2>
-                  <p>纯德系，现代卫浴品牌</p>
+                  <h2>{{item.adv_title}}</h2>
+                  <p>{{item.adv_info}}</p>
                 </div>
               </van-swipe-item>
             </van-swipe>
-
           </div>
         </div>
+
+        <div class="brand-item">
+          <div class="brand-con wrap" v-for="(item,index) in bannerItem03" :key="index">
+            <a href=""><img :src="item.adv_code"></a>
+          </div>
+          <div class="brand-list fix">
+            <van-swipe :loop="false" :width="110" :show-indicators="false">
+              <van-swipe-item  v-for="(item,index) in bannerItem04" :key="index">
+                <div class="p-pic">
+                  <a href=""><img :src="item.adv_code"></a>
+                </div>
+                <div class="p-infor">
+                  <h2>{{item.adv_title}}</h2>
+                  <p>{{item.adv_info}}</p>
+                </div>
+              </van-swipe-item>
+            </van-swipe>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <div class="brand-con wrap" v-for="(item,index) in bannerItem05" :key="index">
+            <a href=""><img :src="item.adv_code"></a>
+          </div>
+          <div class="brand-list fix">
+            <van-swipe :loop="false" :width="110" :show-indicators="false">
+              <van-swipe-item  v-for="(item,index) in bannerItem06" :key="index">
+                <div class="p-pic">
+                  <a href=""><img :src="item.adv_code"></a>
+                </div>
+                <div class="p-infor">
+                  <h2>{{item.adv_title}}</h2>
+                  <p>{{item.adv_info}}</p>
+                </div>
+              </van-swipe-item>
+            </van-swipe>
+          </div>
+        </div>
+
       </div>
     </div>
 </template>
@@ -142,16 +173,40 @@
         brandList:[],
         banners:[],
         bannerItem:[],
+        bannerItem01:[],
+        bannerItem02:[],
+        bannerItem03:[],
+        bannerItem04:[],
+        bannerItem05:[],
+        bannerItem06:[],
       }
     },
     methods: {
       getBanners() {
-        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:7,}).then(res => {
-          let banners = res.result.banners;
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:23,}).then(res => {
+          let banners = res.result.ad_list;
           this.banners = banners;
         });
-        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:8,}).then(res => {
-          this.bannerItem = res.result.banners;
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:16,}).then(res => {
+          this.bannerItem = res.result.ad_list;
+        });
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:17,}).then(res => {
+          this.bannerItem01 = res.result.ad_list;
+        });
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:18,}).then(res => {
+          this.bannerItem02 = res.result.ad_list;
+        });
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:19,}).then(res => {
+          this.bannerItem03 = res.result.ad_list;
+        });
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:20,}).then(res => {
+          this.bannerItem04 = res.result.ad_list;
+        });
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:21,}).then(res => {
+          this.bannerItem05 = res.result.ad_list;
+        });
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:22,}).then(res => {
+          this.bannerItem06 = res.result.ad_list;
         });
       },
       getBrand(){
@@ -193,7 +248,11 @@
             .infor-r{
               flex-direction:column;
               text-align:right;
-              .van-tag{border-radius:10px 10px 10px 0;margin-bottom: 2px;}
+              .van-tag{border-radius:10px 10px 10px 0;margin-bottom: 2px;width:36px;display:inline-block;
+                height: 18px;
+                line-height: 18px;
+                padding: 0;
+                text-align: center;}
               span{
                 align-items:center;
                 display: block;

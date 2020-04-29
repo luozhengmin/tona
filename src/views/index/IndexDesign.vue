@@ -56,13 +56,13 @@
     },
     methods:{
       getBanners() {
-        axios.post("/api/Index/getIndexAdList/ap_id", {ap_id:10,}).then(res => {
-          this.bannerItem = res.result.banners;
+        axios.post("/api/Index/getAppadList/ap_id/", {ap_id:10,}).then(res => {
+          this.bannerItem = res.result.ad_list;
         });
       },
       getDesign() {
         DesignApi.list().then(res => {
-          this.designList = res.result;
+          this.designList = res.result.fan_list;
         }).catch((error)=>{
           console.log("error")
         });

@@ -1,25 +1,9 @@
 <template>
   <div class="menu wrap fix">
-    <div class="menu-item" @click="goBrand(4)" v-for="(item,index) in bannerItem" :key="index">
-      <a href=""><img :src="item.adv_code"></a>
+    <div class="menu-item" v-for="(item,index) in bannerItem" :key="index">
+      <router-link :to="item.adv_typedate"><img :src="item.adv_code"></router-link>
       <span class="menu-item-title">{{item.adv_title}}</span>
     </div>
-    <!--<div class="menu-item" @click="goBrand(1)">-->
-      <!--<i class="iconfont bg-5">&#xe7ae;</i>-->
-      <!--<span class="menu-item-title">硬装建材</span>-->
-    <!--</div>-->
-    <!--<div class="menu-item" @click="goBrand(2)">-->
-      <!--<i class="iconfont bg-6">&#xe671;</i>-->
-      <!--<span class="menu-item-title">软装家居</span>-->
-    <!--</div>-->
-    <!--<div class="menu-item" @click="goBrand(3)">-->
-      <!--<i class="iconfont bg-7">&#xe7ae;</i>-->
-      <!--<span class="menu-item-title">智能家电</span>-->
-    <!--</div>-->
-    <!--<div class="menu-item" @click="goBrand(4)">-->
-      <!--<i class="iconfont bg-8">&#xe6b5;</i>-->
-      <!--<span class="menu-item-title">全屋定制</span>-->
-    <!--</div>-->
   </div>
 </template>
 
@@ -37,14 +21,10 @@
     },
     methods: {
       getBanners() {
-        axios.post("/api/Index/getIndexAdList/ap_id",{ap_id:15,}).then(res => {
-          this.bannerItem = res.result.banners;
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:15,}).then(res => {
+          this.bannerItem = res.result.ad_list;
         });
       }
-//      goBrand(cat_id) {
-//        this.$router.push('BrandList?cat_id='+cat_id)
-//      },
-
     },
   }
 </script>
@@ -86,8 +66,4 @@
       }
     }
   }
-  /*.bg-5{background-image: linear-gradient(to bottom , #f1d690,#e1c48a );}*/
-  /*.bg-6{background-image: linear-gradient(to bottom , #35e7ba,#2cddca );}*/
-  /*.bg-7{background-image: linear-gradient(to bottom , #6fc7ff,#5a91fe );}*/
-  /*.bg-8{background-image: linear-gradient(to bottom , #ff9d74,#fd5d53 );}*/
 </style>

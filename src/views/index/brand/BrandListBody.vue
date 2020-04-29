@@ -56,7 +56,6 @@
             </div>
           </div>
 
-
         </div>
         <div class="sub-brand-b wrap">
           <div class="col" v-for="(item,index) in subrandlist" :key="index">

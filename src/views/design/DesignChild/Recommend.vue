@@ -52,16 +52,16 @@
       <div class="list choice-list">
         <van-divider>更多精选内容</van-divider>
         <van-row gutter="15">
-          <van-col span="12" v-for="i in 3 " :key="i">
-            <a href=""><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></a>
+          <van-col span="12" v-for="(item,index) in sieveList" :key="index">
+            <a href=""><img :src="item.thumb"></a>
             <div class="main">
               <div class="infor-l">
-                <h2>GDC Award 2019 评审奖 获奖作品</h2>
+                <h2>{{item.fan_name}}</h2>
               </div>
               <div class="infor-r ab">
-                <div class="dot"><img src="http://5b0988e595225.cdn.sohucs.com/images/20170903/3b270c8fc6084df7a187a514fb7b8ef0.jpeg"></div>
-                <span class="ac">数码党</span>
-                <div class="view ab"><van-icon name="eye-o" />15402</div>
+                <div class="dot"><img :src="item.member_avatar"></div>
+                <span class="ac">{{item.member_name}}</span>
+                <div class="view ab"><van-icon name="eye-o" />{{item.see_num}}</div>
               </div>
             </div>
           </van-col>
@@ -81,18 +81,20 @@
       this.getBanners();
       this.getDesign();
       this.getEvent();
+      this.getSieve();
     },
     data(){
       return{
         childList:[],
         banners: [],
-        excellentList:[]
+        excellentList:[],
+        sieveList:[]
       }
     },
     methods: {
       getBanners() {
-        axios.post("/api/Index/getIndexAdList/ap_id", {ap_id:12,}).then(res => {
-          let banners = res.result.banners;
+        axios.post("/api/Index/getAppadList/ap_id/", {ap_id:12,}).then(res => {
+          let banners = res.result.ad_list;
           this.banners = banners;
         });
       },
@@ -106,6 +108,13 @@
       getEvent() {
         DesignApi.eventRecommend().then(res => {
           this.childList = res.result.list;
+        }).catch((error) => {
+          console.log("error")
+        });
+      },
+      getSieve() {
+        DesignApi.sieveList().then(res => {
+          this.sieveList = res.result.fan_list;
         }).catch((error) => {
           console.log("error")
         });

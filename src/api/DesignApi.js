@@ -80,4 +80,12 @@ DesignApi.designList = (params) => {
     method: 'get'
   })
 }
+
+DesignApi.sieveList = (params) => {
+  return request({
+    url: `${baseUrl}/fan_list?pagesize=10`,
+    params: params,
+    method: 'get'
+  })
+}
 export default DesignApi
