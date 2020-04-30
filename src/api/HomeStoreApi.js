@@ -4,7 +4,7 @@ const StoreApi = {}
 
 StoreApi.store = (params) => {
   return request({
-    url:`${baseUrl}/recommend_store`,
+    url:`${baseUrl}/recommend_store?shownum=5`,
     params: params,
     method: 'get'
   })

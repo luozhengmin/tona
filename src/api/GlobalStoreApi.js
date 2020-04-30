@@ -22,7 +22,7 @@ GlobalStoreApi.list = (params) => {
 
 GlobalStoreApi.yuyue = (params) => {
   return request({
-    url: `${baseUrl}/mendian_list`,
+    url: `${baseUrl}/yuyue`,
     data: params,
     method: 'post'
   })

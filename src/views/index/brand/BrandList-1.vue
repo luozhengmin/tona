@@ -60,26 +60,26 @@
             <a href=""><img :src="item.adv_code"></a>
           </div>
       </div>
-        <div class="design-list fix">
-          <van-swipe :loop="false" :width="300" :show-indicators="false">
-            <van-swipe-item v-for="(item,index) in brandList" :key="index">
-              <a href=""><img :src="item.store_avatar"></a>
-              <div class="main ab">
-                <div class="infor-l ac">
-                  <h2>{{item.store_name}}</h2>
-                  <div class="-t">
-                    <span>{{item.store_description}}</span>
-                  </div>
-                </div>
-                <div class="infor-r">
-                  <van-tag color="#ee502f">NEW</van-tag>
-                  <span class="ab">{{item.store_address}}</span>
+      <div class="design-list fix">
+        <van-swipe :loop="false" :width="300" :show-indicators="false">
+          <van-swipe-item v-for="(item,index) in brandList" :key="index">
+            <a href=""><img :src="item.store_avatar"></a>
+            <div class="main ab">
+              <div class="infor-l ac">
+                <h2>{{item.store_name}}</h2>
+                <div class="-t">
+                  <span>{{item.store_description}}</span>
                 </div>
               </div>
-            </van-swipe-item>
-          </van-swipe>
+              <div class="infor-r">
+                <van-tag color="#ee502f">NEW</van-tag>
+                <span class="ab">{{item.store_address}}</span>
+              </div>
+            </div>
+          </van-swipe-item>
+        </van-swipe>
 
-        </div>
+      </div>
       </div>
 
       <div class="index-brand-1 fix">

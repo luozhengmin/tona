@@ -93,7 +93,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .brand-con-l >h2{font-size:18px;font-weight:bold;padding-bottom:4px;}
 .brand-con-l >p{font-size:14px;}
 .brand-con-r img{max-width:100%;}
-.brand-list{width:100%;margin:12px 0 16px 15px;position:relative;overflow:hidden;}
+.brand-list{width:100%;margin:12px 0 15px 15px;position:relative;overflow:hidden;}
 .row_1{padding:6px 0;}
 .row_1 li{margin-bottom:12px;}
 
@@ -119,9 +119,14 @@ select{font-size: 100%;margin: 0;outline: none;}
 
 /*品牌馆设计*/
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{padding:0 32px 0 0;text-align:left;flex:inherit;}
+.b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav >{padding-bottom:0px;}
+.home-child > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{  padding:0 20px 0 0;}
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab--active{font-weight:700;}
-.b-child-tab > .van-tabs--line > .van-tabs__wrap{border-bottom: solid 1px #eee;padding:0 15px;}
+.b-child-tab > .van-tabs--line > .van-tabs__wrap{border-bottom:none;padding:0 15px;}
+.home-child > .van-tabs--line > .van-tabs__wrap{border:none;}
+.home-child > .van-tabs--line > .van-hairline--top-bottom::after, .van-hairline-unset--top-bottom::after{border:none;}
 .r-solution .title-t{text-align:center;}
+.home-child  .brand-con{margin-top:0;}
 
 .s-nav{margin:6px 0 0 0;padding:0 15px;justify-content:space-between;}
 .s-nav li{width:21%;text-align:center;padding-bottom:8px;margin-left:5%;align-items:center;justify-content:space-around;}

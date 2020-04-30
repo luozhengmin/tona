@@ -125,7 +125,9 @@ export default {
       list: [],
       areaList: [],
       selectedAddress: ["全国", "所有门店"],
-      showArea: false
+      showArea: false,
+      city_id:'',
+      pagesize:''
     };
   },
 
@@ -136,7 +138,11 @@ export default {
 
   methods: {
     getList() {
-      GlobalStoreApi.list().then(res => {
+      let params = {
+        city_id: this.city_id,
+        pagesize: this.pagesize
+      };
+      GlobalStoreApi.list(params).then(res => {
         this.list = res.result.mendian_list;
       });
     },
@@ -151,9 +157,12 @@ export default {
 
     onConfirm(val, index) {
       this.selectedAddress = val;
+      let old_area = this.areaList;
+      let city_id = old_area[index[0]]['children'][index[1]]['area_id'];
+      this.city_id = city_id
       this.showArea = false;
-      this.getList();
-    }
+      this.getList()
+    },
   }
 };
 </script>
