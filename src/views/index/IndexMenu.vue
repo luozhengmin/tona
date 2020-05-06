@@ -1,19 +1,19 @@
 <template>
   <div class="menu wrap fix">
     <div class="menu-item" @click="goBrand">
-      <i class="iconfont bg-1">&#xe7ae;</i>
+      <img src="../../assets/image/nav06.png">
       <span class="menu-item-title">品牌馆</span>
     </div>
     <div class="menu-item" @click="goDesign">
-      <i class="iconfont bg-2">&#xe508;</i>
+      <img src="../../assets/image/nav07.png">
       <span class="menu-item-title">设计方案</span>
     </div>
     <div class="menu-item" @click="goGlobal">
-      <i class="iconfont bg-3">&#xe7b9;</i>
+      <img src="../../assets/image/nav08.png">
       <span class="menu-item-title">全球门店</span>
     </div>
     <div class="menu-item" @click="goPartner">
-      <i class="iconfont bg-4">&#xe6b5;</i>
+      <img src="../../assets/image/nav09.png">
       <span class="menu-item-title">招商加盟</span>
     </div>
   </div>
@@ -50,23 +50,24 @@
       width:25%;
       text-align:center;
       float: left;
-      .iconfont{
-        margin:auto;
-        width:54px;
-        height:54px;
-        line-height:54px;
-        font-size:28px;
-        color:#fff;
-        overflow: hidden;
-        display:block;
-        text-align: center;
-        border-radius:50%;
-      }
-      .menu-item-icon {
-        width:54px;
-        height:54px;
-        overflow:hidden;
-      }
+      /*.iconfont{*/
+        /*margin:auto;*/
+        /*width:54px;*/
+        /*height:54px;*/
+        /*line-height:54px;*/
+        /*font-size:28px;*/
+        /*color:#fff;*/
+        /*overflow: hidden;*/
+        /*display:block;*/
+        /*text-align: center;*/
+        /*border-radius:50%;*/
+      /*}*/
+      /*.menu-item-icon {*/
+        /*width:54px;*/
+        /*height:54px;*/
+        /*overflow:hidden;*/
+      /*}*/
+      img{width:54px;height:54px;}
       .menu-item-title {
         display:block;
         color: #696969;

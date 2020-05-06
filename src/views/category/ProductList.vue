@@ -65,7 +65,7 @@
     </div>
 
     <div class="list wrap fix">
-      <van-tree-select height="80vw" :items="items" :main-active-index.sync="active">
+      <van-tree-select height="90vw" :items="items" :main-active-index.sync="active">
         <template #content>
           <div class="p-item" v-if="active === 0">
             <div class="p-pic">
@@ -184,17 +184,17 @@ export default {
         console.log(res.result)
         this.items = res.result.class_list.map(o => {
           o.text = o.value;
-          
+
           return o;
         });
         this.items.unshift({ text: "推荐" });
       });
     },
     getRecommend(parentid){
-      
+
       GoodsClassApi.recommendClass(this.params).then(res => {
         this.recommend = res.result
-        
+
       },error=>{
 
       });
