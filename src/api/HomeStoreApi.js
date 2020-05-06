@@ -9,4 +9,11 @@ StoreApi.store = (params) => {
     method: 'get'
   })
 }
+StoreApi.storeArea = (params) => {
+  return request({
+    url:`${baseUrl}/get_store_area`,
+    params: params,
+    method: 'get'
+  })
+}
 export default StoreApi

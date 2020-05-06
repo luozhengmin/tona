@@ -16,32 +16,32 @@
           <div class="slideNav" v-if="isActive">
             <ul class="ab fix">
               <li>
-                <router-link to="/BrandList">
-                  <i class="iconfont bg-7">&#xe7ae;</i>
+                <router-link to="/BrandList-1">
+                  <img src="../../../assets/image/nav05.png">
                   <span>品牌馆</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/Design">
-                  <i class="iconfont bg-7">&#xe508;</i>
+                  <img src="../../../assets/image/nav04.png">
                   <span>优秀设计</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/GlobalStore">
-                  <i class="iconfont bg-7">&#xe7b9;</i>
+                  <img src="../../../assets/image/nav03.png">
                   <span>全球门店</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/Investment">
-                  <i class="iconfont bg-7">&#xe6b5;</i>
+                  <img src="../../../assets/image/nav02.png">
                   <span>招商加盟</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="">
-                  <i class="iconfont bg-7">&#xe703;</i>
+                <router-link to="/index">
+                  <img src="../../../assets/image/nav01.png">
                   <span>关于我们</span>
                 </router-link>
               </li>
@@ -63,17 +63,17 @@
       <div class="design-list fix">
         <van-swipe :loop="false" :width="300" :show-indicators="false">
           <van-swipe-item v-for="(item,index) in brandList" :key="index">
-            <a href=""><img :src="item.store_avatar"></a>
+            <a href=""><img :src="item.store_banner"></a>
             <div class="main ab">
               <div class="infor-l ac">
                 <h2>{{item.store_name}}</h2>
                 <div class="-t">
-                  <span>{{item.store_description}}</span>
+                  <span>{{item.store_mainbusiness}}</span>
                 </div>
               </div>
               <div class="infor-r">
                 <van-tag color="#ee502f">NEW</van-tag>
-                <span class="ab">{{item.store_address}}</span>
+                <span class="ab">{{item.suozaiquyu}}</span>
               </div>
             </div>
           </van-swipe-item>
