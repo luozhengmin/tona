@@ -59,7 +59,7 @@
           </div>
           <div class="classify-list">
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide v-for="(item,index) in items" :key="index"><a href="">{{item.value}}</a></swiper-slide>
+              <swiper-slide v-for="item in items" :key="item.id"><a href="">{{item.value}}</a></swiper-slide>
             </swiper>
           </div>
         </div>
@@ -129,7 +129,9 @@
         items:[],
         children:[],
         areaList:[],
-        brandList:[]
+        brandList:[],
+        cate_id:'',
+        area_name:''
       }
     },
     methods: {
@@ -144,30 +146,30 @@
           cate_id: this.cate_id,
           area_name:this.area_name
         };
-        GoodsClassApi.list().then(res => {
+        GoodsClassApi.list(params).then(res => {
 
           let newData = res.result.class_list
-          let children = []
-          for (var i in newData) {
-              children[i] = newData[i]['children']
+          this.children = []
+          for (let i = 0; i < 4; i++) {
+            this.children[i] = (newData[i]['children'])
           }
-          for( let i of children){
-            console.log(i);
+          for (let j of  this.children){
+            console.log(j);
+            this.items = j.map(o => {
+              o.text = o.value;
+              return o;
+            });
           }
-          this.items = children.map(o => {
-            o.text = o.value;
-            return o;
-          });
 
         });
 
-        StoreApi.storeArea().then(res => {
+        StoreApi.storeArea(params).then(res => {
           this.areaList = res.result;
         }).catch((error) => {
           console.log("error")
         });
 
-        StoreApi.storeBrand(params).then(res => {
+        StoreApi.storeBrand().then(res => {
           this.brandList = res.result.store_list;
         }).catch((error) => {
           console.log("error")

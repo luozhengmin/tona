@@ -43,50 +43,56 @@
               <div class="share-list fix">
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-weixin' />
                   </a>
                   <span>微信好友</span>
                 </div>
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-pengyouquan' />
                   </a>
                   <span>微信朋友圈</span>
                 </div>
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-QQkongjian' />
                   </a>
                   <span>QQ空间</span>
                 </div>
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-weibo' />
                   </a>
                   <span>新浪微博</span>
                 </div>
 
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-umidd17' />
                   </a>
                   <span>支付宝好友</span>
                 </div>
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-zhimaxinyongshenghuoquan' />
                   </a>
                   <span>生活圈</span>
                 </div>
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-qq' />
                   </a>
                   <span>QQ好友</span>
                 </div>
                 <div class="list-item">
                   <a href="">
-                    <img src="../../assets/image/cp02.jpg">
+                    <i class='iconfont icon-yixin' />
+                  </a>
+                  <span>易信</span>
+                </div>
+                <div class="list-item">
+                  <a href="">
+                    <i class='iconfont icon-fuzhilianjie' />
                   </a>
                   <span>复制链接</span>
                 </div>
@@ -340,7 +346,11 @@
         float:left;
         padding:0 4%;
         margin-bottom:6px;
-        a{display:block;}
+        a{
+          display:block;
+          line-height:1.2;
+          i{font-size:32px;color:#ccc;}
+        }
         span{
           display:block;
           padding-top:6px;

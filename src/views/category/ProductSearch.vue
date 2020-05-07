@@ -16,32 +16,32 @@
           <div class="slideNav" v-if="isActive">
             <ul class="ab fix">
               <li>
-                <router-link to="/BrandList">
-                  <i class="iconfont bg-7">&#xe7ae;</i>
+                <router-link to="/BrandList-1">
+                  <img src="../../assets/image/nav05.png">
                   <span>品牌馆</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/Design">
-                  <i class="iconfont bg-7">&#xe508;</i>
+                  <img src="../../assets/image/nav04.png">
                   <span>优秀设计</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/GlobalStore">
-                  <i class="iconfont bg-7">&#xe7b9;</i>
+                  <img src="../../assets/image/nav03.png">
                   <span>全球门店</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/Investment">
-                  <i class="iconfont bg-7">&#xe6b5;</i>
+                  <img src="../../assets/image/nav02.png">
                   <span>招商加盟</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="">
-                  <i class="iconfont bg-7">&#xe602;</i>
+                <router-link to="/index">
+                  <img src="../../assets/image/nav01.png">
                   <span>关于我们</span>
                 </router-link>
               </li>

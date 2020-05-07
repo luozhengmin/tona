@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          订单跟踪
+        </div>
+      </div>
+    </div>
     <div class="log">
       <div class="img">
         <van-image width="75px" height="75px" fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />

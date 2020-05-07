@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          订单详情
+        </div>
+      </div>
+    </div>
     <div class="jy">
       <span class="status">
         <van-icon name="warning-o" />等待卖家付款
@@ -244,9 +253,9 @@ export default {
       margin: 0;
     }
     .item {
-      padding: 0 16px;
       color: #323232;
-      padding: 5px 16px;
+      padding: 5px 15px;
+      font-size: 14px;
       span {
         color: #888888;
       }
@@ -262,6 +271,7 @@ export default {
     button {
       margin: 0 5px;
       color: #888888;
+      font-size:13px;
     }
   }
 }

@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          商品评价
+        </div>
+      </div>
+    </div>
     <van-notice-bar
       text="评价100字+3张图，最高可获100积分"
       background="#ffffcc"
