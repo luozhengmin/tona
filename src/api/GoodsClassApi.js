@@ -19,5 +19,4 @@ GoodsClassApi.recommendClass = (params) =>{
     method: 'POST'
   })
 }
-
 export default GoodsClassApi

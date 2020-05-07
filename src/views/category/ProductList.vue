@@ -184,7 +184,6 @@ export default {
         console.log(res.result)
         this.items = res.result.class_list.map(o => {
           o.text = o.value;
-
           return o;
         });
         this.items.unshift({ text: "推荐" });

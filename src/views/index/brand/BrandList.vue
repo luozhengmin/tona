@@ -59,12 +59,7 @@
           </div>
           <div class="classify-list">
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide><a href="">浴室柜</a></swiper-slide>
-              <swiper-slide><a href="">智能马桶</a></swiper-slide>
-              <swiper-slide><a href="">浴缸</a></swiper-slide>
-              <swiper-slide><a href="">淋浴房</a></swiper-slide>
-              <swiper-slide><a href="">智能马桶</a></swiper-slide>
-              <swiper-slide><a href="">浴室柜</a></swiper-slide>
+              <swiper-slide v-for="(item,index) in items" :key="index"><a href="">{{item.value}}</a></swiper-slide>
             </swiper>
           </div>
         </div>
@@ -83,16 +78,16 @@
 
       </div>
       <div class="sub-brand-b wrap">
-        <div class="col" v-for="(item,index) in subrandlist" :key="index">
+        <div class="col" v-for="(item,index) in brandList" :key="index">
           <router-link :to="{name:'BrandChild',query:{id:item.id}}">
             <div class="b-pic">
-              <img src="../../../assets/image/cp01.jpg">
+              <img :src="item.store_banner">
             </div>
             <div class="main ab fix">
-              <div class="h-pic"></div>
+              <div class="h-pic"><img :src="item.store_avatar"></div>
               <div class="infor">
-                <h2>{{item.p_name}}</h2>
-                <p>{{item.p_information}}</p>
+                <h2>{{item.store_name}}</h2>
+                <p>{{item.store_mainbusiness}}</p>
               </div>
             </div>
           </router-link>
@@ -108,7 +103,7 @@
   import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
   import 'swiper/css/swiper.css'
   import StoreApi from "@/api/HomeStoreApi";
-
+  import GoodsClassApi from "@/api/GoodsClassApi";
   import axios from "@/utils/request";
 
   export default {
@@ -131,16 +126,10 @@
           slidesPerView: 4,
           spaceBetween: 10,
         },
+        items:[],
+        children:[],
         areaList:[],
-        subrandlist:[
-          { id:1,imgUrl:'',p_name:'TONA卫浴',p_information:'纯德系，现代卫浴品牌'},
-          { id:2,imgUrl:'',p_name:'TONA卫浴',p_information:'纯德系，现代卫浴品牌'},
-          { id:3,imgUrl:'',p_name:'TONA卫浴',p_information:'纯德系，现代卫浴品牌'},
-          { id:4,imgUrl:'',p_name:'TONA卫浴',p_information:'纯德系，现代卫浴品牌'},
-          { id:5,imgUrl:'',p_name:'TONA卫浴',p_information:'纯德系，现代卫浴品牌'},
-          { id:6,imgUrl:'',p_name:'TONA卫浴',p_information:'纯德系，现代卫浴品牌'},
-          { id:7,imgUrl:'',p_name:'TONA卫浴',p_information:'纯德系，现代卫浴品牌'}
-        ]
+        brandList:[]
       }
     },
     methods: {
@@ -151,8 +140,35 @@
         });
       },
       getArea(){
+        let params = {
+          cate_id: this.cate_id,
+          area_name:this.area_name
+        };
+        GoodsClassApi.list().then(res => {
+
+          let newData = res.result.class_list
+          let children = []
+          for (var i in newData) {
+              children[i] = newData[i]['children']
+          }
+          for( let i of children){
+            console.log(i);
+          }
+          this.items = children.map(o => {
+            o.text = o.value;
+            return o;
+          });
+
+        });
+
         StoreApi.storeArea().then(res => {
           this.areaList = res.result;
+        }).catch((error) => {
+          console.log("error")
+        });
+
+        StoreApi.storeBrand(params).then(res => {
+          this.brandList = res.result.store_list;
         }).catch((error) => {
           console.log("error")
         });
@@ -194,7 +210,7 @@
           align-items:center;
           background-color:#fff;
           border:solid 1px #f2f2f2;
-          .h-pic{width:45px;height:45px;background-color:#aaa;margin:0 12px;}
+          .h-pic{width:45px;height:45px;margin:0 12px;}
           .infor{
             padding:18px 10px 18px 0;
             h2{font-size:15px;color:#323232;padding-bottom:3px;}

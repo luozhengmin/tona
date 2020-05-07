@@ -16,4 +16,11 @@ StoreApi.storeArea = (params) => {
     method: 'get'
   })
 }
+StoreApi.storeBrand = (params) => {
+  return request({
+    url:`${baseUrl}/store_list`,
+    params: params,
+    method: 'post'
+  })
+}
 export default StoreApi
