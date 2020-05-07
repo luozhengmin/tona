@@ -140,8 +140,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 .tabCard:nth-child(1){display:block;}
 .s-search .fa-search{color:#b7b7b7;}
 /*品牌馆滑动*/
-.classify-list .swiper-slide{text-align:center;}
-.classify-list .swiper-slide a{font-size:14px;width:110%;display:block;}
+.classify-list .swiper-slide{width:auto!important;}
+.classify-list .swiper-slide a{font-size:14px;}
 
 .title-r .van-popup .van-popup__close-icon--top-right{top:8px;}
 .message .van-tab{color:#888;font-size:14px;line-height:48px;}

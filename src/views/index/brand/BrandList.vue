@@ -59,7 +59,7 @@
           </div>
           <div class="classify-list">
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide v-for="item in items" :key="item.id"><a href="">{{item.value}}</a></swiper-slide>
+              <swiper-slide v-for="item in items" :key="item.id"><a>{{item.value}}</a></swiper-slide>
             </swiper>
           </div>
         </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="classify-list">
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide v-for="(item,index) in areaList" :key="index"><router-link to="/BrandList-1">德国</router-link></swiper-slide>
+              <swiper-slide v-for="(item,index) in areaList" :key="index"><router-link to="/BrandList-1">{{item}}</router-link></swiper-slide>
             </swiper>
           </div>
         </div>
@@ -115,19 +115,19 @@
       IndexBanner
     },
     created() {
+
       this.getBanners();
-      this.getArea();
+      this.getArea(this.$route.query.catid);
     },
     data(){
       return{
         isActive: false,
         banners: [],
         swiperOption: {
-          slidesPerView: 4,
-          spaceBetween: 10,
+          slidesPerView: "auto",
+          spaceBetween:15,
         },
         items:[],
-        children:[],
         areaList:[],
         brandList:[],
         cate_id:'',
@@ -141,30 +141,26 @@
           this.banners = banners;
         });
       },
-      getArea(){
+      getArea(catid){
         let params = {
           cate_id: this.cate_id,
           area_name:this.area_name
         };
+
         GoodsClassApi.list(params).then(res => {
 
           let newData = res.result.class_list
-          this.children = []
           for (let i = 0; i < 4; i++) {
-            this.children[i] = (newData[i]['children'])
-          }
-          for (let j of  this.children){
-            console.log(j);
-            this.items = j.map(o => {
-              o.text = o.value;
-              return o;
-            });
+            if(newData[i]['id'] == catid){
+              this.items = newData[i]['children']
+            }
           }
 
         });
 
         StoreApi.storeArea(params).then(res => {
           this.areaList = res.result;
+          console.log(this.areaList)
         }).catch((error) => {
           console.log("error")
         });

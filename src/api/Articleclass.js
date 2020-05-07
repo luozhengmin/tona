@@ -12,7 +12,7 @@ export const getArticleclass =
     params: {
 
     },
-    method: 'POST'
+    method: 'get'
   })
 }
 
@@ -28,12 +28,12 @@ export const getHelpCenter =
       ac_id : ac_id
 
     },
-    method: 'POST'
+    method: 'get'
   })
 }
 
 // 获取文章详情
-export const getArticleinfo = 
+export const getArticleinfo =
 (article_id) => {
  return request({
     url: `/api/Article/article_show`,
@@ -45,6 +45,6 @@ export const getArticleinfo =
       article_id : article_id
 
     },
-    method: 'POST'
+    method: 'get'
   })
 }

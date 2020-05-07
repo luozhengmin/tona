@@ -46,7 +46,7 @@
 
     },
     mounted:function(){
-      
+
     }
   };
 </script>
