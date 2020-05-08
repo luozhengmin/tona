@@ -47,7 +47,7 @@
     },
     mounted:function(){
 
-    }
+    },
   };
 </script>
 
