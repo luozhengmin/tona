@@ -79,28 +79,31 @@
         </div>
       </div>
       <div class="sub-brand-b wrap">
-        <div class="col" v-for="(item,index) in brandList" :key="index">
-          <router-link :to="{name:'BrandChild',query:{id:item.id}}">
-            <div class="b-pic">
-              <img :src="item.store_banner" />
-            </div>
-            <div class="main ab fix">
-              <div class="h-pic">
-                <img :src="item.store_avatar" />
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          @load="getBrandList"
+          :offset="50"
+          finished-text="没有更多了"
+        >
+          <div class="col" v-for="item in brandList" :key="item.id">
+            <router-link :to="{name:'BrandChild',query:{id:item.id}}">
+              <div class="b-pic">
+                <img :src="item.store_banner" />
               </div>
-              <div class="infor">
-                <h2>{{item.store_name}}</h2>
-                <p>{{item.store_mainbusiness}}</p>
+              <div class="main ab fix">
+                <div class="h-pic">
+                  <img :src="item.store_avatar" />
+                </div>
+                <div class="infor">
+                  <h2>{{item.store_name}}</h2>
+                  <p>{{item.store_mainbusiness}}</p>
+                </div>
               </div>
-            </div>
-          </router-link>
-        </div>
+            </router-link>
+          </div>
+        </van-list>
       </div>
-
-      <div class="loading">
-        <van-loading size="18px" text-size="13px" color="#888">加载更多...</van-loading>
-      </div>
-
     </div>
     <index-foot></index-foot>
   </div>
@@ -126,7 +129,7 @@ export default {
     this.getBanners();
     this.cate_id = this.$route.query.catid;
     this.getArea(this.cate_id);
-    this.getBrandList();
+    // this.getBrandList();
   },
   data() {
     return {
@@ -140,7 +143,11 @@ export default {
       areaList: [],
       brandList: [],
       cate_id: null,
-      area_name: null
+      area_name: null,
+      loading: false,
+      finished: false,
+      page_total: 0,
+      page: 1
     };
   },
   methods: {
@@ -168,11 +175,21 @@ export default {
       let params = {
         cate_id: this.cate_id,
         area_name: this.area_name,
-        page: 1,
+        page: this.page,
         pagesize: 10
       };
       StoreApi.storeBrand(params).then(res => {
-        this.brandList = res.result.store_list;
+        let list = res.result.store_list;
+        list.forEach(i => {
+          this.brandList.push(i);
+        });
+        this.page_total = res.result.page_total;
+        if (this.page < this.page_total) {
+          this.page++;
+        } else {
+          this.finished = true;
+        }
+        this.loading = false;
       });
     },
     setCate(cateId) {
@@ -212,8 +229,8 @@ export default {
         font-size: 14px;
         color: #323232;
         border-radius: 25px;
-        height:28px;
-        line-height:28px;
+        height: 28px;
+        line-height: 28px;
       }
       a:hover {
         background-color: red;
