@@ -50,7 +50,7 @@
         </van-row>
       </div>
       <div class="list choice-list">
-        <van-divider>更多精选内容</van-divider>
+        <van-divider :style="{ color: '#b7b7b7', borderColor: '#ccc', padding: '0 20px' }">更多精选内容</van-divider>
         <van-row gutter="15">
           <van-col span="12" v-for="(item,index) in sieveList" :key="index">
             <a href=""><img :src="item.thumb"></a>
@@ -88,7 +88,8 @@
         childList:[],
         banners: [],
         excellentList:[],
-        sieveList:[]
+        sieveList:[],
+        pagesize:3
       }
     },
     methods: {
@@ -139,10 +140,14 @@
         align-items:center;
         background-color:#f7f7f7;
         .infor-l{
+          width:90%;padding-right:3%;
           h2{
             font-size:15px;
             color:#000;
             padding-bottom:5px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
           .-t{
             span{align-items:center;}
@@ -171,6 +176,7 @@
       .van-col:last-child{margin-bottom:0;}
       .van-col{
         margin:6px 0;
+        float:none;
         a{
           display:block;
           img{border-top-left-radius:4px;border-top-right-radius:4px;}
@@ -212,6 +218,7 @@
     .van-row {
       .van-col:last-child{margin:6px 0;}
       .van-col {
+        float:left;
         .main {
           border:none;
           .infor-l {

@@ -65,6 +65,7 @@
     .van-row{
       .van-col {
         margin:6px 0;
+        float:none;
         a{
           img {
             border-top-left-radius: 6px;
@@ -77,10 +78,14 @@
           align-items: center;
           background-color: #f7f7f7;
           .infor-l {
+            width:90%;padding-right:5%;
             h2 {
               font-size: 15px;
               color: #000;
               padding-bottom: 5px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
             }
             .-t {
               span {

@@ -148,6 +148,7 @@ export default {
     }
     .van-col {
       margin: 6px 0;
+      float:none;
       a {
         display: block;
         img {
@@ -212,6 +213,7 @@ export default {
       margin: 6px 0;
     }
     .van-col {
+      float:left;
       .main {
         border: none;
         .infor-l {
