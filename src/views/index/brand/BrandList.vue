@@ -162,7 +162,9 @@ export default {
     getBrandList() {
       let params = {
         cate_id: this.cate_id,
-        area_name: this.area_name
+        area_name: this.area_name,
+        page: 1,
+        pagesize: 10
       };
       StoreApi.storeBrand(params).then(res => {
         this.brandList = res.result.store_list;
