@@ -292,3 +292,5 @@ select{font-size: 100%;margin: 0;outline: none;}
 }
 /*购物车订单详情*/
 .product-card .van-cell .van-field__right-icon{margin-right:-4px;padding:0 0 0 5px;}
+/*加载更多*/
+.loading{padding:12px 12px;text-align:center;}

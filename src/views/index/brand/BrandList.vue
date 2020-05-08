@@ -96,6 +96,11 @@
           </router-link>
         </div>
       </div>
+
+      <div class="loading">
+        <van-loading size="18px" text-size="13px" color="#888">加载更多...</van-loading>
+      </div>
+
     </div>
     <index-foot></index-foot>
   </div>
@@ -207,8 +212,8 @@ export default {
         font-size: 14px;
         color: #323232;
         border-radius: 25px;
-        height: 32px;
-        line-height: 32px;
+        height:28px;
+        line-height:28px;
       }
       a:hover {
         background-color: red;
