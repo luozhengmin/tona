@@ -27,7 +27,7 @@
       <div class="list">
         <div class="title-t ab">
           <h2 class="ac"><span>方案推荐</span></h2>
-          <p @click="changeFlag">换一换</p>
+          <p @click="changeTab">更多方案</p>
         </div>
         <van-row>
           <van-col v-for="(item,index) in excellentList" :key="index">
@@ -89,10 +89,13 @@
         banners: [],
         excellentList:[],
         sieveList:[],
-        pagesize:3
+        activeName:'c'
       }
     },
     methods: {
+      changeTab(){
+        this.$emit('childByValue', this.activeName)
+      },
       getBanners() {
         axios.post("/api/Index/getAppadList/ap_id/", {ap_id:12,}).then(res => {
           let banners = res.result.ad_list;
@@ -120,8 +123,6 @@
           console.log("error")
         });
       },
-      changeFlag() {
-      }
     }
   }
 </script>

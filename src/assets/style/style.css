@@ -236,8 +236,13 @@ select{font-size: 100%;margin: 0;outline: none;}
 .s-select .van-tabs__line{border-radius:0;}
 /*底部高度*/
 .common-footer-wrap{height:50px;}
-.common-footer-wrap .van-info{top:6px;right:-9px;}
+.common-footer-wrap .van-info{top:6px;right:2px;}
 .common-footer-wrap .van-tabbar-item__icon{margin-bottom:0;}
+/*底部固定按钮*/
+.foot-item{text-align:center;}
+.foot-item .van-tabbar-item__text{margin-top:4px;}
+.foot-item .text{font-size:13px;}
+.foot-item .van-tabbar-item__icon img{height: 24px;}
 /*登录menu*/
 .common-login{position:absolute;top:0;left:0;padding:0 12px;z-index:9999;width:100%;}
 .common-login .van-nav-bar__left{left:0;color:#323232;}
@@ -294,3 +299,4 @@ select{font-size: 100%;margin: 0;outline: none;}
 .product-card .van-cell .van-field__right-icon{margin-right:-4px;padding:0 0 0 5px;}
 /*加载更多*/
 .loading{padding:12px 12px;text-align:center;}
+

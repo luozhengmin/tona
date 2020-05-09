@@ -60,7 +60,7 @@ DesignApi.eventRecommend = (params) => {
 
 DesignApi.excellentDesign = (params) => {
   return request({
-    url: `${baseUrl}/gooddesign`,
+    url: `${baseUrl}/gooddesign?pagesize=6`,
     params: params,
     method: 'get'
   })

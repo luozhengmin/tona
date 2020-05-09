@@ -177,7 +177,7 @@
       return{
         isActive:false,
         swiperOption: {
-          slidesPerView: 4,
+          slidesPerView: "auto",
           spaceBetween: 10,
         },
         value:'',
@@ -242,7 +242,7 @@
     .classify-tltle{
       align-items:center;
       a{display:block;padding:0 20px;background-color:#f4f4f4;margin:0 12px 0 0;font-size:14px;color:#323232;
-        border-radius:25px;height:32px;line-height:32px;width:70px;}
+        border-radius:25px;height:28px;line-height:28px;width:70px;}
       a:hover{background-color:red;color:#fff;}
     }
     .classify-list{

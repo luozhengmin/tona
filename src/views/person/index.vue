@@ -139,7 +139,7 @@
       </van-cell>
     </div>
     <div class="footer">
-      <van-divider contentPosition="center" textColor="#000" bordercolor="#000">我是有底线的</van-divider>
+      <van-divider contentPosition="center" :style="{ color: '#b7b7b7', borderColor: '#ccc'}">我是有底线的</van-divider>
     </div>
   </div>
 </template>
@@ -219,7 +219,6 @@ export default {
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
-  height: 100%;
   .user {
     padding: 15px;
     background-color: #fff;

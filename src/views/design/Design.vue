@@ -48,16 +48,16 @@
       </transition>
     </div>
     <div class="design-tab">
-      <van-tabs v-model="active" line-height="0">
-        <van-tab>
+      <van-tabs v-model="activeName" line-height="0" >
+        <van-tab name="a">
           <template #title>推荐</template>
-          <recommend></recommend>
+          <recommend @childByValue="childByValue"></recommend>
         </van-tab>
-        <van-tab>
+        <van-tab name="b">
           <template #title>活动</template>
           <activity></activity>
         </van-tab>
-        <van-tab>
+        <van-tab name="c">
           <template #title>
             设计方案
             <i class="iconfont icon-fire"></i>
@@ -83,12 +83,17 @@ export default {
   name: "Design",
   data() {
     return {
-      active: "",
-      isActive: false
+      activeName:'a',
+      isActive: false,
     };
+  },
+  methods: {
+    childByValue: function (childValue) {
+      // childValue就是子组件传过来的值
+      this.activeName = childValue
+    }
   }
+
 };
 </script>
 
-<style lang="scss" scoped>
-</style>

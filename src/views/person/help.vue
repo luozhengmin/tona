@@ -56,7 +56,6 @@
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
-  height: 100%;
   .top {
     background-color: #ffffff;
     display: flex;

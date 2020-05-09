@@ -58,7 +58,7 @@
 <style lang="scss" scoped>
 .container {
   .form {
-    padding: 0 15px;
+    padding:0 15px 12px 15px;
     .item {
       padding-top: 8px;
       .label {

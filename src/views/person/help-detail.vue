@@ -53,7 +53,6 @@
 
 <style lang="scss" scoped>
 .container {
-  height: 100%;
   .q-list {
     padding: 15px;
     line-height: 24px;
