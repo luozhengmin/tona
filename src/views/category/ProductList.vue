@@ -64,91 +64,142 @@
       </van-search>
     </div>
 
-    <div class="list wrap fix">
-      <van-tree-select height="90vw" :items="items" :main-active-index.sync="active">
-        <template #content>
-          <div class="p-item" v-if="active === 0">
-            <div class="p-pic">
-              <img src="../../assets/image/cp01.jpg" />
-            </div>
-            <div class="p-list">
-              <h2>推荐</h2>
-              <van-row gutter="10">
-                <van-col span="8" v-for="i in 5 " :key="i">
-                  <router-link to="/ProductList-Item">
-                    <div class="prod-pic">
-                      <img src="../../assets/image/cp02.jpg" />
-                    </div>
-                    <div class="prod-title">卫浴</div>
-                  </router-link>
-                </van-col>
-              </van-row>
-            </div>
-            <div class="p-list">
-              <h2>硬装建材</h2>
-              <van-row gutter="10">
-                <van-col span="8" v-for="i in 5 " :key="i">
-                  <a href>
-                    <div class="prod-pic">
-                      <img src="../../assets/image/cp02.jpg" />
-                    </div>
-                    <div class="prod-title">卫浴</div>
-                  </a>
-                </van-col>
-              </van-row>
-            </div>
-            <div class="p-list">
-              <h2>软装灯饰</h2>
-              <van-row gutter="10">
-                <van-col span="8" v-for="i in 5 " :key="i">
-                  <a href>
-                    <div class="prod-pic">
-                      <img src="../../assets/image/cp02.jpg" />
-                    </div>
-                    <div class="prod-title">卫浴</div>
-                  </a>
-                </van-col>
-              </van-row>
-            </div>
-          </div>
-
-          <div v-for="(item,index) in items" :key="item.id">
-            <template v-if="active === index">
-              <div class="p-item">
-                <div class="p-pic">
-                  <img src="../../assets/image/cp03.jpg" />
-                </div>
-                <div class="p-list">
-                  <h2>推荐</h2>
-                  <van-row gutter="10">
-                    <van-col span="8" v-for="i in 5 " :key="i">
-                      <a href>
-                        <div class="prod-pic">
-                          <img src="../../assets/image/cp02.jpg" />
-                        </div>
-                        <div class="prod-title">卫浴</div>
-                      </a>
-                    </van-col>
-                  </van-row>
-                </div>
-                <div class="p-list" v-for="child in item.children" :key="child.id">
-                  <h2>{{child.value}}</h2>
-                  <van-row gutter="10">
-                    <van-col span="8" v-for="third in child.children" :key="third.id">
-                      <a href>
-                        <div class="prod-pic">
-                          <img src="../../assets/image/cp02.jpg" />
-                        </div>
-                        <div class="prod-title">{{third.value}}</div>
-                      </a>
-                    </van-col>
-                  </van-row>
-                </div>
+    <div class="product-list wrap fix">
+      <div class="product-l l">
+        <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+          <swiper-slide>推荐</swiper-slide>
+          <swiper-slide>硬装</swiper-slide>
+          <swiper-slide>软装</swiper-slide>
+          <swiper-slide>家电</swiper-slide>
+          <swiper-slide>定制</swiper-slide>
+          <swiper-slide>风格</swiper-slide>
+        </swiper>
+      </div>
+      <div class="product-r r">
+        <swiper class="swiper  gallery-top" :options="swiperOptionTop" ref="swiperTop">
+          <swiper-slide>
+            <div class="p-item">
+              <div class="p-pic">
+                <img src="../../assets/image/cp01.jpg" />
               </div>
-            </template>
-          </div>
-        </template>
-      </van-tree-select>
+              <div class="p-list" v-for="i in 4" :key="i">
+                <h2>推荐01</h2>
+                <van-row gutter="10">
+                  <van-col span="8" v-for="i in 5 " :key="i">
+                    <router-link to="/ProductList-Item">
+                      <div class="prod-pic">
+                        <img src="../../assets/image/cp02.jpg" />
+                      </div>
+                      <div class="prod-title">卫浴</div>
+                    </router-link>
+                  </van-col>
+                </van-row>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="p-item">
+              <div class="p-pic">
+                <img src="../../assets/image/cp03.jpg" />
+              </div>
+              <div class="p-list">
+                <h2>推荐02</h2>
+                <van-row gutter="10">
+                  <van-col span="8" v-for="i in 5 " :key="i">
+                    <router-link to="/ProductList-Item">
+                      <div class="prod-pic">
+                        <img src="../../assets/image/cp02.jpg" />
+                      </div>
+                      <div class="prod-title">卫浴</div>
+                    </router-link>
+                  </van-col>
+                </van-row>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="p-item">
+              <div class="p-pic">
+                <img src="../../assets/image/cp01.jpg" />
+              </div>
+              <div class="p-list">
+                <h2>推荐03</h2>
+                <van-row gutter="10">
+                  <van-col span="8" v-for="i in 5 " :key="i">
+                    <router-link to="/ProductList-Item">
+                      <div class="prod-pic">
+                        <img src="../../assets/image/cp02.jpg" />
+                      </div>
+                      <div class="prod-title">卫浴</div>
+                    </router-link>
+                  </van-col>
+                </van-row>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="p-item">
+              <div class="p-pic">
+                <img src="../../assets/image/cp01.jpg" />
+              </div>
+              <div class="p-list">
+                <h2>推荐04</h2>
+                <van-row gutter="10">
+                  <van-col span="8" v-for="i in 5 " :key="i">
+                    <router-link to="/ProductList-Item">
+                      <div class="prod-pic">
+                        <img src="../../assets/image/cp02.jpg" />
+                      </div>
+                      <div class="prod-title">卫浴</div>
+                    </router-link>
+                  </van-col>
+                </van-row>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="p-item">
+              <div class="p-pic">
+                <img src="../../assets/image/cp01.jpg" />
+              </div>
+              <div class="p-list">
+                <h2>推荐05</h2>
+                <van-row gutter="10">
+                  <van-col span="8" v-for="i in 5 " :key="i">
+                    <router-link to="/ProductList-Item">
+                      <div class="prod-pic">
+                        <img src="../../assets/image/cp02.jpg" />
+                      </div>
+                      <div class="prod-title">卫浴</div>
+                    </router-link>
+                  </van-col>
+                </van-row>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="p-item">
+              <div class="p-pic">
+                <img src="../../assets/image/cp01.jpg" />
+              </div>
+              <div class="p-list">
+                <h2>推荐06</h2>
+                <van-row gutter="10">
+                  <van-col span="8" v-for="i in 5 " :key="i">
+                    <router-link to="/ProductList-Item">
+                      <div class="prod-pic">
+                        <img src="../../assets/image/cp02.jpg" />
+                      </div>
+                      <div class="prod-title">卫浴</div>
+                    </router-link>
+                  </van-col>
+                </van-row>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+
     </div>
   </div>
 </template>
@@ -156,18 +207,31 @@
 <script>
 import { Toast } from "vant";
 import GoodsClassApi from "@/api/GoodsClassApi";
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
 export default {
   name: "ProductList",
+  components: {
+    Swiper,
+    SwiperSlide
+  },
   data() {
     return {
+      swiperOptionThumbs: {
+        slidesPerView: 6,
+        direction : 'vertical',
+        loop: true,
+        loopedSlides:6,
+        touchRatio: 0.2,
+        slideToClickedSlide: true,
+        height:300,
+      },
+      swiperOptionTop: {
+        loop: true,
+        loopedSlides: 6,
+      },
       isActive: false,
       value: "",
-      onSearch(val) {
-        Toast(val);
-      },
-      onCancel() {
-        Toast("取消");
-      },
       active: 0,
       items: [],
       children: [],
@@ -175,35 +239,52 @@ export default {
       recommend:[]
     };
   },
-  created() {
-    this.getList();
+//  created() {
+//    this.getList();
+//  },
+  mounted() {
+    this.$nextTick(() => {
+      const swiperThumbs = this.$refs.swiperThumbs.$swiper
+      const swiperTop = this.$refs.swiperTop.$swiper
+      swiperThumbs.controller.control = swiperTop
+      swiperTop.controller.control = swiperThumbs
+
+    })
   },
+
   methods: {
-    getList() {
-      GoodsClassApi.list().then(res => {
-        console.log(res.result)
-        this.items = res.result.class_list.map(o => {
-          o.text = o.value;
-          return o;
-        });
-        this.items.unshift({ text: "推荐" });
-      });
+    onSearch(val) {
+      Toast(val);
     },
-    getRecommend(parentid){
-
-      GoodsClassApi.recommendClass(this.params).then(res => {
-        this.recommend = res.result
-
-      },error=>{
-
-      });
-    }
+    onCancel() {
+      Toast("取消");
+    },
+//    getList() {
+//      GoodsClassApi.list().then(res => {
+//        console.log(res.result)
+//        this.items = res.result.class_list.map(o => {
+//          o.text = o.value;
+//          return o;
+//        });
+//        this.items.unshift({ text: "推荐" });
+//      });
+//    },
+//    getRecommend(parentid){
+//
+//      GoodsClassApi.recommendClass(this.params).then(res => {
+//        this.recommend = res.result
+//
+//      },error=>{
+//
+//      });
+//    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .s-search {
+  position:fixed;top:50px;width:100%;z-index:9999;
   .van-search {
     padding: 12px 15px;
     .van-search__action {
@@ -220,46 +301,28 @@ export default {
     }
   }
 }
-.list {
-  margin: 6px 0;
-  .van-tree-select {
-    .van-sidebar-item {
-      width: 60px;
-      border: none;
-      padding: 0 8px 24px 12px;
+.p-item {
+  .p-pic {
+    img {
+      border-radius: 4px;
     }
-    .van-sidebar-item--select {
-      color: #f4523b;
-    }
-    .van-tree-select__content {
-      -webkit-box-flex: 4;
-      -webkit-flex: 4;
-      flex: 4;
-      .p-item {
-        .p-pic {
-          img {
-            border-radius: 4px;
-          }
-        }
-        .p-list {
-          .van-row {
-            .van-col {
-              margin-bottom: 6px;
-              a {
-                .prod-title {
-                  text-align: center;
-                  color: #323232;
-                }
-              }
-            }
-          }
-          h2 {
-            font-size: 14px;
-            color: #888;
-            padding: 12px 0;
+  }
+  .p-list {
+    .van-row {
+      .van-col {
+        margin-bottom: 6px;
+        a {
+          .prod-title {
+            text-align: center;
+            color: #323232;
           }
         }
       }
+    }
+    h2 {
+      font-size: 14px;
+      color: #888;
+      padding: 12px 0;
     }
   }
 }
