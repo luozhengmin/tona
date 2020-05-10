@@ -229,6 +229,7 @@ export default {
       swiperOptionTop: {
         loop: true,
         loopedSlides: 6,
+        autoHeight:true
       },
       isActive: false,
       value: "",
@@ -284,7 +285,7 @@ export default {
 
 <style lang="scss" scoped>
 .s-search {
-  position:fixed;top:50px;width:100%;z-index:9999;
+  position:fixed;top:50px;width:100%;z-index:9000;
   .van-search {
     padding: 12px 15px;
     .van-search__action {
