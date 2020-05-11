@@ -300,10 +300,40 @@ select{font-size: 100%;margin: 0;outline: none;}
 /*加载更多*/
 .loading{padding:12px 12px;text-align:center;}
 /*品类列表*/
-.product-list{overflow:hidden;position:relative;min-height: calc(100vh - 110px);padding-bottom: 20px;}
-.product-list .product-l{width:16%;position:fixed;left:15px;top:110px;overflow:hidden;height:300px;z-index:999;}
-.product-list .product-l .swiper-wrapper{display:block;}
-.product-list .product-l .swiper-slide{color:#888;font-size:14px;text-align:center;padding-bottom:20px;}
-.product-list .product-l .swiper-slide-active{color:#f4523b;}
-.product-list .product-r{width:80%;margin-left:4%;margin-top:60px;}
+/*.list-container{margin-top:110px;}*/
+/*.list-container .actives{border-bottom:1px solid #3190e8; color: #3190e8;}*/
+/*.list-container .content{width: 100%;}*/
+/*.list-container .left{top:110px;float:left;width:18%;height:100%;position:fixed;}*/
+/*.list-container .left ul{list-style: none;}*/
+/*.list-container .left ul li{padding-bottom:20px;text-align: center;font-size:14px;}*/
+/*.list-container .active{color:#f4523b;}*/
+/*.list-container .right{float:right; width:78%;height:100%;}*/
+/*.list-container .right ul{list-style: none;}*/
+/*.list-container .class-title{ padding:7px 10px;background:#f4523b; color:#fff;font-size:14px;}*/
+.no_sroll {margin:0 auto; width:100%;height:100%;padding:110px 15px 0 15px; overflow:hidden; position:relative; display:flex;}
+.newHeight {display:block; overflow: hidden; background:#fff; position:relative; width:78%;margin-left:4%;overflow-y:scroll;
+  overflow-x:hidden;-webkit-overflow-scrolling: touch;}
+.newHeight .cu-items { position: relative; display: flex; float:left; flex-direction:column; align-items: center;
+  width:31%; height:110px; margin-left:3.5%; margin-bottom:10px;}
+.newHeight .cu-items:nth-of-type(3n-2) { margin-left:0;}
+.cu-items .storeL { width:85px; height:85px; position: relative;}
+.cu-items .storeL img { width:85px; height:85px;}
+.cu-items .text {font-size:14px;margin-top:5px; color:#323232;}
+.newHeight .proList { width:100%; display:flex; flex-direction:column; position:relative;}
+.newHeight .proList .r_top { height:50px;display:flex;justify-content:space-between;align-items:center;}
+.newHeight .proList .r_top .leftName { line-height:50px; font-size:14px; text-align:left; color:#888;}
+.theFixed {height:60px;display:flex;justify-content:space-between;align-items:center;}
+.theFixed .leftName {line-height:50px; font-size:16px; text-align:left; color:#666; margin-left:10px;}
+
+.tabNav { display: block;width:18%;overflow: hidden; position:relative; overflow-y:scroll; overflow-x:hidden; -webkit-overflow-scrolling: touch;}
+.tabNav .nav_list { display:flex; width:100%;}
+.tabNav .nav_li { font-size:14px;color:#888; text-align:center;padding-bottom:24px;width:100%; flex-shrink: 0; position:relative; display: flex; justify-content: center; align-items: center;}
+.tabNav .nav_li .imgLi { height:16px; position: absolute; left:0; top: 22px;}
+.checkIn { color:#f4523b!important;}
+.isFixed {height:60px;line-height:60px;font-size:16px;text-align:left;color:#666;position:fixed;width:70%;left:27%;
+  background: #fff;  z-index: 19;
+}
+.isHide {position:fixed;height:60px;  line-height:60px;  font-size:16px;  text-align:left;  color:#666;  width:70%;  left:27%;  background: #fff;
+  z-index: 19;
+}
 

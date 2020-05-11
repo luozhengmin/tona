@@ -1,80 +1,17 @@
 <template>
-  <div class="container">
-    <div class="head fix">
-      <div class="wrap fix">
-        <div class="head-ss fix">
-          <van-icon name="arrow-left" @click="$router.go(-1)" />
-        </div>
-        <div class="head-logo">品类</div>
-        <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
-          <span></span>
-        </div>
-      </div>
-      <transition name="van-slide-down">
-        <div class="slideNav" v-if="isActive">
-          <ul class="ab fix">
-            <li>
-              <router-link to="/BrandList-1">
-                <img src="../../assets/image/nav05.png">
-                <span>品牌馆</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Design">
-                <img src="../../assets/image/nav04.png">
-                <span>优秀设计</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/GlobalStore">
-                <img src="../../assets/image/nav03.png">
-                <span>全球门店</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Investment">
-                <img src="../../assets/image/nav02.png">
-                <span>招商加盟</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/index">
-                <img src="../../assets/image/nav01.png">
-                <span>关于我们</span>
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </transition>
-    </div>
-    <div class="s-search">
-      <van-search
-        v-model="value"
-        show-action
-        placeholder="请输入商品关键词"
-        @search="onSearch"
-        @cancel="onCancel"
-      >
-        <template #left-icon>
-          <van-icon class="fa fa-search" />
-        </template>
-        <template #action>
-          <div>取消</div>
-        </template>
-      </van-search>
-    </div>
+  <div class="wrap">
     <div class='no_sroll' v-if="navList">
       <aside class="tabNav" ref="l_list">
         <ul>
           <li ref="l_item" class="nav_li" :class="(TabNavList == index) ? 'checkIn' : ''" :index="index" :id="index"
               @click="checkNavList(item, index)" v-for="(item, index) in navList" :key="index">
-            {{item.gcName}}
+           {{item.gcName}}
           </li>
         </ul>
       </aside>
       <!--&lt;!&ndash; 增加浮动层 &ndash;&gt;-->
       <!--<div class="theFixed" :class="(TabNavList == index) ? 'isFixed' : 'isHide'" v-if="scrollTrue">-->
-      <!--<div class="leftName">{{scrollTrue.gcName}}</div>-->
+        <!--<div class="leftName">{{scrollTrue.gcName}}</div>-->
       <!--</div>-->
       <section class="newHeight" ref="r_list">
         <div >
@@ -102,7 +39,7 @@
 <script>
   import Better from 'better-scroll'
   export default {
-    name: 'ProductList',
+    name: 'ProductList01',
     components: {
       Better
     },
@@ -126,20 +63,9 @@
         flag: true,
         obj: null,
         show: false,
-        ios: /iphone os/g.test(window.navigator.userAgent.toLowerCase()),
-
-        isActive: false,
-        value: "",
-        active: 0,
-        items: [],
-        children: [],
-        params:{},
-        recommend:[]
+        ios: /iphone os/g.test(window.navigator.userAgent.toLowerCase())
       }
     },
-//  created() {
-//    this.getList();
-//  },
     mounted () {
       this.$nextTick(() => {
         this._initScroll()
@@ -147,12 +73,6 @@
       })
     },
     methods: {
-      onSearch(val) {
-        Toast(val);
-      },
-      onCancel() {
-        Toast("取消");
-      },
       _initScroll () {
         this.left = new Better(this.$refs.l_list, {
           click: true,
@@ -212,51 +132,56 @@
           this.flag = true
         }, 100)
       },
-//    getList() {
-//      GoodsClassApi.list().then(res => {
-//        console.log(res.result)
-//        this.items = res.result.class_list.map(o => {
-//          o.text = o.value;
-//          return o;
-//        });
-//        this.items.unshift({ text: "推荐" });
-//      });
-//    },
-//    getRecommend(parentid){
-//
-//      GoodsClassApi.recommendClass(this.params).then(res => {
-//        this.recommend = res.result
-//
-//      },error=>{
-//
-//      });
-//    }
+
 //      destroyed () {
 //        window.removeEventListener('scroll', this.handleScroll, true)
 //      }
     }
   }
 </script>
-<style lang="scss" scoped>
-  .s-search {
-    position:fixed;top:50px;width:100%;z-index:9000;
-    .van-search {
-      padding: 12px 15px;
-      .van-search__action {
-        padding: 0 0 0 12px;
-      }
-      .van-search__content {
-        background-color: inherit;
-        padding-left: 0;
-        .van-cell {
-          border: solid 1px #eee;
-          border-radius: 25px;
-          padding: 5px 8px 5px 10px;
-        }
-      }
-    }
-  }
-  .container{ margin: 0 auto; width: 100%;height:100%;overflow:hidden;}
+<style scoped>
+  .wrap{ margin: 0 auto; width: 100%;height:100%;overflow:hidden;}
+  .no_sroll {margin:0 auto; width:100%;height:100%;padding-top:45px; overflow:hidden; position:relative; display:flex;}
+  .newHeight {display:block; overflow: hidden; background:#fff; position:relative; width:75%;padding:0 10px;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling: touch;}
+  .newHeight .cu-items { position: relative; display: flex; float:left; flex-direction:column; align-items: center; width:30%; height:110px; margin-left: 4.5%; margin-bottom:10px;}
+  .newHeight .cu-items:nth-of-type(3n-2) { margin-left:0;}
+  .cu-items .storeL { width: 80px; height: 80px; position: relative; border-radius: 4px; }
+  .cu-items .storeL img { width: 80px; height: 80px;}
+  .cu-items .text {font-size:14px; line-height:18px; margin-top:5px; color:#666;}
+  .newHeight .proList { width:100%; display:flex; flex-direction:column; position:relative;}
+  .newHeight .proList .r_top { height:60px;display:flex;justify-content:space-between;align-items:center;}
+  .newHeight .proList .r_top .leftName { line-height:60px; font-size:16px; text-align:left; color:#666;}
+  .theFixed {height:60px;display:flex;justify-content:space-between;align-items:center;}
+  .theFixed .leftName {line-height:60px; font-size:16px; text-align:left; color:#666; margin-left:10px;}
 
+  .tabNav { display: block;width:25%; background:#F5F5F2;overflow: hidden; position:relative; overflow-y:scroll; overflow-x:hidden; -webkit-overflow-scrolling: touch;}
+  .tabNav .nav_list { display:flex; width:100%;}
+  .tabNav .nav_li { font-size:16px; line-height:20px; color:#666; text-align:center; height: 60px; width:100%; flex-shrink: 0; position:relative; display: flex; justify-content: center; align-items: center;}
+  .tabNav .nav_li .imgLi { height:16px; position: absolute; left:0; top: 22px;}
+  .checkIn { color:#2CBF64!important; background:#fff!important; font-weight:bold;}
+  .isFixed {
+    height:60px;
+    line-height:60px;
+    font-size:16px;
+    text-align:left;
+    color:#666;
+    position:fixed;
+    width:70%;
+    left:27%;
+    background: #fff;
+    z-index: 19;
+  }
+  .isHide {
+    position: fixed;
+    height:60px;
+    line-height:60px;
+    font-size:16px;
+    text-align:left;
+    color:#666;
+    width:70%;
+    left:27%;
+    background: #fff;
+    z-index: 19;
+  }
 </style>
 

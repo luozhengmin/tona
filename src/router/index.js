@@ -156,6 +156,11 @@ export default new Router({
           component: () => import("@/views/category/ProductList"),
         },
         {
+          path: 'ProductList01',
+          name: 'ProductList01',
+          component: () => import("@/views/category/ProductList01"),
+        },
+        {
           path: 'ProductList-Item',
           name: 'ProductList-Item',
           component: () => import("@/views/category/ProductList-Item"),
