@@ -23,4 +23,12 @@ StoreApi.storeBrand = (params) => {
     method: 'post'
   })
 }
+
+StoreApi.storeInfo = (params) => {
+  return request({
+    url:`${baseUrl}/store_info`,
+    data: params,
+    method: 'post'
+  })
+}
 export default StoreApi
