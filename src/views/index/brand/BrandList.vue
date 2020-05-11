@@ -87,7 +87,7 @@
           finished-text="没有更多了"
         >
           <div class="col" v-for="item in brandList" :key="item.id">
-            <router-link :to="{name:'BrandChild',query:{id:item.id}}">
+            <router-link :to="{name:'BrandChild',query:{store_id:item.store_id}}">
               <div class="b-pic">
                 <img :src="item.store_banner" />
               </div>
