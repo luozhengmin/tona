@@ -65,13 +65,13 @@
     <div class="b-child-tab">
       <van-tabs v-model="activeName" color="#323232" line-height="0">
         <van-tab title="品牌首页" name="a">
-          <brand-home></brand-home>
+          <brand-home :products="rec_products" :designs="rec_designs" :likes="likes"></brand-home>
         </van-tab>
         <van-tab title="商品" name="b">
-          <brand-product></brand-product>
+          <brand-product :store_id="store_id"></brand-product>
         </van-tab>
         <van-tab title="设计方案" name="c">
-          <brand-design></brand-design>
+          <brand-design :store_id="store_id"></brand-design>
         </van-tab>
       </van-tabs>
     </div>
@@ -96,7 +96,10 @@ export default {
       activeName: "",
       isActive: false,
       store_id: null,
-      store_info: {}
+      store_info: {},
+      rec_products: [],
+      rec_designs: [],
+      likes: []
     };
   },
   created() {
@@ -112,6 +115,9 @@ export default {
       StoreApi.storeInfo(params).then(res => {
         console.log(res);
         this.store_info = res.result.store_info;
+        this.rec_products = res.result.rec_goods_list;
+        this.rec_designs = res.result.rec_design_fan;
+        this.likes = res.result.guesslike_list;
       });
     }
   }
