@@ -80,7 +80,7 @@
         </div>
       </div>
 
-      <div class="s-select">
+      <div class="s-select u-select">
         <van-tabs color="#f4523b">
           <van-tab>
             <template #title>新品</template>
@@ -178,7 +178,7 @@
         isActive:false,
         swiperOption: {
           slidesPerView: "auto",
-          spaceBetween: 10,
+          spaceBetween: 15,
         },
         value:'',
         goodslist:[{}], //商品列表
@@ -317,4 +317,5 @@
   }
   .s-nav li:nth-child(1) a .van-icon{display:none;}
   .s-select .van-tab:nth-child(3) .van-tab__text i{vertical-align:-3px;}
+  .u-select .van-tab--active:nth-child(3) .van-tab__text i{vertical-align:3px;}
 </style>

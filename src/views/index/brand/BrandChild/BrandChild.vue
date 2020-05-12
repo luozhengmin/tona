@@ -70,7 +70,7 @@
         <van-tab title="商品" name="b">
           <brand-product></brand-product>
         </van-tab>
-        <van-tab title="设计师" name="c">
+        <van-tab title="设计方案" name="c">
           <brand-design></brand-design>
         </van-tab>
       </van-tabs>

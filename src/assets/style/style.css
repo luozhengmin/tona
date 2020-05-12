@@ -233,6 +233,12 @@ select{font-size: 100%;margin: 0;outline: none;}
 .s-select .van-tab--active{color:#f4523b;}
 .s-select .van-tab__text i{vertical-align:4px;padding-left:3px;}
 .s-select .van-tab:nth-child(4) .van-tab__text i{vertical-align:-3px;}
+.s-select .van-tab--active .van-tab__text i{vertical-align:-1px;padding-right:3px;transform:rotate(180deg);
+  -ms-transform:rotate(180deg); 	/* IE 9 */
+  -moz-transform:rotate(180deg); 	/* Firefox */
+  -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+  -o-transform:rotate(180deg); 	/* Opera */}
+.s-select .van-tab--active:nth-child(4) .van-tab__text i{vertical-align:4px;}
 .s-select .van-tabs__line{border-radius:0;}
 /*底部高度*/
 .common-footer-wrap{height:50px;}
