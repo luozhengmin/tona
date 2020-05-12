@@ -1,219 +1,183 @@
 <template>
-    <div>
-      <div class="s-search">
-        <van-search
-          v-model="value"
-          show-action
-          placeholder="请输入商品关键词"
-          @search="onSearch">
-          <template #left-icon>
-            <van-icon class="fa fa-search"/>
-          </template>
-          <template #action>
-            <div @click="onSearch">搜索</div>
-          </template>
-        </van-search>
-      </div>
-
-      <div class="s-select">
-        <van-tabs color="#f4523b">
-          <van-tab>
-            <template #title>综合 </template>
-            <div class="list">
-              <van-row gutter="15">
-                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                  <div class="prod">
-                    <div>
-                      <img src="../../../../assets/image/prod-2.jpg" />
-                    </div>
-                    <div class="title">欧式悬挂式浴室柜11</div>
-                    <div class="desc">45度角双抽拉手设计</div>
-                    <div class="bottom">
-                      <div>
-                        <span class="fuhao">￥</span>2580.00
-                      </div>
-                      <div class="icon">
-                        <van-icon name="cart" />
-                      </div>
-                    </div>
-                  </div>
-                </van-col>
-              </van-row>
-            </div>
-          </van-tab>
-          <van-tab>
-            <template #title>新品</template>
-            <div class="list">
-              <van-row gutter="15">
-                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                  <div class="prod">
-                    <div>
-                      <img src="../../../../assets/image/prod-2.jpg" />
-                    </div>
-                    <div class="title">欧式悬挂式浴室柜22</div>
-                    <div class="desc">45度角双抽拉手设计</div>
-                    <div class="bottom">
-                      <div>
-                        <span class="fuhao">￥</span>2580.00
-                      </div>
-                      <div class="icon">
-                        <van-icon name="cart" />
-                      </div>
-                    </div>
-                  </div>
-                </van-col>
-              </van-row>
-            </div>
-          </van-tab>
-          <van-tab>
-            <template #title>销量<i class="fa fa-sort-desc"></i></template>
-            <div class="list">
-              <van-row gutter="15">
-                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                  <div class="prod">
-                    <div>
-                      <img src="../../../../assets/image/prod-2.jpg" />
-                    </div>
-                    <div class="title">欧式悬挂式浴室柜11</div>
-                    <div class="desc">45度角双抽拉手设计</div>
-                    <div class="bottom">
-                      <div>
-                        <span class="fuhao">￥</span>2580.00
-                      </div>
-                      <div class="icon">
-                        <van-icon name="cart" />
-                      </div>
-                    </div>
-                  </div>
-                </van-col>
-              </van-row>
-            </div>
-          </van-tab>
-          <van-tab>
-            <template #title>价格<i class="fa fa-sort-asc"></i></template>
-            <div class="list">
-              <van-row gutter="15">
-                <van-col span="12" style="margin-bottom:15px" v-for="i in 4 " :key="i">
-                  <div class="prod">
-                    <div>
-                      <img src="../../../../assets/image/prod-2.jpg" />
-                    </div>
-                    <div class="title">欧式悬挂式浴室柜11</div>
-                    <div class="desc">45度角双抽拉手设计</div>
-                    <div class="bottom">
-                      <div>
-                        <span class="fuhao">￥</span>2580.00
-                      </div>
-                      <div class="icon">
-                        <van-icon name="cart" />
-                      </div>
-                    </div>
-                  </div>
-                </van-col>
-              </van-row>
-            </div>
-          </van-tab>
-        </van-tabs>
-      </div>
-
+  <div>
+    <div class="s-search">
+      <van-search
+        v-model="queryParams.keyword"
+        show-action
+        placeholder="请输入商品关键词"
+        @search="onSearch"
+      >
+        <template #left-icon>
+          <van-icon class="fa fa-search" />
+        </template>
+        <template #action>
+          <div @click="onSearch">搜索</div>
+        </template>
+      </van-search>
     </div>
+
+    <div class="s-select">
+      <van-tabs color="#f4523b" @click="tabClick">
+        <van-tab name="0">
+          <template #title>综合</template>
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            @load="getList"
+            :offset="50"
+            finished-text="没有更多了"
+          >
+            <ProductListItem :products="goods_list"></ProductListItem>
+          </van-list>
+        </van-tab>
+        <van-tab name="1">
+          <template #title>新品</template>
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            @load="getList"
+            :offset="50"
+            finished-text="没有更多了"
+          >
+            <ProductListItem :products="goods_list"></ProductListItem>
+          </van-list>
+        </van-tab>
+        <van-tab name="3">
+          <template #title>
+            销量
+            <i class="fa fa-sort-desc"></i>
+          </template>
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            @load="getList"
+            :offset="50"
+            finished-text="没有更多了"
+          >
+            <ProductListItem :products="goods_list"></ProductListItem>
+          </van-list>
+        </van-tab>
+        <van-tab name="2">
+          <template #title>
+            价格
+            <i class="fa fa-sort-asc"></i>
+          </template>
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            @load="getList"
+            :offset="50"
+            finished-text="没有更多了"
+          >
+            <ProductListItem :products="goods_list"></ProductListItem>
+          </van-list>
+        </van-tab>
+      </van-tabs>
+    </div>
+  </div>
 </template>
 
 <script>
-  import { Toast } from 'vant';
-  export default {
-    name: "BrandProduct",
-    data() {
-      return {
-        value: '',
+import { Toast } from "vant";
+import ProductListItem from "./ProductListItem";
+import StoreApi from "@/api/HomeStoreApi";
+export default {
+  name: "BrandProduct",
+  components: { ProductListItem },
+  props: {
+    store_id: {
+      type: [String, Number]
+    }
+  },
+  data() {
+    return {
+      goods_list: [],
+      queryParams: {
+        page: 1,
+        per_page: 10,
+        key: 2,
+        store_id: this.store_id
+      },
+      tabName: 0,
+      loading: false,
+      finished: false,
+      page_total: 0,
+      page: 1
+    };
+  },
+  mounted() {
+    // this.getList();
+  },
+  methods: {
+    tabClick(name, title) {
+      this.goods_list = [];
+      this.queryParams.page = 1;
+      this.finished = false;
+      if (name == 1) {
+        this.queryParams.key = 1;
+        this.queryParams.order = 2;
+      } else if (name == 2) {
+        this.queryParams.key = 2;
+        this.setOrder(name);
+      } else if (name == 3) {
+        this.queryParams.key = 3;
+        this.setOrder(name);
+      } else {
+        this.queryParams.key = null;
+      }
+      this.tabName = name;
+    },
+    setOrder(name) {
+      if (name == this.tabName) {
+        if (this.queryParams.order == 2) {
+          this.queryParams.order = 1;
+        } else {
+          this.queryParams.order = 2;
+        }
+      } else {
+        this.queryParams.order = 2;
       }
     },
-    methods: {
-      onSearch(val) {
-        Toast(val);
-      },
+    getList() {
+      StoreApi.productList(this.queryParams).then(res => {
+        let list = res.result.goods_list;
+        list.forEach(o => {
+          this.goods_list.push(o);
+        });
+        this.page_total = res.result.page_total;
+        if (this.queryParams.page < this.page_total) {
+          this.queryParams.page++;
+        } else {
+          this.finished = true;
+        }
+        this.loading = false;
+      });
+    },
+    onSearch() {
+      this.goods_list = [];
+      this.queryParams.page = 1;
+      this.finished = false;
     }
   }
+};
 </script>
 
 <style lang="scss" scoped>
-  .s-search {
-    .van-search{
-      padding:12px 15px;
-      .van-search__action{padding:0 0 0 12px;}
-      .van-search__content{
-        background-color:inherit;
-        padding-left:0;
-        .van-cell{
-          border:solid 1px #eee;
-          border-radius:25px;
-          padding: 5px 8px 5px 10px;
-        }
+.s-search {
+  .van-search {
+    padding: 12px 15px;
+    .van-search__action {
+      padding: 0 0 0 12px;
+    }
+    .van-search__content {
+      background-color: inherit;
+      padding-left: 0;
+      .van-cell {
+        border: solid 1px #eee;
+        border-radius: 25px;
+        padding: 5px 8px 5px 10px;
       }
     }
   }
-  .list {
-    height: 100%;
-    padding: 15px;
-    .card {
-      background-color: #fff;
-      margin-bottom: 15px;
-      .info {
-        padding: 0 15px;
-        .title {
-          font-size: 16px;
-          color: #323232;
-          margin-bottom: 5px;
-        }
-      }
-      .desc {
-        padding: 0 15px 10px 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #888;
-        .left {
-          display: flex;
-          align-items: center;
-          span {
-            margin-left: 10px;
-          }
-        }
-      }
-    }
-    .prod {
-      background-color: #fff;
-      .title {
-        font-size: 15px;
-        color: #323232;
-        padding: 10px 15px 5px 15px;
-      }
-      .desc {
-        padding: 0 15px 10px 15px;
-        color: #888;
-        font-size: 13px;
-      }
-      .bottom {
-        padding: 0 15px 10px 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #f4523b;
-        font-size: 20px;
-        .fuhao {
-          font-size: 12px;
-        }
-        .icon {
-          width: 30px;
-          height: 30px;
-          background-color: #323232;
-          color: #fff;
-          border-radius: 100%;
-          text-align: center;
-          line-height: 36px;
-          font-size: 16px;
-        }
-      }
-    }
-  }
+}
 </style>

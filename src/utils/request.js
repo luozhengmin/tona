@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '../router'
 
 const request = axios.create({
   timeout: 10000,
@@ -18,6 +19,8 @@ request.interceptors.response.use(
   res => {
     if (res.data.code == 10000) {
       return res.data;
+    } else if (res.data.code == 11001) { // 需要登录
+      router.push({ path: "/login" });
     } else {
       return res.data;
     }
