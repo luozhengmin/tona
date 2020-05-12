@@ -53,10 +53,10 @@
         <van-divider :style="{ color: '#b7b7b7', borderColor: '#ccc', padding: '0 20px' }">更多精选内容</van-divider>
         <van-row gutter="15">
           <van-col span="12" v-for="(item,index) in sieveList" :key="index">
-            <a href=""><img :src="item.thumb"></a>
+            <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}"><img :src="item.thumb"></router-link>
             <div class="main">
               <div class="infor-l">
-                <h2>{{item.fan_name}}</h2>
+                <h2> <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}">{{item.fan_name}}</router-link></h2>
               </div>
               <div class="infor-r ab">
                 <div class="dot"><img :src="item.member_avatar"></div>

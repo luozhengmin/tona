@@ -89,7 +89,7 @@
           v-model="yuyueParams.yezhu_xiaoqu"
           type="ownerArea"
           label="业主小区"
-          placeholder="业主小区"
+          placeholder="请输入业主小区"
         />
         <van-field
           v-model="yuyueParams.huxing_fan"
@@ -98,9 +98,9 @@
           placeholder="请输入户型或方案链接"
         />
 
-        <div class="upload ab fix">
+        <div class="upload-2 ab fix upload">
           <h2>户型&方案</h2>
-          <van-uploader v-model="fileList" :max-count="1" :after-read="afterRead" />
+          <van-uploader v-model="fileList" :max-count="1" :after-read="afterRead" upload-icon="plus"/>
           <p>
             商品图片尺寸建议800*800；
             <br />上传不大于5MB；
@@ -211,7 +211,7 @@ export default {
   }
   p {
     color: #888;
-    line-height: 1.6;
+    padding-top: 4px;
   }
 }
 .make-btn {
@@ -225,4 +225,5 @@ export default {
     margin-right: 6%;
   }
 }
+
 </style>

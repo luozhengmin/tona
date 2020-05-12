@@ -37,7 +37,7 @@ DesignApi.collect = (params) => {
 
 DesignApi.active = (params) => {
   return request({
-    url: `${baseUrl}/zhuanti?page`,
+    url: `${baseUrl}/zhuanti`,
     params: params,
     method: 'get'
   })

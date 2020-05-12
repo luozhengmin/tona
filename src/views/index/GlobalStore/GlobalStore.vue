@@ -127,7 +127,7 @@ export default {
       selectedAddress: ["全国", "所有门店"],
       showArea: false,
       city_id:'',
-      pagesize:''
+      pagesize:'8'
     };
   },
 

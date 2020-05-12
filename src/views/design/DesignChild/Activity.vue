@@ -3,6 +3,12 @@
       <index-banner :banners="banners"></index-banner>
       <div class="activity-list">
         <van-row>
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            @load="getDesign"
+            :offset="50"
+            finished-text="没有更多了">
           <van-col v-for="(item,index) in activeList " :key="index">
             <router-link :to="{name:'ActivityDetail',query:{id:item.zhuanti_id}}"><img :src="item.zhuanti_image"></router-link>
             <div class="main ab">
@@ -18,6 +24,7 @@
               </div>
             </div>
           </van-col>
+          </van-list>
         </van-row>
       </div>
     </div>
@@ -37,7 +44,11 @@
     data(){
       return{
         banners:[],
-        activeList:[]
+        activeList:[],
+        loading: false,
+        finished: false,
+        page_total: 0,
+        page: 1
       }
     },
     methods:{
@@ -48,8 +59,23 @@
         });
       },
       getDesign() {
-        DesignApi.active().then(res => {
+        let params = {
+          page: this.page,
+          pagesize: 10
+        };
+        DesignApi.active(params).then(res => {
           this.activeList = res.result.list;
+//          active.forEach(i => {
+//            this.activeList.push(i);
+//          });
+          this.page_total = res.result.page_total;
+          console.log(this.page_total)
+          if (this.page < this.page_total) {
+            this.page++;
+          } else {
+            this.finished = true;
+          }
+          this.loading = false;
         }).catch((error)=>{
           console.log("error")
         });
