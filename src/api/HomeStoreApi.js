@@ -46,4 +46,12 @@ StoreApi.designList = (id, params) => {
     method: 'get'
   })
 }
+
+StoreApi.bao_bei = (params) => {
+  return request({
+    url: `${baseUrl}/baobei_daidan`,
+    data: params,
+    method: 'post'
+  })
+}
 export default StoreApi

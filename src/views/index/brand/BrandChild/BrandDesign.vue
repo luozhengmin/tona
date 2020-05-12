@@ -88,10 +88,10 @@ export default {
   },
   methods: {
     recordTape() {
-      this.$router.push({ name: "Tape" });
+      this.$router.push({ path: "Tape?store_id=" + this.store_id });
     },
     signUp() {
-      this.$router.push({ name: "sign-up" });
+      this.$router.push({ path: "sign-up" });
     },
     getBanners() {
       axios.post("/api/Index/getIndexAdList/ap_id", { ap_id: 10 }).then(res => {
