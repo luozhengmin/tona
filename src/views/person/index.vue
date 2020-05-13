@@ -137,6 +137,11 @@
           <i class="iconfont">&#xe6f3;</i>
         </template>
       </van-cell>
+      <van-cell title="退出登录" @click="logOut()">
+        <template #icon>
+          <i class="iconfont">&#xe6f3;</i>
+        </template>
+      </van-cell>
     </div>
     <div class="footer">
       <van-divider contentPosition="center" :style="{ color: '#b7b7b7', borderColor: '#ccc'}">我是有底线的</van-divider>
@@ -145,7 +150,8 @@
 </template>
 
 <script>
-import { getMemberInfo } from '../../api/memberInfo'
+import { getMemberInfo,setMemberLogout } from '../../api/memberInfo'
+import { Dialog } from 'vant'
 export default {
   name: "",
   data(){
@@ -211,7 +217,29 @@ export default {
     onPerson() {
       this.$router.push({'name': 'person-center'})
     },
+    logOut(){
 
+      Dialog.confirm({
+        title: '退出',
+        message: '确认退出登录',
+      }).then(() => {
+        this.dologOut()
+      }).catch(() => {
+
+      });
+
+    },
+    dologOut(){
+      let username = $cookies.get('username')
+      setMemberLogout(username).then(
+        response => {
+          console.log(response)
+        },
+        error => {
+
+        }
+      )
+    }
   }
 };
 </script>

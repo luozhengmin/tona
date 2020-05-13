@@ -5,7 +5,7 @@
         right-text="商户版"
         left-arrow
         @click-left="$router.go(-1)"
-        @click-right="onLogin">
+        @click-right="">
         <template #title>
           <img src="../../assets/image/dllogo.png"/>
         </template>
@@ -71,7 +71,7 @@
     name:'Register',
     data(){
       return{
-        username: '18356015272',
+        username: '',
         code: '',
         canSendMobile: true,
         timeIntervalMobile: false,
@@ -94,7 +94,15 @@
         // 验证码登录
         yzmlogin(this.username,this.code).then(
            response => {
-            console.log(response)
+            if(response.code == 10000){
+              $cookies.set('username', response.result.username)
+              $cookies.set('token', response.result.token)
+              Toast.success('登录成功')
+              this.doJump()
+            }else{
+              Toast.fail(response.message)
+              return
+            }
            },
            error => {
              Toast.fail(error.message)
@@ -117,7 +125,6 @@
           Toast.success(res.message)
           this.canSendMobile = false
           let second = 60
-
           let _this = this
           this.timeIntervalMobile = setInterval(function () {
             if (second <= 0) {
@@ -149,6 +156,14 @@
           return false
         }
         return true
+      },
+      doJump(){
+        let referrer = this.utils.getCookie('referrer')
+        if (referrer) { // 返回之前的页面
+
+        } else {
+          this.$router.push({'name': 'person'})
+        }
       },
       onSubmit () {
         this.signIn()

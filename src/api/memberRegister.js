@@ -6,7 +6,7 @@ export const registerBymobile =
 (phone,captcha, password,passwordConfirm,inviter_id) => {
  return request({
     url: `${registerUrl}`,
-    params: {
+    data: {
       'phone': phone,
       'captcha': captcha,
       'password': password,

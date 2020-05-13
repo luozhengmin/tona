@@ -188,6 +188,7 @@ export const getMemberbrowseList =
   })
 }
 
+// 清空用户浏览记录
 export const setMemberbrowseClear =
 () => {
 
@@ -197,8 +198,21 @@ export const setMemberbrowseClear =
        'X-DS-KEY':$cookies.get('token'),
     },
     params: {
-      
+
     },
     method: 'GET'
+  })
+}
+
+// 会员退出登录
+export const setMemberLogout =
+(userName) => {
+ return request({
+    url: `/api/Logout/index`,
+    params: {
+      'username': userName,
+      'client': 'wap',
+    },
+    method: 'post'
   })
 }

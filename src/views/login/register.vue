@@ -53,11 +53,11 @@
     name:'Register',
     data(){
       return{
-        phone: '18356015272',
+        phone: '',
         captcha: '',
-        password: '12345678',
+        password: '',
         inviterid: 25,
-        confirmPassword: '12345678',
+        confirmPassword: '',
         canSendMobile: true,
         timeIntervalMobile: false,
         sendStateTextMobile: '获取验证码'
@@ -82,17 +82,34 @@
         // 手机号注册
         registerBymobile(this.phone,this.captcha,this.password,this.confirmPassword,this.inviterid).then(
            response => {
+            console.log(response)
             if(response.code == 10001){
               Toast.fail(respone.message)
               return
             }
+            if(response.code == 10000){
+              $cookies.set('username', username)
+              $cookies.set('token', response.result.token)
+              $cookies.set('user_info',response.result.info)
+              Toast.success('注册成功')
+              this.doJump()
+            }
+
            },
            error => {
              Toast.fail(error.message)
            }
          )
       },
-      sendVerifyCodeMobile () {
+      doJump () {
+        let referrer = this.utils.getCookie('referrer')
+        if (referrer) { // 返回之前的页面
+
+        } else {
+          this.$router.push({'name': 'person'})
+        }
+      },
+      sendVerifyCodeMobile () {  //获取短信验证码
         if (!this.phone) {
           Toast.fail('请先输入手机号')
           return
@@ -102,6 +119,12 @@
         }
 
         getSmsCaptcha(1, this.phone).then(res => {
+
+          if(res.code == 10001){
+            Toast.fail(res.message)
+            return
+          }
+
           this.canSendMobile = false
           let second = 60
           Toast.success(res.message)
@@ -116,6 +139,7 @@
             }
             second--
           }, 1000)
+
         }).catch(function (error) {
           Toast.fail(error.message)
         })
