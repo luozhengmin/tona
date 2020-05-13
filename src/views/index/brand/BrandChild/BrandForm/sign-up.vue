@@ -49,8 +49,13 @@
           </div>
         </transition>
       </div>
+
+      <van-steps :active="active">
+        <van-step>买家下单</van-step>
+        <van-step>商家接单</van-step>
+      </van-steps>
       <div class="sign-step fix">
-        <div class="step-item active">
+        <div class="step-item">
           <div class="item-line l">
           </div>
           <div class="item-num l">
@@ -125,7 +130,10 @@
           </van-checkbox>
         </div>
 
-        <van-button type="primary" block color="#323232" @click="realName">下一步</van-button>
+        <van-button type="primary" block color="#323232" @click="next">下一步</van-button>
+      </div>
+      <div class="d-information wrap fix">
+        哈哈哈哈哈
       </div>
       <!--地址区域开始-->
       <van-popup
@@ -194,6 +202,9 @@
     name: "sign-up",
     data(){
       return{
+//        stepVal1:1,
+//        stepVal2:2,
+        active:1,
         isActive: false,
         sign_name:'',
         sign_tel:'',
@@ -217,9 +228,10 @@
       closeDeclare() {
         this.showDeclare = false;
       },
-      realName(){
-        this.$router.push({'name': 'real-name'})
+      next() {
+        if (this.active++ > 0) this.active = 0;
       }
+
     }
   }
 </script>
