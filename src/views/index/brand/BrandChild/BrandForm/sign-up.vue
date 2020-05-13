@@ -50,12 +50,8 @@
         </transition>
       </div>
 
-      <van-steps :active="active">
-        <van-step>买家下单</van-step>
-        <van-step>商家接单</van-step>
-      </van-steps>
       <div class="sign-step fix">
-        <div class="step-item">
+        <div class="step-item" @click="curId=0" :class="{'active':curId===0}">
           <div class="item-line l">
           </div>
           <div class="item-num l">
@@ -66,7 +62,7 @@
           </div>
 
         </div>
-        <div class="step-item">
+        <div class="step-item" @click="curId=1" :class="{'active':curId===1}">
           <div class="item-line l">
           </div>
           <div class="item-num l">
@@ -78,7 +74,7 @@
 
         </div>
       </div>
-      <div class="d-information wrap fix">
+      <div class="d-information wrap fix" v-show="curId===0">
         <div class="information-list sign-list">
           <van-field
             v-model="sign_name"
@@ -104,7 +100,9 @@
               <span><em>*</em>验证码</span>
             </template>
             <template #button>
-              <van-button size="small" type="primary">获取验证码</van-button>
+              <van-button size="small" type="primary"
+                          :disabled="disabled"
+                          @click="sendSms">{{smsBtn}}</van-button>
             </template>
           </van-field>
           <van-field
@@ -132,8 +130,69 @@
 
         <van-button type="primary" block color="#323232" @click="next">下一步</van-button>
       </div>
-      <div class="d-information wrap fix">
-        哈哈哈哈哈
+      <div class="d-information wrap fix" v-show="curId===1">
+        <div class="information-list">
+          <van-field
+            v-model="real_name"
+            type="name"
+            placeholder="请输入真实姓名">
+            <template #label>
+              <span><em>*</em>真实姓名</span>
+            </template>
+          </van-field>
+          <van-field
+            v-model="real_id"
+            type="tel"
+            placeholder="请输入身份证号码">
+            <template #label>
+              <span><em>*</em>身份证号</span>
+            </template>
+          </van-field>
+
+          <div class="person-id">
+            <div class="id-list ab">
+              <h2><em>*</em>证件正面</h2>
+              <div class="id-item ab">
+                <van-uploader v-model="positiveList" :max-count="1"/>
+                <h3 is-link @click="showPositive">查看规则</h3>
+              </div>
+            </div>
+            <div class="id-list ab">
+              <h2><em>*</em>证件反面</h2>
+              <div class="id-item ab">
+                <van-uploader  v-model="negativeList" :max-count="1"/>
+                <h3 is-link @click="showNegative">查看规则</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="person-btn ab">
+          <van-button square type="primary" color="#eee">取消</van-button>
+          <van-button square type="primary" color="#323232" @click="tapeCommit">提交审核</van-button>
+        </div>
+
+        <van-popup v-model="showPro" class="pro-demand">
+          <h2>身份证正面上传要求</h2>
+          <p>1、该信息仅用于管理员审核之用，身份信息将完全保密<br>
+            2、请上传彩色二代身份证<br>
+            3、要求姓名、证件号码、脸部、地址都清晰可见<br>
+            4、支持JPG，PNG，BMP，GIF格式<br>
+            5、文件须小于5M</p>
+        </van-popup>
+        <van-popup v-model="showPro" class="con-demand">
+          <h2>身份证反面上传要求</h2>
+          <p>1、该信息仅用于管理员审核之用，身份信息将完全保密<br>
+            2、必须看清证件信息，且证件信息不能被遮挡<br>
+            3、支持JPG，PNG，BMP，GIF格式<br>
+            4、文件须小于5M</p>
+        </van-popup>
+        <!--提交审核-->
+        <div class="toast" v-show="toastShow">
+          <i class="van-icon van-icon-checked"></i>
+          <h2>{{toastText}}</h2>
+          <p>{{toastState}}</p>
+        </div>
+        <van-overlay :show="toastShow" @click="toastShow = false" />
       </div>
       <!--地址区域开始-->
       <van-popup
@@ -202,9 +261,8 @@
     name: "sign-up",
     data(){
       return{
-//        stepVal1:1,
-//        stepVal2:2,
-        active:1,
+        curId:0,
+
         isActive: false,
         sign_name:'',
         sign_tel:'',
@@ -215,6 +273,18 @@
         areaList: areaList,
         checked: true,
         showDeclare: false,
+
+        real_name:'',
+        real_id:'',
+        positiveList: [],
+        negativeList: [],
+        showPro:false,
+        toastShow:false,
+        toastText: '已提交',
+        toastState:'审核需要5个工作日，请耐心等待',
+
+        disabled: false,
+        smsBtn: "获取验证码"
       }
     },
     methods: {
@@ -228,9 +298,34 @@
       closeDeclare() {
         this.showDeclare = false;
       },
+
+      tapeCommit(){
+        this.toastShow = true;
+      },
+      showPositive() {
+        this.showPro = true;
+      },
+      showNegative() {
+        this.showPro = true;
+      },
       next() {
-        if (this.active++ > 0) this.active = 0;
-      }
+        if (this.curId++ > 0) this.curId = 0;
+      },
+
+      sendSms() {
+        var count = 60;
+        var that = this;
+        let interVal = setInterval(function() {
+          that.disabled = true;
+          that.smsBtn = count + "秒后重试";
+          count--;
+          if (count == 0) {
+            that.smsBtn = "获取验证码";
+            that.disabled = false;
+            clearInterval(interVal);
+          }
+        }, 1000);
+      },
 
     }
   }
@@ -264,5 +359,55 @@
       p{padding:6px 0;text-align:justify;}
       .van-button{margin:20px 0;}
     }
+  }
+  /*实名认证*/
+  .person-id{
+    .id-list{
+      padding:6px 0;
+      h2{
+        font-size:14px;color:#323232;width:78px;text-align:right;padding-right:12px;
+        em{color:#f4523b;padding-right:2px;}
+      }
+      .id-item{
+        align-items:center;
+        h3{padding-left:12px;color:#388ceb;font-size:14px;}
+      }
+    }
+  }
+  .person-btn{
+    margin:20px 0;
+    .van-button{width:50%;justify-content:space-between;}
+    .van-button:nth-child(1){
+      .van-button__text{color:#b7b7b7;}
+    }
+  }
+  .toast {
+    i{font-size:32px;color:#f2f2f2;}
+    h2{font-size:14px;}
+    p{font-size:13px;}
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    top:50%;
+    color:#fff;
+    transition:all .5s;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    border-radius:4px;
+    color:#FFF;
+    background-color:#2f2f2f;
+    min-height:88px;
+    width:60%;
+    padding:16px;
+
+  }
+  .pro-demand,.con-demand{
+    padding:15px 15px;width:88%;border-radius:5px;
+    h2{text-align:center;font-size:15px;color:#323232;padding-bottom:6px;}
+    p{font-size:13px;color:#b7b7b7;}
   }
 </style>
