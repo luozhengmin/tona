@@ -216,3 +216,21 @@ export const setMemberLogout =
     method: 'post'
   })
 }
+
+// 会员忘记密码
+export const setMemberPassword =
+(phone,captcha,password) => {
+ return request({
+    url: `/api/Connect/find_password`,
+    headers: {
+       'X-DS-KEY':$cookies.get('token'),
+    },
+    params: {
+      'phone': phone,
+      'captcha': captcha,
+      'password': password,
+      'client': 'wap',
+    },
+    method: 'post'
+  })
+}
