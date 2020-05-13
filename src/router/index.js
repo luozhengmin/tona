@@ -97,11 +97,11 @@ export default new Router({
           name: 'sign-up',
           component: () => import("@/views/index/Brand/BrandChild/BrandForm/sign-up"),
         },
-        {
-          path: 'real-name',
-          name: 'real-name',
-          component: () => import("@/views/index/Brand/BrandChild/BrandForm/real-name"),
-        },
+        // {
+        //   path: 'real-name',
+        //   name: 'real-name',
+        //   component: () => import("@/views/index/Brand/BrandChild/BrandForm/real-name"),
+        // },
         {
           path: 'Recommend',
           name: 'Recommend',

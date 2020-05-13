@@ -49,9 +49,8 @@
           </div>
         </transition>
       </div>
-
       <div class="sign-step fix">
-        <div class="step-item" @click="curId=0" :class="{'active':curId===0}">
+        <div class="step-item" :class="{'active':curId===0}">
           <div class="item-line l">
           </div>
           <div class="item-num l">
@@ -62,7 +61,7 @@
           </div>
 
         </div>
-        <div class="step-item" @click="curId=1" :class="{'active':curId===1}">
+        <div class="step-item" :class="{'active':curId===1}">
           <div class="item-line l">
           </div>
           <div class="item-num l">
@@ -74,10 +73,11 @@
 
         </div>
       </div>
+
       <div class="d-information wrap fix" v-show="curId===0">
         <div class="information-list sign-list">
           <van-field
-            v-model="sign_name"
+            v-model="params.name"
             type="name"
             placeholder="请输入姓名">
             <template #label>
@@ -85,7 +85,7 @@
             </template>
           </van-field>
           <van-field
-            v-model="sign_tel"
+            v-model="params.phone"
             type="tel"
             placeholder="请填写手机号">
             <template #label>
@@ -93,7 +93,7 @@
             </template>
           </van-field>
           <van-field
-            v-model="sign_code"
+            v-model="params.code"
             type="number"
             placeholder="请输入短信验证码">
             <template #label>
@@ -106,7 +106,7 @@
             </template>
           </van-field>
           <van-field
-            v-model="chat_on"
+            v-model="params.wechat"
             type="name"
             placeholder="请填写微信号">
             <template #label>
@@ -114,8 +114,7 @@
             </template>
           </van-field>
           <van-field
-            name="degign_area"
-            :value="design_area"
+            v-model="params.region"
             right-icon="arrow-down"
             @click="showDesign = true"
             placeholder="请选择地区">
@@ -128,12 +127,12 @@
           </van-checkbox>
         </div>
 
-        <van-button type="primary" block color="#323232" @click="next">下一步</van-button>
+        <van-button type="primary" block color="#323232" @click="next($event)">下一步</van-button>
       </div>
       <div class="d-information wrap fix" v-show="curId===1">
         <div class="information-list">
           <van-field
-            v-model="real_name"
+            v-model="params.name"
             type="name"
             placeholder="请输入真实姓名">
             <template #label>
@@ -141,7 +140,7 @@
             </template>
           </van-field>
           <van-field
-            v-model="real_id"
+            v-model="params.id_number"
             type="tel"
             placeholder="请输入身份证号码">
             <template #label>
@@ -256,26 +255,38 @@
 </template>
 
 <script>
+  import { Toast } from "vant";
   import areaList from "@/json/area";
+  import StoreApi from "@/api/HomeStoreApi";
+  import InvestmentApi from "@/api/InvestmentApi";
+
   export default {
     name: "sign-up",
+    created() {
+      this.store_id = this.$route.query.store_id;
+    },
     data(){
       return{
         curId:0,
-
         isActive: false,
-        sign_name:'',
-        sign_tel:'',
-        sign_code:'',
-        design_area:'',
-        chat_on:'',
+
+        store_id: "",
+        params: {
+          name: '',
+          phone: '',
+          code: '',
+          wechat: '',
+          region: '',
+
+          id_number:'',
+          id_front:'',
+          id_back:''
+        },
         showDesign: false,
         areaList: areaList,
         checked: true,
         showDeclare: false,
 
-        real_name:'',
-        real_id:'',
         positiveList: [],
         negativeList: [],
         showPro:false,
@@ -289,7 +300,7 @@
     },
     methods: {
       onConfirmDesign(values) {
-        this.design_area = values.map(item => item.name).join('/');
+        this.params.region = values.map(item => item.name).join('/');
         this.showDesign = false;
       },
       showPopup() {
@@ -308,23 +319,58 @@
       showNegative() {
         this.showPro = true;
       },
-      next() {
-        if (this.curId++ > 0) this.curId = 0;
+      next(event) {
+        event.preventDefault();
+        if (!this.params.name) {
+          Toast.fail("请输入姓名");
+          return;
+        }
+        if (!this.params.phone) {
+          Toast.fail("请输入手机号");
+          return;
+        }
+        if (!this.params.code) {
+          Toast.fail("请输入验证码");
+          return;
+        }
+        if (!this.params.region) {
+          Toast.fail("请选择地区");
+          return;
+        }
+        let params = {
+          name: this.params.name,
+          phone: this.params.phone,
+          captcha: this.params.code,
+          region:this.params.region,
+        };
+        this.params.store_id = this.store_id;
+        console.log(this.params);
+        StoreApi.sign_up(this.params).then(res => {
+          console.log(res);
+//          this.toastShow = true;
+          if (this.curId++ > 0) this.curId = 0;
+        });
       },
 
       sendSms() {
         var count = 60;
         var that = this;
-        let interVal = setInterval(function() {
-          that.disabled = true;
-          that.smsBtn = count + "秒后重试";
-          count--;
-          if (count == 0) {
-            that.smsBtn = "获取验证码";
-            that.disabled = false;
-            clearInterval(interVal);
-          }
-        }, 1000);
+        if (!this.params.phone) {
+          Toast.fail("请输入手机号");
+          return;
+        }
+        InvestmentApi.sendSms({ phone: this.params.phone, type: 7 }).then(res => {
+          let interVal = setInterval(function() {
+            that.disabled = true;
+            that.smsBtn = count + "秒后重试";
+            count--;
+            if (count == 0) {
+              that.smsBtn = "获取验证码";
+              that.disabled = false;
+              clearInterval(interVal);
+            }
+          }, 1000);
+        });
       },
 
     }

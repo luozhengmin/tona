@@ -77,7 +77,7 @@ export default {
     onAddress(){
       this.$router.push({'name': 'address-edit'})
     },
-    onEdit(item, index) {  
+    onEdit(item, index) {
 
       this.$router.push({ name: 'address-edit', query: { id : item.id }})
 
@@ -89,7 +89,6 @@ export default {
 <style lang="scss" scoped>
 .container {
   background-color: #fff;
-  height: 100%;
   .empty {
     padding: 50px 15px;
     font-size: 16px;

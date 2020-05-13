@@ -267,11 +267,21 @@ export default {
         font-size: 15px;
         color: #323232;
         padding: 10px 15px 5px 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .desc {
-        padding: 0 15px 10px 15px;
+        padding: 0 15px 0 15px;
         color: #888;
         font-size: 13px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        margin-bottom:8px;
+        line-height: 1.4;
       }
       .bottom {
         padding: 0 15px 10px 15px;

@@ -20,7 +20,7 @@ request.interceptors.response.use(
     if (res.data.code == 10000) {
       return res.data;
     } else if (res.data.code == 11001) { // 需要登录
-      router.push({ path: "/login" });
+      router.push({ path: "/mima-login" });
     } else {
       return res.data;
     }

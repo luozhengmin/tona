@@ -291,9 +291,8 @@ export default {
       });
     },
     getBanners() {
-      axios.post("/api/Index/getIndexAdList/ap_id", { ap_id: 11 }).then(res => {
-        let banners = res.result.banners;
-        this.banners = banners;
+      axios.post("/api/Index/getAppadList/ap_id/", { ap_id: 11 }).then(res => {
+        this.banners = res.result.ad_list;
       });
     }
   }

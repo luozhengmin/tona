@@ -91,7 +91,7 @@ export default {
       this.$router.push({ path: "Tape?store_id=" + this.store_id });
     },
     signUp() {
-      this.$router.push({ path: "sign-up" });
+      this.$router.push({ path: "sign-up?store_id=" + this.store_id });
     },
     getBanners() {
       axios.post("/api/Index/getIndexAdList/ap_id", { ap_id: 10 }).then(res => {

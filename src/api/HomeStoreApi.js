@@ -54,4 +54,11 @@ StoreApi.bao_bei = (params) => {
     method: 'post'
   })
 }
+StoreApi.sign_up = (params) => {
+  return request({
+    url: `${baseUrl}/qianyue_daidan`,
+    data: params,
+    method: 'post'
+  })
+}
 export default StoreApi
