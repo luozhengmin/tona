@@ -2,7 +2,7 @@
   <div>
     <div class="common-login">
       <van-nav-bar
-        right-text="商户版"
+        right-text=""
         left-arrow
         @click-left="$router.go(-1)"
         @click-right="onLogin">
@@ -70,8 +70,8 @@
     name:'Login',
     data(){
       return{
-        username: '15000441997',
-        password: '12345678'
+        username: '',
+        password: ''
       }
     },
     methods:{
@@ -100,17 +100,20 @@
         login(username, password).then(
            response => {
             if(response.code == 10000){
+
+              $cookies.set('username', username)
               $cookies.set('token', response.result.token)
               $cookies.set('user_info',response.result.info)
               Toast.success('登录成功')
+              this.goHome()
             }else{
-              Toast.fail(response.message);
+              Toast.fail(response.message)
+              return
             }
-             this.goHome()
-
            },
            error => {
              Toast.fail(error.message)
+             return
            }
          )
       },

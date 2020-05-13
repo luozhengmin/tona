@@ -33,11 +33,11 @@ export const wechatLogin =
 export const yzmlogin =
 (userName, password) => {
  return request({
-    url: `${loginUrl}`,
-    params: {
-      'username': userName,
-      'password': password,
-      'client_type': 'wap',
+    url: `api/Connect/sms_login`,
+    data: {
+      'usermobile': userName,
+      'mobilecode': password,
+      'client': 'wap',
     },
     method: 'post'
   })
