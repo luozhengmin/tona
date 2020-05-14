@@ -69,23 +69,8 @@
       </div>
       <div class="classify-list">
         <swiper class="swiper" :options="swiperOption">
-          <swiper-slide>
-            <router-link to="/ProductSearch">浴室柜</router-link>
-          </swiper-slide>
-          <swiper-slide>
-            <a href>智能马桶</a>
-          </swiper-slide>
-          <swiper-slide>
-            <a href>浴缸</a>
-          </swiper-slide>
-          <swiper-slide>
-            <a href>淋浴房</a>
-          </swiper-slide>
-          <swiper-slide>
-            <a href>淋浴房</a>
-          </swiper-slide>
-          <swiper-slide>
-            <a href>淋浴房</a>
+          <swiper-slide v-for="item in categories" :key="item.id">
+            <a @click="cateClick(item.id)">{{item.value}}</a>
           </swiper-slide>
         </swiper>
       </div>
@@ -156,6 +141,8 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import ProductItem from "./product/ProductItem";
 
+import GoodsClassApi from "@/api/GoodsClassApi";
+
 export default {
   name: "ProductList-Item",
   components: {
@@ -170,6 +157,7 @@ export default {
         slidesPerView: "auto",
         spaceBetween: 15
       },
+      categories: [],
       value: "",
       goodslist: [], //商品列表
       cate_id: "", //品类ID
@@ -191,14 +179,14 @@ export default {
   },
   created() {
     this.cate_id = this.$route.query.cate_id;
+    this.parent_id = this.$route.query.parent_id;
     this.queryParams.cate_id = this.cate_id;
-    // this.getGoodslist();
+    this.getCategories();
   },
   methods: {
     getGoodslist() {
       //获取商品列表
       getGoodsList(this.queryParams).then(res => {
-        console.log(res);
         res.result.goods_list.forEach(item => {
           item.goods_name = stringInterception(item.goods_name, 9);
           item.goods_advword = stringInterception(item.goods_advword, 10);
@@ -240,6 +228,19 @@ export default {
       this.goodslist = [];
       this.queryParams.page = 1;
       this.finished = false;
+    },
+    getCategories() {
+      GoodsClassApi.list({ parent_id: this.parent_id }).then(res => {
+        console.log(res);
+        this.categories = res.result.class_list;
+      });
+    },
+    cateClick(id) {
+      this.cate_id = id;
+      this.queryParams.cate_id = this.cate_id;
+      this.goodslist = [];
+      this.finished = false;
+      this.queryParams.page = 1;
     }
   }
 };

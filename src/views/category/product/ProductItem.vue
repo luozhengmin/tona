@@ -2,22 +2,24 @@
   <div class="list">
     <van-row gutter="15">
       <van-col span="12" style="margin-bottom:15px" v-for="item in products " :key="item.goods_id">
-        <div class="prod">
-          <div>
-            <img :src="item.goods_image_url" />
-          </div>
-          <div class="title">{{item.goods_name}}</div>
-          <div class="desc">{{item.goods_advword}}</div>
-          <div class="bottom">
+        <router-link :to="{path:'/ProductDetail',query:{id:item.goods_id}}">
+          <div class="prod">
             <div>
-              <span class="fuhao">￥</span>
-              {{item.goods_price}}
+              <img :src="item.goods_image_url" />
             </div>
-            <div class="icon">
-              <van-icon name="cart" />
+            <div class="title">{{item.goods_name}}</div>
+            <div class="desc">{{item.goods_advword}}</div>
+            <div class="bottom">
+              <div>
+                <span class="fuhao">￥</span>
+                {{item.goods_price}}
+              </div>
+              <div class="icon">
+                <van-icon name="cart" />
+              </div>
             </div>
           </div>
-        </div>
+        </router-link>
       </van-col>
     </van-row>
   </div>

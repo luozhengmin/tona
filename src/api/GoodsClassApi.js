@@ -15,7 +15,7 @@ GoodsClassApi.list = (params) => {
 GoodsClassApi.categorys = (params) => {
   return request({
     url: `${baseUrl}/categorys`,
-    params: params,
+    data: params,
     method: 'post'
   })
 }

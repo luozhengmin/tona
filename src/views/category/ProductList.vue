@@ -93,7 +93,7 @@
             </div>
             <div class="r_cont">
               <div class="cu-items" v-for="(children, index2) in item.children" :key="index2">
-                <router-link :to="{path:'ProductList-Item',query:{cate_id:children.id}}">
+                <router-link :to="{path:'ProductList-Item',query:{cate_id:children.id,parent_id:item.id}}">
                   <div class="storeL">
                     <img :src="children.image" />
                   </div>
