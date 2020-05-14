@@ -299,8 +299,6 @@ export default {
     position: relative;
     overflow: hidden;
     width: 78%;
-    .swiper {
-    }
   }
 }
 .list {
