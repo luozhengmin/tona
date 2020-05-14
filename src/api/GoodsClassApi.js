@@ -12,6 +12,14 @@ GoodsClassApi.list = (params) => {
   })
 }
 
+GoodsClassApi.categorys = (params) => {
+  return request({
+    url: `${baseUrl}/categorys`,
+    data: params,
+    method: 'post'
+  })
+}
+
 GoodsClassApi.recommendClass = (params) =>{
   return request({
     url: `/api/Goodsclass/getRecommendClass`,

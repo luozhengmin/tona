@@ -45,7 +45,8 @@
         <van-tab name="3">
           <template #title>
             销量
-            <i class="fa fa-sort-desc"></i>
+            <i v-if="queryParams.order=='1'&&tabName=='3'" class="fa fa-sort-asc"></i>
+            <i v-else class="fa fa-sort-desc"></i>
           </template>
           <van-list
             v-model="loading"
@@ -60,7 +61,8 @@
         <van-tab name="2">
           <template #title>
             价格
-            <i class="fa fa-sort-asc"></i>
+            <i v-if="queryParams.order=='1'&&tabName=='2'" class="fa fa-sort-asc"></i>
+            <i v-else class="fa fa-sort-desc"></i>
           </template>
           <van-list
             v-model="loading"
@@ -96,6 +98,7 @@ export default {
         page: 1,
         per_page: 10,
         key: 2,
+        order: 1,
         store_id: this.store_id
       },
       tabName: 0,
