@@ -56,7 +56,7 @@
               console.log(response)
             },
             error => {
-              
+
             }
           )
         }
@@ -67,7 +67,7 @@
 
 <style lang="scss" scoped>
   .container{
-    background-color:#f7f7f7;heihgt:100%;
+    background-color:#f7f7f7;
     .active-list{
       padding:12px 15px;
       .active-item{
@@ -78,11 +78,14 @@
           padding:13px;
           .title{
             align-items:center;
-            h2{font-size:15px;color:#383838;}
+            h2{font-size:15px;color:#383838;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;}
             .van-tag{padding:4px 12px;background-color:#f4523b;font-size:13px;}
           }
           .pic{margin:12px 0;}
-          p{font-size:13px;color:#383838;}
+          p{font-size:14px;color:#383838;}
         }
       }
       .active-link{
@@ -90,7 +93,7 @@
         padding:6px 13px;
         border-top:solid 1px #eee;
         a{
-          color:#909090;font-size:13px;
+          color:#909090;font-size:14px;
           .van-icon{font-size:16px;line-height:22px;margin-right: -5px;}
         }
       }

@@ -38,7 +38,7 @@
               </router-link>
             </li>
             <li>
-              <router-link to>
+              <router-link to="/index">
                 <img src="../../../assets/image/nav01.png">
                 <span>关于我们</span>
               </router-link>

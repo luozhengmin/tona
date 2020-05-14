@@ -2,17 +2,17 @@
   <div class="footer fix">
     <div class="foot wrap fix">
       <div class="erwei">
-        <div class="ew-pic">
-          <img src="../../assets/image/erwei.jpg">
+        <div class="ew-pic" v-for="(item,index) in codeList" :key="index">
+          <img :src="item.adv_code">
         </div>
         <h3>TONA HOME 微信公众号</h3>
       </div>
       <ul class="row ab">
-        <li><a href="">如何购物</a></li>
-        <li><a href="">支付 / 配送方式</a></li>
-        <li><a href="">服务承诺</a></li>
+        <li><router-link to="/how-shop">如何购物</router-link></li>
+        <li><router-link to="/payment">支付 / 配送方式</router-link></li>
+        <li><router-link to="/promises">服务承诺</router-link></li>
         <li><router-link to="/Investment">加盟招商</router-link></li>
-        <li><a href="">联系我们</a></li>
+        <li><router-link to="/contact-us">联系我们</router-link></li>
       </ul>
       <p>
         <span>Copyrght © 2019 TONA  国际卫浴  All Rights Reserved.</span><br>
@@ -23,10 +23,22 @@
 </template>
 
 <script>
+  import axios from "@/utils/request";
   export default {
     name: "IndexFoot",
+    created() {
+      this.getBanners();
+    },
     data(){
       return{
+        codeList:[]
+      }
+    },
+    methods: {
+      getBanners() {
+        axios.post("/api/Index/getAppadList/ap_id/", {ap_id:25,}).then(res => {
+          this.codeList = res.result.ad_list;
+        });
       }
     }
   }

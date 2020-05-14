@@ -5,7 +5,7 @@ import request from '@/utils/request'
 export const getArticleclass =
 (page,perpage) => {
  return request({
-    url: `/api/Articleclass/index`,
+    url: `/api/articleclass/index`,
     headers: {
        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
     },
@@ -20,7 +20,7 @@ export const getArticleclass =
 export const getHelpCenter =
 (ac_id) => {
  return request({
-    url: `/api/Article/article_list`,
+    url: `/api/article/article_list`,
     // headers: {
     //    'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
     // },
@@ -36,7 +36,7 @@ export const getHelpCenter =
 export const getArticleinfo =
 (article_id) => {
  return request({
-    url: `/api/Article/article_show`,
+    url: `/api/article/article_show`,
     // headers: {
     //    'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
     // },
