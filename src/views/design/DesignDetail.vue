@@ -175,34 +175,18 @@
            方案导航
          </div>
          <div class="sy-list fix">
-           <van-steps direction="vertical" :active="1" active-icon="location">
-             <van-step>
-               <h3>一层</h3>
-             </van-step>
-             <van-step>
-               <h3>概览</h3>
-             </van-step>
-             <van-step>
-               <h3>客厅</h3>
-             </van-step>
-             <van-step>
-               <h3>料理台</h3>
-             </van-step>
-             <van-step>
-               <h3>卫生间</h3>
-             </van-step>
-           </van-steps>
-           <van-steps direction="vertical" :active="1" active-icon="location">
-             <van-step>
-               <h3>二层</h3>
-             </van-step>
-             <van-step>
-               <h3>主卧</h3>
-             </van-step>
-             <van-step>
-               <h3>书房</h3>
-             </van-step>
-           </van-steps>
+            <div class="sy-item fix" v-for="i in 4" :key="i">
+              <div class="sy-item-f">
+                一层
+              </div>
+              <ul class="sy-item-m fix">
+                <li class="sy-item-nav sy-item-active">概览</li>
+                <li class="sy-item-nav">客厅</li>
+                <li class="sy-item-nav">料理台</li>
+                <li class="sy-item-nav">卫生间</li>
+                <li class="sy-item-nav">厨房</li>
+              </ul>
+            </div>
          </div>
        </van-popup>
 
@@ -542,7 +526,7 @@
   .design-index{
     padding:20px 15px;
     .design-sy{
-      font-size:16px;color:#323232;
+      font-size:16px;color:#323232;margin-top:46px;
     }
   }
 
