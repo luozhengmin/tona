@@ -175,16 +175,14 @@
            方案导航
          </div>
          <div class="sy-list fix">
-            <div class="sy-item fix" v-for="i in 4" :key="i">
+            <div class="sy-item fix" v-for="(floorItem, i) in floorList" :key="i">
               <div class="sy-item-f">
-                一层
+                {{i}}
               </div>
-              <ul class="sy-item-m fix">
-                <li class="sy-item-nav sy-item-active">概览</li>
-                <li class="sy-item-nav">客厅</li>
-                <li class="sy-item-nav">料理台</li>
-                <li class="sy-item-nav">卫生间</li>
-                <li class="sy-item-nav">厨房</li>
+              <ul class="sy-item-m fix" v-for="(item, j) in floorItem.lists" :key="j">
+
+                <li class="sy-item-nav sy-item-active" @click="doJump('#goto'+i+j)" v-if="i == '一层'">{{item.space_name}}</li>
+                <li class="sy-item-nav" @click="doJump('#goto'+i+j)" v-else >{{item.space_name}}</li>
               </ul>
             </div>
          </div>
@@ -213,7 +211,7 @@
 
            <div class="floor-item" v-for="(floorItem, i) in floorList" :key="i">
              <div v-for="(item, j) in floorItem.lists" :key="j">
-             <div class="floor-t">
+             <div class="floor-t" :id="'goto'+i+j">
                <span><em>{{i}}</em> · {{item.space_name}}</span>
              </div>
              <div class="d-hall">
@@ -320,6 +318,11 @@
       },
       showIndex() {
         this.showindex = true;
+      },
+      doJump(selector){
+        console.log(selector)
+        let got = this.$el.querySelector(selector)
+        document.body.scrollTop = got.offsetTop
       },
       collect() {
         let params = {fid:this.desginInfo.fan_id}
