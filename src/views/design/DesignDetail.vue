@@ -175,34 +175,16 @@
            方案导航
          </div>
          <div class="sy-list fix">
-           <van-steps direction="vertical" :active="1" active-icon="location">
-             <van-step>
-               <h3>一层</h3>
-             </van-step>
-             <van-step>
-               <h3>概览</h3>
-             </van-step>
-             <van-step>
-               <h3>客厅</h3>
-             </van-step>
-             <van-step>
-               <h3>料理台</h3>
-             </van-step>
-             <van-step>
-               <h3>卫生间</h3>
-             </van-step>
-           </van-steps>
-           <van-steps direction="vertical" :active="1" active-icon="location">
-             <van-step>
-               <h3>二层</h3>
-             </van-step>
-             <van-step>
-               <h3>主卧</h3>
-             </van-step>
-             <van-step>
-               <h3>书房</h3>
-             </van-step>
-           </van-steps>
+            <div class="sy-item fix" v-for="(floorItem, i) in floorList" :key="i">
+              <div class="sy-item-f">
+                {{i}}
+              </div>
+              <ul class="sy-item-m fix" v-for="(item, j) in floorItem.lists" :key="j">
+
+                <li :class="['sy-item-nav',{'sy-item-active':current == i+'_'+j}]" @click="doJump('#goto'+i+j,i+'_'+j)" >{{item.space_name}}</li>
+
+              </ul>
+            </div>
          </div>
        </van-popup>
 
@@ -226,15 +208,11 @@
            <p>{{desginInfo.description}}</p>
          </div>
          <div class="detail-floor fix">
-           <div class="floor-item">
-             <div class="floor-t">
-               <span><em>一层</em> · 概览</span>
-             </div>
-             <p><img src="../../assets/image/xq03.jpg"></p>
-           </div>
-           <div class="floor-item">
-             <div class="floor-t">
-               <span><em>一层</em> · 客厅</span>
+
+           <div class="floor-item" v-for="(floorItem, i) in floorList" :key="i">
+             <div v-for="(item, j) in floorItem.lists" :key="j">
+             <div class="floor-t" :id="'goto'+i+j">
+               <span><em>{{i}}</em> · {{item.space_name}}</span>
              </div>
              <div class="d-hall">
                <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
@@ -245,82 +223,22 @@
                      <i class="van-icon van-icon-play"></i>
                    </div>
                  </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
+
+                 <swiper-slide v-for="(images, k) in item.images" :key="k">
+                   <img :src="images.name">
                  </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
+
                </swiper>
                <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
+
+                 <swiper-slide v-for="(images, k) in item.images" :key="k">
+                   <img :src="images.name">
                  </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
+
                </swiper>
              </div>
-           </div>
-           <div class="floor-item">
-             <div class="floor-t">
-               <span><em>一层</em> · 料理台</span>
-             </div>
-             <div class="d-hall">
-               <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                   <div class="qj-btn ab">
-                     <span>3D全景</span>
-                     <i class="van-icon van-icon-play"></i>
-                   </div>
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-               </swiper>
-               <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-               </swiper>
-             </div>
+            </div>
+
            </div>
          </div>
          <div class="detail-copy">
@@ -373,6 +291,10 @@
         showshare:false,
         showindex:false,
         desginInfo:{},
+        floorList:{},
+        current:'一层_0',
+        
+        changeClass : '',
         consult:{
           consult_content:'',
           phone:''
@@ -400,6 +322,11 @@
       showIndex() {
         this.showindex = true;
       },
+      doJump(selector,j){
+        let got = this.$el.querySelector(selector)
+        this.current = j
+        document.body.scrollTop = got.offsetTop
+      },
       collect() {
         let params = {fid:this.desginInfo.fan_id}
         DesignApi.collect(params).then(res=>{
@@ -412,7 +339,8 @@
       getDesignDetail(id){
         DesignApi.get({design_id:id}).then(res=>{
           this.desginInfo = res.result.design_info;
-          console.log(this.desginInfo)
+          this.floorList = res.result.floor_list
+          console.log(res)
         })
       },
       showForm(){
@@ -604,7 +532,7 @@
   .design-index{
     padding:20px 15px;
     .design-sy{
-      font-size:16px;color:#323232;
+      font-size:16px;color:#323232;margin-top:46px;
     }
   }
 

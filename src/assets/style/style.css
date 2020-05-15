@@ -162,19 +162,13 @@ select{font-size: 100%;margin: 0;outline: none;}
 .d-request .van-cell .van-field__control:-ms-input-placeholder{font-size:13px;}
 
 /*设计方案详情索引*/
-.sy-list{position:relative;}
-.sy-list .van-steps--vertical{padding:0 0 0 21px;}
-.sy-list .van-step--finish .van-step__line{display:none;}
-.sy-list .van-step--vertical .van-step__circle-container{top:21px;}
-.sy-list .van-step__icon--active{font-size:16px;color:#177ef8;}
-.sy-list .van-step__title h3{font-size:14px;color:#323232;}
-.sy-list .van-step:nth-child(1) .van-step__title h3{color:#888;}
-.sy-list .van-step__circle{width:10px;height:10px;border:solid 1px #efefef;background-color:#fff;}
-.sy-list .van-step:nth-child(1) .van-step__circle{background-color:#efefef;}
-.sy-list .van-step__title--active h3{color:#177ef8;}
-.sy-list:before{content:'';width:4px;top:23px;left:4px;background-color: #efefef;display:block;height:100%;
-  position: absolute;
-}
+.sy-list{position:relative;margin-top:12px;}
+.sy-list .sy-item{background: url(../../assets/image/bg-003.jpg) repeat-y 4px top;}
+.sy-list .sy-item-f{font-size:14px; color:#b7b7b7;display: block; padding-left:28px;line-height:12px;
+  background: url(../../assets/image/icon-13.png) no-repeat left top; }
+.sy-list .sy-item .sy-item-nav{background: url(../../assets/image/icon-12.png) no-repeat left center;
+  display: block;  margin:16px 0;padding-left:28px;font-size: 14px;  color: #323232;}
+.sy-list .sy-item .sy-item-active{background-image: url(../../assets/image/icon-14.png);color:#177ef8;}
 /*设计师带单*/
 .information-list{margin:6px 0;padding:0 15px;}
 .information-list .van-cell{padding:6px 0;align-items: center;}
@@ -245,6 +239,13 @@ select{font-size: 100%;margin: 0;outline: none;}
 .s-select .van-tab__text .fa-sort-asc{vertical-align: -3px;}
 .s-select .van-tab--active .van-tab__text i{padding:3px;}
 .s-select .van-tabs__line{border-radius:0;}
+
+/*.u-select .van-tab:nth-child(3) .van-tab__text  .fa-sort-desc{transform:rotate(180deg);*/
+/*-ms-transform:rotate(180deg); 	!* IE 9 *!*/
+/*-moz-transform:rotate(180deg); 	!* Firefox *!*/
+/*-webkit-transform:rotate(180deg); !* Safari 和 Chrome *!*/
+/*-o-transform:rotate(180deg); 	!* Opera *!vertical-align: -1.5px;}*/
+
 /*底部高度*/
 .common-footer-wrap{height:50px;}
 .common-footer-wrap .van-info{top:6px;right:2px;}

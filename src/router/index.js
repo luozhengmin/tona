@@ -20,6 +20,26 @@ export default new Router({
           }
         },
         {
+          path: 'how-shop',
+          name: 'how-shop',
+          component: () => import("@/views/service/how-shop"),
+        },
+        {
+          path: 'payment',
+          name: 'payment',
+          component: () => import("@/views/service/payment"),
+        },
+        {
+          path: 'promises',
+          name: 'promises',
+          component: () => import("@/views/service/promises"),
+        },
+        {
+          path: 'contact-us',
+          name: 'contact-us',
+          component: () => import("@/views/service/contact-us"),
+        },
+        {
           path: 'login',
           name: 'login',
           component: () => import("@/views/login/login"),
@@ -97,11 +117,6 @@ export default new Router({
           name: 'sign-up',
           component: () => import("@/views/index/Brand/BrandChild/BrandForm/sign-up"),
         },
-        // {
-        //   path: 'real-name',
-        //   name: 'real-name',
-        //   component: () => import("@/views/index/Brand/BrandChild/BrandForm/real-name"),
-        // },
         {
           path: 'Recommend',
           name: 'Recommend',

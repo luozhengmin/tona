@@ -136,14 +136,15 @@
           :start-sale-num="skuData.start_sale_num"
           :close-on-click-overlay="closeOnClickOverlay"
           :properties="skuData.properties"
-          disable-stepper-input
+          show-add-cart-btn
+          :initial-sku="initialSku"
           reset-stepper-on-hide
           safe-area-inset-bottom
           reset-selected-sku-on-hide
           @buy-clicked="onBuyClicked"
           @add-cart="onAddCartClicked"
         />
-
+        <!--disable-stepper-input-->
       </div>
 
       <div class="detail-serve fix">
@@ -184,7 +185,7 @@
         </div>
       </div>
 
-      <div class="detail-cart fix">
+      <div class="detail-cart fix" v-model="show">
         <van-goods-action>
           <van-goods-action-icon icon="service-o"/>
           <van-goods-action-icon icon="shopping-cart-o" :badge="carNum==0?'':carNum" @click="$router.push({ name: 'cart'})"/>
@@ -232,7 +233,6 @@
       this.getCarNum()
     },
     methods: {
-
       getGoodsDetail(){     //获取商品详情
 
         getGoodsDetail(this.goodsid).then(
@@ -409,6 +409,8 @@
   }
   .detail-award .van-cell,.detail-choose .van-cell,.detail-serve .van-cell,.detail-remark .van-cell{font-size:14px;}
   .detail-cart{
+    position:relative;
+    z-index:999;
     .van-goods-action{
       z-index: 9999;
       .van-goods-action-button{
