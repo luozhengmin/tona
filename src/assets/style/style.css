@@ -245,6 +245,13 @@ select{font-size: 100%;margin: 0;outline: none;}
 .s-select .van-tab__text .fa-sort-asc{vertical-align: -3px;}
 .s-select .van-tab--active .van-tab__text i{padding:3px;}
 .s-select .van-tabs__line{border-radius:0;}
+
+/*.u-select .van-tab:nth-child(3) .van-tab__text  .fa-sort-desc{transform:rotate(180deg);*/
+/*-ms-transform:rotate(180deg); 	!* IE 9 *!*/
+/*-moz-transform:rotate(180deg); 	!* Firefox *!*/
+/*-webkit-transform:rotate(180deg); !* Safari 和 Chrome *!*/
+/*-o-transform:rotate(180deg); 	!* Opera *!vertical-align: -1.5px;}*/
+
 /*底部高度*/
 .common-footer-wrap{height:50px;}
 .common-footer-wrap .van-info{top:6px;right:2px;}

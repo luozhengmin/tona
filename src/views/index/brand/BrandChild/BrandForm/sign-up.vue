@@ -362,14 +362,14 @@
           Toast.fail("请输入姓名");
           return;
         }
-//        if (!this.params.phone) {
-//          Toast.fail("请输入手机号");
-//          return;
-//        }
-//        if (!this.params.code) {
-//          Toast.fail("请输入验证码");
-//          return;
-//        }
+        if (!this.params.phone) {
+          Toast.fail("请输入手机号");
+          return;
+        }
+        if (!this.params.code) {
+          Toast.fail("请输入验证码");
+          return;
+        }
         if (!this.params.region) {
           Toast.fail("请选择地区");
           return;
