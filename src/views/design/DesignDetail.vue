@@ -226,15 +226,11 @@
            <p>{{desginInfo.description}}</p>
          </div>
          <div class="detail-floor fix">
-           <div class="floor-item">
+
+           <div class="floor-item" v-for="(floorItem, i) in floorList" :key="i">
+             <div v-for="(item, j) in floorItem.lists" :key="j">
              <div class="floor-t">
-               <span><em>一层</em> · 概览</span>
-             </div>
-             <p><img src="../../assets/image/xq03.jpg"></p>
-           </div>
-           <div class="floor-item">
-             <div class="floor-t">
-               <span><em>一层</em> · 客厅</span>
+               <span><em>{{i}}</em> · {{item.space_name}}</span>
              </div>
              <div class="d-hall">
                <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
@@ -245,82 +241,22 @@
                      <i class="van-icon van-icon-play"></i>
                    </div>
                  </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
+
+                 <swiper-slide v-for="(images, k) in item.images" :key="k">
+                   <img :src="images.name">
                  </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
+
                </swiper>
                <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
+
+                 <swiper-slide v-for="(images, k) in item.images" :key="k">
+                   <img :src="images.name">
                  </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
+
                </swiper>
              </div>
-           </div>
-           <div class="floor-item">
-             <div class="floor-t">
-               <span><em>一层</em> · 料理台</span>
-             </div>
-             <div class="d-hall">
-               <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                   <div class="qj-btn ab">
-                     <span>3D全景</span>
-                     <i class="van-icon van-icon-play"></i>
-                   </div>
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-               </swiper>
-               <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                 </swiper-slide>
-               </swiper>
-             </div>
+            </div>
+
            </div>
          </div>
          <div class="detail-copy">
@@ -373,6 +309,7 @@
         showshare:false,
         showindex:false,
         desginInfo:{},
+        floorList:{},
         consult:{
           consult_content:'',
           phone:''
@@ -412,7 +349,8 @@
       getDesignDetail(id){
         DesignApi.get({design_id:id}).then(res=>{
           this.desginInfo = res.result.design_info;
-          console.log(this.desginInfo)
+          this.floorList = res.result.floor_list
+          console.log(res)
         })
       },
       showForm(){
