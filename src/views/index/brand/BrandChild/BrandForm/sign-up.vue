@@ -127,7 +127,7 @@
           </van-checkbox>
         </div>
 
-        <van-button type="primary" block color="#323232" @click="next($event)">下一步</van-button>
+        <van-button type="primary" block color="#323232" @click="next()">下一步</van-button>
       </div>
       <div class="d-information wrap fix" v-show="curId===1">
         <div class="information-list">
@@ -148,43 +148,43 @@
             </template>
           </van-field>
 
-          <div class="person-id">
-            <div class="id-list ab">
-              <h2><em>*</em>证件正面</h2>
-              <div class="id-item ab">
-                <van-uploader v-model="positiveList" :max-count="1"/>
-                <h3 is-link @click="showPositive">查看规则</h3>
-              </div>
-            </div>
-            <div class="id-list ab">
-              <h2><em>*</em>证件反面</h2>
-              <div class="id-item ab">
-                <van-uploader  v-model="negativeList" :max-count="1"/>
-                <h3 is-link @click="showNegative">查看规则</h3>
-              </div>
-            </div>
-          </div>
+          <!--<div class="person-id">-->
+            <!--<div class="id-list ab">-->
+              <!--<h2><em>*</em>证件正面</h2>-->
+              <!--<div class="id-item ab">-->
+                <!--<van-uploader v-model="positiveList" :max-count="1"/>-->
+                <!--<h3 is-link @click="showPositive">查看规则</h3>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="id-list ab">-->
+              <!--<h2><em>*</em>证件反面</h2>-->
+              <!--<div class="id-item ab">-->
+                <!--<van-uploader  v-model="negativeList" :max-count="1"/>-->
+                <!--<h3 is-link @click="showNegative">查看规则</h3>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
         <div class="person-btn ab">
           <van-button square type="primary" color="#eee">取消</van-button>
-          <van-button square type="primary" color="#323232" @click="tapeCommit">提交审核</van-button>
+          <van-button square type="primary" color="#323232" @click="tapeCommit($event)">提交审核</van-button>
         </div>
 
-        <van-popup v-model="showPro" class="pro-demand">
-          <h2>身份证正面上传要求</h2>
-          <p>1、该信息仅用于管理员审核之用，身份信息将完全保密<br>
-            2、请上传彩色二代身份证<br>
-            3、要求姓名、证件号码、脸部、地址都清晰可见<br>
-            4、支持JPG，PNG，BMP，GIF格式<br>
-            5、文件须小于5M</p>
-        </van-popup>
-        <van-popup v-model="showPro" class="con-demand">
-          <h2>身份证反面上传要求</h2>
-          <p>1、该信息仅用于管理员审核之用，身份信息将完全保密<br>
-            2、必须看清证件信息，且证件信息不能被遮挡<br>
-            3、支持JPG，PNG，BMP，GIF格式<br>
-            4、文件须小于5M</p>
-        </van-popup>
+        <!--<van-popup v-model="showPro" class="pro-demand">-->
+          <!--<h2>身份证正面上传要求</h2>-->
+          <!--<p>1、该信息仅用于管理员审核之用，身份信息将完全保密<br>-->
+            <!--2、请上传彩色二代身份证<br>-->
+            <!--3、要求姓名、证件号码、脸部、地址都清晰可见<br>-->
+            <!--4、支持JPG，PNG，BMP，GIF格式<br>-->
+            <!--5、文件须小于5M</p>-->
+        <!--</van-popup>-->
+        <!--<van-popup v-model="showPro" class="con-demand">-->
+          <!--<h2>身份证反面上传要求</h2>-->
+          <!--<p>1、该信息仅用于管理员审核之用，身份信息将完全保密<br>-->
+            <!--2、必须看清证件信息，且证件信息不能被遮挡<br>-->
+            <!--3、支持JPG，PNG，BMP，GIF格式<br>-->
+            <!--4、文件须小于5M</p>-->
+        <!--</van-popup>-->
         <!--提交审核-->
         <div class="toast" v-show="toastShow">
           <i class="van-icon van-icon-checked"></i>
@@ -289,7 +289,7 @@
 
         positiveList: [],
         negativeList: [],
-        showPro:false,
+//        showPro:false,
         toastShow:false,
         toastText: '已提交',
         toastState:'审核需要5个工作日，请耐心等待',
@@ -309,18 +309,13 @@
       closeDeclare() {
         this.showDeclare = false;
       },
-
-      tapeCommit(){
-        this.toastShow = true;
-      },
-      showPositive() {
-        this.showPro = true;
-      },
-      showNegative() {
-        this.showPro = true;
-      },
-      next(event) {
-        event.preventDefault();
+//      showPositive() {
+//        this.showPro = true;
+//      },
+//      showNegative() {
+//        this.showPro = true;
+//      },
+      next() {
         if (!this.params.name) {
           Toast.fail("请输入姓名");
           return;
@@ -337,19 +332,6 @@
           Toast.fail("请选择地区");
           return;
         }
-        let params = {
-          name: this.params.name,
-          phone: this.params.phone,
-          captcha: this.params.code,
-          region:this.params.region,
-
-        };
-        this.params.store_id = this.store_id;
-        console.log(this.params);
-        StoreApi.sign_up(this.params).then(res => {
-          console.log(res);
-//          this.toastShow = true;
-        });
         if (this.curId++ > 0) this.curId = 0;
       },
 
@@ -372,6 +354,46 @@
             }
           }, 1000);
         });
+      },
+
+      tapeCommit(event){
+        event.preventDefault();
+        if (!this.params.name) {
+          Toast.fail("请输入姓名");
+          return;
+        }
+//        if (!this.params.phone) {
+//          Toast.fail("请输入手机号");
+//          return;
+//        }
+//        if (!this.params.code) {
+//          Toast.fail("请输入验证码");
+//          return;
+//        }
+        if (!this.params.region) {
+          Toast.fail("请选择地区");
+          return;
+        }
+        if (!this.params.id_number) {
+          Toast.fail("请输入身份证号");
+          return;
+        }
+        let params = {
+          name: this.params.name,
+          phone: this.params.phone,
+          captcha: this.params.code,
+          region:this.params.region,
+          id_number:this.id_number
+
+        };
+        this.params.store_id = this.store_id;
+        console.log(this.params);
+
+        StoreApi.sign_up(this.params).then(res => {
+          console.log(res);
+          this.toastShow = true;
+        });
+
       },
 
     }
@@ -408,19 +430,19 @@
     }
   }
   /*实名认证*/
-  .person-id{
-    .id-list{
-      padding:6px 0;
-      h2{
-        font-size:14px;color:#323232;width:78px;text-align:right;padding-right:12px;
-        em{color:#f4523b;padding-right:2px;}
-      }
-      .id-item{
-        align-items:center;
-        h3{padding-left:12px;color:#388ceb;font-size:14px;}
-      }
-    }
-  }
+  /*.person-id{*/
+    /*.id-list{*/
+      /*padding:6px 0;*/
+      /*h2{*/
+        /*font-size:14px;color:#323232;width:78px;text-align:right;padding-right:12px;*/
+        /*em{color:#f4523b;padding-right:2px;}*/
+      /*}*/
+      /*.id-item{*/
+        /*align-items:center;*/
+        /*h3{padding-left:12px;color:#388ceb;font-size:14px;}*/
+      /*}*/
+    /*}*/
+  /*}*/
   .person-btn{
     margin:20px 0;
     .van-button{width:50%;justify-content:space-between;}
