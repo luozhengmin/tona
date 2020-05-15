@@ -181,8 +181,8 @@
               </div>
               <ul class="sy-item-m fix" v-for="(item, j) in floorItem.lists" :key="j">
 
-                <li class="sy-item-nav sy-item-active" @click="doJump('#goto'+i+j)" v-if="i == '一层'">{{item.space_name}}</li>
-                <li class="sy-item-nav" @click="doJump('#goto'+i+j)" v-else >{{item.space_name}}</li>
+                <li :class="['sy-item-nav',{'sy-item-active':current == i+'_'+j}]" @click="doJump('#goto'+i+j,i+'_'+j)" >{{item.space_name}}</li>
+
               </ul>
             </div>
          </div>
@@ -292,6 +292,9 @@
         showindex:false,
         desginInfo:{},
         floorList:{},
+        current:'一层_0',
+        
+        changeClass : '',
         consult:{
           consult_content:'',
           phone:''
@@ -319,9 +322,9 @@
       showIndex() {
         this.showindex = true;
       },
-      doJump(selector){
-        console.log(selector)
+      doJump(selector,j){
         let got = this.$el.querySelector(selector)
+        this.current = j
         document.body.scrollTop = got.offsetTop
       },
       collect() {
