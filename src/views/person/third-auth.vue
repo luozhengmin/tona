@@ -54,7 +54,7 @@ export default {};
   .group {
     font-size: 16px;
     .van-cell {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 50px;
       display: flex;
       align-items: center;

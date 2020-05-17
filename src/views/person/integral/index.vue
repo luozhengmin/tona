@@ -88,7 +88,7 @@ export default {
     }
   }
   .title {
-    font-size: 14px;
+    font-size: 15px;
     padding:12px 15px;
     color: #323232;
     display: flex;

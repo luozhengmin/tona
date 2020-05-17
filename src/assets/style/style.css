@@ -34,7 +34,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .head .head-ss{position: absolute;left:4%;height:18px;top:16px;line-height:18px;}
 .head .head-ss i{font-size:18px;font-weight:500;color:#fff;}
 .head .head-ss i.van-icon{font-size:20px;margin-top:-1px;margin-left:-5px;}
-.head .head-logo{text-align:center;margin:0 8%;height:50px;line-height:48px;font-size:16px;color:#fff;}
+.head .head-logo{text-align:center;margin:0 8%;height:50px;line-height:50px;font-size:16px;color:#fff;}
 .head .head-logo a{display:block;vertical-align:middle;}
 .head .head-logo a img{height:18px;vertical-align:inherit;}
 .head .menu-ico{width:20px;height:18px;padding:2px 0;position:absolute;right:4%;cursor:pointer;z-index:180;top:16px;}
@@ -126,7 +126,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 /*品牌馆设计*/
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{padding:0 32px 0 0;text-align:left;flex:inherit;}
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav >{padding-bottom:0px;}
-.home-child > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{  padding:0 20px 0 0;}
+.home-child > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{padding:0 20px 0 0;font-size:16px;}
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab--active{font-weight:700;}
 .b-child-tab > .van-tabs--line > .van-tabs__wrap{border-bottom:none;padding:0 15px;}
 .home-child > .van-tabs--line > .van-tabs__wrap{border:none;}
@@ -265,6 +265,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .address-list .van-address-item .van-radio__icon--checked .van-icon{background-color: #f4523b;border-color: #f4523b;}
 .address-list .van-address-item__name{font-size:15px;}
 /*我的收藏夹*/
+.collect-list .van-tab{font-size:15px;}
 .collect-list .van-tab--active{color:#f4523b;}
 /*我的信息中心*/
 .p-information .van-cell:nth-child(1) .van-cell__value{display:none;}
@@ -280,13 +281,13 @@ select{font-size: 100%;margin: 0;outline: none;}
 .my-order .van-tabs__line{border-radius:0;}
 /*我的认证资料*/
 .identify-list{margin:6px 0;padding:0 15px;}
-.identify-list .van-cell{padding:6px 0;align-items: center;}
-.identify-list .van-cell__title{width:95px;padding-right:12px;}
+.identify-list .van-cell{padding:6px 0;align-items: center;font-size: 15px;}
+.identify-list .van-cell__title{width:90px;padding-right:6px;}
 .identify-list .van-cell__title em{color:#f4523b;padding-right:2px;}
 .identify-list .van-cell:not(:last-child)::after,.global .van-hairline--top-bottom::after,.global .van-hairline-unset--top-bottom::after
 {border-bottom:none;}
 .identify-list .van-field__value {border-bottom: solid 1px #eee;padding:8px 0;}
-.identify-list .van-field__control{font-size:13px;line-height:1.4;}
+.identify-list .van-field__control{font-size:14px;line-height:1.4;}
 .identify-list .van-field__control::-webkit-input-placeholder {color:#b7b7b7;}
 .identify-list .van-field__control:-moz-placeholder{color:#b7b7b7;}
 .identify-list .van-field__control::-moz-placeholder{color:#b7b7b7;}
@@ -353,3 +354,9 @@ select{font-size: 100%;margin: 0;outline: none;}
 .van-toast{width:auto;min-height:76px;}
 .van-toast .van-toast__icon{font-size:36px;}
 /*.van-toast .van-toast__text {font-size:13px;}*/
+/*商品详情*/
+.detail-choose .van-sku-messages{display:none;}
+.detail-choose .van-sku-actions{padding:8px 0;}
+.detail-choose .van-sku-actions .van-button{border-radius:0;}
+.detail-choose .van-sku-actions .van-button--warning{background:#323232;}
+.detail-choose .van-sku-actions .van-button--danger{background:#f4523b;}

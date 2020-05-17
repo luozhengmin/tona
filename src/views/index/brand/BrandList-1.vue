@@ -248,7 +248,7 @@
             .infor-r{
               flex-direction:column;
               text-align:right;
-              .van-tag{border-radius:10px 10px 10px 0;margin-bottom: 2px;width:36px;display:inline-block;
+              .van-tag{border-radius:10px 10px 10px 0;margin-bottom:5px;width:36px;display:inline-block;
                 height: 18px;
                 line-height: 18px;
                 padding: 0;

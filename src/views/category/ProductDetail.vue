@@ -131,9 +131,6 @@
           :goods="skuData.goods_info"
           :goods-id="skuData.goods_id"
           :hide-stock="skuData.sku.hide_stock"
-          :quota="skuData.quota"
-          :quota-used="skuData.quota_used"
-          :start-sale-num="skuData.start_sale_num"
           :close-on-click-overlay="closeOnClickOverlay"
           :properties="skuData.properties"
           show-add-cart-btn

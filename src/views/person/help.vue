@@ -63,7 +63,7 @@
     justify-content: space-around;
     padding: 15px;
     .item {
-      font-size:15px;
+      font-size:16px;
       color: #323232;
       display: flex;
       align-items: center;
@@ -90,7 +90,7 @@
   .q-list {
     background-color: #fff;
     .van-cell {
-      font-size: 14px;
+      font-size: 15px;
       padding: 12px 15px;
     }
     .van-cell:not(:last-child)::after{border-bottom:solid 1px #eee;}

@@ -162,13 +162,13 @@
 <style lang="scss" scoped>
 .container{
   .identify-title{
-    font-size:13px;color:#888;padding:12px 15px;background-color:#f7f7f7;
+    font-size:14px;color:#888;padding:12px 15px;background-color:#f7f7f7;
   }
   .identify-list{
     padding:12px 15px;
     .no-identify{
       align-items:center;
-      h3{font-size:14px;color:#2f2f2f;width:95px;}
+      h3{font-size:15px;color:#2f2f2f;width:95px;}
       .van-button{height:30px;font-size:13px;line-height:28px;background-color:#eee;color:#888;}
     }
   }
@@ -178,11 +178,11 @@
   .id-list{
     padding:6px 0;
     h2{
-      font-size:14px;color:#323232;width:95px;margin-bottom:12px;
+      font-size:15px;color:#323232;width:95px;margin-bottom:12px;
       em{color:#f4523b;padding-right:2px;}
     }
     .id-item{
-      h3{color:#388ceb;font-size:13px;text-align:center;}
+      h3{color:#388ceb;font-size:14px;text-align:center;}
     }
   }
 }

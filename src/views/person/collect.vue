@@ -241,6 +241,9 @@ export default {
         font-size: 15px;
         color: #323232;
         padding: 10px 15px 5px 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .desc {
         padding: 0 15px 10px 15px;

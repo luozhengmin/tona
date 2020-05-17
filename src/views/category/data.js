@@ -51,7 +51,7 @@ exports.skuData = {
                 count: 2,
             },
             {
-                k: '尺寸',
+                k: '规格',
                 k_id: '2',
                 v: [
                     {
@@ -138,7 +138,7 @@ exports.skuData = {
 exports.initialSku = {
     s1: '30349',
     s2: '1193',
-    selectedNum: 3,
+    selectedNum: 1,
     selectedProp: {
         123: [1222],
         133: [1244],

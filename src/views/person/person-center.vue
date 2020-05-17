@@ -145,7 +145,7 @@ export default {
   .group2 {
     margin-bottom: 12px;
     .van-cell {
-      font-size: 14px;
+      font-size: 15px;
       line-height:1.8;
       .van-cell__left-icon,
       .van-cell__right-icon {

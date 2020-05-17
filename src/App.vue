@@ -32,7 +32,7 @@ export default {
   color: #323232;
 }
 .person-order-status .van-goods-action-icon__icon i{
-  font-size: 30px;
+  font-size: 32px;
 }
 .person-order-status .van-goods-action-icon__icon  .van-info{
   top:12px;right:2px;

@@ -288,7 +288,7 @@ export default {
       display: flex;
       align-items: center;
       flex-direction: column;
-      font-size: 14px;
+      font-size: 15px;
       color: #888;
     }
   }
@@ -296,14 +296,15 @@ export default {
   .group2 {
     margin-bottom:12px;
     .van-cell {
-      font-size: 14px;
+      font-size: 15px;
       line-height:1.8;
       align-items:center;
+      padding:8px 15px;
       .van-cell__right-icon {
         font-size: 18px;
         color:#b7b7b7;
       }
-      .iconfont{font-size:18px;padding-right:8px;}
+      .iconfont{font-size:20px;padding-right:8px;}
       .van-icon{margin-right:-4px;}
     }
   }

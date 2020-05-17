@@ -34,6 +34,7 @@
 </script>
 
 <style lang="scss" scoped>
+  .container{margin-top:0;}
   .land-page{
     position: relative;
     width:100%;

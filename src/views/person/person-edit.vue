@@ -205,7 +205,7 @@ export default {
   .form {
     font-size: 16px;
     .van-cell {
-      font-size: 14px;
+      font-size: 15px;
       line-height:1.6;
       .van-cell__right-icon{margin-right:-5px;}
       .van-button {

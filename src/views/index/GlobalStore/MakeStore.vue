@@ -211,7 +211,7 @@ export default {
   }
   p {
     color: #888;
-    padding-top: 4px;
+    padding-top:5px;
   }
 }
 .make-btn {

@@ -58,9 +58,9 @@ export default {
   background-color: #f7f7f7;
   height: 100%;
   .form {
-    font-size: 14px;
+    font-size: 15px;
     .van-cell {
-      font-size: 14px;
+      font-size: 15px;
       line-height:1.8;
     }
   }
