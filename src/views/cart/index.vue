@@ -118,7 +118,7 @@
         v-if="!edit"
         :price="allPrice"
         :button-text="'结算（'+selectCount+'）'"
-        @submit="onSubmit"
+        @submit="submitCart"
       >
         <van-checkbox v-model="isCheckAll" @click="checkAll()" checked-color="#f4523b">全选</van-checkbox>
       </van-submit-bar>
@@ -135,7 +135,12 @@
 
 <script>
 import { Toast } from "vant";
-import { cartGet, getGuesslike } from "../../api/memberCart";
+import {
+  cartGet,
+  getGuesslike,
+  submitCart,
+  delCart
+} from "../../api/memberCart";
 export default {
   data() {
     return {
@@ -155,19 +160,15 @@ export default {
     };
   },
   created() {
-    this.getCartList(true);
+    this.getCartList();
     this.getGuesslike();
   },
   methods: {
-    onSubmit() {},
     share() {
       Toast({
         message: "分享成功",
         icon: "passed"
       });
-    },
-    del() {
-      Toast("所选商品已删除");
     },
     // 选中单个商品
     ischeck(item, pro) {
@@ -268,7 +269,7 @@ export default {
       });
     },
     // 获取购物车列表
-    getCartList(value) {
+    getCartList() {
       cartGet().then(res => {
         if (res && res.result.cart_list.length > 0) {
           console.log(res);
@@ -286,55 +287,40 @@ export default {
         this.guessList = res.result;
       });
     },
-    /*
-     * addChecked: 为每个商品添加checked 属性
-     * @param: isSelectedall 是否选中商品 Boolean
-     */
-    addChecked(isSelectedall) {
-      let temp = this.cartList;
-      for (var j in temp) {
-        let list = temp[j].goods;
-        let k = 0;
-        for (var i in list) {
-          if (list[i].goods_storage == 0 && !this.isCheckedAll) {
-            list[i].checked = false;
-            k++;
-          } else {
-            list[i].checked = isSelectedall;
-          }
-        }
-        temp[j].checked = k == list.length ? false : isSelectedall;
-      }
-      this.cartList = Object.assign([], temp);
-    },
-    /*
-     *  renderCart: 修改商品数量和点击是否选中后 重新计算商品价格和数量
-     */
-    renderCart() {
-      let temp = this.cartList;
-      this.promosIds = [];
-      let cartGoods = [];
-      let totalAmount = 0;
-      let totalPrice = 0;
-      for (var j in temp) {
-        let data = temp[j].goods;
-        for (var i in data) {
-          if (data[i].checked) {
-            totalAmount += parseInt(data[i].goods_num);
-            totalPrice +=
-              parseInt(data[i].goods_num) * parseFloat(data[i].goods_price);
-            cartGoods.push(data[i].cart_id + "|" + data[i].goods_num);
-          }
-        }
-      }
-      this.cartId = cartGoods.toString();
-      this.totalPrice = totalPrice.toFixed(2);
-      this.totalAmount = totalAmount;
-      this.$parent.$emit("calcu-cart-data", {
-        totalPrice: this.totalPrice,
-        totalAmount: this.totalAmount,
-        cartId: this.cartId
+    submitCart() {
+      let list = this.getSelectedGoods();
+      let ids = [];
+      let that = this;
+      list.forEach(o => {
+        ids.push(o.goods_id + "|" + o.goods_num);
       });
+      this.$router.push("/confirm?data=" + ids.join(","));
+      // submitCart({ cart_id: ids.join(",") }).then(res => {
+      //   this.$router.push("/confirm");
+      // });
+    },
+    del() {
+      let list = this.getSelectedGoods();
+      let ids = list.map(o => {
+        return o.goods_id;
+      });
+      delCart({ cart_id: ids.join(",") }).then(res => {
+        Toast("所选商品已删除");
+        this.edit = false;
+        this.getCartList();
+      });
+    },
+    getSelectedGoods() {
+      let list = [];
+      this.cartList.forEach(item => {
+        let goods = item.goods;
+        goods.forEach(pros => {
+          if (pros.isChecked) {
+            list.push(pros);
+          }
+        });
+      });
+      return list;
     },
     // 商品详情页
     toProductDetail(id) {

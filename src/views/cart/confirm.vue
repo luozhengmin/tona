@@ -3,11 +3,9 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="head-ss fix">
-          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
-        <div class="head-logo">
-          确认订单
-        </div>
+        <div class="head-logo">确认订单</div>
       </div>
     </div>
     <div class="contact ab">
@@ -23,7 +21,9 @@
         </div>
       </div>
       <div class="contact-r">
-        <router-link to="/address-list"><van-icon name="arrow"/></router-link>
+        <router-link to="/address-list">
+          <van-icon name="arrow" />
+        </router-link>
       </div>
     </div>
     <div class="card-list">
@@ -89,6 +89,7 @@
 
 <script>
 import { Toast } from "vant";
+import { submitCart } from "../../api/memberCart";
 export default {
   name: "",
   data() {
@@ -96,10 +97,20 @@ export default {
       checked: true,
       value: "",
       columns: ["不开发票", "电子发票", "纸质发票"],
-      showPicker: false
+      showPicker: false,
+      goodsParams: ""
     };
   },
+  created() {
+    this.goodsParams = this.$route.query.data;
+    this.getGoodsInfo();
+  },
   methods: {
+    getGoodsInfo() {
+      submitCart({ cart_id: this.goodsParams }).then(res => {
+        console.log(res);
+      });
+    },
     onSubmit() {},
     onConfirm(value) {
       this.value = value;
@@ -116,8 +127,8 @@ export default {
     background-color: #fff;
     padding: 20px 15px;
     margin-bottom: 12px;
-    align-items:center;
-    .contact-l{
+    align-items: center;
+    .contact-l {
       .top {
         font-size: 16px;
         font-weight: bolder;
@@ -140,7 +151,10 @@ export default {
         }
       }
     }
-    .contact-r{font-size:18px;color:#b7b7b7;}
+    .contact-r {
+      font-size: 18px;
+      color: #b7b7b7;
+    }
   }
   .card-list {
     .product-card {
@@ -199,8 +213,8 @@ export default {
     bottom: 50px;
     .van-submit-bar__bar {
       padding-right: 0;
-      .van-submit-bar__text{
-        color:#b7b7b7;
+      .van-submit-bar__text {
+        color: #b7b7b7;
       }
       .van-button {
         border-radius: 0;
@@ -215,7 +229,7 @@ export default {
     .num-text {
       margin-right: 12px;
       margin-top: 5px;
-      color:#b7b7b7;
+      color: #b7b7b7;
     }
     .van-submit-bar__text {
       flex: none;
