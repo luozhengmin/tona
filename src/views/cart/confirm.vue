@@ -108,6 +108,9 @@ export default {
   methods: {
     getGoodsInfo() {
       submitCart({ cart_id: this.goodsParams }).then(res => {
+        if (res.code == 10001) {
+          this.$router.push("/address-edit")
+        }
         console.log(res);
       });
     },
