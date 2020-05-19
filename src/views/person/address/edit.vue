@@ -79,13 +79,13 @@ export default {
       params: {}
     };
   },
-  
+
   created: function () {
     let addressid = this.$route.query.id
     this.getAddressInfo(addressid);
 
   },
-  
+
   methods: {
     getAddressInfo(addressid){
 
