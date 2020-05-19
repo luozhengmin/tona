@@ -63,9 +63,10 @@
         </div>
         <div class="product" v-for="(item, index) in cartItem.goods" :key="index">
           <van-checkbox
-            v-model="item.checked"
+            v-model="item.isChecked"
             checked-color="#f4523b"
             @click="ischeck(cartItem,item)"
+            style="min-width: 20px;"
           ></van-checkbox>
           <van-card :thumb="item.goods_image_url">
             <template slot="title">
@@ -113,7 +114,12 @@
     </div>
     <div style="height:105px;"></div>
     <div class="bottom-bar">
-      <van-submit-bar v-if="!edit" :price="allPrice" button-text="结算（2）" @submit="onSubmit">
+      <van-submit-bar
+        v-if="!edit"
+        :price="allPrice"
+        :button-text="'结算（'+selectCount+'）'"
+        @submit="submitCart"
+      >
         <van-checkbox v-model="isCheckAll" @click="checkAll()" checked-color="#f4523b">全选</van-checkbox>
       </van-submit-bar>
       <div class="edit-bar" v-else>
@@ -129,7 +135,12 @@
 
 <script>
 import { Toast } from "vant";
-import { cartGet, getGuesslike } from "../../api/memberCart";
+import {
+  cartGet,
+  getGuesslike,
+  submitCart,
+  delCart
+} from "../../api/memberCart";
 export default {
   data() {
     return {
@@ -144,23 +155,20 @@ export default {
       isCheckAll: false,
       allShops: 0,
       allCount: 0,
-      allPrice: 0 // 购物车总价
+      allPrice: 0,
+      selectCount: 0
     };
   },
   created() {
-    this.getCartList(true);
+    this.getCartList();
     this.getGuesslike();
   },
   methods: {
-    onSubmit() {},
     share() {
       Toast({
         message: "分享成功",
         icon: "passed"
       });
-    },
-    del() {
-      Toast("所选商品已删除");
     },
     // 选中单个商品
     ischeck(item, pro) {
@@ -169,7 +177,7 @@ export default {
     },
     // 修改单个商品的true
     _checkTrue(item, pro) {
-      pro.checked = true; // 将商品选中状态改为true
+      pro.isChecked = true; // 将商品选中状态改为true
       // 这里执行了两部，选中商品数量先+1，再与该店铺商品数量比较，如果相等就更改店铺选中状态为true
       if (++item.checkedCount === item.goods.length) {
         item.checked = true;
@@ -191,7 +199,7 @@ export default {
     },
     // 修改单个商品的 false
     _checkFalse(item, pro) {
-      pro.checked = false; // 将商品选中状态改为false
+      pro.isChecked = false; // 将商品选中状态改为false
       --item.checkedCount; // 被选中的商品数减一
       if (item.checked) {
         // 如果店铺是被选中的，更改店铺选中状态
@@ -208,7 +216,7 @@ export default {
     // 遍历商店每个商品,状态为false的改变为true,又在_checkTrue()方法中将商店状态改为true
     _shopTrue(item) {
       item.goods.forEach(pro => {
-        if (pro.checked === false) {
+        if (pro.isChecked === false) {
           this._checkTrue(item, pro);
         } else {
           return "";
@@ -219,7 +227,7 @@ export default {
     _shopFalse(item) {
       item.goods.forEach(pro => {
         // 同上
-        if (pro.checked === true) {
+        if (pro.isChecked === true) {
           this._checkFalse(item, pro);
         } else {
           return "";
@@ -241,14 +249,17 @@ export default {
     _totalPeice() {
       // 每次调用此方法，将初始值为0，遍历价格并累加
       this.allPrice = 0;
+      this.selectCount = 0;
       this.cartList.forEach(item => {
         let goods = item.goods;
         goods.forEach(pros => {
-          if (pros.checked) {
+          if (pros.isChecked) {
             this.allPrice += pros.goods_price * pros.goods_num;
+            this.selectCount += 1;
           }
         });
       });
+      this.allPrice = this.allPrice * 100;
     },
     _totalCount() {
       // 同上
@@ -258,7 +269,7 @@ export default {
       });
     },
     // 获取购物车列表
-    getCartList(value) {
+    getCartList() {
       cartGet().then(res => {
         if (res && res.result.cart_list.length > 0) {
           console.log(res);
@@ -276,58 +287,40 @@ export default {
         this.guessList = res.result;
       });
     },
-    checkChange(store_id) {
-      this.$refs["store_" + store_id][0].toggleAll();
-    },
-    /*
-     * addChecked: 为每个商品添加checked 属性
-     * @param: isSelectedall 是否选中商品 Boolean
-     */
-    addChecked(isSelectedall) {
-      let temp = this.cartList;
-      for (var j in temp) {
-        let list = temp[j].goods;
-        let k = 0;
-        for (var i in list) {
-          if (list[i].goods_storage == 0 && !this.isCheckedAll) {
-            list[i].checked = false;
-            k++;
-          } else {
-            list[i].checked = isSelectedall;
-          }
-        }
-        temp[j].checked = k == list.length ? false : isSelectedall;
-      }
-      this.cartList = Object.assign([], temp);
-    },
-    /*
-     *  renderCart: 修改商品数量和点击是否选中后 重新计算商品价格和数量
-     */
-    renderCart() {
-      let temp = this.cartList;
-      this.promosIds = [];
-      let cartGoods = [];
-      let totalAmount = 0;
-      let totalPrice = 0;
-      for (var j in temp) {
-        let data = temp[j].goods;
-        for (var i in data) {
-          if (data[i].checked) {
-            totalAmount += parseInt(data[i].goods_num);
-            totalPrice +=
-              parseInt(data[i].goods_num) * parseFloat(data[i].goods_price);
-            cartGoods.push(data[i].cart_id + "|" + data[i].goods_num);
-          }
-        }
-      }
-      this.cartId = cartGoods.toString();
-      this.totalPrice = totalPrice.toFixed(2);
-      this.totalAmount = totalAmount;
-      this.$parent.$emit("calcu-cart-data", {
-        totalPrice: this.totalPrice,
-        totalAmount: this.totalAmount,
-        cartId: this.cartId
+    submitCart() {
+      let list = this.getSelectedGoods();
+      let ids = [];
+      let that = this;
+      list.forEach(o => {
+        ids.push(o.goods_id + "|" + o.goods_num);
       });
+      this.$router.push("/confirm?data=" + ids.join(","));
+      // submitCart({ cart_id: ids.join(",") }).then(res => {
+      //   this.$router.push("/confirm");
+      // });
+    },
+    del() {
+      let list = this.getSelectedGoods();
+      let ids = list.map(o => {
+        return o.goods_id;
+      });
+      delCart({ cart_id: ids.join(",") }).then(res => {
+        Toast("所选商品已删除");
+        this.edit = false;
+        this.getCartList();
+      });
+    },
+    getSelectedGoods() {
+      let list = [];
+      this.cartList.forEach(item => {
+        let goods = item.goods;
+        goods.forEach(pros => {
+          if (pros.isChecked) {
+            list.push(pros);
+          }
+        });
+      });
+      return list;
     },
     // 商品详情页
     toProductDetail(id) {
