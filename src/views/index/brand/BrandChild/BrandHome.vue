@@ -9,19 +9,8 @@
               <span>推荐方案</span>
             </h2>
           </div>
-          <div class="brand-con ab fix">
-            <div class="brand-con-l">
-              <h3>
-                TONA HOME x
-                <span>卫浴家装</span>
-              </h3>
-              <span></span>
-              <h2>致力为全球用户提供</h2>
-              <p>自然健康的全屋解决方案</p>
-            </div>
-            <div class="brand-con-r">
-              <img src="../../../../assets/image/cp01.jpg" />
-            </div>
+          <div class="brand-con fix">
+              <a href=""><img src="../../../../assets/image/cp01.jpg" /></a>
           </div>
         </div>
         <div class="design-list fix">
@@ -226,7 +215,7 @@ export default {
     width: 100%;
     height: 80px;
     background-color: #ddd;
-    font-size: 16px;
+    font-size: 14px;
     color: #aaa;
   }
 }

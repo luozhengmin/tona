@@ -203,7 +203,7 @@
          </div>
          <div class="detail-profile fix">
            <div class="title-t">
-             <h2><span>房屋信息</span></h2>
+             <h2><span>简介</span></h2>
            </div>
            <p>{{desginInfo.description}}</p>
          </div>
@@ -211,33 +211,31 @@
 
            <div class="floor-item" v-for="(floorItem, i) in floorList" :key="i">
              <div v-for="(item, j) in floorItem.lists" :key="j">
-             <div class="floor-t" :id="'goto'+i+j">
-               <span><em>{{i}}</em> · {{item.space_name}}</span>
+               <div class="floor-t" :id="'goto'+i+j">
+                 <span><em>{{i}}</em> · {{item.space_name}}</span>
+               </div>
+               <div class="d-hall">
+                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop" v-if="item.images.length > 0">
+                   <!--<swiper-slide>-->
+                     <!--<img src="../../assets/image/xq02.jpg">-->
+                     <!--<div class="qj-btn ab">-->
+                       <!--<span>3D全景</span>-->
+                       <!--<i class="van-icon van-icon-play"></i>-->
+                     <!--</div>-->
+                   <!--</swiper-slide>-->
+
+                   <swiper-slide v-for="(images, k) in item.images" :key="k">
+                     <img :src="images.name">
+                   </swiper-slide>
+                 </swiper>
+
+                 <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+                   <swiper-slide v-for="(images, k) in item.images" :key="k">
+                     <img :src="images.name">
+                   </swiper-slide>
+                 </swiper>
+               </div>
              </div>
-             <div class="d-hall">
-               <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
-                 <swiper-slide>
-                   <img src="../../assets/image/xq02.jpg">
-                   <div class="qj-btn ab">
-                     <span>3D全景</span>
-                     <i class="van-icon van-icon-play"></i>
-                   </div>
-                 </swiper-slide>
-
-                 <swiper-slide v-for="(images, k) in item.images" :key="k">
-                   <img :src="images.name">
-                 </swiper-slide>
-
-               </swiper>
-               <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-
-                 <swiper-slide v-for="(images, k) in item.images" :key="k">
-                   <img :src="images.name">
-                 </swiper-slide>
-
-               </swiper>
-             </div>
-            </div>
 
            </div>
          </div>
@@ -293,16 +291,11 @@
         desginInfo:{},
         floorList:{},
         current:'一层_0',
-        
+
         changeClass : '',
         consult:{
           consult_content:'',
           phone:''
-        },
-        swiperOptionTop: {
-          loop: true,
-          loopedSlides: 5,
-          spaceBetween: 10,
         },
         swiperOptionThumbs: {
           loop: true,
@@ -311,8 +304,14 @@
           centeredSlides: true,
           slidesPerView: 'auto',
           touchRatio: 0.2,
-          slideToClickedSlide: true
-        }
+          slideToClickedSlide: true,
+        },
+        swiperOptionTop: {
+          loop: true,
+          loopedSlides: 5,
+          spaceBetween: 10,
+        },
+        isInit:''
       }
     },
     methods: {
@@ -365,18 +364,22 @@
 
 
     },
-    mounted() {
-      this.$nextTick(() => {
-        const swiperTop = this.$refs.swiperTop.$swiper
-        const swiperThumbs = this.$refs.swiperThumbs.$swiper
-        swiperTop.controller.control = swiperThumbs
-        swiperThumbs.controller.control = swiperTop
-      })
-    },
     created(){
       let id = this.$route.query.id;
       this.getDesignDetail(id)
-    }
+    },
+    updated() {
+      if (this.isInit === 1) {
+        this.$nextTick(() => {
+          const swiperTop = this.$refs.swiperTop.swiper
+          const swiperThumbs = this.$refs.swiperThumbs.swiper
+          console.log(this.$refs)
+          swiperTop.controller.control = swiperThumbs
+          swiperThumbs.controller.control = swiperTop
+        })
+        this.isInit = 0
+      }
+    },
   }
 </script>
 

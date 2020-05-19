@@ -386,6 +386,7 @@ export default {
       }
     }
   }
+  .product .van-card{width:94%;}
   .like {
     background-color: #fff;
     padding: 0 15px;
@@ -446,6 +447,7 @@ export default {
       width: 100%;
       bottom: 50px;
       background-color: #fff;
+      font-size: 14px;
       .btns {
         .van-button {
           padding: 0 30px;
