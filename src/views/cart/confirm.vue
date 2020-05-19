@@ -11,13 +11,13 @@
     <div class="contact ab">
       <div class="contact-l ac">
         <div class="top">
-          <span>飞扬</span>
-          <span>133****8795</span>
-          <van-tag color="#f4523b">默认</van-tag>
+          <span>{{address_info.address_realname}}</span>
+          <span>{{address_info.address_mob_phone}}</span>
+          <van-tag v-if="address_info.address_is_default=='1'" color="#f4523b">默认</van-tag>
         </div>
         <div class="bottom">
           <van-icon name="location" color="#f4523b" size="20" />
-          <span>广东省深圳市南山区科兴科学园</span>
+          <span>{{address_info.area_info}} {{address_info.address_detail}}</span>
         </div>
       </div>
       <div class="contact-r">
@@ -27,35 +27,34 @@
       </div>
     </div>
     <div class="card-list">
-      <div class="product-card" v-for="i in 2" :key="i">
-        <div class="store">TONA官方旗舰店</div>
-        <div class="product" v-for="j in 2" :key="j">
-          <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
+      <div class="product-card" v-for="item in store_cart_list" :key="item.store_id">
+        <div class="store">{{item.store_name}}</div>
+        <div class="product" v-for="goods in item.goods_list" :key="goods.goods_id">
+          <van-card :thumb="goods.goods_image_url">
             <template slot="title">
               <div class="title">
-                <span>TONA-拉米娜浴室柜</span>
-                <div>￥45.9</div>
+                <span>{{goods.goods_name}}</span>
+                <div>￥{{goods.goods_price}}</div>
               </div>
             </template>
             <template slot="desc">
               <div class="desc num">
                 <span>颜色</span>
-                <span>x 2</span>
+                <span>x {{goods.goods_num}}</span>
               </div>
               <div class="desc">规格</div>
             </template>
           </van-card>
         </div>
-        <van-field readonly input-align="right" label="商品合计" value="￥1200.00" />
-        <van-field readonly input-align="right" label="运费" value="￥1200.00" />
+        <van-field readonly input-align="right" label="商品合计" :value="'￥'+item.store_goods_total" />
+        <van-field readonly input-align="right" label="运费" :value="'￥'" />
         <van-field
           readonly
           clickable
           input-align="right"
           label="发票信息"
           right-icon="arrow"
-          placeholder="不开发票"
-          :value="value"
+          :value="inv_info.content"
           @click="showPicker = true"
         />
         <van-field input-align="right" label="订单备注" placeholder="选填，请先和商家协商一致" />
@@ -94,6 +93,9 @@ export default {
   name: "",
   data() {
     return {
+      address_info: {},
+      store_cart_list: [],
+      inv_info: {},
       checked: true,
       value: "",
       columns: ["不开发票", "电子发票", "纸质发票"],
@@ -109,9 +111,12 @@ export default {
     getGoodsInfo() {
       submitCart({ cart_id: this.goodsParams }).then(res => {
         if (res.code == 10001) {
-          this.$router.push("/address-edit")
+          this.$router.push("/address-edit");
         }
         console.log(res);
+        this.address_info = res.result.address_info;
+        this.store_cart_list = res.result.store_cart_list;
+        this.inv_info = res.result.inv_info;
       });
     },
     onSubmit() {},
