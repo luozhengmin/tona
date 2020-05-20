@@ -77,6 +77,19 @@ export const submitCart =
     })
   }
 
+// 提交订单
+export const submitOrder =
+  (data) => {
+    return request({
+      url: `/api/Memberbuy/buy_step2`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: data,
+      method: 'POST'
+    })
+  }
+
 // 删除
 export const delCart =
   (data) => {

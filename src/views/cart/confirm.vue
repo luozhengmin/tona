@@ -47,12 +47,7 @@
           </van-card>
         </div>
         <van-field readonly input-align="right" label="商品合计" :value="'￥'+item.store_goods_total" />
-        <van-field
-          readonly
-          input-align="right"
-          label="运费"
-          :value="'￥'+address_api.content[item.store_id]"
-        />
+        <van-field readonly input-align="right" label="运费" :value="'￥'+item.store_freight_total" />
         <van-field
           readonly
           clickable
@@ -62,7 +57,12 @@
           :value="inv_info.content"
           @click="showPicker = true"
         />
-        <van-field input-align="right" label="订单备注" placeholder="选填，请先和商家协商一致" />
+        <van-field
+          input-align="right"
+          v-model="item.pay_message"
+          label="订单备注"
+          placeholder="选填，请先和商家协商一致"
+        />
       </div>
     </div>
     <div class="jifen">
@@ -92,12 +92,13 @@
 </template>
 
 <script>
-import { Toast } from "vant";
-import { submitCart } from "../../api/memberCart";
+import { Toast, Dialog } from "vant";
+import { submitCart, submitOrder } from "../../api/memberCart";
 export default {
   name: "",
   data() {
     return {
+      vat_hash: "",
       address_info: {},
       address_api: {},
       store_cart_list: [],
@@ -117,23 +118,54 @@ export default {
   methods: {
     getGoodsInfo() {
       submitCart({ cart_id: this.goodsParams }).then(res => {
-        if (res.code == 10001) {
-          this.$router.push("/address-edit");
-        }
         console.log(res);
+        if (res.code != 10000) {
+          // this.$router.push("/address-edit");
+          Dialog.alert({
+            message: res.message
+          });
+          return;
+        }
+        this.vat_hash = res.result.vat_hash;
         this.address_info = res.result.address_info;
         this.address_api = res.result.address_api;
         this.store_cart_list = res.result.store_cart_list;
         this.inv_info = res.result.inv_info;
         this.order_amount = res.result.order_amount * 100;
         this.store_cart_list.forEach(store => {
+          store.pay_message = "";
           store.goods_list.forEach(goods => {
             this.order_count += goods.goods_num;
           });
         });
       });
     },
-    onSubmit() {},
+    onSubmit() {
+      let pay_message = [];
+      this.store_cart_list.forEach(store => {
+        pay_message.push(store.store_id + "|" + store.pay_message);
+      });
+      let params = {
+        cart_id: this.goodsParams,
+        address_id: this.address_info.address_id,
+        pay_message: pay_message.join(","),
+        invoice_id: "",
+        vat_hash: this.vat_hash,
+        offpay_hash: this.address_api.offpay_hash,
+        offpay_hash_batch: this.address_api.offpay_hash_batch,
+        pay_name: "online"
+      };
+      submitOrder(params).then(res => {
+        console.log(res);
+        if (res.code != 10000) {
+          Dialog.alert({
+            message: res.message
+          });
+          return;
+        }
+        this.$router.push("/pay");
+      });
+    },
     onConfirm(value) {
       this.value = value;
       this.showPicker = false;

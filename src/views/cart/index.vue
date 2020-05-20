@@ -292,7 +292,7 @@ export default {
       let ids = [];
       let that = this;
       list.forEach(o => {
-        ids.push(o.goods_id + "|" + o.goods_num);
+        ids.push(o.cart_id + "|" + o.goods_num);
       });
       this.$router.push("/confirm?data=" + ids.join(","));
       // submitCart({ cart_id: ids.join(",") }).then(res => {
@@ -302,7 +302,7 @@ export default {
     del() {
       let list = this.getSelectedGoods();
       let ids = list.map(o => {
-        return o.goods_id;
+        return o.cart_id;
       });
       delCart({ cart_id: ids.join(",") }).then(res => {
         Toast("所选商品已删除");
