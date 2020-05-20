@@ -28,7 +28,7 @@
     </div>
     <div class="btns">
       <van-button type="default" size="small" color="#888" plain>查看订单</van-button>
-      <van-button type="default" size="small" color="#888" plain>回到首页</van-button>
+      <van-button type="default" size="small" color="#888" plain @click="goIndex">回到首页</van-button>
     </div>
     <div class="info">
       <van-icon name="warning" />
@@ -41,8 +41,14 @@
 import { Toast } from "vant";
 export default {
   name: "",
-  data() {},
-  methods: {}
+  data() {
+
+  },
+  methods: {
+    goIndex() {
+      this.$router.push({'name': 'Index'})
+    },
+  }
 };
 </script>
 

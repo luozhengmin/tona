@@ -215,7 +215,7 @@
                  <span><em>{{i}}</em> · {{item.space_name}}</span>
                </div>
                <div class="d-hall">
-                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop" v-if="item.images.length > 0">
+                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
                    <!--<swiper-slide>-->
                      <!--<img src="../../assets/image/xq02.jpg">-->
                      <!--<div class="qj-btn ab">-->
@@ -314,7 +314,20 @@
         isInit:''
       }
     },
+    mounted() {
+      this.initSwiper()
+    },
+
     methods: {
+      initSwiper(){
+        this.$nextTick(() => {
+          const swiperTop = this.$refs.swiperTop.$el.swiper
+          const swiperThumbs = this.$refs.swiperThumbs.$el.swiper
+          console.log(this.$refs)
+          swiperTop.controller.control = swiperThumbs
+          swiperThumbs.controller.control = swiperTop
+        })
+      },
       showShare() {
         this.showshare = true;
       },
@@ -368,17 +381,8 @@
       let id = this.$route.query.id;
       this.getDesignDetail(id)
     },
-    updated() {
-      if (this.isInit === 1) {
-        this.$nextTick(() => {
-          const swiperTop = this.$refs.swiperTop.swiper
-          const swiperThumbs = this.$refs.swiperThumbs.swiper
-          console.log(this.$refs)
-          swiperTop.controller.control = swiperThumbs
-          swiperThumbs.controller.control = swiperTop
-        })
-        this.isInit = 0
-      }
+    mounted() {
+
     },
   }
 </script>

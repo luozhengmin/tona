@@ -11,7 +11,7 @@
       </div>
     </div>
     <van-tabs color="#f4523b" class="my-order">
-      <van-tab title="全部">
+      <van-tab title="全部" name="a">
         <div class="list">
           <div v-if="list.length==0" class="empty">
             <div>
@@ -55,7 +55,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待付款">
+      <van-tab title="待付款" name="b">
         <div class="list">
           <div v-if="listpay.length==0" class="empty">
             <div>
@@ -65,7 +65,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待发货">
+      <van-tab title="待发货" name="c">
         <div class="list">
           <div v-if="listsend.length==0" class="empty">
             <div>
@@ -75,7 +75,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待收货">
+      <van-tab title="待收货" name="d">
         <div class="list">
           <div v-if="listreceive.length==0" class="empty">
             <div>
@@ -85,7 +85,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待评价">
+      <van-tab title="待评价" name="e">
         <div class="list">
           <div v-if="listevaluate.length==0" class="empty">
             <div>
@@ -116,6 +116,7 @@ export default {
       listevaluate: [],
       page: 1,   //当前页数
       perpage: 10, //每页数量
+      activeName:'a'
 
     };
   },

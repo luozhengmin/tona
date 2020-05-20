@@ -16,6 +16,7 @@
         clickable
         input-align="right"
         label="发票信息"
+        right-icon="arrow"
         :value="value1"
         @click="showPicker1 = true"
         style="margin-bottom:12px"
@@ -29,6 +30,7 @@
         clickable
         input-align="right"
         label="抬头类型"
+        right-icon="arrow"
         :value="value2"
         @click="showPicker2 = true"
         style="margin-bottom:12px"
@@ -81,7 +83,7 @@
           <span class="require"></span>
         </template>
       </van-field>
-      <van-field label="开户行账号" style="margin-bottom:40px" placeholder="请输入开户行账号">
+      <van-field label="收货地址" style="margin-bottom:40px" placeholder="请输入收货地址">
         <template #left-icon>
           <span class="require">*</span>
         </template>
