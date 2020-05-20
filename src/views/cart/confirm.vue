@@ -11,13 +11,13 @@
     <div class="contact ab">
       <div class="contact-l ac">
         <div class="top">
-          <span>飞扬</span>
-          <span>133****8795</span>
-          <van-tag color="#f4523b">默认</van-tag>
+          <span>{{address_info.address_realname}}</span>
+          <span>{{address_info.address_mob_phone}}</span>
+          <van-tag v-if="address_info.address_is_default=='1'" color="#f4523b">默认</van-tag>
         </div>
         <div class="bottom">
           <van-icon name="location" color="#f4523b" size="20" />
-          <span>广东省深圳市南山区科兴科学园</span>
+          <span>{{address_info.area_info}} {{address_info.address_detail}}</span>
         </div>
       </div>
       <div class="contact-r">
@@ -27,35 +27,39 @@
       </div>
     </div>
     <div class="card-list">
-      <div class="product-card" v-for="i in 2" :key="i">
-        <div class="store">TONA官方旗舰店</div>
-        <div class="product" v-for="j in 2" :key="j">
-          <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
+      <div class="product-card" v-for="item in store_cart_list" :key="item.store_id">
+        <div class="store">{{item.store_name}}</div>
+        <div class="product" v-for="goods in item.goods_list" :key="goods.goods_id">
+          <van-card :thumb="goods.goods_image_url">
             <template slot="title">
               <div class="title">
-                <span>TONA-拉米娜浴室柜</span>
-                <div>￥45.9</div>
+                <span>{{goods.goods_name}}</span>
+                <div>￥{{goods.goods_price}}</div>
               </div>
             </template>
             <template slot="desc">
               <div class="desc num">
-                <span>颜色</span>
-                <span>x 2</span>
+                <span></span>
+                <span>x {{goods.goods_num}}</span>
               </div>
-              <div class="desc">规格</div>
+              <div class="desc"></div>
             </template>
           </van-card>
         </div>
-        <van-field readonly input-align="right" label="商品合计" value="￥1200.00" />
-        <van-field readonly input-align="right" label="运费" value="￥1200.00" />
+        <van-field readonly input-align="right" label="商品合计" :value="'￥'+item.store_goods_total" />
+        <van-field
+          readonly
+          input-align="right"
+          label="运费"
+          :value="'￥'+address_api.content[item.store_id]"
+        />
         <van-field
           readonly
           clickable
           input-align="right"
           label="发票信息"
           right-icon="arrow"
-          placeholder="不开发票"
-          :value="value"
+          :value="inv_info.content"
           @click="showPicker = true"
         />
         <van-field input-align="right" label="订单备注" placeholder="选填，请先和商家协商一致" />
@@ -70,8 +74,8 @@
     </div>
     <div style="height:105px;"></div>
     <div class="bottom-bar">
-      <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
-        <span class="num-text">共 3 件</span>
+      <van-submit-bar :price="order_amount" button-text="提交订单" @submit="onSubmit">
+        <span class="num-text">共 {{order_count}} 件</span>
       </van-submit-bar>
     </div>
 
@@ -94,11 +98,16 @@ export default {
   name: "",
   data() {
     return {
-      checked: true,
-      value: "",
+      address_info: {},
+      address_api: {},
+      store_cart_list: [],
+      inv_info: {},
+      checked: false,
       columns: ["不开发票", "电子发票", "纸质发票"],
       showPicker: false,
-      goodsParams: ""
+      goodsParams: "",
+      order_count: 0,
+      order_amount: 0
     };
   },
   created() {
@@ -109,9 +118,19 @@ export default {
     getGoodsInfo() {
       submitCart({ cart_id: this.goodsParams }).then(res => {
         if (res.code == 10001) {
-          this.$router.push("/address-edit")
+          this.$router.push("/address-edit");
         }
         console.log(res);
+        this.address_info = res.result.address_info;
+        this.address_api = res.result.address_api;
+        this.store_cart_list = res.result.store_cart_list;
+        this.inv_info = res.result.inv_info;
+        this.order_amount = res.result.order_amount * 100;
+        this.store_cart_list.forEach(store => {
+          store.goods_list.forEach(goods => {
+            this.order_count += goods.goods_num;
+          });
+        });
       });
     },
     onSubmit() {},
@@ -213,7 +232,6 @@ export default {
     margin-bottom: 50px;
   }
   .van-submit-bar {
-    bottom: 50px;
     .van-submit-bar__bar {
       padding-right: 0;
       .van-submit-bar__text {

@@ -6,7 +6,7 @@
           <van-icon name="arrow-left" @click="$router.go(-1)"/>
         </div>
         <div class="head-logo">
-          新增收货人
+          地址管理
         </div>
         <div class="p-btn" @click="showAction" v-if="this.$route.query.id">
           <router-link to="">删除</router-link>
@@ -187,7 +187,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
-  min-height: 100%;
+  height: 100%;
   .form {
     font-size: 15px;
     .van-cell {
