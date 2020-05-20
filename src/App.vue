@@ -30,6 +30,7 @@ export default {
   font-size: 28px;
   padding:4px 0;
   color: #323232;
+  width:auto;
 }
 .person-order-status .van-goods-action-icon__icon i{
   font-size: 32px;
