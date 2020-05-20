@@ -6,7 +6,7 @@
           <van-icon name="arrow-left" @click="$router.go(-1)"/>
         </div>
         <div class="head-logo">
-          地址管理
+          选择收货人
         </div>
       </div>
     </div>
@@ -88,7 +88,8 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  background-color: #fff;
+  background-color: #f7f7f7;
+  min-height:100%;
   .empty {
     padding: 50px 15px;
     font-size: 16px;

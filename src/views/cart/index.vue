@@ -72,10 +72,10 @@
             <template slot="title">
               <div class="title" @click="toProductDetail(item.goods_id)">{{item.goods_name}}</div>
             </template>
-            <template slot="desc" @click="toProductDetail(item.goods_id)">
-              <div class="desc">颜色</div>
-              <div class="desc">规格</div>
-            </template>
+            <!--<template slot="desc" @click="toProductDetail(item.goods_id)">-->
+              <!--<div class="desc">颜色</div>-->
+              <!--<div class="desc">规格</div>-->
+            <!--</template>-->
             <template slot="price" @click="toProductDetail(item.goods_id)">
               <div class="price">
                 <span class="fuhao">￥</span>
@@ -112,7 +112,7 @@
         </van-row>
       </div>
     </div>
-    <div style="height:105px;"></div>
+    <div style="height:60px;"></div>
     <div class="bottom-bar">
       <van-submit-bar
         v-if="!edit"
@@ -363,7 +363,7 @@ export default {
         align-items: center;
         .title {
           color: #1b1b1b;
-          font-size: 16px;
+          font-size: 15px;
         }
         .desc {
           color: #b7b7b7;
@@ -404,7 +404,7 @@ export default {
         }
         .prod-title {
           color: #1b1b1b;
-          font-size: 16px;
+          font-size: 15px;
         }
         .price {
           color: #f4523b;

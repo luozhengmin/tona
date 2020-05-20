@@ -14,7 +14,7 @@ export default {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
+  height: calc(100% - 50px);
 }
 
 .mb15 {
