@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <van-tabs color="#f4523b" class="my-order">
+    <van-tabs color="#f4523b" class="my-order" v-model="activeName">
       <van-tab title="全部" name="a">
         <div class="list">
           <div v-if="list.length==0" class="empty">
@@ -123,7 +123,15 @@ export default {
   created () {
     this.getOrderList(true)
   },
+  mounted(){
+    this.showTabs();
+  },
   methods: {
+    showTabs(){
+      if(this.$route.query.tab!=null){
+        this.activeName = this.$route.query.tab;
+      }
+    },
     onSearch() {},
     onSubmit() {},
     getOrderList() {  //获取订单列表

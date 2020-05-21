@@ -78,17 +78,17 @@
           <i class="iconfont">&#xe615;</i>
         </template>
       </van-goods-action-icon>
-      <van-goods-action-icon class="item" text="待付款" :badge="user.order_nopay_count==0?'':user.order_nopay_count">
+      <van-goods-action-icon class="item" text="待付款" :badge="user.order_nopay_count==0?'':user.order_nopay_count" @click="statePay">
         <template #icon>
           <i class="iconfont">&#xe639;</i>
         </template>
       </van-goods-action-icon>
-      <van-goods-action-icon class="item" text="待收货" :badge="user.order_noreceipt_count==0?'':user.order_noreceipt_count">
+      <van-goods-action-icon class="item" text="待收货" :badge="user.order_noreceipt_count==0?'':user.order_noreceipt_count" @click="stateSend">
         <template #icon>
           <i class="iconfont">&#xe602;</i>
         </template>
       </van-goods-action-icon>
-      <van-goods-action-icon class="item" text="待评价" :badge="user.order_noeval_count==0?'':user.order_noeval_count">
+      <van-goods-action-icon class="item" text="待评价" :badge="user.order_noeval_count==0?'':user.order_noeval_count" @click="stateMark">
         <template #icon>
           <i class="iconfont">&#xe611;</i>
         </template>
@@ -239,6 +239,15 @@ export default {
 
         }
       )
+    },
+    statePay(){
+      this.$router.push({path:'/order/list?tab=b'});
+    },
+    stateSend(){
+      this.$router.push({path:'/order/list?tab=d'});
+    },
+    stateMark(){
+      this.$router.push({path:'/order/list?tab=e'});
     }
   }
 };
