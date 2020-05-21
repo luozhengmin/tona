@@ -3,11 +3,9 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="head-ss fix">
-          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
-        <div class="head-logo">
-          支付订单
-        </div>
+        <div class="head-logo">支付订单</div>
       </div>
     </div>
     <div class="tips">
@@ -20,14 +18,15 @@
     </div>
 
     <div class="pay-num">
-      <van-field input-align="right" value="共 2 件">
-      <template #label>
-        <div style="width:200px">子订单号：1901101772920975</div>
-      </template>
-    </van-field>
-      <van-field input-align="right" style="margin-bottom:12px" value="共 2 件">
+      <van-field
+        readonly
+        v-for="item in order_list"
+        :key="item.order_id"
+        input-align="right"
+        :value="'共' +item.order_goods_count+ '件'"
+      >
         <template #label>
-          <div style="width:200px">子订单号：1901101772920975</div>
+          <div style="width:200px">子订单号：{{item.order_sn}}</div>
         </template>
       </van-field>
     </div>
@@ -60,20 +59,10 @@
       </van-field>
     </div>
     <div class="bottom-bar">
-      <van-submit-bar :price="3050" button-text="支付 01:59:55" @submit="onSubmit">
-        <span class="num-text">共 3 件</span>
+      <van-submit-bar :price="total_order_amount" button-text="支付 01:59:55" @submit="onSubmit">
+        <span class="num-text">共 {{total_goods_count}} 件</span>
       </van-submit-bar>
     </div>
-
-    <van-popup v-model="showPicker" position="bottom">
-      <van-picker
-        show-toolbar
-        title="发票信息"
-        :columns="columns"
-        @confirm="onConfirm"
-        @cancel="showPicker = false"
-      />
-    </van-popup>
   </div>
 </template>
 
@@ -85,15 +74,24 @@ export default {
     return {
       checked: false,
       value: "",
-      columns: ["不开发票", "电子发票", "纸质发票"],
-      showPicker: false
+      order_list: [],
+      total_goods_count: 0,
+      total_order_amount: 0
     };
   },
+  created() {
+    let orders = this.$route.query.orders;
+    this.order_list = JSON.parse(orders);
+    this.initData();
+  },
+
   methods: {
     onSubmit() {},
-    onConfirm(value) {
-      this.value = value;
-      this.showPicker = false;
+    initData() {
+      this.order_list.forEach(o => {
+        this.total_goods_count += o.order_goods_count;
+        this.total_order_amount += o.order_goods_count;
+      });
     }
   }
 };
@@ -102,16 +100,20 @@ export default {
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
-  height:100%;
+  height: 100%;
   .tips {
     margin-bottom: 12px;
   }
-  .pay-num{
-    .van-cell{border-bottom:solid 1px #e8e8e8;}
+  .pay-num {
+    .van-cell {
+      border-bottom: solid 1px #e8e8e8;
+    }
   }
   .pay {
-    margin-bottom:12px;
-    .van-cell{border-bottom:solid 1px #e8e8e8;}
+    margin-bottom: 12px;
+    .van-cell {
+      border-bottom: solid 1px #e8e8e8;
+    }
     i {
       font-size: 24px;
     }
