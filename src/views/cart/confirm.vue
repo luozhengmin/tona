@@ -170,7 +170,8 @@ export default {
           });
           return;
         }
-        this.$router.push("/pay");
+        let order_list = res.result.order_list;
+        this.$router.push("/pay?orders=" + JSON.stringify(order_list));
       });
     },
     onConfirm(value) {
