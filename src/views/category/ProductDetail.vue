@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="title-r">
-          <van-button icon="star-o" type="primary" is-link @click="showPopup">分享</van-button>
+          <van-button icon="share" type="primary" is-link @click="showPopup">分享</van-button>
           <van-popup
             v-model="show"
             closeable

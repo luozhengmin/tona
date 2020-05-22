@@ -66,11 +66,17 @@
       </div>
     </div>
     <div class="jifen">
-      <van-field readonly input-align="right" label="积分抵扣" placeholder="使用200积分可抵扣¥2.00现金">
+      <van-field readonly input-align="right" label="使用余额" placeholder="可用金额:19893.00元">
         <template #right-icon>
           <van-checkbox v-model="checked" checked-color="#f4523b"></van-checkbox>
         </template>
       </van-field>
+
+      <van-cell-group>
+        <van-field v-model="password" label="支付密码" placeholder="请输入用户名" />
+      </van-cell-group>
+
+      <van-button color="#f4523b" size="small">使用</van-button>
     </div>
     <div style="height:105px;"></div>
     <div class="bottom-bar">
@@ -108,7 +114,8 @@ export default {
       showPicker: false,
       goodsParams: "",
       order_count: 0,
-      order_amount: 0
+      order_amount: 0,
+      password:''
     };
   },
   created() {
@@ -262,6 +269,9 @@ export default {
   }
   .jifen {
     margin-bottom: 50px;
+    background-color:#fff;
+    padding-bottom:8px;
+    button{margin:12px 0 0 15px;}
   }
   .van-submit-bar {
     .van-submit-bar__bar {

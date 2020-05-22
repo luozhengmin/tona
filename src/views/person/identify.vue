@@ -178,7 +178,7 @@
   .id-list{
     padding:6px 0;
     h2{
-      font-size:15px;color:#323232;width:95px;margin-bottom:12px;
+      font-size:15px;color:#323232;width:100px;margin-bottom:12px;
       em{color:#f4523b;padding-right:2px;}
     }
     .id-item{
