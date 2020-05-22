@@ -51,17 +51,17 @@
             </template>
             <template slot="desc">
               <div class="desc num">
-                <span>颜色</span>
+                <span></span>
                 <span>x 2</span>
               </div>
-              <div class="desc">规格</div>
+              <div class="desc"></div>
             </template>
           </van-card>
         </div>
         <div class="bottom">
           <div class="info">退款待处理 等待卖家处理</div>
           <div class="btn">
-            <van-button plain size="small" round>提醒收货</van-button>
+            <van-button plain size="small" round to="/order/evaluate">评论</van-button>
             <van-button plain size="small" round>查看物流</van-button>
           </div>
         </div>

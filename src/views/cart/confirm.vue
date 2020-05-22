@@ -76,9 +76,8 @@
         <van-field v-model="password" label="支付密码" placeholder="请输入用户名" />
       </van-cell-group>
 
-      <van-button color="#f4523b" size="small">使用</van-button>
     </div>
-    <div style="height:105px;"></div>
+    <div style="height:60px;"></div>
     <div class="bottom-bar">
       <van-submit-bar :price="order_amount" button-text="提交订单" @submit="onSubmit">
         <span class="num-text">共 {{order_count}} 件</span>

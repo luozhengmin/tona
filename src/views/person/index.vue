@@ -65,10 +65,10 @@
             <div class="id">{{userid}}</div>
           </router-link>
         </div>
-        <div class="sq ab">
-          <van-button round size="small" color="#f4523b">设计师会员申请</van-button>
-          <van-icon name="arrow" />
-        </div>
+        <!--<div class="sq ab">-->
+          <!--<van-button round size="small" color="#f4523b">设计师会员申请</van-button>-->
+          <!--<van-icon name="arrow" />-->
+        <!--</div>-->
 
       </div>
     </div>

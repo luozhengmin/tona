@@ -33,8 +33,8 @@
       type="textarea"
       placeholder="宝贝是否满足了你的期待？说说你的使用心得分享给其它想购买的朋友吧~"
     />
-    <div class="upload">
-      <van-uploader v-model="fileList" multiple />
+    <div class="upload-1">
+      <van-uploader v-model="fileList" multiple upload-icon="plus" upload-text="添加图片"/>
     </div>
     <div class="split">
       <van-divider />
@@ -89,7 +89,7 @@ export default {
       margin: 0;
     }
   }
-  .upload {
+  .upload-1 {
     padding: 10px 15px;
   }
   .van-cell:not(:last-child)::after {
