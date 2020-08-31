@@ -83,11 +83,11 @@
               </div>
               <div class="add-tel">
                 <p class="ab">
-                  <i class="iconfont">&#xe62c;</i>
+                  <i class="iconfont icon-danxiangfenlei"></i>
                   <span>{{item.mendian_desc}}</span>
                 </p>
                 <p class="ab">
-                  <i class="iconfont">&#xe60a;</i>
+                  <i class="iconfont icon-dianhua"></i>
                   <span>{{item.mendian_phone}}</span>
                 </p>
                 <p class="ab">
@@ -96,7 +96,7 @@
                 </p>
               </div>
               <div class="add-pic">
-                <img :src="item.mendian_pic" />
+                <img :src="item.thumb" />
               </div>
               <div class="add-btn">
                 <van-button

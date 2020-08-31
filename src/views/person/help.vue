@@ -12,12 +12,12 @@
     </div>
     <div class="top">
       <div class="item">
-        <i class="iconfont">&#xe61b;</i>
+        <i class="iconfont icon-zaixiankefu"></i>
         <span>在线客服</span>
       </div>
       <div class="split"></div>
       <div class="item">
-        <i class="iconfont">&#xe60a;</i>
+        <i class="iconfont icon-dianhua"></i>
         <span>客服热线</span>
       </div>
     </div>
@@ -73,7 +73,6 @@
         color: #888888;
         padding-bottom:6px;
         line-height:normal;
-        font-weight: bold;
       }
     }
     .split {

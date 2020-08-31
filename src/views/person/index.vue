@@ -117,14 +117,14 @@
       </van-cell>
       <van-cell title="浏览足迹" is-link to="foot/list">
         <template #icon>
-          <i class="iconfont">&#xe62c;</i>
+          <i class="iconfont icon-zuji"></i>
         </template>
       </van-cell>
     </div>
     <div class="group2">
       <van-cell title="在线客服" is-link>
         <template #icon>
-          <i class="iconfont">&#xe61b;</i>
+          <i class="iconfont icon-zaixiankefu"></i>
         </template>
       </van-cell>
       <van-cell title="帮助中心" is-link to="/help">
@@ -139,7 +139,7 @@
       </van-cell>
       <van-cell title="退出登录" @click="logOut()">
         <template #icon>
-          <i class="iconfont">&#xe6f3;</i>
+          <i class="iconfont icon-tuichudenglu"></i>
         </template>
       </van-cell>
     </div>

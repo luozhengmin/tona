@@ -16,7 +16,7 @@
     <div v-for="(itemlist,i) in scoreList" :key="i">
       <div class="title">
         <span>
-         <i class="iconfont" aria-hidden="true">&#xe64d;</i> {{i}}
+         <i class="iconfont icon-riqi" aria-hidden="true"></i> {{i}}
         </span>
         <span>获得：500</span>
       </div>

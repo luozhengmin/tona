@@ -19,5 +19,4 @@ InvestmentApi.submit = (params) => {
     method: 'post'
   })
 }
-
 export default InvestmentApi

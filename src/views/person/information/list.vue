@@ -16,7 +16,7 @@
             <span class="custom-title">在线客服</span>
           </template>
           <template #icon>
-            <i class="iconfont">&#xe61b;</i>
+            <i class="iconfont icon-zaixiankefu"></i>
           </template>
         </van-cell>
         <van-cell value="8" is-link center label="你的地球福利来啦" to="/information/active">
@@ -32,7 +32,7 @@
             <span class="custom-title">系统消息</span>
           </template>
           <template #icon>
-            <i class="iconfont">&#xe6cb;</i>
+            <i class="iconfont icon-xin"></i>
           </template>
         </van-cell>
         <van-cell :value="messageInfo.per_message" is-link center label="您有一条客户留言" to="/information/private">
@@ -40,7 +40,7 @@
             <span class="custom-title">私信</span>
           </template>
           <template #icon>
-            <i class="iconfont">&#xe656;</i>
+            <i class="iconfont icon-xitongxiaoxi"></i>
           </template>
         </van-cell>
       </div>

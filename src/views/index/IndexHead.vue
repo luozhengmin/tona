@@ -3,7 +3,7 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="head-ss fix" @click="onSearch">
-          <i class="iconfont">&#xe6c7;</i>
+          <i class="iconfont icon-sousuo"></i>
         </div>
         <div class="head-logo">
           <router-link to="/index"><img src="../../assets/image/dnlogo.png"></router-link>
