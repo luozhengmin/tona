@@ -60,7 +60,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .slideNav ul{width:92%;height:100%;z-index:99;position: relative;text-align:center;margin:0 auto;}
 .slideNav li{width:20%;color:#fff;padding:0 6px;}
 .slideNav li a{display:block;}
-.slideNav li a span{font-size:14px;color:#fff;margin-top:2px;display:inline-block;}
+.slideNav li a span,.slideNav li p span{font-size:14px;color:#fff;margin-top:2px;display:inline-block;}
 .slideTran-enter-active{transition: all .5s ease;top:100%;}
 .slideTran-enter{top:0;}
 .slideTran-leave-active {transition: all .5s ease;top:-100%;}

@@ -47,18 +47,31 @@
           </div>
         </transition>
       </div>
-      <div class="how-shop fix wrap">
-        <p>如何购物！</p>
+      <div class="how-shop fix wrap" v-html="article.article_content">
+
       </div>
     </div>
 </template>
 
 <script>
+  import ArticleApi from '@/api/ArticleApi'
   export default {
     name: "how-shop",
     data(){
       return{
         isActive: false,
+        article:{}
+      }
+    },
+    created(){
+      this.getPage();
+    },
+    methods:{
+      getPage(){
+        ArticleApi.articleShow({article_id:55}).then(res=>{
+          console.log(res)
+          this.article = res.result;
+        });
       }
     }
   }
