@@ -48,18 +48,30 @@
         </div>
       </transition>
     </div>
-    <div class="contact fix wrap">
-      <p>联系我们</p>
+    <div class="contact fix wrap" v-html="article.article_content">
     </div>
   </div>
 </template>
 
 <script>
+  import ArticleApi from '@/api/ArticleApi'
   export default {
     name: "contact-us",
     data(){
       return{
         isActive: false,
+        article:{}
+      }
+    },
+    created(){
+      this.getPage();
+    },
+    methods:{
+      getPage(){
+        ArticleApi.articleShow({article_id:54}).then(res=>{
+          console.log(res)
+          this.article = res.result;
+        });
       }
     }
   }

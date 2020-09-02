@@ -47,26 +47,10 @@
         </div>
       </transition>
     </div>
-    <div class="apply">
-      <a href>
-        <img src="../../../assets/image/jm01.jpg" />
-      </a>
+    <div class="apply fix" v-html="article.article_content">
+
     </div>
-    <div class="apply-adv">
-      <a href>
-        <img src="../../../assets/image/jm02.jpg" />
-      </a>
-    </div>
-    <div class="apply-condition">
-      <a href>
-        <img src="../../../assets/image/jm03.jpg" />
-      </a>
-    </div>
-    <div class="apply- process">
-      <a href>
-        <img src="../../../assets/image/jm04.jpg" />
-      </a>
-    </div>
+
     <div class="apply-btn wrap fix">
       <div class="btn" @click="showPopup">TONA HOME 招商申请</div>
       <van-popup v-model="showForm" closeable position="bottom" :style="{ height: '47%' }">
@@ -104,6 +88,7 @@
 
 <script>
 import { Toast } from "vant";
+import ArticleApi from '@/api/ArticleApi';
 import InvestmentApi from "@/api/InvestmentApi";
 export default {
   name: "Investment",
@@ -116,11 +101,21 @@ export default {
       value: "",
       phone: "",
       disabled: false,
-      smsBtn: "获取验证码"
+      smsBtn: "获取验证码",
+      article:{}
     };
+  },
+  created(){
+    this.getPage();
   },
 
   methods: {
+    getPage(){
+      ArticleApi.articleShow({article_id:53}).then(res=>{
+        console.log(res)
+        this.article = res.result;
+      });
+    },
     showPopup() {
       this.showForm = true;
     },

@@ -16,8 +16,8 @@
           <time>{{activeData.zhuanti_start_time}}</time>
         </div>
 
-        <div class="detail-con">
-          <p>{{activeData.zhuanti_content}}</p>
+        <div class="detail-con fix" v-html="activeData.zhuanti_content">
+          <!--<p>{{activeData.zhuanti_content}}</p>-->
         </div>
 
       </div>

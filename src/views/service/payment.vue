@@ -48,18 +48,30 @@
         </div>
       </transition>
     </div>
-    <div class="payment fix wrap">
-      <p>支付/配送方式</p>
+    <div class="payment fix wrap" v-html="article.article_content">
     </div>
   </div>
 </template>
 
 <script>
+  import ArticleApi from '@/api/ArticleApi'
   export default {
     name: "payment",
     data(){
       return{
         isActive: false,
+        article:{}
+      }
+    },
+    created(){
+      this.getPage();
+    },
+    methods:{
+      getPage(){
+        ArticleApi.articleShow({article_id:56}).then(res=>{
+          console.log(res)
+          this.article = res.result;
+        });
       }
     }
   }

@@ -48,18 +48,31 @@
         </div>
       </transition>
     </div>
-    <div class="promises fix wrap">
-      <p>服务承诺</p>
+    <div class="promises fix wrap" v-html="article.article_content">
+
     </div>
   </div>
 </template>
 
 <script>
+  import ArticleApi from '@/api/ArticleApi'
   export default {
     name: "promises",
     data(){
       return{
         isActive: false,
+        article:{}
+      }
+    },
+    created(){
+      this.getPage();
+    },
+    methods:{
+      getPage(){
+        ArticleApi.articleShow({article_id:40}).then(res=>{
+          console.log(res)
+          this.article = res.result;
+        });
       }
     }
   }
