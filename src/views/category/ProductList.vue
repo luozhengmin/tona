@@ -66,77 +66,19 @@
     <div class="list wrap fix">
       <van-tree-select height="88vw" :items="items" :main-active-index.sync="active">
         <template #content>
-          <div class="p-item" v-if="active === 0">
-            <div class="brand-con" v-for="(item,index) in bannerItem">
-              <img :src="item.adv_code">
-            </div>
-            <div class="p-list">
-              <h2>推荐</h2>
-              <van-row gutter="10">
-                <van-col span="8" v-for="i in 5 " :key="i">
-                  <router-link to="/ProductList-Item">
-                    <div class="prod-pic">
-                      <img src="../../assets/image/cp02.jpg" />
-                    </div>
-                    <div class="prod-title">卫浴</div>
-                  </router-link>
-                </van-col>
-              </van-row>
-            </div>
-            <div class="p-list">
-              <h2>硬装建材</h2>
-              <van-row gutter="10">
-                <van-col span="8" v-for="i in 5 " :key="i">
-                  <a href>
-                    <div class="prod-pic">
-                      <img src="../../assets/image/cp02.jpg" />
-                    </div>
-                    <div class="prod-title">卫浴</div>
-                  </a>
-                </van-col>
-              </van-row>
-            </div>
-            <div class="p-list">
-              <h2>软装灯饰</h2>
-              <van-row gutter="10">
-                <van-col span="8" v-for="i in 5 " :key="i">
-                  <a href>
-                    <div class="prod-pic">
-                      <img src="../../assets/image/cp02.jpg" />
-                    </div>
-                    <div class="prod-title">卫浴</div>
-                  </a>
-                </van-col>
-              </van-row>
-            </div>
-          </div>
-
           <div v-for="(item,index) in items" :key="item.id">
             <template v-if="active === index">
               <div class="p-item">
-                <div class="brand-con" v-for="(item,index) in bannerItem">
-                  <img :src="item.adv_code">
-                </div>
-                <div class="p-list">
-                  <h2>推荐</h2>
-                  <van-row gutter="10">
-                    <van-col span="8" v-for="i in 5 " :key="i">
-                      <a href>
-                        <div class="prod-pic">
-                          <img src="../../assets/image/cp02.jpg" />
-                        </div>
-                        <div class="prod-title">卫浴</div>
-                      </a>
-                    </van-col>
-                  </van-row>
+                <div class="brand-con" v-if="item.banner.length>0">
+                  <img :src="item.banner[0].adv_code" />
                 </div>
                 <div class="p-list" v-for="child in item.children" :key="child.id">
                   <h2>{{child.value}}</h2>
                   <van-row gutter="10">
                     <van-col span="8" v-for="third in child.children" :key="third.id">
-                      <a href>
+                      <a :href="'/ProductList-Item?cate_id='+third.id+'&parent_id='+child.id">
                         <div class="prod-pic">
-                          <img src="../../assets/image/cp02.jpg" />
+                          <img :src="third.image" />
                         </div>
                         <div class="prod-title">{{third.value}}</div>
                       </a>
@@ -152,49 +94,49 @@
   </div>
 </template>
 <script>
-  import { Toast } from "vant";
-  import GoodsClassApi from "@/api/GoodsClassApi";
-  import axios from "@/utils/request";
-  import DesignApi from "@/api/DesignApi";
-  export default {
-    name: "ProductList",
-    data() {
-      return {
-        isActive: false,
-        value: "",
-        onSearch(val) {
-          Toast(val);
-        },
-        onCancel() {
-          Toast("取消");
-        },
-        active: 0,
-        items: [],
-        children: [],
-        bannerItem:[],
-      };
-    },
-    created() {
-      this.getList();
-      this.getBanners();
-    },
-    methods: {
-      getList() {
-        GoodsClassApi.list().then(res => {
-          this.items = res.result.class_list.map(o => {
-            o.text = o.value;
-            return o;
-          });
-          this.items.unshift({ text: "推荐" });
-        });
+import { Toast } from "vant";
+import GoodsClassApi from "@/api/GoodsClassApi";
+import axios from "@/utils/request";
+import DesignApi from "@/api/DesignApi";
+export default {
+  name: "ProductList",
+  data() {
+    return {
+      isActive: false,
+      value: "",
+      onSearch(val) {
+        Toast(val);
       },
-      getBanners() {
-        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:5,}).then(res => {
-          this.bannerItem = res.result.ad_list;
-        });
+      onCancel() {
+        Toast("取消");
       },
-    }
-  };
+      active: 0,
+      items: [],
+      children: [],
+      bannerItem: [],
+    };
+  },
+  created() {
+    this.getList();
+    this.getBanners();
+  },
+  methods: {
+    getList() {
+      GoodsClassApi.categorys().then((res) => {
+        console.log(res);
+        this.items = res.result.class_list.map((o) => {
+          o.text = o.value;
+          return o;
+        });
+      });
+    },
+    getBanners() {
+      axios.post("/api/Index/getAppadList/ap_id/", { ap_id: 5 }).then((res) => {
+        this.bannerItem = res.result.ad_list;
+      });
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .s-search {
@@ -258,6 +200,8 @@
     }
   }
 }
-.brand-con img{border-radius:5px;}
+.brand-con img {
+  border-radius: 5px;
+}
 </style>
 
