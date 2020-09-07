@@ -194,7 +194,7 @@ export default {
     font-size: 16px;
     color: #323232;
     font-weight: bold;
-    padding: 12px 15px;
+    padding: 16px 15px;
     border-bottom: solid 2px #eee;
   }
 }
@@ -212,6 +212,7 @@ export default {
   p {
     color: #888;
     padding-top:5px;
+    font-size:12px;
   }
 }
 .make-btn {
@@ -219,7 +220,7 @@ export default {
   margin-top: 12px;
   .van-button {
     width: 47%;
-    border-radius: 5px;
+    border-radius:6px;
   }
   .van-button:nth-child(1) {
     margin-right: 6%;

@@ -18,7 +18,9 @@
   url('iconfont.ttf?t=1587005493880') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
   url('iconfont.svg?t=1587005493880#iconfont') format('svg'); /* iOS 4.1- */
 }
-
+.icon-fire:before {
+  content: "\e629";
+}
 /*地址管理*/
 @font-face {font-family: "iconfont";
   src: url('iconfont.eot?t=1587351518457'); /* IE9 */

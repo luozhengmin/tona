@@ -63,179 +63,141 @@
         </template>
       </van-search>
     </div>
-    <div class="no_sroll" v-if="navList">
-      <aside class="tabNav" ref="l_list">
-        <ul>
-          <li
-            ref="l_item"
-            class="nav_li"
-            :class="(TabNavList == index) ? 'checkIn' : ''"
-            :index="index"
-            :id="index"
-            @click="checkNavList(item, index)"
-            v-for="(item, index) in navList"
-            :key="index"
-          >{{item.gcName}}</li>
-        </ul>
-      </aside>
-      <!--&lt;!&ndash; 增加浮动层 &ndash;&gt;-->
-      <!--<div class="theFixed" :class="(TabNavList == index) ? 'isFixed' : 'isHide'" v-if="scrollTrue">-->
-      <!--<div class="leftName">{{scrollTrue.gcName}}</div>-->
-      <!--</div>-->
-      <section class="newHeight" ref="r_list">
-        <div>
-          <div class="proList" v-for="(item, index1) in navList" :key="index1" ref="good">
-            <div class="p-pic" v-if="index1==0">
-              <img src="../../assets/image/cp01.jpg" />
+    <div class="list wrap fix">
+      <van-tree-select height="88vw" :items="items" :main-active-index.sync="active">
+        <template #content>
+          <div class="p-item" v-if="active === 0">
+            <div class="brand-con" v-for="(item,index) in bannerItem">
+              <img :src="item.adv_code">
             </div>
-            <div class="r_top">
-              <div class="leftName">{{item.gcName}}</div>
+            <div class="p-list">
+              <h2>推荐</h2>
+              <van-row gutter="10">
+                <van-col span="8" v-for="i in 5 " :key="i">
+                  <router-link to="/ProductList-Item">
+                    <div class="prod-pic">
+                      <img src="../../assets/image/cp02.jpg" />
+                    </div>
+                    <div class="prod-title">卫浴</div>
+                  </router-link>
+                </van-col>
+              </van-row>
             </div>
-            <div class="r_cont">
-              <div class="cu-items" v-for="(children, index2) in item.children" :key="index2">
-                <router-link :to="{path:'ProductList-Item',query:{cate_id:children.id,parent_id:item.id}}">
-                  <div class="storeL">
-                    <img :src="children.image" />
-                  </div>
-                  <div class="text">{{children.value}}</div>
-                </router-link>
-              </div>
+            <div class="p-list">
+              <h2>硬装建材</h2>
+              <van-row gutter="10">
+                <van-col span="8" v-for="i in 5 " :key="i">
+                  <a href>
+                    <div class="prod-pic">
+                      <img src="../../assets/image/cp02.jpg" />
+                    </div>
+                    <div class="prod-title">卫浴</div>
+                  </a>
+                </van-col>
+              </van-row>
+            </div>
+            <div class="p-list">
+              <h2>软装灯饰</h2>
+              <van-row gutter="10">
+                <van-col span="8" v-for="i in 5 " :key="i">
+                  <a href>
+                    <div class="prod-pic">
+                      <img src="../../assets/image/cp02.jpg" />
+                    </div>
+                    <div class="prod-title">卫浴</div>
+                  </a>
+                </van-col>
+              </van-row>
             </div>
           </div>
-        </div>
-      </section>
+
+          <div v-for="(item,index) in items" :key="item.id">
+            <template v-if="active === index">
+              <div class="p-item">
+                <div class="brand-con" v-for="(item,index) in bannerItem">
+                  <img :src="item.adv_code">
+                </div>
+                <div class="p-list">
+                  <h2>推荐</h2>
+                  <van-row gutter="10">
+                    <van-col span="8" v-for="i in 5 " :key="i">
+                      <a href>
+                        <div class="prod-pic">
+                          <img src="../../assets/image/cp02.jpg" />
+                        </div>
+                        <div class="prod-title">卫浴</div>
+                      </a>
+                    </van-col>
+                  </van-row>
+                </div>
+                <div class="p-list" v-for="child in item.children" :key="child.id">
+                  <h2>{{child.value}}</h2>
+                  <van-row gutter="10">
+                    <van-col span="8" v-for="third in child.children" :key="third.id">
+                      <a href>
+                        <div class="prod-pic">
+                          <img src="../../assets/image/cp02.jpg" />
+                        </div>
+                        <div class="prod-title">{{third.value}}</div>
+                      </a>
+                    </van-col>
+                  </van-row>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </van-tree-select>
     </div>
   </div>
 </template>
 <script>
-import Better from "better-scroll";
-import GoodsClassApi from "@/api/GoodsClassApi";
-export default {
-  name: "ProductList",
-  components: {
-    Better
-  },
-  data() {
-    return {
-      index: 0,
-      gcName: "",
-      scrollY: 0, // 定义的Y滚动轴及初始值
-      TabNavList: 0, // 左右联动取值
-      scrollTrue: "", // 右侧吸顶
-      navList: [], // 全局列表
-      isScroll: false,
-      arr: [0],
-      flag: true,
-      obj: null,
-      show: false,
-      ios: /iphone os/g.test(window.navigator.userAgent.toLowerCase()),
-      isActive: false,
-      value: "",
-      active: 0,
-      params: {}
-    };
-  },
-  created() {
-    this.getList();
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this._initScroll();
-      this._getHeight();
-    });
-  },
-  methods: {
-    onSearch(val) {
-      Toast(val);
+  import { Toast } from "vant";
+  import GoodsClassApi from "@/api/GoodsClassApi";
+  import axios from "@/utils/request";
+  import DesignApi from "@/api/DesignApi";
+  export default {
+    name: "ProductList",
+    data() {
+      return {
+        isActive: false,
+        value: "",
+        onSearch(val) {
+          Toast(val);
+        },
+        onCancel() {
+          Toast("取消");
+        },
+        active: 0,
+        items: [],
+        children: [],
+        bannerItem:[],
+      };
     },
-    onCancel() {
-      Toast("取消");
+    created() {
+      this.getList();
+      this.getBanners();
     },
-    _initScroll() {
-      this.left = new Better(this.$refs.l_list, {
-        click: true,
-        probeType: 3
-      });
-      this.rgt = new Better(this.$refs.r_list, {
-        probeType: 3,
-        click: true
-      });
-      this.rgt.on("scroll", res => {
-        if (this.flag) {
-          this.scrollY = Math.abs(res.y) + 16; // 页面内有一个16像素的顶部状态栏
-          for (let i = 0; i < this.arr.length; i++) {
-            if (this.scrollY > this.arr[i] && this.scrollY < this.arr[i + 1]) {
-              this.TabNavList = i - 1; // 左右联动取值
-              // console.log(this.navList[this.TabNavList].gcName) // 取出元素的gcName
-              this.scrollTrue = this.navList[this.TabNavList];
-              this.isScroll = true;
-              // document.getElementById(this.TabNavList).scrollIntoView()
-              this.left.scrollToElement(
-                this.$refs.l_list,
-                100,
-                0,
-                this.TabNavList * 60
-              );
-            }
-          }
-        }
-      });
-      this.left.on("scroll", res => {
-        if (this.flag) {
-          this.scrollY = Math.abs(res.y) + 16;
-          this.left.scrollToElement(
-            this.$refs.l_list[this.TabNavList],
-            100,
-            0,
-            0
-          );
-        }
-      });
-    },
-    _getHeight() {
-      // // 开始改造
-      let rightItems = this.$refs.r_list.getElementsByClassName("proList");
-      setTimeout(() => {
-        // 根据betterScroll定义滚动
-        if (rightItems && rightItems.length > 0) {
-          let height = 0;
-          this.arr.push(height);
-          for (let i = 0; i < rightItems.length; i++) {
-            let item = rightItems[i];
-            height += item.clientHeight;
-            this.arr.push(height);
-          }
-        }
-      }, 600);
-    },
-    // 左侧选择TAB
-    checkNavList(e, v) {
-      this.gcName = e.gcName;
-      this.flag = false;
-      this.TabNavList = v; // 左右联动取值
-      this.rgt.scrollToElement(this.$refs.good[v], 100, 0, 0);
-      setTimeout(() => {
-        this.flag = true;
-      }, 100);
-    },
-    getList() {
-      GoodsClassApi.categorys().then(res => {
-        console.log(res);
-        this.navList = res.result.class_list.map(o => {
-          o.gcName = o.value;
-          return o;
+    methods: {
+      getList() {
+        GoodsClassApi.list().then(res => {
+          this.items = res.result.class_list.map(o => {
+            o.text = o.value;
+            return o;
+          });
+          this.items.unshift({ text: "推荐" });
         });
-      });
+      },
+      getBanners() {
+        axios.post("/api/Index/getAppadList/ap_id/",{ap_id:5,}).then(res => {
+          this.bannerItem = res.result.ad_list;
+        });
+      },
     }
-  }
-};
+  };
 </script>
 <style lang="scss" scoped>
 .s-search {
-  position: fixed;
-  top: 50px;
-  width: 100%;
-  z-index: 9000;
   .van-search {
     padding: 12px 15px;
     .van-search__action {
@@ -252,11 +214,50 @@ export default {
     }
   }
 }
-.container {
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+
+.list {
+  margin: 6px 0;
+  .van-tree-select {
+    .van-sidebar-item {
+      width: 60px;
+      border: none;
+      padding: 0 8px 24px 12px;
+    }
+    .van-sidebar-item--select {
+      color: #f4523b;
+    }
+    .van-tree-select__content {
+      -webkit-box-flex: 4;
+      -webkit-flex: 4;
+      flex: 4;
+      .p-item {
+        .p-pic {
+          img {
+            border-radius: 4px;
+          }
+        }
+        .p-list {
+          .van-row {
+            .van-col {
+              margin-bottom: 6px;
+              a {
+                .prod-title {
+                  text-align: center;
+                  color: #323232;
+                }
+              }
+            }
+          }
+          h2 {
+            font-size: 14px;
+            color: #888;
+            padding: 12px 0;
+          }
+        }
+      }
+    }
+  }
 }
+.brand-con img{border-radius:5px;}
 </style>
 

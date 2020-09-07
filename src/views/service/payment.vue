@@ -79,8 +79,7 @@
 
 <style lang="scss" scoped>
   .payment{
-    color: #999;
-    font-size: 14px;
+    color: #888;
     padding: 12px 15px;
   }
 </style>

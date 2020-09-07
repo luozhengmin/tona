@@ -229,7 +229,7 @@
     color:#323232;
     margin:12px 0 0 15px;position:relative;overflow:hidden;
     .van-swipe-item{
-          margin-right:10px;
+          margin-right:15px;
           .main{
             color:#888;
             padding:12px 12px;
@@ -284,5 +284,5 @@
       }
     }
   }
-
+  .design-list .van-swipe-item a img{border-top-left-radius:3px;border-top-right-radius:3px;}
 </style>

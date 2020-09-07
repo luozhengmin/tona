@@ -176,7 +176,7 @@
     .van-row{
       .van-col:last-child{margin-bottom:0;}
       .van-col{
-        margin:6px 0;
+        margin:12px 0;
         float:none;
         a{
           img{border-top-left-radius:4px;border-top-right-radius:4px;}
@@ -212,8 +212,9 @@
     }
   }
   .choice-list{
+    margin-bottom:40px;
     .van-divider{
-      margin:0 0 6px 0;
+      margin:2px 0 8px 0;
     }
     .van-row {
       .van-col:last-child{margin:6px 0;}

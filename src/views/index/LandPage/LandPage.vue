@@ -12,14 +12,14 @@
           </div>
           <div class="lp-copy">
             <div class="lp-menu">
-              <router-link to="https://www.tona.com">关于我们</router-link>
+              <span @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">关于我们</span>
               <router-link to="/help">帮助中心</router-link>
               <router-link to="/after-sale/list">售后服务</router-link>
               <router-link to="/Investment">招商加盟</router-link>
             </div>
             <p>
-              <span>Copyrght © 2019 TONA  国际卫浴  All Rights Reserved.</span><br>
-              <a href="" class="beian">浙ICP备17019637号</a><a href="" class="beian">浙公安备31010402006982</a>
+              <span>Copyrght © 2020 TONAHOME  All Rights Reserved.</span><br>
+              <span @click="goPage('https://beian.miit.gov.cn/')" class="beian">浙ICP备17019637号</span>
             </p>
           </div>
         </div>
@@ -29,7 +29,17 @@
 
 <script>
     export default {
-        name: "LandPage"
+      name: "LandPage",
+      data(){
+        return{
+
+        }
+      },
+      methods:{
+        goPage (url) {
+          window.location.href = url
+        }
+      }
     }
 </script>
 
@@ -46,17 +56,20 @@
     .lp-link{
       text-align:center;
       top: calc(50% - 50px);
-      a{display:block;padding:8px 0;font-size:16px;color:#323232;}
+      a{display:block;padding:8px 0;font-size:16px;color:#323232;font-family:arial;}
     }
     .lp-copy{
       bottom:12px;
       width:100%;
-      p {text-align:center;color:#323232;}
-      p a{padding:0 4px;color:#323232;}
+      p {
+        text-align:center;color:#323232;
+        span{padding:0 4px;}
+      }
+
       .lp-menu{
         padding-bottom:8px;
         text-align:center;
-        a{display:inline-block;padding:0 4px;color:#323232;}
+        a,span{display:inline-block;padding:0 4px;color:#323232;}
       }
     }
   }

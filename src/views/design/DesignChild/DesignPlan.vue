@@ -147,7 +147,7 @@ export default {
       margin-bottom: 0;
     }
     .van-col {
-      margin: 6px 0;
+      margin:12px 0;
       float:none;
       a {
         display: block;
@@ -205,6 +205,7 @@ export default {
   }
 }
 .choice-list {
+  margin-bottom:40px;
   .van-divider {
     margin: 0 0 6px 0;
   }

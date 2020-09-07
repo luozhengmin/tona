@@ -41,27 +41,10 @@
       text-align:center;
       float: left;
       img{width:54px;}
-      /*.iconfont{*/
-        /*margin:auto;*/
-        /*width:54px;*/
-        /*height:54px;*/
-        /*line-height:58px;*/
-        /*font-size:28px;*/
-        /*color:#fff;*/
-        /*overflow: hidden;*/
-        /*display:block;*/
-        /*text-align: center;*/
-        /*border-radius:5px;*/
-      /*}*/
-      /*.menu-item-icon {*/
-        /*width:54px;*/
-        /*height:54px;*/
-        /*overflow:hidden;*/
-      /*}*/
       .menu-item-title {
         display:block;
         color: #696969;
-        font-size:14px;
+        font-size:15px;
         margin-top:4px;
       }
     }

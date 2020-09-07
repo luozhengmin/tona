@@ -77,7 +77,7 @@
     margin:12px 0 0 15px;position:relative;overflow:hidden;
   }
   .van-swipe-item{
-    margin-right:10px;
+    margin-right:15px;
   }
   .main{
     color:#888;
@@ -91,7 +91,6 @@
       }
       .-t{
         align-items:center;
-        font-size:13px;
         .style-line{
           display:block;width:1px;height:13px;background-color:#888;margin:0 6px;
         }
@@ -107,4 +106,6 @@
       }
     }
   }
+.design-list .van-swipe-item a img{border-top-left-radius:3px;border-top-right-radius:3px;}
+
 </style>

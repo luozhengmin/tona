@@ -81,7 +81,6 @@
 <style lang="scss" scoped>
   .promises{
     color: #888;
-    font-size: 14px;
     padding: 12px 15px;
   }
 </style>

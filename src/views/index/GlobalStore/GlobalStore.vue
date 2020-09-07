@@ -56,7 +56,7 @@
             <span class="custom-title">{{selectedAddress[1]}}</span>
           </template>
         </van-cell>
-        <van-popup v-model="showArea" position="bottom" :style="{ height: '30%' }">
+        <van-popup v-model="showArea" position="bottom" :style="{ height: '40%' }">
           <van-picker
             show-toolbar
             title="地址"
@@ -176,7 +176,6 @@ export default {
   width: 100%;
   margin: 12px 0;
   .van-cell {
-    line-height: 22px;
     .van-cell__title {
       color: #323232;
       font-weight: bold;
@@ -187,16 +186,18 @@ export default {
       justify-content: flex-end;
       align-items: center;
       color: #323232;
+      font-size:16px;
       .line {
         display: inline-block;
         width: 1px;
         background-color: #323232;
         height: 18px;
-        margin: 1px 10px 0 12px;
+        margin: 0 10px 0 12px;
       }
     }
     .van-cell__right-icon {
       margin-right: -4px;
+      line-height:28px;
     }
   }
 }

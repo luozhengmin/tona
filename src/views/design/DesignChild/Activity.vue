@@ -90,7 +90,7 @@
     padding:0 15px 12px 15px;position:relative;overflow:hidden;
     .van-row{
       .van-col {
-        margin:6px 0;
+        margin:12px 0;
         float:none;
         a{
           img {

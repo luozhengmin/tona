@@ -16,7 +16,7 @@
       </ul>
       <p>
         <span>Copyrght © 2019 TONA  国际卫浴  All Rights Reserved.</span><br>
-        <a href="" class="beian">浙ICP备17019637号</a><a href="" class="beian">浙公安备31010402006982</a>
+        <span @click="goPage('https://beian.miit.gov.cn/')" class="beian">浙ICP备17019637号</span><span>浙公安备31010402006982</span>
       </p>
     </div>
   </div>
@@ -39,6 +39,9 @@
         axios.post("/api/Index/getAppadList/ap_id/", {ap_id:25,}).then(res => {
           this.codeList = res.result.ad_list;
         });
+      },
+      goPage(url){
+        window.location.href = url
       }
     }
   }
@@ -51,8 +54,8 @@
     .erwei h3{text-align:center;padding-top:12px;font-size:14px;}
     .foot .row{justify-content:space-between;padding:40px 0 24px 0;font-size:13px;}
     .foot .row li{padding-left:2px;}
-    .foot .row li:first-child(1){padding-left:0;}
+    .foot .row li:first-child{padding-left:0;}
     .foot a{color:#fff;}
     .foot >p {text-align:center;color:#b7b7b7;}
-    .foot >p a{padding:0 4px;color:#b7b7b7;}
+    .foot >p span{padding:0 4px;}
 </style>

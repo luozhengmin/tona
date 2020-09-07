@@ -50,28 +50,11 @@
       width:25%;
       text-align:center;
       float: left;
-      /*.iconfont{*/
-        /*margin:auto;*/
-        /*width:54px;*/
-        /*height:54px;*/
-        /*line-height:54px;*/
-        /*font-size:28px;*/
-        /*color:#fff;*/
-        /*overflow: hidden;*/
-        /*display:block;*/
-        /*text-align: center;*/
-        /*border-radius:50%;*/
-      /*}*/
-      /*.menu-item-icon {*/
-        /*width:54px;*/
-        /*height:54px;*/
-        /*overflow:hidden;*/
-      /*}*/
       img{width:54px;height:54px;}
       .menu-item-title {
         display:block;
         color: #696969;
-        font-size:14px;
+        font-size:15px;
         margin-top:4px;
       }
     }

@@ -9,7 +9,7 @@
 }
 a{cursor:pointer;text-decoration: none;color:inherit;}
 a:hover{color:#f12c20;transition:0.3s}
-body,html{font-family:"微软雅黑";font-size:12px;overflow-x:hidden;line-height:1.6;margin:0 auto;color:#666;height:100%;}
+body,html{font-family:"微软雅黑";font-size:13px;overflow-x:hidden;line-height:1.6;margin:0 auto;color:#666;height:100%;}
 p,li,ul,li,h1,h2,h3,h4,h5,img,form{ margin:0; padding:0; list-style:none;border:0;background:none;font-weight:normal;}
 ul{padding-left:0;list-style-type:none;}
 h1,h2,h3,h4,h5{line-height:normal;}
@@ -34,9 +34,11 @@ select{font-size: 100%;margin: 0;outline: none;}
 .head .head-ss{position: absolute;left:4%;height:18px;top:16px;line-height:18px;}
 .head .head-ss i{font-size:18px;font-weight:500;color:#fff;}
 .head .head-ss i.van-icon{font-size:20px;margin-top:-1px;margin-left:-5px;}
-.head .head-logo{text-align:center;margin:0 8%;height:50px;line-height:50px;font-size:16px;color:#fff;}
-.head .head-logo a{display:block;vertical-align:middle;}
-.head .head-logo a img{height:18px;vertical-align:inherit;}
+.head .head-logo{text-align:center;margin:0 8%;height:50px;    display: flex;
+  align-items: center;
+  justify-content: center;font-size:16px;color:#fff;}
+.head .head-logo a{display:block;height:18px;}
+.head .head-logo a img{height:18px;}
 .head .menu-ico{width:20px;height:18px;padding:2px 0;position:absolute;right:4%;cursor:pointer;z-index:180;top:16px;}
 .head .menu-ico span{background:#fff;position:absolute;width:72%;height:2px;left: 0;top:9px;overflow: hidden;text-indent:200%;
   -webkit-transition: opacity 0.25s;transition: opacity 0.25s;border-radius:2px;}
@@ -73,7 +75,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 .index-banner{padding:12px 15px;}
 .index-banner .van-swipe__indicator{width:8px;height:8px;opacity:1;}
 .index-banner .van-swipe__indicator--active{background-color:#b7b7b7;}
-
+.index-banner .van-swipe-item a{display:block;}
+.index-banner .van-swipe-item a img{border-radius:3px;}
 /*首页品牌推荐*/
 .index-brand,.index-brand-1{color:#fff;position:relative;}
 .index-brand-1{padding:15px 0;}
@@ -93,7 +96,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .row_1 li{margin-bottom:12px;}
 
 /*全球门店*/
-.global-list .van-cell{align-items:center;padding:12px 16px;}
+.global-list .van-cell{align-items:center;padding:12px 16px;border-radius:3px;}
 .global-list .van-collapse .van-collapse-item{margin-bottom:8px;}
 .global-title{color:#323232;font-size:16px;padding-bottom:3px;}
 .global-add{color:#888;font-size:14px;}
@@ -102,7 +105,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .add-detail .add-pic img{border-radius:5px;}
 .add-detail .add-tel p{align-items:center;font-size:14px;padding-top:10px;}
 .add-detail .add-tel p i{padding-right:8px;}
-.add-detail .add-btn .van-button--info{  border:none;background-color:#323232;width:100%;border-radius:5px;}
+.add-detail .add-btn .van-button--info{  border:none;background-color:#323232;width:100%;border-radius:6px;}
 
 .global{margin:14px 0;}
 .global .van-cell{padding:6px 0;align-items: center;}
@@ -116,6 +119,7 @@ select{font-size: 100%;margin: 0;outline: none;}
   -moz-transform:rotate(180deg); 	/* Firefox */
   -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
   -o-transform:rotate(180deg); 	/* Opera */}
+.global-list .van-collapse-item i{font-size:18px;}
 .global .van-cell:nth-child(1) .van-field__value{background-color:#f7f7f7;}
 .global .van-cell .van-field__control::-webkit-input-placeholder{
   color: #b4b4b4;
@@ -133,6 +137,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 .home-child > .van-tabs--line > .van-hairline--top-bottom::after, .van-hairline-unset--top-bottom::after{border:none;}
 .r-solution .title-t{text-align:center;}
 .home-child  .brand-con{margin-top:0;}
+.brand-con a{display:block;}
+.brand-con a img,.b-child-tab .van-swipe-item a img{border-radius:6px;}
 
 .s-nav{margin:6px 0 0 0;padding:0 15px;justify-content:space-between;}
 .s-nav li{width:21%;text-align:center;padding-bottom:8px;margin-left:5%;align-items:center;justify-content:space-around;}
@@ -360,3 +366,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 .detail-choose .van-sku-actions .van-button{border-radius:0;}
 .detail-choose .van-sku-actions .van-button--warning{background:#323232;}
 .detail-choose .van-sku-actions .van-button--danger{background:#f4523b;}
+/*图片圆角问题*/
+.list .van-tree-select__nav,.list .van-tree-select .van-sidebar-item{background-color:inherit;}
+.design-list .van-swipe-item > a{display:block;overflow:hidden;}
+.design-list .van-swipe-item a img{width:100%;}
+

@@ -53,7 +53,7 @@
 
     <div class="apply-btn wrap fix">
       <div class="btn" @click="showPopup">TONA HOME 招商申请</div>
-      <van-popup v-model="showForm" closeable position="bottom" :style="{ height: '47%' }">
+      <van-popup v-model="showForm" closeable position="bottom" :style="{ height: '50%' }">
         <div class="apply-tel fix">
           <h2>TONA HOME招商申请</h2>
           <p>你还可拨打电话咨询 400-000-0267</p>
@@ -176,11 +176,11 @@ export default {
   .btn {
     background-color: #323232;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #fff;
     padding: 12px 16px;
-    border-radius: 5px;
+    border-radius:6px;
   }
   .van-popup {
     background-color: #f6f6f6;
@@ -209,7 +209,7 @@ export default {
             text-align: center;
             font-size: 14px;
             color: #fff;
-            border-radius: 4px;
+            border-radius:6px;
             border: inherit;
           }
         }
@@ -222,5 +222,9 @@ export default {
   background-color: inherit;
   border: inherit;
   font-size: 14px;
+}
+.apply{
+  color:#888;
+  padding:12px 15px;
 }
 </style>
