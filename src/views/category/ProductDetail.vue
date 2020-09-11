@@ -105,13 +105,13 @@
       <div class="detail-award fix">
         <div class="award ab">
           <p class="ab"><van-icon name="passed" /><span>无忧退货</span></p>
-          <p class="ab"><van-icon name="passed" /><span>无忧退货</span></p>
-          <p class="ab"><van-icon name="passed" /><span>无忧退货</span></p>
+          <p class="ab"><van-icon name="passed" /><span>款速退款</span></p>
+          <p class="ab"><van-icon name="passed" /><span>免费包邮</span></p>
         </div>
         <van-cell>
           <template #title>
             <span class="award-title">奖励</span>
-            <span class="award-con">购买最高得249积分</span>
+            <span class="award-con">购买获得同等订单金额积分</span>
           </template>
         </van-cell>
       </div>
@@ -350,7 +350,7 @@
         }
         span{
           display:block;
-          padding-top:6px;
+          padding-top:4px;
         }
       }
     }

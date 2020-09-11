@@ -38,10 +38,10 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/index">
-                <img src="../../assets/image/nav01.png" />
+              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
+                <img src="../../assets/image/nav01.png">
                 <span>关于我们</span>
-              </router-link>
+              </p>
             </li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
         @search="onSearch"
       >
         <template #left-icon>
-          <van-icon class="fa fa-search" />
+          <i class="iconfont icon-sousuo"></i>
         </template>
         <template #action>
           <div @click="onSearch">搜索</div>
@@ -241,6 +241,9 @@ export default {
       this.goodslist = [];
       this.finished = false;
       this.queryParams.page = 1;
+    },
+    goPage (url) {
+      window.location.href = url
     }
   }
 };
@@ -332,6 +335,11 @@ export default {
   }
   .prod {
     background-color: #fff;
+    div{
+      img{
+        height:165px;
+      }
+    }
     .title {
       font-size: 14px;
       color: #323232;
@@ -348,6 +356,9 @@ export default {
       justify-content: space-between;
       color: #f4523b;
       font-size: 18px;
+      div{overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;}
       .fuhao {
         font-size: 12px;
       }

@@ -100,7 +100,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .global-list .van-collapse .van-collapse-item{margin-bottom:8px;}
 .global-title{color:#323232;font-size:16px;padding-bottom:3px;}
 .global-add{color:#888;font-size:14px;}
-.add-detail .add-tag .van-tag{font-size:14px;padding:4px 14px; margin-right:4px;}
+.add-detail .add-tag .van-tag{font-size:13px;padding:4px 14px; margin-right:12px;}
 .add-detail .add-pic{padding:12px 0;}
 .add-detail .add-pic img{border-radius:5px;}
 .add-detail .add-tel p{align-items:center;font-size:14px;padding-top:10px;}
@@ -370,4 +370,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .list .van-tree-select__nav,.list .van-tree-select .van-sidebar-item{background-color:inherit;}
 .design-list .van-swipe-item > a{display:block;overflow:hidden;}
 .design-list .van-swipe-item a img{width:100%;}
+
+.van-search__action:active{background-color:inherit;}
+.s-search .icon-sousuo{color:#b7b7b7;}
 

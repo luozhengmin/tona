@@ -250,6 +250,11 @@ export default {
   }
   .prod {
     background-color: #fff;
+    div{
+      img{
+        height:165px;
+      }
+    }
     .main {
       border: solid 1px #eee;
       .title {

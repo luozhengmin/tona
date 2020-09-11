@@ -66,6 +66,11 @@ export default {
   }
   .prod {
     background-color: #fff;
+    div{
+      img{
+        height:165px;
+      }
+    }
     .title {
       font-size: 15px;
       color: #323232;
@@ -82,7 +87,10 @@ export default {
       align-items: center;
       justify-content: space-between;
       color: #f4523b;
-      font-size: 20px;
+      font-size:18px;
+      div{overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;}
       .fuhao {
         font-size: 12px;
       }

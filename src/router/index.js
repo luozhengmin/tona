@@ -169,6 +169,9 @@ export default new Router({
           path: 'ProductList',
           name: 'ProductList',
           component: () => import("@/views/category/ProductList"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'ProductList-Item',

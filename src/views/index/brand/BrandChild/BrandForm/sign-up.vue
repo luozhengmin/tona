@@ -40,10 +40,10 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/index">
+                <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
                   <img src="../../../../../assets/image/nav01.png">
                   <span>关于我们</span>
-                </router-link>
+                </p>
               </li>
             </ul>
           </div>
@@ -395,7 +395,9 @@
         });
 
       },
-
+      goPage (url) {
+        window.location.href = url
+      }
     }
   }
 </script>

@@ -38,10 +38,10 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/index">
-                <img src="../../../../assets/image/nav01.png" />
+              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
+                <img src="../../../../assets/image/nav01.png">
                 <span>关于我们</span>
-              </router-link>
+              </p>
             </li>
           </ul>
         </div>
@@ -119,6 +119,9 @@ export default {
         this.rec_designs = res.result.rec_design_fan;
         this.likes = res.result.guesslike_list;
       });
+    },
+    goPage (url) {
+      window.location.href = url
     }
   }
 };

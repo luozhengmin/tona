@@ -68,6 +68,10 @@ export default {
   }
   .prod {
     background-color: #fff;
+    border: solid 1px #f2f2f2;
+    div{
+      img{height:165px;}
+    }
     .title {
       font-size: 15px;
       color: #323232;

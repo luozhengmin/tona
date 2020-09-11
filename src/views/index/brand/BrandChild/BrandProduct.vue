@@ -8,7 +8,7 @@
         @search="onSearch"
       >
         <template #left-icon>
-          <van-icon class="fa fa-search" />
+          <i class="iconfont icon-sousuo"></i>
         </template>
         <template #action>
           <div @click="onSearch">搜索</div>

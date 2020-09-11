@@ -38,10 +38,10 @@
               </router-link>
             </li>
             <li>
-              <router-link to>
+              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
                 <img src="../../../assets/image/nav01.png">
                 <span>关于我们</span>
-              </router-link>
+              </p>
             </li>
           </ul>
         </div>
@@ -180,6 +180,9 @@ export default {
         console.log(res);
         Toast.success("提交成功");
       });
+    },
+    goPage (url) {
+      window.location.href = url
     }
   }
 };
