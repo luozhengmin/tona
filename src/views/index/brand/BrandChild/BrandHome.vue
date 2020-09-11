@@ -284,6 +284,11 @@ export default {
         justify-content: space-between;
         color: #f4523b;
         font-size: 20px;
+        div{
+          overflow:hidden;
+          white-space:nowrap;
+          text-overflow:ellipsis;
+        }
         .fuhao {
           font-size: 12px;
         }

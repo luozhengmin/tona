@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
       <div class="head fix">
         <div class="wrap fix">
           <div class="head-ss fix">
@@ -82,7 +82,9 @@
 
 <style lang="scss" scoped>
   .message-list{
-    padding:12px 15px 0 15px;
+    padding:12px 15px 12px 15px;
+    background-color:#fff;
+    margin-bottom:12px;
     .list-item{
       .m-head{width:32px;height:32px;margin-right:6px;margin-top:3px;
         img{border-radius:50%;}
@@ -106,5 +108,5 @@
     }
 
   }
-
+.container{background-color:#f7f7f7;}
 </style>

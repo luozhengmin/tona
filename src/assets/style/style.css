@@ -105,7 +105,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .add-detail .add-pic img{border-radius:5px;}
 .add-detail .add-tel p{align-items:center;font-size:14px;padding-top:10px;}
 .add-detail .add-tel p i{padding-right:8px;}
-.add-detail .add-btn .van-button--info{  border:none;background-color:#323232;width:100%;border-radius:6px;}
+.add-detail .add-btn .van-button--info{  border:none;background-color:#323232;width:100%;border-radius:5px;}
 
 .global{margin:14px 0;}
 .global .van-cell{padding:6px 0;align-items: center;}
@@ -158,7 +158,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .title-r .van-popup .van-popup__close-icon--top-right{top:8px;}
 .message .van-tab{color:#888;font-size:14px;line-height:48px;}
 .message .van-tab--active{color:#f4523b;}
-.message .van-tabs__wrap{border-bottom:solid 1px #eee;height: 48px;}
+.message .van-tabs__wrap{border-bottom:solid 1px #eee;height:48px;}
 .message .van-tabs__line{border-radius:0;}
 
 .detail-cart .van-goods-action-icon__icon{font-size:22px;}
@@ -195,9 +195,9 @@ select{font-size: 100%;margin: 0;outline: none;}
 .information-list .van-checkbox__label{margin-left: 24px;line-height: 16px;color:#888;}
 .information-list .van-field__button {position: absolute;right: 0;padding:5px 0;}
 .information-list .van-button--primary{background-color:#f4523b;border:solid 1px #f4523b;}
-.information-list .van-button--small{height:39px;line-height:37px;border-radius:0;}
+.information-list .van-button--small{height:33px;line-height:31px;border-radius:0;}
 .t-remark.van-cell{align-items:inherit!important;min-height:140px;}
-.d-information > .van-button{margin:6px 0 12px 0;}
+.d-information > .van-button{margin:6px 0 12px 0;border-radius:5px;}
 /*全球门店上传样式*/
 .upload .van-uploader__upload{border-radius:4px;}
 .upload .van-uploader__upload-text{margin-top:4px;}
@@ -373,4 +373,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 
 .van-search__action:active{background-color:inherit;}
 .s-search .icon-sousuo{color:#b7b7b7;}
+.detail-choose .van-popup__close-icon{color:#909090;padding:1px;border:solid 1.5px #909090;border-radius:50%;
+  font-size:18px;
+}
+.address-list .van-address-item{padding:16px 16px;}
 

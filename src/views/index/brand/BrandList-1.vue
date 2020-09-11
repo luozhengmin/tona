@@ -63,19 +63,21 @@
       <div class="design-list fix">
         <van-swipe :loop="false" :width="300" :show-indicators="false">
           <van-swipe-item v-for="(item,index) in brandList" :key="index">
-            <a href=""><img :src="item.store_banner"></a>
-            <div class="main ab">
-              <div class="infor-l ac">
-                <h2>{{item.store_name}}</h2>
-                <div class="-t">
-                  <span>{{item.store_mainbusiness}}</span>
+            <router-link :to="{name:'BrandChild',query:{store_id:item.store_id}}">
+              <img :src="item.store_banner">
+              <div class="main ab">
+                <div class="infor-l ac">
+                  <h2>{{item.store_name}}</h2>
+                  <div class="-t">
+                    <span>{{item.store_mainbusiness}}</span>
+                  </div>
+                </div>
+                <div class="infor-r">
+                  <van-tag color="#ee502f">NEW</van-tag>
+                  <span class="ab">{{item.suozaiquyu}}</span>
                 </div>
               </div>
-              <div class="infor-r">
-                <van-tag color="#ee502f">NEW</van-tag>
-                <span class="ab">{{item.suozaiquyu}}</span>
-              </div>
-            </div>
+            </router-link>
           </van-swipe-item>
         </van-swipe>
 

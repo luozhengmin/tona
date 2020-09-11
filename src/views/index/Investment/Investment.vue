@@ -212,7 +212,7 @@ export default {
             text-align: center;
             font-size: 14px;
             color: #fff;
-            border-radius:6px;
+            border-radius:5px;
             border: inherit;
           }
         }

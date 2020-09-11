@@ -40,10 +40,10 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/index">
+                <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
                   <img src="../../assets/image/nav01.png">
                   <span>关于我们</span>
-                </router-link>
+                </p>
               </li>
             </ul>
           </div>
@@ -56,7 +56,7 @@
           placeholder="请输入商品关键词"
           @search="onSearch">
           <template #left-icon>
-            <van-icon class="fa fa-search"/>
+            <i class="iconfont icon-sousuo"></i>
           </template>
           <template #action>
             <div @click="onSearch">搜索</div>
@@ -155,6 +155,9 @@
       onSearch(val) {
         Toast(val);
       },
+      goPage (url) {
+        window.location.href = url
+      }
     }
   }
 </script>

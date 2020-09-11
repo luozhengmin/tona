@@ -7,7 +7,7 @@
         </div>
         <van-swipe :loop="false" :width="300" :show-indicators="false">
           <van-swipe-item v-for="(item,index) in childList" :key="index">
-            <router-link to=""><img :src="item.zhuanti_image"></router-link>
+            <router-link :to="{name:'ActivityDetail',query:{id:item.zhuanti_id}}"><img :src="item.zhuanti_image"></router-link>
             <div class="main ab">
               <div class="infor-l ac">
                 <h2> <router-link to="">{{item.zhuanti_name}}</router-link></h2>
@@ -133,7 +133,7 @@
     margin:0 0 0 15px;position:relative;overflow:hidden;
     .title-t{margin-bottom:6px;}
     .van-swipe-item{
-      margin-right:10px;
+      margin-right:15px;
       img{border-top-left-radius:6px;border-top-right-radius:6px;}
       .main{
         color:#888;
@@ -179,6 +179,7 @@
         margin:12px 0;
         float:none;
         a{
+          display:block;
           img{border-top-left-radius:4px;border-top-right-radius:4px;}
         }
         .main{

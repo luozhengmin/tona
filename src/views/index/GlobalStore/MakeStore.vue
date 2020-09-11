@@ -223,7 +223,7 @@ export default {
   margin-top: 12px;
   .van-button {
     width: 47%;
-    border-radius:6px;
+    border-radius:5px;
   }
   .van-button:nth-child(1) {
     margin-right: 6%;

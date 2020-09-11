@@ -3,7 +3,7 @@
     <van-swipe :autoplay="3000">
       <van-swipe-item v-for="(item, index) in banners" :key="index">
         <a :href="item.index_link">
-          <img :src="item.adv_code" />
+          <img v-lazy="item.adv_code" />
         </a>
       </van-swipe-item>
     </van-swipe>
@@ -11,6 +11,9 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import { Lazyload } from 'vant';
+Vue.use(Lazyload);
 export default {
   name: "IndexBanner",
   props: {

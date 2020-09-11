@@ -153,7 +153,7 @@
               </span>
             </template>
             <template #right-icon>
-              <i class="iconfont">&#xe64d;</i>
+              <i class="iconfont icon-riqi"></i>
             </template>
           </van-field>
           <van-field v-model="params.yezhu_address" type="name" placeholder="可填写业主详细位置，最多200字">

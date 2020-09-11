@@ -25,7 +25,7 @@
             <div class="design-list fix">
               <van-swipe :loop="false" :width="300" :show-indicators="false">
                 <van-swipe-item v-for="(item,index) in activeList" :key="index">
-                  <a href=""><img :src="item.zhuanti_image"></a>
+                  <router-link :to="{name:'ActivityDetail',query:{id:item.zhuanti_id}}"><img :src="item.zhuanti_image"></router-link>
                 </van-swipe-item>
               </van-swipe>
             </div>

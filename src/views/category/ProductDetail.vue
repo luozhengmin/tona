@@ -123,6 +123,7 @@
             <span class="award-con">可选</span>
             <span class="award-con">颜色</span>
             <span class="award-con">规格</span>
+            <span class="award-con">服务</span>
           </template>
         </van-cell>
         <van-sku
@@ -145,15 +146,15 @@
       </div>
 
       <div class="detail-serve fix">
-        <van-cell>
-          <template #title>
-            <span class="award-title">服务</span>
-            <span class="award-con">送货入户并安装 ￥0.00</span>
-          </template>
-          <template #right-icon>
-            <van-switch v-model="checked" size="24" active-color="#b7b7b7" inactive-color="#f4523b"/>
-          </template>
-        </van-cell>
+        <!--<van-cell>-->
+          <!--<template #title>-->
+            <!--<span class="award-title">服务</span>-->
+            <!--<span class="award-con">送货入户并安装 ￥0.00</span>-->
+          <!--</template>-->
+          <!--<template #right-icon>-->
+            <!--<van-switch v-model="checked" size="24" active-color="#b7b7b7" inactive-color="#f4523b"/>-->
+          <!--</template>-->
+        <!--</van-cell>-->
         <van-cell>
           <template #title>
             <span class="award-title">运费</span>

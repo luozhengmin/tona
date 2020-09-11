@@ -45,7 +45,7 @@ DesignApi.active = (params) => {
 
 DesignApi.activeDetail = (params) => {
   return request({
-    url: `${baseUrl}/zhuanti_show?zhuanti_id=4`,
+    url: `${baseUrl}/zhuanti_show`,
     params: params,
     method: 'get'
   })

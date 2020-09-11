@@ -210,6 +210,6 @@ export default {
 .brand-con img {
   border-radius: 5px;
 }
-.container{background-color:#f7f7f7;}
+/*.container{background-color:#f7f7f7;}*/
 </style>
 
