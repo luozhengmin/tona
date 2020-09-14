@@ -185,7 +185,7 @@
 
       <div class="detail-cart fix" v-model="show">
         <van-goods-action>
-          <van-goods-action-icon icon="service-o"/>
+          <van-goods-action-icon icon="service-o" @click="goPage('http://wpa.qq.com/msgrd?v=3&uin=1490081347&site=qq&menu=yes')"/>
           <van-goods-action-icon icon="shopping-cart-o" :badge="carNum==0?'':carNum" @click="$router.push({ name: 'cart'})"/>
           <van-goods-action-icon icon="star-o" />
           <van-goods-action-button type="warning" color="#323232" text="加入购物车" @click="onAddCartClicked"/>
@@ -291,7 +291,9 @@
 
         // this.$toast('add cart:' + JSON.stringify(data));
       },
-
+      goPage (url) {
+        window.location.href = url
+      },
 
     }
   }

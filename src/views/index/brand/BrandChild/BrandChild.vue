@@ -57,7 +57,7 @@
             <h2>{{store_info.store_name}}</h2>
             <p>粉丝数186万</p>
           </div>
-          <van-button color="#f4523b">咨询客服</van-button>
+          <van-button color="#f4523b" @click="goPage('http://wpa.qq.com/msgrd?v=3&uin=1490081347&site=qq&menu=yes')">咨询客服</van-button>
         </div>
         <p>{{store_info.store_mainbusiness}}</p>
       </div>

@@ -69,7 +69,11 @@ export default {
       active: 2
     };
   },
-  methods: {}
+  methods: {
+    onSearch(val) {
+      Toast(val);
+    },
+  }
 };
 </script>
 

@@ -142,15 +142,15 @@ export const getMemberFangctlist =
 (perpage,page) => {
 
  return request({
-    url: `/api/memberfavorites/favorites_fan_list`,
+    url: `/api/memberfavorites/favoritesfan`,
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    params: {
+    data: {
       'per_page':perpage,
       'page':page
     },
-    method: 'GET'
+    method: 'POST'
   })
 }
 
@@ -176,15 +176,15 @@ export const getMemberbrowseList =
 (page,mx) => {
 
  return request({
-    url: `/api/membergoodsbrowse/browse_list`,
+    url: `/api/Membergoodsbrowse/browse_list`,
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    params: {
+    data: {
       'page':page,
       'mx': mx
     },
-    method: 'GET'
+    method: 'POST'
   })
 }
 
@@ -197,10 +197,10 @@ export const setMemberbrowseClear =
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    params: {
+    data: {
 
     },
-    method: 'GET'
+    method: 'POST'
   })
 }
 

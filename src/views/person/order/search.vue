@@ -1,11 +1,29 @@
 <template>
   <div class="container">
-    <div class="header"></div>
-    <van-search v-model="value" shape="round" show-action placeholder="请输入搜索关键词" @search="onSearch">
-      <template #action>
-        <div @click="onSearch">搜索</div>
-      </template>
-    </van-search>
+    <div class="head fix">
+      <div class="wrap fix">
+        <div class="head-ss fix">
+          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+        </div>
+        <div class="head-logo">
+          搜索
+        </div>
+      </div>
+    </div>
+    <div class="s-search">
+      <van-search
+        v-model="value"
+        show-action
+        placeholder="请输入商品关键词"
+        @search="onSearch">
+        <template #left-icon>
+          <i class="iconfont icon-sousuo"></i>
+        </template>
+        <template #action>
+          <div @click="onSearch">搜索</div>
+        </template>
+      </van-search>
+    </div>
     <div class="list">
       <div class="history" v-if="showHistory">
         <div class="title">搜索历史</div>
@@ -42,10 +60,10 @@
             </template>
             <template slot="desc">
               <div class="desc num">
-                <span>颜色</span>
+                <span></span>
                 <span>x 2</span>
               </div>
-              <div class="desc">规格</div>
+              <!--<div class="desc">规格</div>-->
             </template>
           </van-card>
         </div>
@@ -186,6 +204,21 @@ export default {
             margin: 5px 5px;
           }
         }
+      }
+    }
+  }
+}
+.s-search{
+  .van-search{
+    padding:12px 15px;
+    .van-search__action{padding:0 0 0 12px;}
+    .van-search__content{
+      background-color:inherit;
+      padding-left:0;
+      .van-cell{
+        border:solid 1px #eee;
+        border-radius:25px;
+        padding: 5px 8px 5px 10px;
       }
     }
   }

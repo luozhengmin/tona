@@ -122,7 +122,7 @@
       </van-cell>
     </div>
     <div class="group2">
-      <van-cell title="在线客服" is-link>
+      <van-cell title="在线客服" is-link @click="goPage('http://wpa.qq.com/msgrd?v=3&uin=1490081347&site=qq&menu=yes')">
         <template #icon>
           <i class="iconfont icon-zaixiankefu"></i>
         </template>

@@ -16,9 +16,9 @@
     <div>
       <div v-if="list.length==0" class="empty">
         <div>
-          <img src="../../../assets/image/empty-1.png" />
+          <img src="../../../assets/image/empty-2.png" />
         </div>
-        <div>对不起，您还没有浏览商品哦！</div>
+        <div>当前还未浏览足迹记录</div>
       </div>
       <div class="list">
         <van-row gutter="15">
@@ -135,12 +135,9 @@
   min-height: 100%;
   .empty {
     padding: 50px 15px;
-    font-size: 16px;
+    font-size: 14px;
     color: #b7b7b7;
     text-align: center;
-    img {
-      margin-bottom: 20px;
-    }
   }
   .list {
     height: 100%;
