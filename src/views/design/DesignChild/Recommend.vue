@@ -133,7 +133,7 @@
     margin:0 0 0 15px;position:relative;overflow:hidden;
     .title-t{margin-bottom:6px;}
     .van-swipe-item{
-      margin-right:15px;
+      padding-right:15px;
       img{border-top-left-radius:6px;border-top-right-radius:6px;}
       .main{
         color:#888;

@@ -52,7 +52,7 @@
     <div class="collect-list">
       <van-tabs v-model="active" color="#f4523b">
         <van-tab title="设计方案">
-          <div v-if="list.length==0" class="empty">
+          <div v-if="collectFanList.length==0" class="empty">
             <div>
               <img src="../../assets/image/empty-1.png" />
             </div>
@@ -60,26 +60,28 @@
           </div>
           <div class="list">
             <div class="card" v-for="(itemfan,f) in collectFanList" :key="f">
-              <van-image width="100%" :src="itemfan.thumb" />
-              <div class="info">
-                <div class="title">{{itemfan.goods_name}}</div>
-                <div class="meta">{{itemfan.fan_name}} | {{itemfan.style}}</div>
-              </div>
-              <van-divider />
-              <div class="desc">
-                <div class="left">
-                  <van-image width="35px" height="35px" round fit="cover" :src="itemfan.member_avatar" />
-                  <span>{{itemfan.member_name}}</span>
+              <router-link :to="{name:'DesignDetail',query:{id:itemfan.fan_id}}">
+                <van-image width="100%" :src="itemfan.thumb" />
+                <div class="info">
+                  <div class="title">{{itemfan.fan_name}}</div>
+                  <div class="meta">{{itemfan.style}} | 原创设计</div>
                 </div>
-                <div>
-                  <i class="fa fa-eye"></i>{{itemfan.see_num}}
+                <van-divider />
+                <div class="desc">
+                  <div class="left">
+                    <van-image width="35px" height="35px" round fit="cover" :src="itemfan.member_avatar" />
+                    <span>{{itemfan.member_name}}</span>
+                  </div>
+                  <div>
+                    <i class="fa fa-eye"></i>{{itemfan.see_num}}
+                  </div>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
         </van-tab>
         <van-tab title="商品">
-          <div v-if="list.length==0" class="empty">
+          <div v-if="collectGoodsList.length==0" class="empty">
             <div>
               <img src="../../assets/image/empty-1.png" />
             </div>
@@ -152,12 +154,11 @@ export default {
       )
     },
     getFanCollect(){  //获取用户设计方案
-      getMemberFangctlist(this.perpage,this.page).then(
+      let fid = this.fid
+      getMemberFangctlist(fid).then(
         response => {
           console.log(response)
-
           this.collectFanList = response.result.fan_list
-
         },
         error => {
           Toast(error.message)

@@ -142,15 +142,15 @@ export const getMemberFangctlist =
 (perpage,page) => {
 
  return request({
-    url: `/api/memberfavorites/favoritesfan`,
+    url: `/api/memberfavorites/favorites_fan_list`,
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    data: {
+    params: {
       'per_page':perpage,
       'page':page
     },
-    method: 'POST'
+    method: 'GET'
   })
 }
 
@@ -180,11 +180,11 @@ export const getMemberbrowseList =
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    data: {
+    params: {
       'page':page,
       'mx': mx
     },
-    method: 'POST'
+    method: 'GET'
   })
 }
 
@@ -197,10 +197,10 @@ export const setMemberbrowseClear =
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    data: {
+    params: {
 
     },
-    method: 'POST'
+    method: 'GET'
   })
 }
 

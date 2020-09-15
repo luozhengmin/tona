@@ -11,51 +11,53 @@
     <div class="list">
       <van-row>
         <van-col v-for="item in topList " :key="item.fan_id">
-          <a href>
+          <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}">
             <img :src="item.overview_picture" />
-          </a>
-          <div class="main">
-            <div class="infor-l">
-              <h2>{{item.fan_name}}</h2>
-              <div class="-t">
-                <span>{{item.style}} | 原创设计</span>
+
+            <div class="main">
+              <div class="infor-l">
+                <h2>{{item.fan_name}}</h2>
+                <div class="-t">
+                  <span>{{item.style}} | 原创设计</span>
+                </div>
+              </div>
+              <div class="infor-r ab">
+                <div class="dot">
+                  <img :src="item.member_avatar" />
+                </div>
+                <span class="ac">{{item.member_name}}</span>
+                <div class="view ab">
+                  <van-icon name="eye-o" />
+                  {{item.see_num}}
+                </div>
               </div>
             </div>
-            <div class="infor-r ab">
-              <div class="dot">
-                <img :src="item.member_avatar" />
-              </div>
-              <span class="ac">{{item.member_name}}</span>
-              <div class="view ab">
-                <van-icon name="eye-o" />
-                {{item.see_num}}
-              </div>
-            </div>
-          </div>
+          </router-link>
         </van-col>
       </van-row>
     </div>
     <div class="list choice-list">
       <van-row gutter="15">
         <van-col span="12" v-for="item in bottomList " :key="item.fan_id">
-          <a href>
+          <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}">
             <img :src="item.overview_picture" />
-          </a>
-          <div class="main">
-            <div class="infor-l">
-              <h2>{{item.fan_name}}</h2>
-            </div>
-            <div class="infor-r ab">
-              <div class="dot">
-                <img :src="item.member_avatar" />
+
+            <div class="main">
+              <div class="infor-l">
+                <h2>{{item.fan_name}}</h2>
               </div>
-              <span class="ac">{{item.member_name}}</span>
-              <div class="view ab">
-                <van-icon name="eye-o" />
-                {{item.see_num}}
+              <div class="infor-r ab">
+                <div class="dot">
+                  <img :src="item.member_avatar" />
+                </div>
+                <span class="ac">{{item.member_name}}</span>
+                <div class="view ab">
+                  <van-icon name="eye-o" />
+                  {{item.see_num}}
+                </div>
               </div>
             </div>
-          </div>
+          </router-link>
         </van-col>
       </van-row>
     </div>
@@ -156,48 +158,48 @@ export default {
           border-top-right-radius: 4px;
           width: 100%;
         }
-      }
-      .main {
-        color: #888;
-        border: solid 1px #eee;
-        .infor-l {
-          padding: 8px 12px;
-          h2 {
-            font-size: 14px;
-            color: #000;
-            padding-bottom: 4px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          }
-          .-t {
-            font-size: 13px;
-            i {
-              font-size: 12px;
-              line-height: 12px;
-              padding: 0 2px 0 6px;
+        .main {
+          color: #888;
+          border: solid 1px #eee;
+          .infor-l {
+            padding: 8px 12px;
+            h2 {
+              font-size: 14px;
+              color: #000;
+              padding-bottom: 4px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+            .-t {
+              font-size: 13px;
+              i {
+                font-size: 12px;
+                line-height: 12px;
+                padding: 0 2px 0 6px;
+              }
             }
           }
-        }
-        .infor-r {
-          padding: 8px 12px;
-          align-items: center;
-          border-top: solid 1px #eee;
-          .dot {
-            width: 24px;
-            height: 24px;
-            background: #aaa;
-            border-radius: 50%;
-            margin-right: 8px;
-            img {
-              border-radius: 100%;
-            }
-          }
-          .view {
+          .infor-r {
+            padding: 8px 12px;
             align-items: center;
-            .van-icon {
-              font-size: 16px;
-              padding-right: 2px;
+            border-top: solid 1px #eee;
+            .dot {
+              width: 24px;
+              height: 24px;
+              background: #aaa;
+              border-radius: 50%;
+              margin-right: 8px;
+              img {
+                border-radius: 100%;
+              }
+            }
+            .view {
+              align-items: center;
+              .van-icon {
+                font-size: 16px;
+                padding-right: 2px;
+              }
             }
           }
         }

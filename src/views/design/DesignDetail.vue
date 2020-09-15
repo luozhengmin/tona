@@ -544,5 +544,5 @@
       font-size:16px;color:#323232;margin-top:46px;
     }
   }
-
+  .detail-item img{width:100%;}
 </style>
