@@ -148,6 +148,7 @@
         reset-selected-sku-on-hide
         @buy-clicked="onBuyClicked"
         @add-cart="onAddCartClicked"
+        @sku-selected="skuSelected"
       />
       <!--disable-stepper-input-->
     </div>
@@ -212,9 +213,9 @@
           type="warning"
           color="#323232"
           text="加入购物车"
-          @click="onAddCartClicked"
+          @click="showBase = true"
         />
-        <van-goods-action-button type="danger" color="#f4523b" @click="onBuyClicked" text="立即购买" />
+        <van-goods-action-button type="danger" color="#f4523b" @click="showBase = true" text="立即购买" />
       </van-goods-action>
     </div>
   </div>
@@ -258,60 +259,67 @@ export default {
     getGoodsDetail() {
       //获取商品详情
 
-      getGoodsDetail(this.goodsid).then(
-        (response) => {
-          console.log(response);
-          this.evaluateinfo = response.result.goods_evaluate_info; //全部评论信息 （好评，差评等）
-          this.evalList = response.result.goods_eval_list; //商品评论列表
-          this.goodsinfo = response.result.goods_info; //产品基础信息
-          this.goodsinfo.shortname = stringInterception(
-            this.goodsinfo.goods_name,
-            9
-          );
-          this.goodsimages = response.result.goods_image
-            .split(",")
-            .map((item, index) => {
-              //格式化图片集
-              return { id: index, imgUrl: item };
-            });
+      getGoodsDetail(this.goodsid).then((response) => {
+        console.log(response);
+        this.evaluateinfo = response.result.goods_evaluate_info; //全部评论信息 （好评，差评等）
+        this.evalList = response.result.goods_eval_list; //商品评论列表
+        this.goodsinfo = response.result.goods_info; //产品基础信息
+        this.goodsinfo.shortname = stringInterception(
+          this.goodsinfo.goods_name,
+          9
+        );
+        this.goodsimages = response.result.goods_image
+          .split(",")
+          .map((item, index) => {
+            //格式化图片集
+            return { id: index, imgUrl: item };
+          });
 
-          var goodsInfo = {};
-          goodsInfo.title = response.result.goods_info.goods_name;
-          goodsInfo.picture = response.result.goods_image;
-          goodsInfo.price = response.result.goods_info.goods_price;
-          this.skuData.goods_info = goodsInfo;
+        var goodsInfo = {};
+        goodsInfo.title = response.result.goods_info.goods_name;
+        goodsInfo.picture = response.result.goods_image;
+        goodsInfo.price = response.result.goods_info.goods_price;
+        this.skuData.goods_info = goodsInfo;
 
-          var sku = {};
-          sku.tree = response.result.goods_info.spec_datas;
-          sku.price = response.result.goods_info.goods_price;
-          sku.hide_stock = false;
-          sku.stock_num = response.result.goods_info.goods_storage;
-          if (response.result.goods_info.spec_datas.length > 0) {
-            sku.none_sku = false;
-            sku.tree.forEach((o) => {
-              o.v = o.spec_value;
+        var sku = {};
+        sku.tree = response.result.goods_info.spec_datas;
+        sku.price = response.result.goods_info.goods_price;
+        sku.hide_stock = false;
+        sku.stock_num = response.result.goods_info.goods_storage;
+        if (response.result.goods_info.spec_datas.length > 0) {
+          sku.none_sku = false;
+          sku.tree.forEach((o) => {
+            o.v = o.spec_value;
+            delete o.spec_value;
+            delete o.k_id;
+            o.v.forEach((m) => {
+              m.id = m.id + "";
             });
-            sku.list = response.result.goods_info.spec_datas_list;
-          }else{
-            sku.none_sku = true;
-          }
-          this.initialSku = response.result.goods_info.initialSku;
-          this.skuData.sku = sku;
-        },
-        (error) => {
-          Toast(error.message);
+          });
+          sku.list = response.result.goods_info.spec_datas_list;
+        } else {
+          sku.none_sku = true;
         }
-      );
+        this.initialSku = response.result.goods_info.initialSku;
+        delete this.initialSku.selectedProp;
+        this.skuData.sku = sku;
+      });
+    },
+
+    skuSelected(obj) {
+      // var selectedSkuComb = obj.selectedSkuComb;
+      // if (selectedSkuComb != null) {
+      //   var goodsId = selectedSkuComb.id;
+      //   this.goodsid = goodsId;
+      //   this.getGoodsDetail();
+      // }
     },
 
     getCarNum() {
       //获取购物车商品数量
-      cartNumGet().then(
-        (response) => {
-          this.carNum = response.result.cart_count;
-        },
-        (error) => {}
-      );
+      cartNumGet().then((response) => {
+        this.carNum = response.result.cart_count;
+      });
     },
 
     onChange(index) {
@@ -327,21 +335,20 @@ export default {
 
     onAddCartClicked(data) {
       //添加到购物车
-      setGoodsInCart(this.goodsid, 1).then(
-        (response) => {
-          console.log(response);
-          if (response.code == 10000) {
-            Toast.success("加入购物车成功");
-            this.getCarNum();
-          } else {
-            Toast.fail(response.message);
-            return;
-          }
-        },
-        (error) => {}
-      );
-
-      // this.$toast('add cart:' + JSON.stringify(data));
+      var selectedSkuComb = data.selectedSkuComb;
+      this.goodsid = selectedSkuComb.id;
+      var num = data.selectedNum;
+      setGoodsInCart(this.goodsid, num).then((response) => {
+        if (response.code == 10000) {
+          Toast.success("加入购物车成功");
+          this.showBase = false;
+          this.getCarNum();
+          this.getGoodsDetail();
+        } else {
+          Toast.fail(response.message);
+          return;
+        }
+      });
     },
     goPage(url) {
       window.location.href = url;

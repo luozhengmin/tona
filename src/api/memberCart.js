@@ -33,7 +33,7 @@ export const cartGet =
 
 // 添加到购物车
 export const setGoodsInCart =
-  (goods_id, quantity, bl_id) => {
+  (goods_id, quantity) => {
 
     return request({
       url: `/api/membercart/cart_add`,
@@ -43,7 +43,6 @@ export const setGoodsInCart =
       data: {
         'goods_id': goods_id,
         'quantity': quantity,
-        'bl_id': bl_id
       },
       method: 'post'
     })
