@@ -215,14 +215,18 @@
           text="加入购物车"
           @click="showBase = true"
         />
-        <van-goods-action-button type="danger" color="#f4523b" @click="showBase = true" text="立即购买" />
+        <van-goods-action-button
+          type="danger"
+          color="#f4523b"
+          @click="showBase = true"
+          text="立即购买"
+        />
       </van-goods-action>
     </div>
   </div>
 </template>
 
 <script>
-import { skuData, initialSku } from "./data";
 import { stringInterception } from "../../utils/common";
 import { getGoodsDetail } from "../../api/GoodsLists";
 import { cartNumGet, setGoodsInCart } from "../../api/memberCart";
@@ -230,8 +234,6 @@ import { Toast } from "vant";
 export default {
   name: "ProductDetail",
   data() {
-    this.skuData = skuData;
-    this.initialSku = initialSku;
     return {
       current: 0,
       images: [{}],
@@ -243,6 +245,11 @@ export default {
       showSoldout: false,
       closeOnClickOverlay: true,
       goodsid: "",
+      skuData: {
+        goods_info: {},
+        sku: {},
+      },
+      initialSku:{},
       goodsinfo: [], //商品基础信息
       evaluateinfo: [], //商品评论
       evalList: [{}], //商品评论列表
