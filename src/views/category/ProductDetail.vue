@@ -292,6 +292,8 @@ export default {
               o.v = o.spec_value;
             });
             sku.list = response.result.goods_info.spec_datas_list;
+          }else{
+            sku.none_sku = true;
           }
           this.initialSku = response.result.goods_info.initialSku;
           this.skuData.sku = sku;
