@@ -124,7 +124,7 @@
     </div>
 
     <div class="detail-choose">
-      <van-cell is-link @click="showBase = true">
+      <van-cell is-link @click="showBase = true;completeLoadData=false">
         <template #title>
           <span class="award-title">选择</span>
           <span class="award-con">可选</span>
@@ -213,12 +213,12 @@
           type="warning"
           color="#323232"
           text="加入购物车"
-          @click="showBase = true"
+          @click="showBase = true;completeLoadData=false"
         />
         <van-goods-action-button
           type="danger"
           color="#f4523b"
-          @click="showBase = true"
+          @click="showBase = true;completeLoadData=false"
           text="立即购买"
         />
       </van-goods-action>
@@ -236,6 +236,7 @@ export default {
   data() {
     return {
       current: 0,
+      completeLoadData: true,
       images: [{}],
       show: false,
       checked: true,
@@ -249,7 +250,7 @@ export default {
         goods_info: {},
         sku: {},
       },
-      initialSku:{},
+      initialSku: {},
       goodsinfo: [], //商品基础信息
       evaluateinfo: [], //商品评论
       evalList: [{}], //商品评论列表
@@ -310,16 +311,19 @@ export default {
         this.initialSku = response.result.goods_info.initialSku;
         delete this.initialSku.selectedProp;
         this.skuData.sku = sku;
+        this.completeLoadData=true
       });
     },
 
     skuSelected(obj) {
-      // var selectedSkuComb = obj.selectedSkuComb;
-      // if (selectedSkuComb != null) {
-      //   var goodsId = selectedSkuComb.id;
-      //   this.goodsid = goodsId;
-      //   this.getGoodsDetail();
-      // }
+      if (!this.completeLoadData) {
+        var selectedSkuComb = obj.selectedSkuComb;
+        if (selectedSkuComb != null) {
+          var goodsId = selectedSkuComb.id;
+          this.goodsid = goodsId;
+          this.getGoodsDetail();
+        }
+      }
     },
 
     getCarNum() {
