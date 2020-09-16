@@ -3,7 +3,7 @@
     <index-banner :banners="banners"></index-banner>
     <div class="sieve-list">
       <van-dropdown-menu active-color="#f4523b">
-        <van-dropdown-item v-model="value1" :options="option1" @change="getList" title="排序" />
+        <van-dropdown-item v-model="order" :options="option1" @change="getList" title="排序" />
         <van-dropdown-item v-model="style" :options="option2" @change="getList" title="风格" />
         <van-dropdown-item v-model="area" :options="option3" @change="getList" title="面积" />
       </van-dropdown-menu>
@@ -78,11 +78,7 @@ export default {
       value1: 0,
       style: "",
       area: "",
-      option1: [
-        { text: "默认", value: 0 },
-        { text: "收藏数", value: 1 },
-        { text: "浏览数", value: 2 }
-      ],
+      option1: [],
       option2: [],
       option3: [],
       topList: [],

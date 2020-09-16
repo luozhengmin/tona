@@ -298,8 +298,8 @@
           phone:''
         },
         swiperOptionThumbs: {
-          loop: true,
-          loopedSlides: 5,
+//          loop: true,
+//          loopedSlides: 5,
           spaceBetween: 10,
           centeredSlides: true,
           slidesPerView: 'auto',
@@ -307,8 +307,8 @@
           slideToClickedSlide: true,
         },
         swiperOptionTop: {
-          loop: true,
-          loopedSlides: 5,
+//          loop: true,
+//          loopedSlides: 5,
           spaceBetween: 10,
         },
         isInit:''

@@ -10,7 +10,7 @@
             <router-link :to="{name:'ActivityDetail',query:{id:item.zhuanti_id}}"><img :src="item.zhuanti_image"></router-link>
             <div class="main ab">
               <div class="infor-l ac">
-                <h2> <router-link to="">{{item.zhuanti_name}}</router-link></h2>
+                <h2> <router-link :to="{name:'ActivityDetail',query:{id:item.zhuanti_id}}">{{item.zhuanti_name}}</router-link></h2>
                 <div class="-t">
                   <span class="ab"><van-icon name="clock-o" />活动时间：{{item.zhuanti_start_time}}-{{item.zhuanti_end_time}}</span>
                 </div>
@@ -42,7 +42,7 @@
               </div>
               <div class="infor-r ab">
                 <div class="dot"><img :src="item.member_avatar"></div>
-                <span class="ac">{{item.style}}</span>
+                <span class="ac">{{item.member_name}}</span>
                 <div class="view ab"><van-icon name="eye-o" />{{item.see_num}}</div>
               </div>
             </div>
@@ -180,14 +180,17 @@
         float:none;
         a{
           display:block;
-          img{border-top-left-radius:4px;border-top-right-radius:4px;}
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          img{border-radius:4px;}
         }
         .main{
           color:#888;
           border:solid 1px #eee;
           .infor-l{
             padding:8px 12px;
-            h2{font-size:14px;color:#000;padding-bottom:4px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;}
+            h2{font-size:14px;color:#000;padding-bottom:8px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;}
             .-t{
               align-items:center;
               font-size:13px;
