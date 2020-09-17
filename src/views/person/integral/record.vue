@@ -98,7 +98,7 @@
 
 <style lang="scss" scoped>
   .record-list{
-    color:#999;font-size: 14px;padding:12px 15px;
+    color:#999;font-size: 13px;padding:12px 15px;
     h2{
       font-weight:bold;
       padding:8px 0;

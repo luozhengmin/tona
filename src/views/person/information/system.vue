@@ -12,16 +12,16 @@
       </div>
       <div class="active-list fix">
         <div class="active-item" v-for="(item,index) in systemList" :key="index">
-          <time>今天 10:00</time>
+          <time>{{item.message_time}}</time>
           <div class="active-main">
             <div class="title ab">
-              <h2 class="ac">你的地球日优惠福利来啦</h2>
+              <h2 class="ac">{{item.from_member_name}}</h2>
               <span></span>
             </div>
-            <p>部分绿色环保商品限时免单，饮食、居家类目等满减。福利天天有！最高直减160元，赶紧来看看吧！</p>
+            <p>{{item.message_body}}</p>
           </div>
           <div class="active-link">
-            <router-link class="ab" :to="{name:'information-active-detail',query:{id:item.id}}">
+            <router-link class="ab" :to="{name:'information-detail',query:{id:item.id}}">
               <span class="ac">查看详情</span><van-icon name="arrow" />
             </router-link>
           </div>
@@ -60,7 +60,7 @@
 
 <style lang="scss" scoped>
   .container{
-    background-color:#f7f7f7;heihgt:100%;
+    background-color:#f7f7f7;min-height:100%;
     .active-list{
       padding:12px 15px;
       .active-item{

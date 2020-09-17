@@ -151,6 +151,11 @@ export default new Router({
           component: () => import("@/views/design/DesignDetail"),
         },
         {
+          path: 'DesignDetail01',
+          name: 'DesignDetail01',
+          component: () => import("@/views/design/DesignDetail01"),
+        },
+        {
           path: 'GlobalStore',
           name: 'GlobalStore',
           component: () => import("@/views/index/GlobalStore/GlobalStore"),
@@ -369,6 +374,11 @@ export default new Router({
           path: 'information/active-detail',
           name: 'information-active-detail',
           component: () => import("@/views/person/information/active-detail"),
+        },
+        {
+          path: 'information/information-detail',
+          name: 'information-detail',
+          component: () => import("@/views/person/information/information-detail"),
         },
         {
           path: 'information/system',

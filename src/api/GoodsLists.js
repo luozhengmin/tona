@@ -21,6 +21,21 @@ export const getGoodsDetail =
     })
   }
 
+// 收藏商品
+export const collectGoods =
+  (goodsid) => {
+    return request({
+      url: `/api/memberfavorites/favorites_add`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: {
+        'goods_id': goodsid
+      },
+      method: 'POST'
+    })
+  }
+
 
 // 获取商品评论列表
 export const getGoodsEvaluateList =

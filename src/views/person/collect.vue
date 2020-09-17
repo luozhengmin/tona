@@ -129,6 +129,9 @@ export default {
       collectFanList:[],
       perpage:10,
       page:1,
+      page_total:0,
+      finished:false,
+      loading:false
     };
   },
   created() {
@@ -137,19 +140,22 @@ export default {
   },
   methods:{
     getCollect(){  //获取用户商品收藏列表
-      getMemberCollectlist(this.perpage,this.page).then(
+      getMemberCollectlist().then(
         response => {
-
           if(response.result.favorites_list){
-            this.collectGoodsList = response.result.favorites_list.map(item=>{
+             response.result.favorites_list.forEach(item=>{
               item.goods_name = stringInterception(item.goods_name,10)
-              return item
+               this.collectGoodsList.push(item)
             })
+            this.page_total = res.result.page_total;
+            if (this.page < this.page_total) {
+              this.page++;
+            } else {
+              this.finished = true;
+            }
+            this.loading = false;
           }
 
-        },
-        error => {
-          Toast(error.message)
         }
       )
     },

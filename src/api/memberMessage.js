@@ -27,11 +27,29 @@ export const getMemberMessageList =
     },
     params: {
       'page' : page,
-      'per_page' : perpage
+      'per_page' : perpage,
+      message_type:1
     },
     method: 'GET'
   })
 }
+
+// 获取用户消息列表 - 私信
+export const getPrivateMessageList =
+  (page,perpage) => {
+    return request({
+      url: `/api/member_message/get_list`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      params: {
+        'page' : page,
+        'per_page' : perpage,
+        message_type:0
+      },
+      method: 'GET'
+    })
+  }
 
 // 获取用户消息列表 - 活动消息
 export const getMemberActiveList =

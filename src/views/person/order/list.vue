@@ -11,7 +11,7 @@
       </div>
     </div>
     <van-tabs color="#f4523b" class="my-order" v-model="activeName">
-      <van-tab title="全部" name="a">
+      <van-tab title="全部" name="-1">
         <div class="list">
           <div v-if="list.length==0" class="empty">
             <div>
@@ -55,7 +55,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待付款" name="b">
+      <van-tab title="待付款" name="10">
         <div class="list">
           <div v-if="listpay.length==0" class="empty">
             <div>
@@ -65,7 +65,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待发货" name="c">
+      <van-tab title="待发货" name="20">
         <div class="list">
           <div v-if="listsend.length==0" class="empty">
             <div>
@@ -75,7 +75,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待收货" name="d">
+      <van-tab title="待收货" name="30">
         <div class="list">
           <div v-if="listreceive.length==0" class="empty">
             <div>
@@ -85,7 +85,7 @@
           </div>
         </div>
       </van-tab>
-      <van-tab title="待评价" name="e">
+      <van-tab title="待评价" name="40">
         <div class="list">
           <div v-if="listevaluate.length==0" class="empty">
             <div>
@@ -116,7 +116,7 @@ export default {
       listevaluate: [],
       page: 1,   //当前页数
       perpage: 10, //每页数量
-      activeName:'a'
+      activeName:"-1"
 
     };
   },
@@ -135,13 +135,20 @@ export default {
     onSearch() {},
     onSubmit() {},
     getOrderList() {  //获取订单列表
-      memberOrderList().then(res => {
+      var data  = {
+        'page': page,
+        'state_type': this.activeName,
+//        'order_key': orderkey,
+        'per_page': this.perpage
+      }
+      if(activeName == '-1'){
+        data.state_type = null;
+      }
+      memberOrderList(data).then(res => {
         console.log(res)
         if(res.result.order_group_list){
             this.list = res.result.order_group_list
           }
-        },error => {
-          Toast.fail(error.message)
         }
       )
     }

@@ -208,7 +208,7 @@
           :badge="carNum==0?'':carNum"
           @click="$router.push({ name: 'cart'})"
         />
-        <van-goods-action-icon icon="star-o" />
+        <van-goods-action-icon icon="star-o" @click="shouCang"/>
         <van-goods-action-button
           type="warning"
           color="#323232"
@@ -228,7 +228,7 @@
 
 <script>
 import { stringInterception } from "../../utils/common";
-import { getGoodsDetail } from "../../api/GoodsLists";
+import { getGoodsDetail,collectGoods } from "../../api/GoodsLists";
 import { cartNumGet, setGoodsInCart } from "../../api/memberCart";
 import { Toast } from "vant";
 export default {
@@ -324,6 +324,12 @@ export default {
           this.getGoodsDetail();
         }
       }
+    },
+
+    shouCang(){
+      collectGoods(this.goodsid).then(res=>{
+        Toast.success("收藏成功");
+      });
     },
 
     getCarNum() {

@@ -25,53 +25,71 @@
       </van-popup>
 
       <div class="private-list">
-        <div class="private-item" v-for="i in 4" :key="i">
-          <van-image
-            round
-            fit="cover"
-            width="55px"
-            height="55px"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-          <div class="info ab ac">
-            <div class="sx">
-              <div class="name">MIUMIU</div>
-              <div class="id">hi，我的装修需求是：订单，联系电话...</div>
-            </div>
-            <div class="sq">
-              <time>1分钟前</time>
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          @load="getList"
+          :offset="50"
+          finished-text="没有更多了"
+        >
+          <div class="private-item" v-for="item in messageList" :key="item.message_id">
+            <van-image
+              round
+              fit="cover"
+              width="55px"
+              height="55px"
+              src="https://img.yzcdn.cn/vant/cat.jpeg"
+            />
+            <div class="info ab ac">
+              <div class="sx">
+                <div class="name">{{item.from_member_name}}</div>
+                <div class="id">{{item.message_body}}</div>
+              </div>
+              <div class="sq">
+                <time>{{item.message_time}}</time>
+              </div>
             </div>
           </div>
-        </div>
+        </van-list>
+
       </div>
     </div>
 </template>
 
 <script>
-  import { getMemberMessageList } from '../../../api/memberMessage'
+  import { getPrivateMessageList } from '../../../api/memberMessage'
   export default {
     name: "private",
     data(){
       return{
         show:false,
+        finished:false,
+        loading:false,
         messageList : [],
-        page : 1,
-        perpage : 10
+        page: 1,
+        per_page: 10,
+        pagetotal:0
       }
     },
     created: function () {
 
-        getMemberMessageList().then(
-          response => {
 
-            console.log(response)
-
-          },
-          error => {}
-        )
 
     },
     methods:{
+      getList(){
+        getPrivateMessageList(this.page,this.per_page).then(res => {
+            this.messageList = res.result.notice_list;
+            this.page_total = res.result.page_total;
+            if (this.page < this.page_total) {
+              this.page++;
+            } else {
+              this.finished = true;
+            }
+            this.loading = false;
+            }
+        )
+      },
       showAction(){
         this.show = true;
       },

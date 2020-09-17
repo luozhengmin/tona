@@ -215,7 +215,7 @@
                  <span><em>{{i}}</em> · {{item.space_name}}</span>
                </div>
                <div class="d-hall">
-                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
+                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop" v-if="item.images.length">
                    <!--<swiper-slide>-->
                      <!--<img src="../../assets/image/xq02.jpg">-->
                      <!--<div class="qj-btn ab">-->
@@ -229,7 +229,7 @@
                    </swiper-slide>
                  </swiper>
 
-                 <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+                 <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs" v-if="item.images.length">
                    <swiper-slide v-for="(images, k) in item.images" :key="k">
                      <img :src="images.name">
                    </swiper-slide>
@@ -305,11 +305,15 @@
           slidesPerView: 'auto',
           touchRatio: 0.2,
           slideToClickedSlide: true,
+          observer:true,//修改swiper自己或子元素时，自动初始化swiper
+          observeParents:true,//修改swiper的父元素时，自动初始化swiper
         },
         swiperOptionTop: {
 //          loop: true,
 //          loopedSlides: 5,
           spaceBetween: 10,
+          observer:true,//修改swiper自己或子元素时，自动初始化swiper
+          observeParents:true//修改swiper的父元素时，自动初始化swiper
         },
         isInit:''
       }
@@ -513,6 +517,7 @@
   }
   .design-share{
     width:100%;padding:16px 15px 20px 15px;
+
     .share{
       padding:24px 15px 12px 15px;
       h2{font-size:14px;color:#888;text-align:center;}
@@ -545,4 +550,5 @@
     }
   }
   .detail-item img{width:100%;}
+
 </style>

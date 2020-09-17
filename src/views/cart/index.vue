@@ -48,14 +48,14 @@
         </div>
       </transition>
     </div>
-    <div class="tips">
-      <van-notice-bar
-        background="#ffffcc"
-        color="#f4523b"
-        mode="link"
-        left-icon="volume-o"
-      >自营商品单笔订单金额满88元可免邮费</van-notice-bar>
-    </div>
+    <!--<div class="tips">-->
+      <!--<van-notice-bar-->
+        <!--background="#ffffcc"-->
+        <!--color="#f4523b"-->
+        <!--mode="link"-->
+        <!--left-icon="volume-o"-->
+      <!--&gt;自营商品单笔订单金额满88元可免邮费</van-notice-bar>-->
+    <!--</div>-->
     <div class="card-list">
       <div class="product-card" v-for="(cartItem, i) in cartList" :key="i">
         <div class="store" @click="checkShop(cartItem)">

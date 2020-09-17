@@ -30,6 +30,9 @@ DesignApi.consult = (params) => {
 DesignApi.collect = (params) => {
   return request({
     url: `/api/memberfavorites/favoritesfan`,
+    headers: {
+      'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+    },
     data: params,
     method: 'post'
   })

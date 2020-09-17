@@ -46,7 +46,7 @@ export const getMemberdetailInfo =
 export const updateMemberInfo =
 (member_nickname,member_qq,member_ww,member_birthday) => {
  return request({
-    url: `/api/Member/edit_information`,
+    url: `/api/Member/index`,
     headers: {
 
        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
@@ -122,16 +122,15 @@ export const getMemberAddressAdd =
 
 // 获取用户收藏列表
 export const getMemberCollectlist =
-(perpage,page) => {
+() => {
 
  return request({
     url: `/api/memberfavorites/favorites_list`,
     headers: {
        'X-DS-KEY':$cookies.get('token'),
     },
-    params: {
-      'per_page':perpage,
-      'page':page
+    data: {
+
     },
     method: 'POST'
   })

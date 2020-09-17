@@ -17,8 +17,8 @@
       <div class="icon">
         <img src="../../../assets/image/jf.png" />
       </div>
-      <div class="count">1000</div>
-      <div style="margin-top: -13px;">当前积分</div>
+      <div class="count">{{total}}</div>
+      <div>当前积分</div>
     </div>
     <div class="title">
       <span>近30天记录</span>
@@ -44,7 +44,8 @@ export default {
       active: 2,
       scoreList: [],
       page:1,
-      mx:0
+      mx:0,
+      total:''
     };
   },
   created: function () {
@@ -53,6 +54,7 @@ export default {
         response => {
           console.log(response)
           this.scoreList = response.result.log_list
+          this.total = response.result.member_points
         },
         error => {}
       )
@@ -68,6 +70,7 @@ export default {
 .container {
   background-color: #f7f7f7;
   min-height: 100%;
+  padding-bottom:40px;
   .top {
     background-image: url("../../../assets/image/jy-bg-3.jpg");
     background-repeat: no-repeat;
@@ -85,11 +88,14 @@ export default {
     }
     .count {
       font-size: 32px;
+      font-family: arial;
+      margin:12px 0 -5px 0;
+      line-height:normal;
     }
   }
   .title {
     font-size: 15px;
-    padding:12px 15px;
+    padding:14px 15px;
     color: #323232;
     display: flex;
     align-items: center;
