@@ -241,13 +241,13 @@ export default {
       )
     },
     statePay(){
-      this.$router.push({path:'/order/list?tab=b'});
+      this.$router.push({path:'/order/list?tab=10'});
     },
     stateSend(){
-      this.$router.push({path:'/order/list?tab=d'});
+      this.$router.push({path:'/order/list?tab=30'});
     },
     stateMark(){
-      this.$router.push({path:'/order/list?tab=e'});
+      this.$router.push({path:'/order/list?tab=40'});
     },
     goPage (url) {
       window.location.href = url

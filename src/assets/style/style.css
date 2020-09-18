@@ -378,4 +378,6 @@ select{font-size: 100%;margin: 0;outline: none;}
 }
 .address-list .van-address-item{padding:16px 16px;}
 .design-share .van-popup__close-icon{color:#2d2d2d;}
+.card a >.van-image img{border-top-left-radius:3px;border-top-right-radius:3px;}
+
 

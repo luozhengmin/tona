@@ -17,7 +17,7 @@
       <van-popup v-model="show" position="bottom" :style="{ height: '24%' }" class="track">
         <div class="track-confirm">
           <p>确定要清空信息吗？</p>
-          <h2>确定</h2>
+          <h2 @click="toClearbrowse">确定</h2>
         </div>
         <div class="track-cancel" @click="onCancel">
           取消
@@ -25,6 +25,12 @@
       </van-popup>
 
       <div class="private-list">
+        <div v-if="messageList.length==0" class="empty">
+          <div>
+            <img src="../../../assets/image/empty-1.png" />
+          </div>
+          <div>当前无记录！</div>
+        </div>
         <van-list
           v-model="loading"
           :finished="finished"
@@ -33,14 +39,14 @@
           finished-text="没有更多了"
         >
           <div class="private-item" v-for="item in messageList" :key="item.message_id">
-            <van-image
-              round
-              fit="cover"
-              width="55px"
-              height="55px"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
-            />
-            <div class="info ab ac">
+            <!--<van-image-->
+              <!--round-->
+              <!--fit="cover"-->
+              <!--width="55px"-->
+              <!--height="55px"-->
+              <!--src="https://img.yzcdn.cn/vant/cat.jpeg"-->
+            <!--/>-->
+            <div class="info fix">
               <div class="sx">
                 <div class="name">{{item.from_member_name}}</div>
                 <div class="id">{{item.message_body}}</div>
@@ -57,7 +63,8 @@
 </template>
 
 <script>
-  import { getPrivateMessageList } from '../../../api/memberMessage'
+  import { getPrivateMessageList,getPrivateALL} from '../../../api/memberMessage'
+  import { Toast } from "vant";
   export default {
     name: "private",
     data(){
@@ -72,22 +79,20 @@
       }
     },
     created: function () {
-
-
-
+      this.getList()
     },
     methods:{
       getList(){
         getPrivateMessageList(this.page,this.per_page).then(res => {
-            this.messageList = res.result.notice_list;
-            this.page_total = res.result.page_total;
-            if (this.page < this.page_total) {
-              this.page++;
-            } else {
-              this.finished = true;
-            }
-            this.loading = false;
-            }
+          this.messageList = res.result.notice_list;
+          this.page_total = res.result.page_total;
+          if (this.page < this.page_total) {
+            this.page++;
+          } else {
+            this.finished = true;
+          }
+          this.loading = false;
+          }
         )
       },
       showAction(){
@@ -95,6 +100,22 @@
       },
       onCancel() {
         this.show = false;
+      },
+      toClearbrowse() { //清空信息
+        getPrivateALL().then(
+          response => {
+            if(response.code == 10000 || response.result == 1){
+              Toast.success('清除成功')
+              this.getList()
+              this.show = false
+            }else{
+              Toast.fail('清除失败')
+              return
+            }
+
+          },
+            error => {}
+        )
       },
     }
   }
@@ -110,11 +131,9 @@
       display: flex;
       align-items: center;
       border-bottom:solid 1px #eee;
-      .info {
-        margin-left: 12px;
-        justify-content: space-between;
-        .sx{padding-right:4%;}
-        .sq{font-size:13px;color:#b7b7b7;width:20%;text-align:right;}
+      .info {width:100%;
+        .sx{width:100%;margin-bottom:6px;}
+        .sq{font-size:13px;color:#b7b7b7;text-align:right;width:100%;}
         .name {font-size:15px;color: #363636;line-height: normal;}
         .id {
           color: #888;
@@ -139,6 +158,15 @@
       background-color:rgba(255,255,255,0.85);font-size:14px;
       padding:12px 0;
       border-radius:4px;
+    }
+  }
+  .empty {
+    padding: 50px 15px;
+    font-size: 16px;
+    color: #b7b7b7;
+    text-align: center;
+    img {
+      margin-bottom: 20px;
     }
   }
 </style>

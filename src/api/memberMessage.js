@@ -51,6 +51,20 @@ export const getPrivateMessageList =
     })
   }
 
+// 获取用户消息列表 - 私信清空
+export const getPrivateALL =
+  () => {
+    return request({
+      url: `/api/member_message/message_del`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: {
+        type:0
+      },
+      method: 'POST'
+    })
+  }
 // 获取用户消息列表 - 活动消息
 export const getMemberActiveList =
 (page,perpage) => {

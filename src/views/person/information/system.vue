@@ -11,6 +11,20 @@
         </div>
       </div>
       <div class="active-list fix">
+
+        <div v-if="systemList.length==0" class="empty">
+          <div>
+            <img src="../../../assets/image/empty-1.png" />
+          </div>
+          <div>当前无记录！</div>
+        </div>
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          @load="getSystemList"
+          :offset="50"
+          finished-text="没有更多了"
+        >
         <div class="active-item" v-for="(item,index) in systemList" :key="index">
           <time>{{item.message_time}}</time>
           <div class="active-main">
@@ -20,12 +34,13 @@
             </div>
             <p>{{item.message_body}}</p>
           </div>
-          <div class="active-link">
-            <router-link class="ab" :to="{name:'information-detail',query:{id:item.id}}">
-              <span class="ac">查看详情</span><van-icon name="arrow" />
-            </router-link>
-          </div>
+          <!--<div class="active-link">-->
+            <!--<router-link class="ab" :to="{name:'information-detail',query:{id:item.id}}">-->
+              <!--<span class="ac">查看详情</span><van-icon name="arrow" />-->
+            <!--</router-link>-->
+          <!--</div>-->
         </div>
+        </van-list>
       </div>
     </div>
 </template>
@@ -36,8 +51,12 @@
     name: "system",
     data(){
       return{
-        systemList:[
-        ]
+        systemList:[],
+        finished:false,
+        loading:false,
+        page: 1,
+        per_page: 10,
+        pagetotal:0
       }
     },
     created() {
@@ -45,12 +64,16 @@
     },
     methods: {
         getSystemList(){
-          getMemberMessageList().then(
-            response => {
-              this.systemList = response.result.notice_list
-              console.log(response)
-            },
-            error => {}
+          getMemberMessageList(this.page,this.per_page).then(res => {
+              this.systemList = res.result.notice_list
+              this.page_total = res.result.page_total;
+              if (this.page < this.page_total) {
+                this.page++;
+              } else {
+                this.finished = true;
+              }
+              this.loading = false;
+            }
           )
         }
     }
@@ -64,7 +87,7 @@
     .active-list{
       padding:12px 15px;
       .active-item{
-        margin-bottom:8px;
+        margin-bottom:12px;
         time{font-size:14px;color:#bcbcbc;text-align:center;display:block;margin-bottom:6px;}
         .active-main{
           background-color:#fff;
@@ -87,6 +110,16 @@
           .van-icon{font-size:16px;line-height:22px;margin-right: -5px;}
         }
       }
+    }
+  }
+
+  .empty {
+    padding: 50px 15px;
+    font-size: 16px;
+    color: #b7b7b7;
+    text-align: center;
+    img {
+      margin-bottom: 20px;
     }
   }
 </style>

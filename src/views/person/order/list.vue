@@ -136,12 +136,12 @@ export default {
     onSubmit() {},
     getOrderList() {  //获取订单列表
       var data  = {
-        'page': page,
+        'page': this.page,
         'state_type': this.activeName,
 //        'order_key': orderkey,
         'per_page': this.perpage
       }
-      if(activeName == '-1'){
+      if(this.activeName == '-1'){
         data.state_type = null;
       }
       memberOrderList(data).then(res => {

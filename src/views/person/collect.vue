@@ -59,25 +59,33 @@
             <div>对不起，您还没有设计方案哦！</div>
           </div>
           <div class="list">
-            <div class="card" v-for="(itemfan,f) in collectFanList" :key="f">
-              <router-link :to="{name:'DesignDetail',query:{id:itemfan.fan_id}}">
-                <van-image width="100%" :src="itemfan.thumb" />
-                <div class="info">
-                  <div class="title">{{itemfan.fan_name}}</div>
-                  <div class="meta">{{itemfan.style}} | 原创设计</div>
-                </div>
-                <van-divider />
-                <div class="desc">
-                  <div class="left">
-                    <van-image width="35px" height="35px" round fit="cover" :src="itemfan.member_avatar" />
-                    <span>{{itemfan.member_name}}</span>
+            <van-list
+              v-model="loading"
+              :finished="finished"
+              @load="getFanCollect"
+              :offset="50"
+              finished-text="没有更多了"
+            >
+              <div class="card" v-for="(itemfan,f) in collectFanList" :key="f">
+                <router-link :to="{name:'DesignDetail',query:{id:itemfan.fan_id}}">
+                  <van-image width="100%" :src="itemfan.thumb" />
+                  <div class="info">
+                    <div class="title">{{itemfan.fan_name}}</div>
+                    <div class="meta">{{itemfan.style}} | 原创设计</div>
                   </div>
-                  <div>
-                    <i class="fa fa-eye"></i>{{itemfan.see_num}}
+                  <van-divider />
+                  <div class="desc">
+                    <div class="left">
+                      <van-image width="28px" height="28px" round fit="cover" :src="itemfan.member_avatar" />
+                      <span>{{itemfan.member_name}}</span>
+                    </div>
+                    <div>
+                      <i class="fa fa-eye"></i>{{itemfan.see_num}}
+                    </div>
                   </div>
-                </div>
-              </router-link>
-            </div>
+                </router-link>
+              </div>
+            </van-list>
           </div>
         </van-tab>
         <van-tab title="商品">
@@ -88,25 +96,35 @@
             <div>对不起，您还没有收藏商品哦！</div>
           </div>
           <div class="list">
-            <van-row gutter="15">
-              <van-col span="12" style="margin-bottom:15px" v-for="(itemgood,g) in collectGoodsList" :key="g">
-                <div class="prod">
-                  <div @click="toProductDetail(itemgood.goods_id)">
-                    <img :src="itemgood.goods_image_url" />
-                  </div>
-                  <div class="title">{{itemgood.goods_name.slice(0,15)+'...'}}</div>
-                  <div class="desc">{{itemgood.goods_name}}</div>
-                  <div class="bottom">
-                    <div>
-                      <span class="fuhao">￥</span>{{itemgood.goods_price}}
+            <van-list
+              v-model="loading"
+              :finished="finished"
+              @load="getCollect"
+              :offset="50"
+              finished-text="没有更多了"
+            >
+              <van-row gutter="15">
+
+                  <van-col span="12" style="margin-bottom:15px ;padding-left: 7.5px;padding-right: 7.5px;" v-for="(itemgood,g) in collectGoodsList" :key="g">
+                    <div class="prod">
+                      <div @click="toProductDetail(itemgood.goods_id)">
+                        <img :src="itemgood.goods_image_url" />
+                      </div>
+                      <div class="title">{{itemgood.goods_name.slice(0,15)+'...'}}</div>
+                      <div class="desc">{{itemgood.goods_name}}</div>
+                      <div class="bottom">
+                        <div>
+                          <span class="fuhao">￥</span>{{itemgood.goods_price}}
+                        </div>
+                        <div class="icon" @click="toMemCart(itemgood.goods_id)">
+                          <van-icon name="cart" />
+                        </div>
+                      </div>
                     </div>
-                    <div class="icon" @click="toMemCart(itemgood.goods_id)">
-                      <van-icon name="cart" />
-                    </div>
-                  </div>
-                </div>
-              </van-col>
-            </van-row>
+                  </van-col>
+
+              </van-row>
+            </van-list>
           </div>
         </van-tab>
       </van-tabs>
@@ -147,7 +165,7 @@ export default {
               item.goods_name = stringInterception(item.goods_name,10)
                this.collectGoodsList.push(item)
             })
-            this.page_total = res.result.page_total;
+            this.page_total = response.result.page_total;
             if (this.page < this.page_total) {
               this.page++;
             } else {
@@ -164,11 +182,20 @@ export default {
       getMemberFangctlist(fid).then(
         response => {
           console.log(response)
-          this.collectFanList = response.result.fan_list
+          if(response.result.fan_list) {
+            response.result.fan_list.forEach(item=>{
+              item.fan_name = stringInterception(item.fan_name,10)
+              this.collectFanList.push(item)
+            })
+            this.page_total = response.result.page_total;
+            if (this.page < this.page_total) {
+              this.page++;
+            } else {
+              this.finished = true;
+            }
+            this.loading = false;
+          }
         },
-        error => {
-          Toast(error.message)
-        }
       )
     },
     toMemCart(goodsid){  //加入购物车
@@ -220,7 +247,11 @@ export default {
     .card {
       background-color: #fff;
       margin-bottom: 12px;
-      .van-divider{margin:12px 0;border-color:#eee;}
+      box-shadow: 0 0 1px #eee;
+      a{
+        display: block;
+      }
+      .van-divider{margin:10px 0;border-color:#dedede;}
       .info {
         padding: 0 15px;
         .title {
@@ -247,6 +278,10 @@ export default {
     }
     .prod {
       background-color: #fff;
+      box-shadow: 0 0 1px #eee;
+      div{
+        img{border-top-left-radius:3px;border-top-right-radius:3px;}
+      }
       .title {
         font-size: 15px;
         color: #323232;
