@@ -24,7 +24,7 @@
               <span>TONA官方旗舰店</span>
               <span class="status">等待买家确认</span>
             </div>
-            <div class="product" v-for="j in 2" :key="j">
+            <div class="product" v-for="(item, j) in list.order_list" :key="j">
               <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
                 <template slot="title">
                   <div class="title">
@@ -56,12 +56,46 @@
         </div>
       </van-tab>
       <van-tab title="待付款" name="10">
-        <div class="list">
+        <div class="list" >
           <div v-if="listpay.length==0" class="empty">
             <div>
               <img src="../../../assets/image/empty-1.png" />
             </div>
             <div>暂无相关订单记录</div>
+          </div>
+          <div class="product-card" v-for="(itemall, i) in list" :key="i">
+            <div class="store">
+              <span>TONA官方旗舰店</span>
+              <span class="status">等待买家确认</span>
+            </div>
+            <div class="product" v-for="(item, j) in list.order_list" :key="j">
+              <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
+                <template slot="title">
+                  <div class="title">
+                    <span>TONA-拉米娜浴室柜</span>
+                    <div>￥45.9</div>
+                  </div>
+                </template>
+                <template slot="desc">
+                  <div class="desc num">
+                    <span></span>
+                    <span>x 2</span>
+                  </div>
+                  <div class="desc"></div>
+                </template>
+              </van-card>
+            </div>
+            <div class="bottom">
+              <div class="info">退款待处理</div>
+              <div class="total">
+                <span>共1件商品</span>
+                <span>合计￥45.9</span>
+              </div>
+              <div class="btn">
+                <van-button plain size="small" round to="/order/evaluate">评价</van-button>
+                <van-button plain size="small" round>查看物流</van-button>
+              </div>
+            </div>
           </div>
         </div>
       </van-tab>
@@ -83,6 +117,7 @@
             </div>
             <div>暂无相关订单记录</div>
           </div>
+
         </div>
       </van-tab>
       <van-tab title="待评价" name="40">
