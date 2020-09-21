@@ -154,7 +154,7 @@
           }
           .id {
             color: #888;
-            font-size: 13px;
+            font-size: 14px;
           }
         }
       }
@@ -187,4 +187,5 @@
       margin-bottom: 20px;
     }
   }
+
 </style>

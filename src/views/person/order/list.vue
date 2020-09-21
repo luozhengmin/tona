@@ -21,31 +21,33 @@
           </div>
           <div class="product-card" v-for="(itemall, i) in list" :key="i">
             <div class="store">
-              <span>TONA官方旗舰店</span>
-              <span class="status">等待买家确认</span>
+              <span>{{itemall.store_name}}</span>
+              <span class="status">{{itemall.state_desc}}</span>
             </div>
-            <div class="product" v-for="(item, j) in list.order_list" :key="j">
-              <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
-                <template slot="title">
-                  <div class="title">
-                    <span>TONA-拉米娜浴室柜</span>
-                    <div>￥45.9</div>
-                  </div>
-                </template>
-                <template slot="desc">
-                  <div class="desc num">
-                    <span></span>
-                    <span>x 2</span>
-                  </div>
-                  <div class="desc"></div>
-                </template>
-              </van-card>
+            <div class="product" v-for="(item, goods_id) in itemall.extend_order_goods" :key="goods_id">
+              <router-link :to="{name:'ProductDetail',query:{id:item.goods_id}}">
+                <van-card :thumb="item.goods_image_url">
+                  <template slot="title">
+                    <div class="title">
+                      <span>{{item.goods_name}}</span>
+                      <div>￥{{item.goods_price}}</div>
+                    </div>
+                  </template>
+                  <template slot="desc">
+                    <div class="desc num">
+                      <span></span>
+                      <span>x {{item.goods_salenum}}</span>
+                    </div>
+                    <div class="desc"></div>
+                  </template>
+                </van-card>
+              </router-link>
             </div>
             <div class="bottom">
-              <div class="info">退款待处理</div>
+              <!--<div class="info">退款待处理</div>-->
               <div class="total">
-                <span>共1件商品</span>
-                <span>合计￥45.9</span>
+                <span>共{{itemall.order_from}}件商品</span>
+                <span>合计￥{{itemall.pay_amount}}</span>
               </div>
               <div class="btn">
                 <van-button plain size="small" round to="/order/evaluate">评价</van-button>
@@ -65,68 +67,177 @@
           </div>
           <div v-else class="product-card" v-for="(itemall, i) in list" :key="i">
             <div class="store">
-              <span>TONA官方旗舰店</span>
-              <span class="status">等待买家确认</span>
+              <span>{{itemall.store_name}}</span>
+              <span class="status">{{itemall.state_desc}}</span>
             </div>
-            <div class="product" v-for="(item, j) in list.order_list" :key="j">
-              <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
-                <template slot="title">
-                  <div class="title">
-                    <span>TONA-拉米娜浴室柜</span>
-                    <div>￥45.9</div>
-                  </div>
-                </template>
-                <template slot="desc">
-                  <div class="desc num">
-                    <span></span>
-                    <span>x 2</span>
-                  </div>
-                  <div class="desc"></div>
-                </template>
-              </van-card>
+            <div class="product" v-for="(item, goods_id) in itemall.extend_order_goods" :key="goods_id">
+              <router-link :to="{name:'ProductDetail',query:{id:item.goods_id}}">
+                <van-card :thumb="item.goods_image_url">
+                  <template slot="title">
+                    <div class="title">
+                      <span>{{item.goods_name}}</span>
+                      <div>￥{{item.goods_price}}</div>
+                    </div>
+                  </template>
+                  <template slot="desc">
+                    <div class="desc num">
+                      <span></span>
+                      <span>x {{item.goods_salenum}}</span>
+                    </div>
+                    <div class="desc"></div>
+                  </template>
+                </van-card>
+              </router-link>
             </div>
             <div class="bottom">
-              <div class="info">退款待处理</div>
+              <!--<div class="info">退款待处理</div>-->
               <div class="total">
-                <span>共1件商品</span>
-                <span>合计￥45.9</span>
+                <span>共{{itemall.order_from}}件商品</span>
+                <span>合计￥{{itemall.pay_amount}}</span>
               </div>
               <div class="btn">
-                <van-button plain size="small" round to="/order/evaluate">评价</van-button>
-                <van-button plain size="small" round>查看物流</van-button>
+                <van-button plain size="small" round v-if="itemall.if_cancel" v-on:click="cancel(itemall)">取消订单</van-button>
+                <van-button plain size="small" round>支付</van-button>
               </div>
             </div>
           </div>
         </div>
       </van-tab>
       <van-tab title="待发货" name="20">
-        <div class="list">
-          <div v-if="listsend.length==0" class="empty">
+        <div class="list" >
+          <div v-if="list.length==0" class="empty">
             <div>
               <img src="../../../assets/image/empty-1.png" />
             </div>
             <div>暂无相关订单记录</div>
+          </div>
+          <div v-else class="product-card" v-for="(itemall, i) in list" :key="i">
+            <div class="store">
+              <span>{{itemall.store_name}}</span>
+              <span class="status">{{itemall.state_desc}}</span>
+            </div>
+            <div class="product" v-for="(item, goods_id) in itemall.extend_order_goods" :key="goods_id">
+              <router-link :to="{name:'ProductDetail',query:{id:item.goods_id}}">
+                <van-card :thumb="item.goods_image_url">
+                  <template slot="title">
+                    <div class="title">
+                      <span>{{item.goods_name}}</span>
+                      <div>￥{{item.goods_price}}</div>
+                    </div>
+                  </template>
+                  <template slot="desc">
+                    <div class="desc num">
+                      <span></span>
+                      <span>x {{item.goods_salenum}}</span>
+                    </div>
+                    <div class="desc"></div>
+                  </template>
+                </van-card>
+              </router-link>
+            </div>
+            <div class="bottom">
+              <!--<div class="info">退款待处理</div>-->
+              <div class="total">
+                <span>共{{itemall.order_from}}件商品</span>
+                <span>合计￥{{itemall.pay_amount}}</span>
+              </div>
+              <div class="btn">
+                <van-button plain size="small" round>提醒发货</van-button>
+              </div>
+            </div>
           </div>
         </div>
       </van-tab>
       <van-tab title="待收货" name="30">
-        <div class="list">
-          <div v-if="listreceive.length==0" class="empty">
+        <div class="list" >
+          <div v-if="list.length==0" class="empty">
             <div>
               <img src="../../../assets/image/empty-1.png" />
             </div>
             <div>暂无相关订单记录</div>
           </div>
-
+          <div v-else class="product-card" v-for="(itemall, i) in list" :key="i">
+            <div class="store">
+              <span>{{itemall.store_name}}</span>
+              <span class="status">{{itemall.state_desc}}</span>
+            </div>
+            <div class="product" v-for="(item, goods_id) in itemall.extend_order_goods" :key="goods_id">
+              <router-link :to="{name:'ProductDetail',query:{id:item.goods_id}}">
+                <van-card :thumb="item.goods_image_url">
+                  <template slot="title">
+                    <div class="title">
+                      <span>{{item.goods_name}}</span>
+                      <div>￥{{item.goods_price}}</div>
+                    </div>
+                  </template>
+                  <template slot="desc">
+                    <div class="desc num">
+                      <span></span>
+                      <span>x {{item.goods_salenum}}</span>
+                    </div>
+                    <div class="desc"></div>
+                  </template>
+                </van-card>
+              </router-link>
+            </div>
+            <div class="bottom">
+              <!--<div class="info">退款待处理</div>-->
+              <div class="total">
+                <span>共{{itemall.order_from}}件商品</span>
+                <span>合计￥{{itemall.pay_amount}}</span>
+              </div>
+              <div class="btn">
+                <van-button plain size="small" round>查看物流</van-button>
+                <van-button plain size="small" round>确认收货</van-button>
+              </div>
+            </div>
+          </div>
         </div>
       </van-tab>
       <van-tab title="待评价" name="40">
-        <div class="list">
-          <div v-if="listevaluate.length==0" class="empty">
+        <div class="list" >
+          <div v-if="list.length==0" class="empty">
             <div>
               <img src="../../../assets/image/empty-1.png" />
             </div>
             <div>暂无相关订单记录</div>
+          </div>
+          <div v-else class="product-card" v-for="(itemall, i) in list" :key="i">
+            <div class="store">
+              <span>{{itemall.store_name}}</span>
+              <span class="status">{{itemall.state_desc}}</span>
+            </div>
+            <div class="product" v-for="(item, goods_id) in itemall.extend_order_goods" :key="goods_id">
+              <router-link :to="{name:'ProductDetail',query:{id:item.goods_id}}">
+                <van-card :thumb="item.goods_image_url">
+                  <template slot="title">
+                    <div class="title">
+                      <span>{{item.goods_name}}</span>
+                      <div>￥{{item.goods_price}}</div>
+                    </div>
+                  </template>
+                  <template slot="desc">
+                    <div class="desc num">
+                      <span></span>
+                      <span>x {{item.goods_salenum}}</span>
+                    </div>
+                    <div class="desc"></div>
+                  </template>
+                </van-card>
+              </router-link>
+            </div>
+            <div class="bottom">
+              <!--<div class="info">退款待处理</div>-->
+              <div class="total">
+                <span>共{{itemall.order_from}}件商品</span>
+                <span>合计￥{{itemall.pay_amount}}</span>
+              </div>
+              <div class="btn">
+                <van-button plain size="small" round>查看物流</van-button>
+                <van-button plain size="small" round to="/order/evaluate">评价</van-button>
+                <van-button plain size="small" round>再次购买</van-button>
+              </div>
+            </div>
           </div>
         </div>
       </van-tab>
@@ -137,6 +248,7 @@
 <script>
 import { Toast } from "vant";
 import { memberOrderList } from "../../../api/memberOrderinfo.js"
+import { Dialog } from 'vant'
 export default {
 
   data() {
@@ -145,10 +257,6 @@ export default {
       value: "",
       showHistory: false,
       list: [{}],
-      listpay: [],
-      listsend: [],
-      listreceive: [],
-      listevaluate: [],
       page: 1,   //当前页数
       perpage: 10, //每页数量
       activeName:"-1"
@@ -180,11 +288,21 @@ export default {
       memberOrderList(data).then(res => {
         console.log(res)
         if(res.result.order_group_list){
-            this.list = res.result.order_group_list
+          this.list = res.result.order_group_list
           }
         }
       )
-    }
+    },
+    cancel () {
+      Dialog.confirm('确定要取消该订单吗？').then(action => {
+        cancelOrder(list.order_id).then(res => {
+          this.memberOrderList(true)
+        }).catch(function (error) {
+          Toast(error.message)
+        })
+      })
+
+    },
 
   },
 
@@ -251,33 +369,36 @@ export default {
         }
       }
       .product {
-        display: flex;
-        align-items: center;
-        .van-card {
-          padding-left: 0;
-          padding-right: 0;
-          background-color: #fff;
-          width: 100%;
-        }
-        .title {
-          color: #1b1b1b;
-          font-size: 15px;
-          display: flex;
-          span {
-            flex-grow: 1;
-          }
-        }
-        .desc {
-          color: #b7b7b7;
-        }
-        .num {
+        a{
+          display: block;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-        }
-        .price {
-          text-align: right;
-          width: 70px;
+          .van-card {
+            padding-left: 0;
+            padding-right: 0;
+            background-color: #fff;
+            width: 100%;
+          }
+          .title {
+            color: #1b1b1b;
+            font-size: 15px;
+            display: flex;
+            span {
+              flex-grow: 1;
+            }
+          }
+          .desc {
+            color: #b7b7b7;
+          }
+          .num {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .price {
+            text-align: right;
+            width: 70px;
+          }
         }
       }
       .bottom {
@@ -296,7 +417,7 @@ export default {
         .btn {
           button {
             color: #888;
-            margin: 5px 5px;
+            margin: 5px 0 5px 6px;
             font-size:13px;
           }
         }

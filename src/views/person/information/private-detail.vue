@@ -25,12 +25,24 @@
     </van-popup>
 
     <div class="private-detail fix">
-      <div class="detail-item ab fix">
-        <div class="item">
-
+      <div class="detail-item fix" v-for="i in 8" :key="i">
+        <div class="item fix">
+          <div class="item-l">
+            <img src="../../../assets/image/banner01.jpg"/>
+          </div>
+          <div class="item-r">
+            <p>hi，我的装修需求是：订单
+              联系电话：15757629995，请及时联系我哦！</p>
+          </div>
         </div>
         <div class="time">1分钟前</div>
       </div>
+    </div>
+    <div class="sx-btn">
+      <form class="ab">
+        <van-field v-model="value" placeholder="发布回复" />
+        <van-button color="#323232">发送</van-button>
+      </form>
     </div>
   </div>
 </template>
@@ -88,5 +100,74 @@
   }
   .private-detail{
     padding:24px 15px;
+    padding-bottom:100px;
+    .detail-item{
+      .item{
+        .item-l{
+          width:54px;
+          heihgt:54px;
+          float:left;
+          img{
+            width:54px;
+            height:54px;
+            border-radius:50%;
+          }
+        }
+        .item-r{margin-left:16px;width:calc(100% - 70px);min-height:28px;border:solid 1px #b7b7b7;float:left;
+          padding:12px 15px;
+          text-align:justify;
+          margin-top:12px;
+          position:relative;
+          background-color:#fff;
+        }
+        .item-r::before, .item-r::after{
+          bottom: 100%;
+          left:-16px;
+          top:8px;
+          border: 1px solid transparent;
+          content: " ";
+          height: 0;
+          width: 0;
+          position: absolute;
+          pointer-events: none;
+          border-width: 8px;
+          margin-left:0;
+        }
+        .item-r::before{
+          border-right-color: #b7b7b7;
+        }
+        .item-r::after{
+          border-right-color:#fff;
+          border-width: 7px;
+          margin-left: 0px;
+          left:-13px;
+          top:9px;
+        }
+      }
+      .time{text-align:center;margin-top:12px;}
+    }
+    .detail-item:nth-child(2n+1){
+      .item-l{
+        float:right;
+      }
+      .item-r{margin-left:0;margin-right:16px;}
+      .item-r::before, .item-r::after{
+        left:inherit;
+        right:-16px;
+      }
+      .item-r::before{
+        border-left-color: #b7b7b7;
+        border-right-color:transparent;
+      }
+      .item-r::after{
+        border-left-color:#fff;
+        border-right-color:transparent;
+        right:-13px;
+        left:inherit;
+      }
+    }
   }
+  .sx-btn{position:fixed;bottom:0;background-color:#fff;padding:12px 15px;border-top:solid 1px #e7e7e7;width:100%;}
+  .sx-btn .van-cell{border:solid 1px #b7b7b7;padding: 6px 12px;}
+  .sx-btn button{border-radius:5px;width:92px;margin-left:12px;height:38px;line-height:36px;}
 </style>
