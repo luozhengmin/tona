@@ -46,15 +46,17 @@
               <!--height="55px"-->
               <!--src="https://img.yzcdn.cn/vant/cat.jpeg"-->
             <!--/>-->
-            <div class="info fix">
-              <div class="sx">
-                <div class="name">{{item.from_member_name}}</div>
-                <div class="id">{{item.message_body}}</div>
+            <router-link :to="{name:'private-detail',query:{id:item.message_id}}">
+              <div class="info fix">
+                <div class="sx">
+                  <div class="name">{{item.from_member_name}}</div>
+                  <div class="id">{{item.message_body}}</div>
+                </div>
+                <div class="sq">
+                  <time>{{item.message_time}}</time>
+                </div>
               </div>
-              <div class="sq">
-                <time>{{item.message_time}}</time>
-              </div>
-            </div>
+            </router-link>
           </div>
         </van-list>
 
@@ -126,18 +128,34 @@
     background-color:#f7f7f7;
     height:100%;
     .private-item{
-      padding:15px 15px 12px 15px ;
       background-color: #fff;
-      display: flex;
-      align-items: center;
       border-bottom:solid 1px #eee;
-      .info {width:100%;
-        .sx{width:100%;margin-bottom:6px;}
-        .sq{font-size:13px;color:#b7b7b7;text-align:right;width:100%;}
-        .name {font-size:15px;color: #363636;line-height: normal;}
-        .id {
-          color: #888;
-          font-size:13px;
+      a {
+        padding:15px 15px 12px 15px ;
+        display:block;
+        display: flex;
+        align-items: center;
+        .info {
+          width: 100%;
+          .sx {
+            width: 100%;
+            margin-bottom: 6px;
+          }
+          .sq {
+            font-size: 13px;
+            color: #b7b7b7;
+            text-align: right;
+            width: 100%;
+          }
+          .name {
+            font-size: 15px;
+            color: #363636;
+            line-height: normal;
+          }
+          .id {
+            color: #888;
+            font-size: 13px;
+          }
         }
       }
     }

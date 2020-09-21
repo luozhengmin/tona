@@ -391,6 +391,11 @@ export default new Router({
           component: () => import("@/views/person/information/private"),
         },
         {
+          path: 'information/private-detail',
+          name: 'private-detail',
+          component: () => import("@/views/person/information/private-detail"),
+        },
+        {
           path: 'feedback/edit',
           name: 'feedback-edit',
           component: () => import("@/views/person/feedback/edit"),

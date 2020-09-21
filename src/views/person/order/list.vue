@@ -57,13 +57,13 @@
       </van-tab>
       <van-tab title="待付款" name="10">
         <div class="list" >
-          <div v-if="listpay.length==0" class="empty">
+          <div v-if="list.length==0" class="empty">
             <div>
               <img src="../../../assets/image/empty-1.png" />
             </div>
             <div>暂无相关订单记录</div>
           </div>
-          <div class="product-card" v-for="(itemall, i) in list" :key="i">
+          <div v-else class="product-card" v-for="(itemall, i) in list" :key="i">
             <div class="store">
               <span>TONA官方旗舰店</span>
               <span class="status">等待买家确认</span>
@@ -155,11 +155,9 @@ export default {
 
     };
   },
-  created () {
-    this.getOrderList(true)
-  },
   mounted(){
     this.showTabs();
+    this.getOrderList()
   },
   methods: {
     showTabs(){
