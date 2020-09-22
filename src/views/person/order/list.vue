@@ -331,7 +331,7 @@ export default {
   },
   created() {
     this.showTabs();
-    // this.getOrderList();
+    this.getOrderList();
   },
   methods: {
     showTabs() {
