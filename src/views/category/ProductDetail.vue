@@ -353,7 +353,7 @@ export default {
     onAddCartClicked(data) {
       //添加到购物车
       var selectedSkuComb = data.selectedSkuComb;
-      this.goodsid = selectedSkuComb.id;
+      // this.goodsid = selectedSkuComb.id;
       var num = data.selectedNum;
       setGoodsInCart(this.goodsid, num).then((response) => {
         if (response.code == 10000) {

@@ -3,11 +3,9 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="head-ss fix">
-          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
-        <div class="head-logo">
-          支付完成
-        </div>
+        <div class="head-logo">支付完成</div>
       </div>
     </div>
     <div class="tips">
@@ -19,11 +17,11 @@
     <div class="pay">
       <div class="item">
         <van-icon name="credit-pay" />支付方式
-        <span>微信支付</span>
+        <span>{{payway}}</span>
       </div>
       <div class="item">
         <van-icon name="balance-list-o" />支付金额
-        <span>￥180</span>
+        <span>￥{{amount}}</span>
       </div>
     </div>
     <div class="btns">
@@ -42,13 +40,20 @@ import { Toast } from "vant";
 export default {
   name: "",
   data() {
-
+    return {
+      payway: "",
+      amount: 0,
+    };
+  },
+  created() {
+    this.payway = this.$route.query.payway;
+    this.amount = this.$route.query.amount;
   },
   methods: {
     goIndex() {
-      this.$router.push({'name': 'Index'})
+      this.$router.push({ name: "Index" });
     },
-  }
+  },
 };
 </script>
 
@@ -62,9 +67,9 @@ export default {
     color: #f4523b;
     font-size: 17px;
     i {
-      font-size:52px;
+      font-size: 52px;
       padding: 10px;
-      margin-top:40px;
+      margin-top: 40px;
     }
   }
   .pay {
@@ -99,7 +104,7 @@ export default {
       color: #888;
       margin: 0 6px;
       font-size: 14px;
-      padding:2px 24px;
+      padding: 2px 24px;
       height: auto;
     }
   }

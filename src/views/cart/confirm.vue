@@ -66,16 +66,20 @@
       </div>
     </div>
     <div class="jifen">
-      <van-field readonly input-align="right" label="使用余额" placeholder="可用金额:19893.00元">
+      <van-field
+        readonly
+        input-align="right"
+        label="使用余额"
+        :placeholder="'可用金额:'+available_predeposit+'元'"
+      >
         <template #right-icon>
-          <van-checkbox v-model="checked" checked-color="#f4523b"></van-checkbox>
+          <van-checkbox v-model="userBalance" checked-color="#f4523b"></van-checkbox>
         </template>
       </van-field>
 
       <van-cell-group>
-        <van-field v-model="password" label="支付密码" placeholder="请输入用户名" />
+        <van-field type="password" v-model="password" label="支付密码" placeholder="支付密码" />
       </van-cell-group>
-
     </div>
     <div style="height:60px;"></div>
     <div class="bottom-bar">
@@ -99,6 +103,7 @@
 <script>
 import { Toast, Dialog } from "vant";
 import { submitCart, submitOrder } from "../../api/memberCart";
+import { memberOrderPay } from "@/api/memberOrderinfo.js";
 export default {
   name: "",
   data() {
@@ -114,7 +119,9 @@ export default {
       goodsParams: "",
       order_count: 0,
       order_amount: 0,
-      password:''
+      available_predeposit: 0,
+      userBalance: true,
+      password: "",
     };
   },
   created() {
@@ -123,12 +130,12 @@ export default {
   },
   methods: {
     getGoodsInfo() {
-      submitCart({ cart_id: this.goodsParams }).then(res => {
+      submitCart({ cart_id: this.goodsParams }).then((res) => {
         console.log(res);
         if (res.code != 10000) {
           // this.$router.push("/address-edit");
           Dialog.alert({
-            message: res.message
+            message: res.message,
           });
           return;
         }
@@ -138,17 +145,31 @@ export default {
         this.store_cart_list = res.result.store_cart_list;
         this.inv_info = res.result.inv_info;
         this.order_amount = res.result.order_amount * 100;
-        this.store_cart_list.forEach(store => {
+        this.available_predeposit = res.result.available_predeposit;
+        this.store_cart_list.forEach((store) => {
           store.pay_message = "";
-          store.goods_list.forEach(goods => {
+          store.goods_list.forEach((goods) => {
             this.order_count += goods.goods_num;
           });
         });
       });
     },
     onSubmit() {
+      if (this.userBalance) {
+        var amount = this.order_amount / 100;
+        var data = {
+          password: this.password,
+          payment_code: "predeposit",
+          pd_pay: amount,
+        };
+        memberOrderPay(data).then((res) => {
+          console.log(res);
+          this.$router.push("/pay-success?payway=余额支付&amount=" + amount);
+        });
+        return;
+      }
       let pay_message = [];
-      this.store_cart_list.forEach(store => {
+      this.store_cart_list.forEach((store) => {
         pay_message.push(store.store_id + "|" + store.pay_message);
       });
       let params = {
@@ -159,13 +180,13 @@ export default {
         vat_hash: this.vat_hash,
         offpay_hash: this.address_api.offpay_hash,
         offpay_hash_batch: this.address_api.offpay_hash_batch,
-        pay_name: "online"
+        pay_name: "online",
       };
-      submitOrder(params).then(res => {
+      submitOrder(params).then((res) => {
         console.log(res);
         if (res.code != 10000) {
           Dialog.alert({
-            message: res.message
+            message: res.message,
           });
           return;
         }
@@ -176,8 +197,9 @@ export default {
     onConfirm(value) {
       this.value = value;
       this.showPicker = false;
-    }
-  }
+    },
+    payOrder() {},
+  },
 };
 </script>
 
@@ -269,9 +291,11 @@ export default {
   }
   .jifen {
     margin-bottom: 50px;
-    background-color:#fff;
-    padding-bottom:8px;
-    button{margin:12px 0 0 15px;}
+    background-color: #fff;
+    padding-bottom: 8px;
+    button {
+      margin: 12px 0 0 15px;
+    }
   }
   .van-submit-bar {
     .van-submit-bar__bar {

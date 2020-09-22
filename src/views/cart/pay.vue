@@ -68,6 +68,7 @@
 
 <script>
 import { Toast } from "vant";
+import { memberOrderPay } from "@/api/memberOrderinfo.js";
 export default {
   name: "",
   data() {
@@ -76,7 +77,7 @@ export default {
       value: "",
       order_list: [],
       total_goods_count: 0,
-      total_order_amount: 0
+      total_order_amount: 0,
     };
   },
   created() {
@@ -86,14 +87,22 @@ export default {
   },
 
   methods: {
-    onSubmit() {},
+    onSubmit() {
+      var data = {
+        pay_sn: "",
+        password: "123456",
+        pd_pay: "123456",
+        payment_code: "predeposit",
+      };
+      memberOrderPay(data).then((res) => {});
+    },
     initData() {
-      this.order_list.forEach(o => {
+      this.order_list.forEach((o) => {
         this.total_goods_count += o.order_goods_count;
         this.total_order_amount += o.order_goods_count;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
