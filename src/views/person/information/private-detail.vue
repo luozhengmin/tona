@@ -25,7 +25,7 @@
     </van-popup>
 
     <div class="private-detail fix">
-      <div class="detail-item fix" v-for="item in privateDetail" :key="index">
+      <div class="detail-item fix" v-for="(item,index) in privateDetail" :key="index">
         <div class="item fix">
           <div class="item-l">
             <img src="../../../assets/image/banner01.jpg"/>
@@ -55,8 +55,7 @@
     data(){
       return{
         show:false,
-        privateDetail:[],
-        message_id:'',
+        privateDetail:[{}],
         value:''
       }
     },
@@ -71,21 +70,21 @@
       toClearbrowse(){
 
       },
-      created(){
-        this.getPrivateMessageDetail()
-      },
-      getPrivateMessageDetail(){
-        this.message_id = this.$route.query.id
-        getPrivateDetail(this.message_id).then(
+      getPrivateMessageDetail(id){
+        getPrivateDetail({message_id:id}).then(
           response => {
-            console.log(response)
             this.privateDetail = response.result
+            console.log(this.privateDetail)
           },
           error => {
 
           }
         )
-      }
+      },
+      created(){
+        let id = this.$route.query.id;
+        this.getPrivateMessageDetail(id)
+      },
     }
   }
 </script>

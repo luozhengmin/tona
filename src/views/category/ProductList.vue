@@ -166,7 +166,6 @@ export default {
     .van-sidebar-item {
       width: 60px;
       border: none;
-      padding: 0 8px 24px 12px;
     }
     .van-sidebar-item--select {
       color: #f4523b;
