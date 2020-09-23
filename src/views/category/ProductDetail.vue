@@ -78,7 +78,7 @@
               </div>
               <div class="list-item">
                 <a href>
-                  <i class="iconfont icon-qq" />
+                  <i class="iconfont icon-icon363601" />
                 </a>
                 <span>QQ好友</span>
               </div>
