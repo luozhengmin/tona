@@ -65,6 +65,21 @@ export const getPrivateALL =
       method: 'POST'
     })
   }
+
+// 获取用户消息列表 - 私信详情对话框
+export const getPrivateDetail =
+  (message_id) => {
+    return request({
+      url: `/api/member_message/privatemsg`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      params: {
+        'message_id':message_id,
+      },
+      method: 'GET'
+    })
+  }
 // 获取用户消息列表 - 活动消息
 export const getMemberActiveList =
 (page,perpage) => {

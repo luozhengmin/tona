@@ -25,7 +25,7 @@
     </van-popup>
 
     <div class="private-detail fix">
-      <div class="detail-item fix" v-for="i in 8" :key="i">
+      <div class="detail-item fix" v-for="item in privateDetail" :key="index">
         <div class="item fix">
           <div class="item-l">
             <img src="../../../assets/image/banner01.jpg"/>
@@ -48,12 +48,16 @@
 </template>
 
 <script>
+  import { getPrivateDetail} from '../../../api/memberMessage'
   import { Toast } from "vant";
   export default {
     name: "private-detail",
     data(){
       return{
         show:false,
+        privateDetail:[],
+        message_id:'',
+        value:''
       }
     },
     methods:{
@@ -68,9 +72,20 @@
 
       },
       created(){
-        let id = this.$route.query.id;
-        this.getPrivateDetail(id)
+        this.getPrivateMessageDetail()
       },
+      getPrivateMessageDetail(){
+        this.message_id = this.$route.query.id
+        getPrivateDetail(this.message_id).then(
+          response => {
+            console.log(response)
+            this.privateDetail = response.result
+          },
+          error => {
+
+          }
+        )
+      }
     }
   }
 </script>
