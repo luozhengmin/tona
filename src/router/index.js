@@ -405,6 +405,11 @@ export default new Router({
           name: 'foot-list',
           component: () => import("@/views/person/foot/list"),
         },
+        {
+          path: 'navMenu',
+          name: 'navMenu',
+          component: () => import("@/views/index/navMenu"),
+        },
       ]
     },
 

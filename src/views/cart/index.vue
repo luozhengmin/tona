@@ -468,8 +468,6 @@ export default {
 .p-warn {
   position: absolute;
   right: 50px;
-  top: 0;
-  line-height: 50px;
   a {
     font-size: 14px;
     color: #fff;

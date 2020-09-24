@@ -12,38 +12,7 @@
       </div>
       <transition name="van-slide-down">
         <div class="slideNav" v-if="isActive">
-          <ul class="ab fix">
-            <li>
-              <router-link to="/BrandList-1">
-                <img src="../../assets/image/nav05.png" />
-                <span>品牌馆</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Design">
-                <img src="../../assets/image/nav04.png" />
-                <span>优秀设计</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/GlobalStore">
-                <img src="../../assets/image/nav03.png" />
-                <span>全球门店</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Investment">
-                <img src="../../assets/image/nav02.png" />
-                <span>招商加盟</span>
-              </router-link>
-            </li>
-            <li>
-              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
-                <img src="../../assets/image/nav01.png">
-                <span>关于我们</span>
-              </p>
-            </li>
-          </ul>
+          <nav-menu></nav-menu>
         </div>
       </transition>
     </div>
@@ -98,7 +67,9 @@ import { Toast } from "vant";
 import GoodsClassApi from "@/api/GoodsClassApi";
 import axios from "@/utils/request";
 import DesignApi from "@/api/DesignApi";
+import NavMenu from "../index/navMenu.vue";
 export default {
+  components: {NavMenu},
   name: "ProductList",
   data() {
     return {
@@ -135,9 +106,6 @@ export default {
         this.bannerItem = res.result.ad_list;
       });
     },
-    goPage (url) {
-      window.location.href = url
-    }
   },
 };
 </script>
@@ -197,7 +165,7 @@ export default {
             }
           }
           h2 {
-            font-size: 14px;
+            font-size: 15px;
             color: #888;
             padding: 12px 0;
           }
@@ -209,6 +177,6 @@ export default {
 .brand-con img {
   border-radius: 5px;
 }
-/*.container{background-color:#f7f7f7;}*/
+.list .van-sidebar-item{font-size:15px;}
 </style>
 

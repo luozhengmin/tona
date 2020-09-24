@@ -420,11 +420,11 @@ export default {
 
     .empty {
       padding: 50px 15px;
-      font-size: 16px;
+      font-size: 14px;
       color: #b7b7b7;
       text-align: center;
       img {
-        margin-bottom: 20px;
+        margin-bottom: 6px;
       }
     }
     .product-card {

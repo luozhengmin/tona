@@ -207,7 +207,7 @@ export default {
             color: #888;
             margin: 5px 5px;
             font-size:13px;
-            padding:0 12px;
+            padding:0 16px;
           }
         }
       }

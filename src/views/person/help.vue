@@ -56,6 +56,7 @@
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
+  min-height:100%;
   .top {
     background-color: #ffffff;
     display: flex;
@@ -83,16 +84,18 @@
   }
   .q-title {
     padding:12px 15px;
-    font-size:15px;
+    font-size:16px;
     color: #909090;
   }
   .q-list {
     background-color: #fff;
     .van-cell {
-      font-size: 15px;
+      font-size: 16px;
       padding: 12px 15px;
+      border-bottom: solid 1px #eee;
     }
     .van-cell:not(:last-child)::after{border-bottom:solid 1px #eee;}
   }
+  .q-list .van-cell__right-icon{font-size:20px;margin-right:-6px;}
 }
 </style>

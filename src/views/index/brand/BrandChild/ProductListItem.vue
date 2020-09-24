@@ -69,6 +69,8 @@ export default {
     div{
       img{
         height:165px;
+        border-top-left-radius:3px;
+        border-top-right-radius:3px;
       }
     }
     .title {
@@ -106,5 +108,10 @@ export default {
       }
     }
   }
+}
+.list .van-row{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
 }
 </style>

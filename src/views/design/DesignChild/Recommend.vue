@@ -143,12 +143,13 @@
         .infor-l{
           width:90%;padding-right:3%;
           h2{
-            font-size:15px;
+            font-size:16px;
             color:#000;
             padding-bottom:5px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            font-weight: bold;
           }
           .-t{
             span{align-items:center;}
@@ -171,6 +172,7 @@
     height: 100%;
     padding: 15px 15px 0 15px;
     .title-t{
+      padding-bottom:0;
       p{font-size:14px;color:#888;}
     }
     .van-row{
@@ -221,9 +223,13 @@
       margin:2px 0 8px 0;
     }
     .van-row {
-      .van-col:last-child{margin:6px 0;}
+      display:flex;
+      flex-direction:row;
+      flex-wrap:wrap;
+      .van-col:last-child {
+        margin-bottom:12px;
+      }
       .van-col {
-        float:left;
         .main {
           border:none;
           .infor-l {

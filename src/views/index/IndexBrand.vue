@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="index-brand fix">
       <div class="b-child-tab home-child">
         <van-tabs
@@ -34,7 +33,6 @@
       </div>
 
     </div>
-  </div>
 </template>
 
 <script>

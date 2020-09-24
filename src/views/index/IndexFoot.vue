@@ -40,9 +40,6 @@
           this.codeList = res.result.ad_list;
         });
       },
-      goPage(url){
-        window.location.href = url
-      }
     }
   }
 </script>

@@ -14,38 +14,7 @@
       </div>
       <transition name="van-slide-down">
         <div class="slideNav" v-if="isActive">
-          <ul class="ab fix">
-            <li>
-              <router-link to="/BrandList-1">
-                <img src="../../assets/image/nav05.png">
-                <span>品牌馆</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Design">
-                <img src="../../assets/image/nav04.png">
-                <span>优秀设计</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/GlobalStore">
-                <img src="../../assets/image/nav03.png">
-                <span>全球门店</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Investment">
-                <img src="../../assets/image/nav02.png">
-                <span>招商加盟</span>
-              </router-link>
-            </li>
-            <li>
-              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
-                <img src="../../assets/image/nav01.png">
-                <span>关于我们</span>
-              </p>
-            </li>
-          </ul>
+          <nav-menu></nav-menu>
         </div>
       </transition>
     </div>
@@ -152,7 +121,9 @@
 <script>
 import { getMemberInfo,setMemberLogout } from '../../api/memberInfo'
 import { Dialog } from 'vant'
+import NavMenu from "../index/navMenu.vue";
 export default {
+  components: {NavMenu},
   name: "",
   data(){
     return{
@@ -249,9 +220,6 @@ export default {
     stateMark(){
       this.$router.push({path:'/order/list?tab=40'});
     },
-    goPage (url) {
-      window.location.href = url
-    }
   }
 };
 </script>
@@ -331,7 +299,7 @@ export default {
     }
   }
 }
-.p-warn{position:absolute;right:50px;top:9px;}
+.p-warn{position:absolute;right:50px;}
 .p-warn i{font-size:22px;color:#fff;}
 .p-warn:after{width:6px;height:6px;background-color:#f4523b;content:'';display:block;position:absolute;top:9px;right:2px;
   border-radius:50%;

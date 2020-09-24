@@ -12,38 +12,7 @@
       </div>
       <transition name="van-slide-down">
         <div class="slideNav" v-if="isActive">
-          <ul class="ab fix">
-            <li>
-              <router-link to="/BrandList-1">
-                <img src="../../../assets/image/nav05.png">
-                <span>品牌馆</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Design">
-                <img src="../../../assets/image/nav04.png">
-                <span>优秀设计</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/GlobalStore">
-                <img src="../../../assets/image/nav03.png">
-                <span>全球门店</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Investment">
-                <img src="../../../assets/image/nav02.png">
-                <span>招商加盟</span>
-              </router-link>
-            </li>
-            <li>
-              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
-                <img src="../../../assets/image/nav01.png">
-                <span>关于我们</span>
-              </p>
-            </li>
-          </ul>
+          <nav-menu></nav-menu>
         </div>
       </transition>
     </div>
@@ -90,7 +59,9 @@
 import { Toast } from "vant";
 import ArticleApi from '@/api/ArticleApi';
 import InvestmentApi from "@/api/InvestmentApi";
+import NavMenu from "../navMenu.vue";
 export default {
+  components: {NavMenu},
   name: "Investment",
   data() {
     return {
@@ -110,9 +81,7 @@ export default {
   },
 
   methods: {
-    goPage (url) {
-      window.location.href = url
-    },
+
     getPage(){
       ArticleApi.articleShow({article_id:53}).then(res=>{
         console.log(res)
@@ -201,6 +170,7 @@ export default {
       }
       .message {
         margin-top: 16px;
+        padding: 0 20px;
         .van-cell {
           border: solid 1px #eee;
           margin-bottom: 12px;

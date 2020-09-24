@@ -12,38 +12,7 @@
       </div>
       <transition name="van-slide-down">
         <div class="slideNav" v-if="isActive">
-          <ul class="ab fix">
-            <li>
-              <router-link to="/BrandList-1">
-                <img src="../../../assets/image/nav05.png">
-                <span>品牌馆</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Design">
-                <img src="../../../assets/image/nav04.png">
-                <span>优秀设计</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/GlobalStore">
-                <img src="../../../assets/image/nav03.png">
-                <span>全球门店</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Investment">
-                <img src="../../../assets/image/nav02.png">
-                <span>招商加盟</span>
-              </router-link>
-            </li>
-            <li>
-              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
-                <img src="../../../assets/image/nav01.png">
-                <span>关于我们</span>
-              </p>
-            </li>
-          </ul>
+          <nav-menu></nav-menu>
         </div>
       </transition>
     </div>
@@ -115,7 +84,9 @@
 <script>
 import { Toast } from "vant";
 import GlobalStoreApi from "@/api/GlobalStoreApi";
+import NavMenu from "../navMenu.vue";
 export default {
+  components: {NavMenu},
   name: "GlobalStore",
   data() {
     return {
@@ -163,9 +134,6 @@ export default {
       this.showArea = false;
       this.getList()
     },
-    goPage (url) {
-      window.location.href = url
-    },
   }
 };
 </script>
@@ -173,16 +141,18 @@ export default {
 <style lang="scss" scoped>
 .container {
   background-color: #f7f7f7;
-  height: 100%;
+  min-height: 100%;
 }
 .global-choose {
   width: 100%;
-  margin: 12px 0;
+  margin: 12px 0 8px 0;
   .van-cell {
     .van-cell__title {
       color: #323232;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 18px;
+      height: 28px;
+      line-height: 28px;
     }
     .van-cell__value {
       display: flex;
@@ -201,6 +171,7 @@ export default {
     .van-cell__right-icon {
       margin-right: -4px;
       line-height:28px;
+      font-size:18px;
     }
   }
 }

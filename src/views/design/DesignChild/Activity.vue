@@ -106,12 +106,13 @@
           .infor-l {
             width:90%;padding-right:5%;
             h2 {
-              font-size: 15px;
+              font-size: 16px;
               color: #000;
               padding-bottom: 5px;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
+              font-weight:bold;
             }
             .-t {
               span {

@@ -70,7 +70,11 @@ export default {
     background-color: #fff;
     border: solid 1px #f2f2f2;
     div{
-      img{height:165px;}
+      img{
+        height:165px;
+        border-top-left-radius:3px;
+        border-top-right-radius:3px;
+      }
     }
     .title {
       font-size: 15px;
@@ -114,4 +118,9 @@ export default {
     }
   }
 }
+  .list .van-row{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+  }
 </style>

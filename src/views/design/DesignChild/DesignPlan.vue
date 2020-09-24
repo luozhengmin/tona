@@ -166,7 +166,7 @@
             .infor-l {
               padding: 8px 12px;
               h2 {
-                font-size: 14px;
+                font-size: 15px;
                 color: #000;
                 padding-bottom: 4px;
                 overflow: hidden;
@@ -174,7 +174,6 @@
                 text-overflow: ellipsis;
               }
               .-t {
-                font-size: 13px;
                 i {
                   font-size: 12px;
                   line-height: 12px;
@@ -215,11 +214,13 @@
       margin: 0 0 6px 0;
     }
     .van-row {
+      display:flex;
+      flex-direction:row;
+      flex-wrap:wrap;
       .van-col:last-child {
-        margin: 6px 0;
+        margin-bottom:12px;
       }
       .van-col {
-        float:left;
         .main {
           border: none;
           .infor-l {
