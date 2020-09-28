@@ -385,5 +385,8 @@ img{ -webkit-touch-callout: none; }
 .design-share .van-popup__close-icon{color:#2d2d2d;}
 .card a >.van-image img{border-top-left-radius:3px;border-top-right-radius:3px;}
 .detail-choose .van-sku-header-item{color:#323232;}
+.global .van-cell__title span em{color:#f4523b;padding-right:2px;}
+.userId .van-field__control{color:#999;}
+.feedback .van-field__label{width:7.2em;}
 
 

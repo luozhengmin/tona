@@ -258,4 +258,5 @@
     }
   }
   .design-list .van-swipe-item a img{border-top-left-radius:3px;border-top-right-radius:3px;}
+  .brand-con a img{width:100%;}
 </style>

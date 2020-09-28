@@ -3,11 +3,13 @@
     <van-row gutter="15">
       <van-col span="12" style="margin-bottom:15px" v-for="item in products " :key="item.goods_id">
         <div class="prod">
-          <div>
-            <img :src="item.goods_image_url" />
-          </div>
-          <div class="title">{{item.goods_name}}</div>
-          <div class="desc">{{item.goods_advword}}</div>
+          <router-link :to="{path:'/ProductDetail',query:{id:item.goods_id}}">
+            <div>
+              <img :src="item.goods_image_url" />
+            </div>
+            <div class="title">{{item.goods_name}}</div>
+            <div class="desc">{{item.goods_advword}}</div>
+          </router-link>
           <div class="bottom">
             <div>
               <span class="fuhao">￥</span>

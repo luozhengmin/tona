@@ -23,21 +23,33 @@ export default new Router({
           path: 'how-shop',
           name: 'how-shop',
           component: () => import("@/views/service/how-shop"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'payment',
           name: 'payment',
           component: () => import("@/views/service/payment"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'promises',
           name: 'promises',
           component: () => import("@/views/service/promises"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'contact-us',
           name: 'contact-us',
           component: () => import("@/views/service/contact-us"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'login',
@@ -96,26 +108,41 @@ export default new Router({
           path: 'BrandList',
           name: 'BrandList',
           component: () => import("@/views/index/Brand/BrandList"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'BrandList-1',
           name: 'BrandList-1',
           component: () => import("@/views/index/Brand/BrandList-1"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'BrandChild',
           name: 'BrandChild',
           component: () => import("@/views/index/Brand/BrandChild/BrandChild"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'Tape',
           name: 'Tape',
           component: () => import("@/views/index/Brand/BrandChild/BrandForm/Tape"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'sign-up',
           name: 'sign-up',
           component: () => import("@/views/index/Brand/BrandChild/BrandForm/sign-up"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'Recommend',
@@ -149,6 +176,9 @@ export default new Router({
           path: 'DesignDetail',
           name: 'DesignDetail',
           component: () => import("@/views/design/DesignDetail"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'DesignDetail01',
@@ -159,16 +189,25 @@ export default new Router({
           path: 'GlobalStore',
           name: 'GlobalStore',
           component: () => import("@/views/index/GlobalStore/GlobalStore"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'Investment',
           name: 'Investment',
           component: () => import("@/views/index/Investment/Investment"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'MakeStore',
           name: 'MakeStore',
           component: () => import("@/views/index/GlobalStore/MakeStore"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'ProductList',
@@ -182,6 +221,9 @@ export default new Router({
           path: 'ProductList-Item',
           name: 'ProductList-Item',
           component: () => import("@/views/category/ProductList-Item"),
+          meta: {
+            showFooter: true
+          }
         },
         {
           path: 'ProductSearch',

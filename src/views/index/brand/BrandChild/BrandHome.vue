@@ -168,7 +168,7 @@ export default {
   position: relative;
   overflow: hidden;
   .van-swipe-item {
-    margin-right: 10px;
+    margin-right: 15px;
     .main {
       color: #888;
       padding: 12px 12px;

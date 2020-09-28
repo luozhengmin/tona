@@ -6,7 +6,7 @@
           <van-icon name="arrow-left" @click="$router.go(-1)"/>
         </div>
         <div class="head-logo">
-          选择收货人
+          地址管理
         </div>
       </div>
     </div>

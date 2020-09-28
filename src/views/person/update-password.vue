@@ -14,9 +14,9 @@
       </div>
     </div>
 
-    <div class="form">
+    <div class="form b-password">
       <van-field label="旧密码" placeholder="请输入旧密码"></van-field>
-      <van-field label="新密码" placeholder="请输入新密码（6至20位数字或字母）"></van-field>
+      <van-field label="新密码" placeholder="请输入新密码（6至8位数字或字母）"></van-field>
       <van-field label="确认密码" placeholder="请再次输入密码"></van-field>
     </div>
 
@@ -70,4 +70,5 @@ export default {
     .van-button{border-radius:4px;}
   }
 }
+  .b-password .van-field__label{width:5.2em;}
 </style>

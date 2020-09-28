@@ -33,7 +33,7 @@
       </van-search>
     </div>
     <div class="list wrap fix">
-      <van-tree-select height="88vw" :items="items" :main-active-index.sync="active">
+      <van-tree-select height="100vw" :items="items" :main-active-index.sync="active">
         <template #content>
           <div v-for="(item,index) in items" :key="item.id">
             <template v-if="active === index">
@@ -159,7 +159,7 @@ export default {
                   padding: 8px 0;
                 }
                 .prod-pic{
-                  img{height:86px;}
+                  img{height:96px;}
                 }
               }
             }

@@ -28,10 +28,21 @@
           right-icon="arrow"
           readonly
           :placeholder="yuyueParams.mendian_name"
-          required
         />
-        <van-field v-model="yuyueParams.name" type="name" label="姓名" placeholder="请输入姓名" required/>
-        <van-field v-model="yuyueParams.phone" type="number" label="手机号码" placeholder="请输入手机号" required/>
+        <van-field v-model="yuyueParams.name" type="name"  placeholder="请输入姓名">
+          <template #label>
+              <span>
+                <em>*</em>姓名
+              </span>
+          </template>
+        </van-field>
+        <van-field v-model="yuyueParams.phone" type="number"  placeholder="请输入手机号">
+          <template #label>
+              <span>
+                <em>*</em>手机号码
+              </span>
+          </template>
+        </van-field>
         <van-field
           readonly
           clickable
@@ -40,8 +51,13 @@
           label="预约日期"
           placeholder="请选择日期"
           @click="showPicker = true"
-          required
-        />
+        >
+          <template #label>
+              <span>
+                <em>*</em>预约日期
+              </span>
+          </template>
+        </van-field>
 
         <van-field v-model="yuyueParams.demand" type="demand" label="商品需求" placeholder="最多输入200字" />
         <van-field
@@ -147,6 +163,18 @@ export default {
     confirmSubmit() {
       if (this.fileList.length > 0) {
         this.yuyueParams.huxing_fan_image = this.fileList[0].url;
+      }
+      if (!this.yuyueParams.name) {
+        Toast.fail("请输入姓名");
+        return;
+      }
+      if (!this.yuyueParams.phone) {
+        Toast.fail("请输入手机号");
+        return;
+      }
+      if (!this.yuyueParams.date_time) {
+        Toast.fail("请选择日期");
+        return;
       }
       console.log(this.yuyueParams);
       GlobalStoreApi.yuyue(this.yuyueParams).then(res => {

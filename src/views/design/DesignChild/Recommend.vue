@@ -141,7 +141,7 @@
         align-items:center;
         background-color:#f7f7f7;
         .infor-l{
-          width:90%;padding-right:3%;
+          width: calc(100% - 15px);padding-right:3%;
           h2{
             font-size:15px;
             color:#000;

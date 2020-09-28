@@ -10,13 +10,12 @@
         </div>
       </div>
     </div>
-    <div class="form">
+    <div class="form feedback">
       <div class="item">
         <van-field
           readonly
           input-align="right"
-          placeholder="请选择反馈类型"
-          label="发票内容"
+          label="请选择反馈类型"
           :value="value3"
           @click="showPicker3 = true"
           is-link
@@ -101,4 +100,5 @@ export default {
     border: 1px solid #eeeeee;
   }
 }
+
 </style>

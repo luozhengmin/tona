@@ -25,7 +25,7 @@
 
     <div class="form">
       <van-cell-group>
-        <van-field label="用户ID" :value="user.member_id" readonly></van-field>
+        <van-field label="用户ID" :value="user.member_id" readonly class="userId"></van-field>
         <van-field label="昵称" :value="user.member_truename" v-model="nickname" use-button-slot>
           <van-button slot="button" type="info" plain size="small" @click="onidentify">去认证</van-button>
         </van-field>

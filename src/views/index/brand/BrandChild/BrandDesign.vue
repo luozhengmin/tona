@@ -33,9 +33,10 @@
           finished-text="没有更多了"
         >
           <van-col v-for="item in designList " :key="item.fan_id">
-            <a href>
+            <router-link :to="{name:'DesignDetail',query:{id:item.fan_id}}">
+            <div class="pic">
               <img :src="item.overview_picture" />
-            </a>
+            </div>
             <div class="main ab">
               <div class="infor-l ac">
                 <h2>{{item.fan_name}}</h2>
@@ -54,6 +55,7 @@
                 <span>{{item.member_name}}</span>
               </div>
             </div>
+            </router-link>
           </van-col>
         </van-list>
       </van-row>

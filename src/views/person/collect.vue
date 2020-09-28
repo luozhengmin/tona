@@ -19,7 +19,7 @@
       </transition>
     </div>
     <div class="collect-list">
-      <van-tabs v-model="active" color="#f4523b">
+      <van-tabs v-model="active" color="#f4523b" line-width="90">
         <van-tab title="设计方案">
           <div v-if="collectFanList.length==0" class="empty">
             <div>
@@ -48,9 +48,7 @@
                       <van-image width="28px" height="28px" round fit="cover" :src="itemfan.member_avatar" />
                       <span>{{itemfan.member_name}}</span>
                     </div>
-                    <div>
-                      <i class="fa fa-eye"></i>{{itemfan.see_num}}
-                    </div>
+                    <div class="view ab"><van-icon name="eye-o" />{{itemfan.see_num}}</div>
                   </div>
                 </router-link>
               </div>
@@ -240,6 +238,13 @@ export default {
           align-items: center;
           span {
             margin-left: 10px;
+          }
+        }
+        .view{
+          align-items:center;
+          i{
+            font-size: 16px;
+            padding-right: 2px;
           }
         }
       }

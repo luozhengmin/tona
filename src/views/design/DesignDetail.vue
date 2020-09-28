@@ -313,6 +313,7 @@
         let got = this.$el.querySelector(selector)
         this.current = j
         document.body.scrollTop = got.offsetTop
+        this.showindex = false;
       },
       collect() {
         let params = {fid:this.desginInfo.fan_id}
@@ -347,7 +348,7 @@
         DesignApi.consult(this.consult).then(res => {
           Toast.success("申请成功");
           this.showForm = false;
-        });
+        })
       },
     },
     created(){
