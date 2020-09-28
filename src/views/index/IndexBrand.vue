@@ -82,6 +82,9 @@ Vue.use(SwipeItem);
   .brand-list{
     .van-swipe-item{
       margin-right:10px;
+      img{
+        border-radius:5px;
+      }
     }
   }
   .design-list{

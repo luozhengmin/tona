@@ -413,5 +413,6 @@ export default new Router({
       ]
     },
 
-  ]
+  ],
+
 })

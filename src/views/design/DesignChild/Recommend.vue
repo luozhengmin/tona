@@ -143,7 +143,7 @@
         .infor-l{
           width:90%;padding-right:3%;
           h2{
-            font-size:16px;
+            font-size:15px;
             color:#000;
             padding-bottom:5px;
             overflow: hidden;
@@ -185,7 +185,9 @@
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
-          img{border-radius:4px;}
+          img{
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;}
         }
         .main{
           color:#888;

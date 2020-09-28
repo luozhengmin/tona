@@ -28,6 +28,17 @@ Vue.prototype.$moment = moment
 //引用cookie
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
+//路由跳转回顶部
+router.beforeEach((to, from, next) => {
+  // chrome
+  document.body.scrollTop = 0
+  // firefox
+  document.documentElement.scrollTop = 0
+  // safari
+  window.pageYOffset = 0
+  next()
+})
+
 new Vue({
   el: '#app',
   router,

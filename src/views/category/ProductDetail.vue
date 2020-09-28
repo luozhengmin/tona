@@ -35,7 +35,7 @@
       </div>
       <div class="title-r">
         <van-button icon="share" type="primary" is-link @click="showPopup">分享</van-button>
-        <van-popup v-model="show" closeable position="bottom" :style="{ height: '40%' }">
+        <van-popup v-model="show" closeable position="bottom" :style="{ height: '50%' }">
           <div class="share">
             <h2>分享给好友</h2>
             <div class="share-list fix">

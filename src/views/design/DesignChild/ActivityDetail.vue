@@ -6,7 +6,7 @@
             <van-icon name="arrow-left" @click="$router.go(-1)"/>
           </div>
           <div class="head-logo">
-            活动标题
+            {{activeInfo.zhuanti_name}}
           </div>
           <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
             <span></span>

@@ -28,9 +28,10 @@
           right-icon="arrow"
           readonly
           :placeholder="yuyueParams.mendian_name"
+          required
         />
-        <van-field v-model="yuyueParams.name" type="name" label="姓名" placeholder="请输入姓名" />
-        <van-field v-model="yuyueParams.phone" type="number" label="手机号码" placeholder="请输入手机号" />
+        <van-field v-model="yuyueParams.name" type="name" label="姓名" placeholder="请输入姓名" required/>
+        <van-field v-model="yuyueParams.phone" type="number" label="手机号码" placeholder="请输入手机号" required/>
         <van-field
           readonly
           clickable
@@ -39,6 +40,7 @@
           label="预约日期"
           placeholder="请选择日期"
           @click="showPicker = true"
+          required
         />
 
         <van-field v-model="yuyueParams.demand" type="demand" label="商品需求" placeholder="最多输入200字" />
@@ -78,7 +80,7 @@
           </p>
         </div>
         <div class="make-btn ab">
-          <van-button color="#888" plain>取消</van-button>
+          <van-button color="#888" plain to="GlobalStore">取消</van-button>
           <van-button color="#323232" @click="confirmSubmit">确定</van-button>
         </div>
       </van-cell-group>

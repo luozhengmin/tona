@@ -241,7 +241,7 @@
     color: #b7b7b7;
     font-size: 13px;
     text-align: center;
-    margin: 50px 0;
+    margin: 28px 0;
   }
 
   /** 样式重写 **/

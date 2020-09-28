@@ -24,6 +24,8 @@ select{font-size: 100%;margin: 0;outline: none;}
 .l{float:left;}.r{float:right;}
 .wrap{padding: 0 15px;}
 .del{text-decoration:line-through;}
+/*禁止长按链接与图片弹出菜单*/
+img{ -webkit-touch-callout: none; }
 /*全站通用样式*/
 .transition{-webkit-transition: all 0.5s ease;transition: all 0.5s ease;}
 .ab{display:flex;display:-webkit-flex;display:-ms-flex;}
@@ -82,7 +84,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 .index-brand,.index-brand-1{color:#fff;position:relative;}
 .index-brand-1{padding:15px 0;}
 .title-t{align-items:center;padding-bottom:6px;}
-.title-t h2{font-size:18px;color:#888;}
+.title-t h2{font-size:16px;color:#888;}
 .title-t h2 span{color:#323232;font-weight:bold;}
 .ml{padding-left:20px;}
 .brand-con{align-items:center;margin-top:6px;}
@@ -96,13 +98,15 @@ select{font-size: 100%;margin: 0;outline: none;}
 .brand-list{width:100%;margin:12px 0 15px 15px;position:relative;overflow:hidden;}
 .row_1{padding:6px 0;}
 .row_1 li{margin-bottom:12px;}
+.row_1 li a{display:block;}
+.row_1 li a img{border-radius:5px;}
 
 /*全球门店*/
 .global-list .van-cell{align-items:center;padding:12px 16px;border-radius:3px;}
 .global-list .van-collapse .van-collapse-item{margin-bottom:8px;}
 .global-title{color:#323232;font-size:18px;padding-bottom:3px;}
 .global-add{color:#888;font-size:14px;}
-.add-detail .add-tag .van-tag{font-size:14px;padding:4px 14px; margin-right:12px;}
+.add-detail .add-tag .van-tag{font-size:14px;padding:4px 14px; margin-right:8px;margin-bottom:6px;}
 .add-detail .add-pic{padding:6px 0 12px 0;}
 .add-detail .add-pic img{border-radius:5px;}
 .add-detail .add-tel p{align-items:center;font-size:14px;padding-top:6px;}
@@ -124,12 +128,13 @@ select{font-size: 100%;margin: 0;outline: none;}
 .global-list .van-collapse-item i{font-size:18px;}
 .global .van-cell:nth-child(1) .van-field__value{background-color:#f7f7f7;}
 .global .van-cell .van-field__control::-webkit-input-placeholder{color: #b4b4b4;}
-.global .van-cell .van-field__control{ color: #b4b4b4;}
+.global .van-cell .van-field__control:read-only{ color:#b4b4b4;}
 .global .van-field__right-icon .van-icon{font-size:18px;}
+.global .van-cell--required::before{right:8px;z-index:10;}
 /*品牌馆设计*/
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{padding:0 32px 0 0;text-align:left;flex:inherit;}
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav >{padding-bottom:0px;}
-.home-child > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{padding:0 20px 0 0;font-size:18px;}
+.home-child > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{padding:0 20px 0 0;font-size:16px;}
 .b-child-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab--active{font-weight:700;}
 .b-child-tab > .van-tabs--line > .van-tabs__wrap{border-bottom:none;padding:0 15px;}
 .home-child > .van-tabs--line > .van-tabs__wrap{border:none;}
@@ -226,7 +231,7 @@ select{font-size: 100%;margin: 0;outline: none;}
 
 /*设计方案*/
 .design-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab{padding:0 28px 0 0;text-align:left;flex:inherit;
-  font-size:18px;line-height:48px;}
+  font-size:16px;line-height:48px;}
 .design-tab > .van-tabs > .van-tabs__wrap > .van-tabs__nav > .van-tab--active{font-weight:700;}
 .design-tab > .van-tabs--line > .van-tabs__wrap{border-bottom: solid 1px #eee;padding:0 15px;height:48px;}
 .design-tab .van-tabs__nav--line{padding-bottom:0;}
@@ -270,12 +275,13 @@ select{font-size: 100%;margin: 0;outline: none;}
 .address-list .van-address-item .van-radio__icon--checked .van-icon{background-color: #f4523b;border-color: #f4523b;}
 .address-list .van-address-item__name{font-size:15px;}
 /*我的收藏夹*/
-.collect-list .van-tab{font-size:15px;}
+.collect-list .van-tab{font-size:16px;}
 .collect-list .van-tab--active{color:#f4523b;}
 /*我的信息中心*/
 .p-information .van-cell:nth-child(1) .van-cell__value{display:none;}
-.p-information .van-cell__value span{display:inline-block;width:16px;height:16px;background-color:#f4523b;border-radius:50%;
-  color: #fff;text-align:center;line-height: 16px;font-size:13px;}
+.p-information .van-cell__value span{width:16px;height:16px;background-color:#f4523b;border-radius:50%;
+  color: #fff;text-align:center;line-height: 16px;font-size:13px;display:inline-flex;    align-items: center;
+  justify-content: center;}
 .p-information .van-cell{padding:10px 15px;margin:12px 0;}
 .p-information .van-cell:not(:last-child)::after{border:none;}
 .p-information .van-cell .iconfont{font-size:24px;padding-right:8px;color:#bcbcbc;}
@@ -378,5 +384,6 @@ select{font-size: 100%;margin: 0;outline: none;}
 .address-list .van-address-item{padding:16px 16px;}
 .design-share .van-popup__close-icon{color:#2d2d2d;}
 .card a >.van-image img{border-top-left-radius:3px;border-top-right-radius:3px;}
+.detail-choose .van-sku-header-item{color:#323232;}
 
 

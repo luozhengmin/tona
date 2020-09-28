@@ -186,22 +186,24 @@ export default {
     align-items: center;
     margin: 12px 0;
     .classify-tltle {
-      width: 33.5%;
+      width: calc(100% - 270px);
       align-items: center;
       h2 {
         font-size: 14px;
         color: #323232;
       }
       a {
-        display: block;
-        padding: 0 20px;
+        padding: 0 0;
         background-color: #f4f4f4;
         margin: 0 12px;
         font-size: 14px;
         color: #323232;
         border-radius: 25px;
-        height: 28px;
-        line-height: 28px;
+        width: calc(100% - 62px);
+        height:28px;
+        display: flex;
+        justify-content: center;
+        align-items:center;
       }
       a:hover {
         background-color: red;

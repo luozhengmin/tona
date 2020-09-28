@@ -292,7 +292,7 @@ export default {
   .jifen {
     margin-bottom: 50px;
     background-color: #fff;
-    padding-bottom: 8px;
+    padding-bottom:0px;
     button {
       margin: 12px 0 0 15px;
     }

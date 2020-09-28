@@ -56,7 +56,7 @@
     .lp-link{
       text-align:center;
       top: calc(50% - 50px);
-      a{display:block;padding:8px 0;font-size:18px;color:#323232;font-family:arial;}
+      a{display:block;padding:8px 0;font-size:16px;color:#323232;font-family:arial;}
       a:nth-child(1){font-family:"微软雅黑";}
     }
     .lp-copy{
