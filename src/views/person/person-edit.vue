@@ -3,11 +3,9 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="head-ss fix">
-          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
-        <div class="head-logo">
-          个人信息
-        </div>
+        <div class="head-logo">个人信息</div>
       </div>
     </div>
     <div class="user">
@@ -16,22 +14,36 @@
         fit="cover"
         width="60px"
         height="60px"
-        v-bind:src="user.member_avatar+'?'+time"
+        v-bind:src="user.member_avatar + '?' + time"
       />
       <div class="info">
-        <div class="name">点击修改头像</div>
+        <van-uploader>
+          <div class="name">点击修改头像</div>
+        </van-uploader>
       </div>
     </div>
 
     <div class="form">
       <van-cell-group>
-        <van-field label="用户ID" :value="user.member_id" readonly class="userId"></van-field>
-        <van-field label="昵称" :value="user.member_truename" v-model="nickname" use-button-slot>
-          <van-button slot="button" type="info" plain size="small" @click="onidentify">去认证</van-button>
+        <van-field
+          label="用户ID"
+          :value="user.member_id"
+          readonly
+          class="userId"
+        ></van-field>
+        <van-field label="昵称" v-model="user.member_nickname" use-button-slot>
+          <van-button
+            slot="button"
+            type="info"
+            plain
+            size="small"
+            @click="onidentify"
+            >去认证</van-button
+          >
         </van-field>
         <van-field label="性别">
           <template #input>
-            <van-radio-group v-model="radio" direction="horizontal">
+            <van-radio-group v-model="user.member_sex" direction="horizontal">
               <van-radio name="1" checked-color="#f4523b">男</van-radio>
               <van-radio name="2" checked-color="#f4523b">女</van-radio>
               <van-radio name="3" checked-color="#f4523b">保密</van-radio>
@@ -43,35 +55,27 @@
           clickable
           is-link
           name="datetimePicker"
-          :value="birthday"
+          v-model="user.member_birthday"
           label="生日"
           placeholder="选择生日"
-          :formatter="formatter"
           @click="showPicker = true"
         />
-        <!--<van-field-->
-          <!--readonly-->
-          <!--clickable-->
-          <!--is-link-->
-          <!--name="datetimePicker"-->
-          <!--:value="currentDate"-->
-          <!--label="所在地"-->
-          <!--placeholder="选择城市"-->
-          <!--@click="showPicker = true"-->
-        <!--/>-->
         <van-field
           readonly
           clickable
           is-link
           name="area"
-          :value="value"
+          v-model="user.member_areainfo"
           label="所在地"
           placeholder="点击选择省市区"
           @click="showArea = true"
         />
       </van-cell-group>
-      <van-field label="职业" placeholder="填写职业"></van-field>
-      <van-field label="个性签名" placeholder="填写你的个性签名"></van-field>
+      <van-field
+        label="个性签名"
+        v-model="user.member_signature"
+        placeholder="填写你的个性签名"
+      ></van-field>
     </div>
 
     <div class="btn">
@@ -79,52 +83,53 @@
     </div>
 
     <van-popup v-model="showPicker" position="bottom">
-      <van-datetime-picker type="date" @confirm="onConfirmDate" @cancel="showPicker = false" />
+      <van-datetime-picker
+        type="date"
+        @confirm="onConfirmDate"
+        @cancel="showPicker = false"
+      />
     </van-popup>
     <van-popup v-model="showArea" position="bottom">
-      <van-area :area-list="areaList" @confirm="onConfirmArea" @cancel="showArea = false" />
+      <van-area
+        :area-list="areaList"
+        @confirm="onConfirmArea"
+        @cancel="showArea = false"
+      />
     </van-popup>
   </div>
 </template>
 
 <script>
 import areaList from "@/json/area";
-import { updateMemberInfo,getMemberdetailInfo } from '../../api/memberInfo'
-import { timestampToTime } from '../../utils/util.js'
+import { updateMemberInfo, getMemberdetailInfo } from "../../api/memberInfo";
+import { timestampToTime } from "../../utils/util.js";
 import { Toast } from "vant";
 export default {
   name: "",
   data() {
     return {
-      user : {},
+      user: {},
       radio: "1",
       currentDate: "",
       showPicker: false,
-      value: "",
       showArea: false,
       areaList: areaList,
-      nickname: ''
+      nickname: "",
     };
   },
   created: function () {
     this.time = new Date().getTime();
-    // this.utils.clearCookie('user_info')
-    // this.utils.clearCookie('key')
-
-      getMemberdetailInfo().then(
-        response => {
-          if (response && response.result.member_info) {
-            this.user = response.result.member_info
-          }
-        },
-        error => {}
-      )
+    getMemberdetailInfo().then((response) => {
+      if (response && response.result.member_info) {
+        this.user = response.result.member_info;
+        console.log(this.user);
+      }
+    });
   },
   computed: {
-    birthday (){
-
-      return this.currentDate = timestampToTime(this.user.member_birthday)
-    }
+    birthday() {
+      return (this.currentDate = timestampToTime(this.user.member_birthday));
+    },
   },
   methods: {
     onConfirm(time) {
@@ -132,50 +137,46 @@ export default {
       this.showPicker = false;
     },
     onConfirmArea(values) {
-      this.value = values.map(item => item.name).join("/");
+      this.user.member_provinceid = values[0].code;
+      this.user.member_cityid = values[1].code;
+      this.user.member_areaid = values[2].code;
+      this.user.member_areainfo = values.map((item) => item.name).join("/");
       this.showArea = false;
     },
-    onConfirmDate(values){
-
+    onConfirmDate(values) {
+      this.user.member_birthday = this.$moment(values).format("YYYY-MM-DD");
+      this.showPicker = false;
     },
     formatter(type, val) {
-      if (type === 'year') {
+      if (type === "year") {
         return `${val}-`;
-      } else if (type === 'month') {
+      } else if (type === "month") {
         return `${val}`;
       }
       return val;
     },
     save() {
-      let nickname = this.nickname;
-      let memqq = ''
-      let memww = ''
-      let membirth = this.currentDate
-      updateMemberInfo(nickname,memqq,memww,membirth).then(
-        response => {
-          console.log(response)
-
-          if(response.code != 10000){
-            Toast.fail(response.message)
-              return ;
-          }else{
-            Toast({
-              message: "保存成功",
-              icon: "passed"
-            });
-          }
-        },
-        error => {}
-      )
+      updateMemberInfo(this.user).then((response) => {
+        console.log(response);
+        if (response.code != 10000) {
+          Toast.fail(response.message);
+          return;
+        } else {
+          Toast({
+            message: "保存成功",
+            icon: "passed",
+          });
+        }
+      });
       Toast({
         message: "保存成功",
-        icon: "passed"
+        icon: "passed",
       });
     },
-    onidentify(){
-      this.$router.push({'name': 'identify'})
-    }
-  }
+    onidentify() {
+      this.$router.push({ name: "identify" });
+    },
+  },
 };
 </script>
 
@@ -195,9 +196,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top:6px;
+      margin-top: 6px;
       .name {
-        font-size:14px;
+        font-size: 14px;
         color: #888;
       }
     }
@@ -206,12 +207,14 @@ export default {
     font-size: 16px;
     .van-cell {
       font-size: 15px;
-      line-height:1.6;
-      .van-cell__right-icon{margin-right:-5px;}
+      line-height: 1.6;
+      .van-cell__right-icon {
+        margin-right: -5px;
+      }
       .van-button {
         border: none;
         font-size: 14px;
-        padding:0;
+        padding: 0;
         text-align: right;
       }
     }
@@ -219,7 +222,9 @@ export default {
   .btn {
     margin-top: 30px;
     padding: 0 15px;
-    .van-button{border-radius:4px;}
+    .van-button {
+      border-radius: 4px;
+    }
   }
 }
 </style>
