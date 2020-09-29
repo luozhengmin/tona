@@ -68,9 +68,9 @@ export default {
   }
   .prod {
     background-color: #fff;
+    border: solid 1px #eee;
     div{
       img{
-        height:165px;
         border-top-left-radius:3px;
         border-top-right-radius:3px;
       }

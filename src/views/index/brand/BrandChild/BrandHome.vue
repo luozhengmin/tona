@@ -52,22 +52,24 @@
               :key="item.goods_id"
             >
               <div class="prod">
-                <div>
-                  <img :src="item.goods_image_url" />
-                </div>
-                <div class="main">
-                  <div class="title">{{item.goods_name}}</div>
-                  <div class="desc">{{item.goods_advword}}</div>
-                  <div class="bottom">
-                    <div>
-                      <span class="fuhao">￥</span>
-                      {{item.goods_price}}
-                    </div>
-                    <div class="icon">
-                      <van-icon name="cart" />
+                <router-link :to="{path:'/ProductDetail',query:{id:item.goods_id}}">
+                  <div>
+                    <img :src="item.goods_image_url" />
+                  </div>
+                  <div class="main">
+                    <div class="title">{{item.goods_name}}</div>
+                    <div class="desc">{{item.goods_advword}}</div>
+                    <div class="bottom">
+                      <div>
+                        <span class="fuhao">￥</span>
+                        {{item.goods_price}}
+                      </div>
+                      <div class="icon">
+                        <van-icon name="cart" />
+                      </div>
                     </div>
                   </div>
-                </div>
+                </router-link>
               </div>
             </van-col>
           </van-row>
@@ -88,23 +90,25 @@
           <van-row gutter="15">
             <van-col span="12" style="margin:7.5px 0" v-for="item in likes " :key="item.goods_id">
               <div class="prod">
-                <div>
-                  <img :src="item.goods_image_url" />
-                </div>
+                <router-link :to="{path:'/ProductDetail',query:{id:item.goods_id}}">
+                  <div>
+                    <img :src="item.goods_image_url" />
+                  </div>
 
-                <div class="main">
-                  <div class="title">{{item.goods_name}}</div>
-                  <div class="desc">{{item.goods_advword}}</div>
-                  <div class="bottom">
-                    <div>
-                      <span class="fuhao">￥</span>
-                      {{item.goods_price}}
-                    </div>
-                    <div class="icon">
-                      <van-icon name="cart" />
+                  <div class="main">
+                    <div class="title">{{item.goods_name}}</div>
+                    <div class="desc">{{item.goods_advword}}</div>
+                    <div class="bottom">
+                      <div>
+                        <span class="fuhao">￥</span>
+                        {{item.goods_price}}
+                      </div>
+                      <div class="icon">
+                        <van-icon name="cart" />
+                      </div>
                     </div>
                   </div>
-                </div>
+                </router-link>
               </div>
             </van-col>
           </van-row>
@@ -251,9 +255,7 @@ export default {
   .prod {
     background-color: #fff;
     div{
-      img{
-        height:165px;
-      }
+      img{border-top-left-radius:3px;border-top-right-radius:3px;}
     }
     .main {
       border: solid 1px #eee;
@@ -288,6 +290,7 @@ export default {
           overflow:hidden;
           white-space:nowrap;
           text-overflow:ellipsis;
+          width: calc(100% - 30px);
         }
         .fuhao {
           font-size: 12px;
@@ -305,5 +308,10 @@ export default {
       }
     }
   }
+}
+.list .van-row{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
 }
 </style>

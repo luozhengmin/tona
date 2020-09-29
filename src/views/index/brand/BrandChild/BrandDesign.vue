@@ -40,10 +40,10 @@
             <div class="main ab">
               <div class="infor-l ac">
                 <h2>{{item.fan_name}}</h2>
-                <div class="-t">
+                <div class="-t ab">
                   <span>{{item.style}} | 原创设计</span>
-                  <span>
-                    <i class="iconfont">&#xe7ae;</i>
+                  <span class="view ab">
+                    <van-icon name="eye-o"  size="18"/>
                     {{item.see_num}}
                   </span>
                 </div>
@@ -173,11 +173,11 @@ export default {
             padding-bottom: 4px;
           }
           .-t {
+            align-items:center;
             font-size: 14px;
-            i {
-              font-size: 14px;
-              line-height: 12px;
-              padding: 0 2px 0 6px;
+            .view{
+              align-items:center;
+              padding-left:12px;
             }
           }
         }

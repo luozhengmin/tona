@@ -162,7 +162,7 @@
       <van-button type="primary" block color="#323232" @click="tapeCommit">立即提交</van-button>
     </div>
     <!--地址区域开始-->
-    <van-popup v-model="showDesign" position="bottom" :style="{ height: '30%' }">
+    <van-popup v-model="showDesign" position="bottom" :style="{ height: '40%' }">
       <van-area
         :area-list="areaList"
         :columns-num="2"
@@ -171,7 +171,7 @@
         @cancel="showDesign = false"
       />
     </van-popup>
-    <van-popup v-model="showOwner" position="bottom" :style="{ height: '30%' }">
+    <van-popup v-model="showOwner" position="bottom" :style="{ height: '40%' }">
       <van-area
         :area-list="areaList"
         :columns-num="2"

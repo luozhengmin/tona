@@ -200,7 +200,7 @@ export default {
         color: #323232;
         border-radius: 25px;
         width: calc(100% - 62px);
-        height:28px;
+        line-height: 24px;
         display: flex;
         justify-content: center;
         align-items:center;

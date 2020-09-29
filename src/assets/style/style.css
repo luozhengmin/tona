@@ -65,7 +65,7 @@ img{ -webkit-touch-callout: none; }
 .slideNav ul{width:92%;height:100%;z-index:99;position: relative;text-align:center;margin:0 auto;}
 .slideNav li{width:20%;color:#fff;padding:0 6px;}
 .slideNav li a{display:block;}
-.slideNav li a span,.slideNav li p span{font-size:14px;color:#fff;margin-top:2px;display:inline-block;}
+.slideNav li a span,.slideNav li p span{font-size:13px;color:#fff;margin-top:2px;display:inline-block;}
 .slideTran-enter-active{transition: all .5s ease;top:100%;}
 .slideTran-enter{top:0;}
 .slideTran-leave-active {transition: all .5s ease;top:-100%;}
@@ -142,7 +142,7 @@ img{ -webkit-touch-callout: none; }
 .r-solution .title-t{text-align:center;}
 .home-child  .brand-con{margin-top:0;}
 .brand-con a{display:block;}
-.brand-con a img,.b-child-tab .van-swipe-item a img{border-radius:6px;}
+.brand-con a img,.b-child-tab .van-swipe-item a img{border-top-left-radius:6px;border-top-right-radius:6px;}
 
 .s-nav{margin:6px 0 0 0;padding:0 15px;justify-content:space-between;}
 .s-nav li{width:21%;text-align:center;padding-bottom:8px;margin-left:5%;align-items:center;justify-content:space-around;}
@@ -182,7 +182,7 @@ img{ -webkit-touch-callout: none; }
 /*设计师带单*/
 .information-list{margin:6px 0;padding:0 15px;}
 .information-list .van-cell{padding:6px 0;align-items: center;}
-.information-list .van-cell__title{text-align:right;width:78px;padding-right:12px;}
+.information-list .van-cell__title{text-align:right;width:78px;padding-right:12px;margin-right:0;}
 .information-list .van-cell__title em{color:#f4523b;padding-right:2px;}
 .information-list .van-cell:not(:last-child)::after,.global .van-hairline--top-bottom::after,
 .global .van-hairline-unset--top-bottom::after{border-bottom:none;}
