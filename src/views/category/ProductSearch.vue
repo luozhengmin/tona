@@ -148,7 +148,7 @@ export default {
         }
         localStorage.setItem("historySearch", JSON.stringify(this.historyList));
       }
-
+      this.finished = false;
       this.getGoodsList();
     },
     getGoodsList() {
@@ -164,6 +164,8 @@ export default {
 
         if (this.goodsList.length == 0) {
           this.showEmpty = true;
+        } else {
+          this.showEmpty = false;
         }
         this.page_total = res.result.page_total;
         if (this.page < this.page_total) {
