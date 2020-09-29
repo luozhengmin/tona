@@ -17,7 +17,11 @@
         v-bind:src="user.member_avatar + '?' + time"
       />
       <div class="info">
-        <van-uploader>
+        <van-uploader
+          v-model="fileList"
+          :after-read="afterRead"
+          :preview-image="false"
+        >
           <div class="name">点击修改头像</div>
         </van-uploader>
       </div>
@@ -104,6 +108,7 @@ import areaList from "@/json/area";
 import { updateMemberInfo, getMemberdetailInfo } from "../../api/memberInfo";
 import { timestampToTime } from "../../utils/util.js";
 import { Toast } from "vant";
+import axios from "axios";
 export default {
   name: "",
   data() {
@@ -114,7 +119,7 @@ export default {
       showPicker: false,
       showArea: false,
       areaList: areaList,
-      nickname: "",
+      fileList: [],
     };
   },
   created: function () {
@@ -147,13 +152,19 @@ export default {
       this.user.member_birthday = this.$moment(values).format("YYYY-MM-DD");
       this.showPicker = false;
     },
-    formatter(type, val) {
-      if (type === "year") {
-        return `${val}-`;
-      } else if (type === "month") {
-        return `${val}`;
-      }
-      return val;
+    afterRead(file) {
+      const formData = new FormData(); // 声明一个FormData对象
+      formData.append("file", file.file);
+      axios
+        .post("/api/Member/edit_memberavatar", formData, {
+          headers: {
+            "X-DS-KEY": $cookies.get("token"),
+            "content-type": "multer/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
     },
     save() {
       updateMemberInfo(this.user).then((response) => {
