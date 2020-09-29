@@ -51,3 +51,15 @@ export const getGoodsEvaluateList =
       method: 'POST'
     })
   }
+
+
+// 搜索词列表
+export const getSearchKey =
+  (params) => {
+    return request({
+      url: `/api/Index/search_key_list`,
+      data: params,
+      method: 'POST'
+    })
+  }
+
