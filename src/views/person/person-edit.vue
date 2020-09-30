@@ -154,7 +154,7 @@ export default {
     },
     afterRead(file) {
       const formData = new FormData(); // 声明一个FormData对象
-      formData.append("file", file.file);
+      formData.append("memberavatar", file.file);
       axios
         .post("/api/Member/edit_memberavatar", formData, {
           headers: {

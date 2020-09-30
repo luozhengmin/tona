@@ -42,7 +42,7 @@
         </van-row>
       </div>
     </div>
-    <van-popup v-model="show" position="bottom" :style="{ height: '24%' }" class="track">
+    <van-popup v-model="show" position="bottom" :style="{ height: '28%' }" class="track">
       <div class="track-confirm">
         <p>确定要清空浏览足迹吗？</p>
         <h2 @click="toClearbrowse">确定</h2>

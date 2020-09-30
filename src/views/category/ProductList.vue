@@ -153,6 +153,9 @@ export default {
         }
         .p-list {
           .van-row {
+            display:flex;
+            flex-direction:row;
+            flex-wrap:wrap;
             .van-col {
               margin-bottom: 6px;
               a {
@@ -160,9 +163,6 @@ export default {
                   text-align: center;
                   color: #323232;
                   padding: 8px 0;
-                }
-                .prod-pic{
-                  img{height:96px;}
                 }
               }
             }
