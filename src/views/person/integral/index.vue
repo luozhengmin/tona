@@ -79,11 +79,12 @@ export default {
     color: #fff;
     text-align: center;
     font-size: 16px;
+    width:100%;
     .icon {
       width: 40px;
       margin: auto;
       img {
-        display: block;
+        height:44px;
       }
     }
     .count {

@@ -43,7 +43,7 @@
     <van-popup v-model="showPicker3" position="bottom">
       <van-picker
         show-toolbar
-        title="发票内容"
+        title="反馈类型"
         :columns="columns3"
         @confirm="onConfirm3"
         @cancel="showPicker3 = false"

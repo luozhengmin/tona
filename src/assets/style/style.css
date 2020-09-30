@@ -239,7 +239,7 @@ img{ -webkit-touch-callout: none; }
 /*设计方案筛选*/
 .sieve-list .van-popup{background-color:#eee;padding:12px 8px;}
 .sieve-list .van-cell__value{display:none;}
-.sieve-list .van-cell{width:25%;background-color:inherit;float:left;padding:6px 4px;text-align:center;color:#888;}
+.sieve-list .van-cell{width:25%;background-color:inherit;float:left;padding:6px 4px;text-align:center;color:#888;font-size:13px;}
 .sieve-list .van-cell .van-cell__title{padding:2px 0;}
 .sieve-list .van-cell:first-child .van-cell__title{background-color:#fff;border-radius:25px;}
 
@@ -388,5 +388,7 @@ img{ -webkit-touch-callout: none; }
 .global .van-cell__title span em{color:#f4523b;padding-right:2px;}
 .userId .van-field__control{color:#999;}
 .feedback .van-field__label{width:7.2em;}
+.detail-choose .van-sku__price-symbol{position:relative;bottom:2px;}
+
 
 

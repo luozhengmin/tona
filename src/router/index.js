@@ -189,25 +189,16 @@ export default new Router({
           path: 'GlobalStore',
           name: 'GlobalStore',
           component: () => import("@/views/index/GlobalStore/GlobalStore"),
-          meta: {
-            showFooter: true
-          }
         },
         {
           path: 'Investment',
           name: 'Investment',
           component: () => import("@/views/index/Investment/Investment"),
-          meta: {
-            showFooter: true
-          }
         },
         {
           path: 'MakeStore',
           name: 'MakeStore',
           component: () => import("@/views/index/GlobalStore/MakeStore"),
-          meta: {
-            showFooter: true
-          }
         },
         {
           path: 'ProductList',

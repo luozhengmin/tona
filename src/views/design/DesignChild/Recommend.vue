@@ -137,11 +137,11 @@
       img{border-top-left-radius:6px;border-top-right-radius:6px;}
       .main{
         color:#888;
-        padding:12px 12px;
+        padding:12px 10px;
         align-items:center;
         background-color:#f7f7f7;
         .infor-l{
-          width: calc(100% - 15px);padding-right:3%;
+          width: calc(100% - 15px);padding-right:1%;
           h2{
             font-size:15px;
             color:#000;
@@ -212,6 +212,8 @@
             }
             .view{
               align-items:center;
+              height: 20px;
+              line-height: 20px;
               .van-icon{font-size:16px;padding-right:2px;}
             }
           }

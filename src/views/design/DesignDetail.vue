@@ -218,8 +218,9 @@
            <i class="van-icon van-icon-eye-o"></i>
            <span>{{desginInfo.see_num}}</span>
          </div>
-         <div class="menu-item ab" @click="collect">
+         <div class="menu-item ab" @click="collect" v-bind:class="{'c-star':showstar}">
            <i class="van-icon van-icon-star-o"></i>
+           <i class="van-icon van-icon-star"></i>
            <span>{{desginInfo.collection_num}}</span>
          </div>
          <div class="menu-item ab" is-link @click="showShare">
@@ -259,6 +260,7 @@
         showform:false,
         showshare:false,
         showindex:false,
+        showstar:false,
         desginInfo:{},
         floorList:{},
         current:'一层_0',
@@ -323,6 +325,7 @@
             icon: "star"
           });
         })
+        this.showstar = true
       },
       getDesignDetail(id){
         DesignApi.get({design_id:id}).then(res=>{
@@ -416,7 +419,7 @@
     }
   }
   .detail-house,.detail-profile, .detail-floor,.detail-copy{padding-top:12px;}
-  .design-nav{position:fixed;z-index:10;right:15px;bottom:10%;background-color:rgba(255,255,255,0.95);
+  .design-nav{position:fixed;z-index:10;right:15px;bottom:16%;background-color:rgba(255,255,255,0.95);
     width:70px;height:70px;border-radius:50%;align-items:center;justify-content:space-around;text-align:center;
     .nav-list{
       flex-direction: column;
@@ -518,5 +521,6 @@
     }
   }
   .detail-item img{width:100%;}
-
+  .menu-item .van-icon-star,.c-star .van-icon-star-o{display:none;}
+  .c-star .van-icon-star{display:block;color:#ff6034;}
 </style>
