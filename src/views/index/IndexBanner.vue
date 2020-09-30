@@ -2,7 +2,7 @@
   <div class="index-banner fix">
     <van-swipe :autoplay="3000">
       <van-swipe-item v-for="(item, index) in banners" :key="index">
-        <a :href="item.index_link">
+        <a :href="item.adv_typedate">
           <img v-lazy="item.adv_code" />
         </a>
       </van-swipe-item>

@@ -60,7 +60,8 @@
         confirmPassword: '',
         canSendMobile: true,
         timeIntervalMobile: false,
-        sendStateTextMobile: '获取验证码'
+        sendStateTextMobile: '获取验证码',
+        client:''
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -80,7 +81,7 @@
           loadingType: 'spinner'
         });
         // 手机号注册
-        registerBymobile(this.phone,this.captcha,this.password,this.confirmPassword,this.inviterid).then(
+        registerBymobile(this.phone,this.captcha,this.password,this.confirmPassword,this.inviterid,this.client).then(
            response => {
             console.log(response)
             if(response.code == 10001){
@@ -149,6 +150,7 @@
         let captcha = this.captcha
         let password = this.password
         let confirmPassword = this.confirmPassword
+        let client = this.client
         if (phone.length === 0) {
           Toast('请输入手机号')
           return false

@@ -146,7 +146,7 @@ export default {
         error => {}
       )
     }else{
-      this.$router.push({'name': 'mima-login'})
+      this.$router.push({'name': 'yzm-login'})
     }
 
 

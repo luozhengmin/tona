@@ -21,7 +21,7 @@
         v-model="value"
         show-action
         placeholder="请输入商品关键词"
-        @search="onSearch"
+        @click="onSearch"
         @cancel="onCancel"
       >
         <template #left-icon>
@@ -75,9 +75,9 @@ export default {
     return {
       isActive: false,
       value: "",
-      onSearch(val) {
-        Toast(val);
-      },
+//      onSearch(val) {
+//        Toast(val);
+//      },
       onCancel() {
         Toast("取消");
       },
@@ -105,6 +105,9 @@ export default {
       axios.post("/api/Index/getAppadList/ap_id/", { ap_id: 5 }).then((res) => {
         this.bannerItem = res.result.ad_list;
       });
+    },
+    onSearch() {
+      this.$router.push({'name': 'ProductSearch'})
     },
   },
 };

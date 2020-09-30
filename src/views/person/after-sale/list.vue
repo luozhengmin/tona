@@ -19,7 +19,7 @@
         show-action
         shape="round"
         placeholder="请输入商品关键词或用户名"
-        @search="onSearch">
+        @click="onSearch">
         <template #left-icon>
           <i class="iconfont icon-sousuo"></i>
         </template>
@@ -80,7 +80,9 @@ export default {
     };
   },
   methods: {
-    onSearch() {}
+    onSearch() {
+      this.$router.push({'name': 'ProductSearch'})
+    },
   }
 };
 </script>

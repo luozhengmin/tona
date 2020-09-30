@@ -5,7 +5,7 @@
         right-text="商户版"
         left-arrow
         @click-left="$router.go(-1)"
-        @click-right="">
+        @click-right="onClickRight">
         <template #title>
           <img src="../../assets/image/dllogo.png"/>
         </template>
@@ -68,7 +68,7 @@
   import { getSmsCaptcha,checkCaptcha } from '../../api/common'
   import { Toast } from 'vant'
   export default {
-    name:'Register',
+    name:'yzm-login',
     data(){
       return{
         username: '',
@@ -168,6 +168,9 @@
       onSubmit () {
         this.signIn()
       },
+      onClickRight(){
+        this.$router.push({'name': 'sj-login'})
+      }
     },
 
   };

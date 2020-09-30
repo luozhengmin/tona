@@ -3,7 +3,7 @@ import request from '@/utils/request'
 const registerUrl = '/api/Connect/sms_register'
 
 export const registerBymobile =
-(phone,captcha, password,passwordConfirm,inviter_id) => {
+(phone,captcha, password,passwordConfirm,inviter_id,client) => {
  return request({
     url: `${registerUrl}`,
     data: {

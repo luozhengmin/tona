@@ -493,6 +493,7 @@ export default {
             color: #888;
             margin: 5px 0 5px 6px;
             font-size: 13px;
+            padding:0 12px;height:28px;
           }
         }
       }

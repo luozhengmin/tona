@@ -6,7 +6,7 @@
       </div>
       <ul class="row_1">
         <li v-for="(item,index) in bannerItem" :key="index">
-          <a href=""><img :src="item.adv_code"></a>
+          <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
         </li>
       </ul>
     </div>

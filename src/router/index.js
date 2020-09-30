@@ -443,6 +443,19 @@ export default new Router({
           name: 'navMenu',
           component: () => import("@/views/index/navMenu"),
         },
+        {
+          path: 'merchants/index',
+          name: 'merchants-index',
+          component: () => import("@/views/person/merchants/index"),
+          meta: {
+            showFooter: true
+          }
+        },
+        {
+          path: 'merchants/sj-login',
+          name: 'sj-login',
+          component: () => import("@/views/person/merchants/sj-login"),
+        },
       ]
     },
 

@@ -197,6 +197,11 @@
       </div>
     </div>
 
+    <div class="see-detail" v-bind:class="{active05:isActive05}">
+      <div class="detail-con" v-html="goodsinfo.mobile_body"></div>
+      <van-button icon="arrow-down" block @click="displayDetail">下拉查看图文详情</van-button>
+    </div>
+
     <div class="detail-cart fix">
       <van-goods-action>
         <van-goods-action-icon
@@ -244,6 +249,7 @@ export default {
       showCustom: false,
       showStepper: false,
       showSoldout: false,
+      isActive05:false,
       closeOnClickOverlay: true,
       goodsid: "",
       skuData: {
@@ -370,6 +376,9 @@ export default {
     goPage(url) {
       window.location.href = url;
     },
+    displayDetail(){
+      this.isActive05 = true;
+    }
   },
 };
 </script>
@@ -496,7 +505,7 @@ export default {
   }
 }
 .detail-remark {
-  margin-bottom: 60px;
+  margin-bottom: 16px;
   background-color: #fff;
   .van-cell {
     .van-cell__value {
@@ -506,6 +515,9 @@ export default {
       color: #f4523b;
     }
   }
+}
+.see-detail{
+  margin-bottom:60px;
 }
 .remark-title {
   color: #888;

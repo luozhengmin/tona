@@ -26,7 +26,7 @@
           <h2><span>品牌推荐</span></h2>
         </div>
           <div class="brand-con" v-for="(item,index) in bannerItem">
-            <a href=""><img :src="item.adv_code"></a>
+            <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
           </div>
       </div>
       <div class="design-list fix">
@@ -62,13 +62,13 @@
 
         <div class="brand-item">
           <div class="brand-con wrap" v-for="(item,index) in bannerItem01" :key="index">
-            <a href=""><img :src="item.adv_code"></a>
+            <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
           </div>
           <div class="brand-list fix">
             <van-swipe :loop="false" :width="110" :show-indicators="false">
               <van-swipe-item  v-for="(item,index) in bannerItem02" :key="index">
                 <div class="p-pic">
-                  <a href=""><img :src="item.adv_code"></a>
+                  <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
                 </div>
                 <div class="p-infor">
                   <h2>{{item.adv_title}}</h2>
@@ -81,13 +81,13 @@
 
         <div class="brand-item">
           <div class="brand-con wrap" v-for="(item,index) in bannerItem03" :key="index">
-            <a href=""><img :src="item.adv_code"></a>
+            <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
           </div>
           <div class="brand-list fix">
             <van-swipe :loop="false" :width="110" :show-indicators="false">
               <van-swipe-item  v-for="(item,index) in bannerItem04" :key="index">
                 <div class="p-pic">
-                  <a href=""><img :src="item.adv_code"></a>
+                  <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
                 </div>
                 <div class="p-infor">
                   <h2>{{item.adv_title}}</h2>
@@ -100,13 +100,13 @@
 
         <div class="brand-item">
           <div class="brand-con wrap" v-for="(item,index) in bannerItem05" :key="index">
-            <a href=""><img :src="item.adv_code"></a>
+            <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
           </div>
           <div class="brand-list fix">
             <van-swipe :loop="false" :width="110" :show-indicators="false">
               <van-swipe-item  v-for="(item,index) in bannerItem06" :key="index">
                 <div class="p-pic">
-                  <a href=""><img :src="item.adv_code"></a>
+                  <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
                 </div>
                 <div class="p-infor">
                   <h2>{{item.adv_title}}</h2>

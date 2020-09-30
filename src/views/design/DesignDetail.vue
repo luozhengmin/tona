@@ -350,7 +350,8 @@
         this.consult.fan_id = this.desginInfo.fan_id;
         DesignApi.consult(this.consult).then(res => {
           Toast.success("申请成功");
-          this.showForm = false;
+          this.showform = false;
+          this.show = false;
         })
       },
     },
@@ -428,7 +429,7 @@
     }
   }
   .design-form{
-    width:92%;padding:8px 0 0 0;border-radius:3px;max-height:60%;
+    width:92%;padding:8px 0 0 0;border-radius:3px;max-height:70%;
     .item{
       align-items:center;padding:6px 15px 10px 15px;
       .item-pic{

@@ -9,13 +9,13 @@
           <van-tab title="品牌推荐" name="a">
             <div class="wrap fix">
               <div class="brand-con" v-for="(item,index) in bannerItem">
-                <a href=""><img :src="item.adv_code"></a>
+                <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
               </div>
             </div>
             <div class="brand-list fix">
               <van-swipe :loop="false" :width="160" :show-indicators="false">
                 <van-swipe-item  v-for="(item,index) in brandList" :key="index">
-                  <img :src="item.adv_code">
+                  <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
                 </van-swipe-item>
               </van-swipe>
             </div>

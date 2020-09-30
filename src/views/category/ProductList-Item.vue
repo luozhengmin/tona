@@ -21,7 +21,7 @@
         v-model="queryParams.keyword"
         show-action
         placeholder="请输入商品关键词"
-        @search="onSearch"
+        @click="onSearch"
       >
         <template #left-icon>
           <i class="iconfont icon-sousuo"></i>
@@ -212,6 +212,9 @@ export default {
       this.goodslist = [];
       this.finished = false;
       this.queryParams.page = 1;
+    },
+    onSearch() {
+      this.$router.push({'name': 'ProductSearch'})
     },
   }
 };

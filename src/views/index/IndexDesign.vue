@@ -6,7 +6,7 @@
           <h2><span>设计灵感</span></h2>
         </div>
         <div class="brand-con" v-for="(item,index) in bannerItem" :key="index">
-          <a href=""><img :src="item.adv_code"></a>
+          <a :href="item.adv_typedate"><img :src="item.adv_code"></a>
         </div>
       </div>
       <div class="design-list fix">
