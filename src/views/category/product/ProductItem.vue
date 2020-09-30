@@ -1,18 +1,25 @@
 <template>
   <div class="list">
     <van-row gutter="15">
-      <van-col span="12" style="margin-bottom:15px" v-for="item in products " :key="item.goods_id">
-        <router-link :to="{path:'/ProductDetail',query:{id:item.goods_id}}">
+      <van-col
+        span="12"
+        style="margin-bottom: 15px"
+        v-for="item in products"
+        :key="item.goods_id"
+      >
+        <router-link
+          :to="{ path: '/ProductDetail', query: { id: item.goods_id } }"
+        >
           <div class="prod">
             <div>
               <img :src="item.goods_image_url" />
             </div>
-            <div class="title">{{item.goods_name}}</div>
-            <div class="desc">{{item.goods_advword}}</div>
+            <div class="title">{{ item.goods_name }}</div>
+            <div class="desc">{{ item.goods_advword }}</div>
             <div class="bottom">
               <div>
                 <span class="fuhao">￥</span>
-                {{item.goods_price}}
+                {{ item.goods_price }}
               </div>
               <div class="icon">
                 <van-icon name="cart" />
@@ -26,13 +33,20 @@
 </template>
 
 <script>
+import { stringInterception } from "@/utils/common.js";
 export default {
   props: {
     products: {
       type: Array,
-      default: []
-    }
-  }
+      default: [],
+    },
+  },
+  created() {
+    this.products.forEach((item) => {
+      item.goods_name = stringInterception(item.goods_name, 9);
+      item.goods_advword = stringInterception(item.goods_advword, 10);
+    });
+  },
 };
 </script>
 
@@ -69,11 +83,11 @@ export default {
   .prod {
     background-color: #fff;
     border: solid 1px #f2f2f2;
-    div{
-      img{
-        height:165px;
-        border-top-left-radius:3px;
-        border-top-right-radius:3px;
+    div {
+      img {
+        height: 165px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
       }
     }
     .title {
@@ -93,9 +107,11 @@ export default {
       justify-content: space-between;
       color: #f4523b;
       font-size: 20px;
-      div{overflow: hidden;
+      div {
+        overflow: hidden;
         white-space: nowrap;
-        text-overflow: ellipsis;}
+        text-overflow: ellipsis;
+      }
       .fuhao {
         font-size: 12px;
       }
@@ -112,9 +128,9 @@ export default {
     }
   }
 }
-  .list .van-row{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-  }
+.list .van-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 </style>

@@ -28,6 +28,7 @@
     <div class="private-detail fix">
       <div
         class="detail-item fix"
+        :class="{ 'detail-item-my': userInfo.member_id == item.from_member_id }"
         v-for="(item, index) in privateDetail"
         :key="index"
       >
@@ -37,36 +38,38 @@
           </div>
           <div class="item-r">
             <p>
-              hi，我的装修需求是：订单 联系电话：15757629995，请及时联系我哦！
+              {{ item.message_body }}
             </p>
           </div>
         </div>
-        <div class="time">1分钟前</div>
+        <div class="time">{{ item.message_time }}</div>
       </div>
     </div>
     <div class="sx-btn">
-      <form class="ab">
-        <van-field v-model="value" placeholder="发布回复" />
-        <van-button color="#323232">发送</van-button>
-      </form>
+      <div class="ab">
+        <van-field v-model="msg_content" placeholder="发布回复" />
+        <van-button color="#323232" @click="sendMsg">发送</van-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getPrivateDetail } from "../../../api/memberMessage";
+import { getPrivateDetail, replyMsg } from "../../../api/memberMessage";
 import { Toast } from "vant";
 export default {
   name: "private-detail",
   data() {
     return {
       show: false,
+      userInfo: {},
       privateDetail: [],
-      value: "",
+      msg_content: "",
     };
   },
   created() {
     this.message_id = this.$route.query.id;
+    this.userInfo = $cookies.get("user_info");
     this.getPrivateMessageDetail();
   },
   methods: {
@@ -82,6 +85,15 @@ export default {
       getPrivateDetail({ message_id: this.message_id }).then((res) => {
         console.log(res);
         this.privateDetail = res.result.notice_list;
+      });
+    },
+    sendMsg() {
+      var params = {
+        message_id: this.message_id,
+        msg_content: this.msg_content,
+      };
+      replyMsg(params).then((res) => {
+        this.getPrivateMessageDetail();
       });
     },
   },
@@ -126,7 +138,7 @@ export default {
     .item {
       .item-l {
         width: 54px;
-        heihgt: 54px;
+        height: 54px;
         float: left;
         img {
           width: 54px;
@@ -176,28 +188,28 @@ export default {
       margin-top: 12px;
     }
   }
-  .detail-item:nth-child(2n + 1) {
+  .detail-item-my {
     .item-l {
-      float: right;
+      float: right !important;
     }
     .item-r {
-      margin-left: 0;
-      margin-right: 16px;
+      margin-left: 0 !important;
+      margin-right: 16px !important;
     }
     .item-r::before,
     .item-r::after {
-      left: inherit;
-      right: -16px;
+      left: inherit !important;
+      right: -16px !important;
     }
     .item-r::before {
-      border-left-color: #b7b7b7;
-      border-right-color: transparent;
+      border-left-color: #b7b7b7 !important;
+      border-right-color: transparent !important;
     }
     .item-r::after {
-      border-left-color: #fff;
-      border-right-color: transparent;
-      right: -13px;
-      left: inherit;
+      border-left-color: #fff !important;
+      border-right-color: transparent !important;
+      right: -13px !important;
+      left: inherit !important;
     }
   }
 }
