@@ -46,7 +46,7 @@ export const getMemberdetailInfo =
 export const updateMemberInfo =
   (params) => {
     return request({
-      url: `/api/Member/index`,
+      url: `/api/Member/edit_information`,
       headers: {
         'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
       },

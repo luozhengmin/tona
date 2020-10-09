@@ -105,7 +105,7 @@
 
 <script>
 import areaList from "@/json/area";
-import { updateMemberInfo, getMemberdetailInfo } from "../../api/memberInfo";
+import { updateMemberInfo, getMemberInfo } from "../../api/memberInfo";
 import { timestampToTime } from "../../utils/util.js";
 import { Toast } from "vant";
 import axios from "axios";
@@ -124,7 +124,7 @@ export default {
   },
   created: function () {
     this.time = new Date().getTime();
-    getMemberdetailInfo().then((response) => {
+    getMemberInfo().then((response) => {
       if (response && response.result.member_info) {
         this.user = response.result.member_info;
         console.log(this.user);
