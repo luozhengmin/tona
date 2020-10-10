@@ -48,9 +48,9 @@
         <van-field label="性别">
           <template #input>
             <van-radio-group v-model="user.member_sex" direction="horizontal">
-              <van-radio name="1" checked-color="#f4523b">男</van-radio>
-              <van-radio name="2" checked-color="#f4523b">女</van-radio>
-              <van-radio name="3" checked-color="#f4523b">保密</van-radio>
+              <van-radio :name="1" checked-color="#f4523b">男</van-radio>
+              <van-radio :name="2" checked-color="#f4523b">女</van-radio>
+              <van-radio :name="3" checked-color="#f4523b">保密</van-radio>
             </van-radio-group>
           </template>
         </van-field>
@@ -127,7 +127,7 @@ export default {
     getMemberInfo().then((response) => {
       if (response && response.result.member_info) {
         this.user = response.result.member_info;
-        console.log(this.user);
+        // console.log(this.user);
       }
     });
   },
@@ -163,7 +163,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
+          this.user.member_avatar = res.data.result;
         });
     },
     save() {
