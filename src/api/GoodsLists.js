@@ -14,7 +14,10 @@ export const getGoodsDetail =
   (goodsid) => {
     return request({
       url: `/api/Goods/goods_detail`,
-      params: {
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),
+      },
+      data: {
         'goods_id': goodsid
       },
       method: 'POST'

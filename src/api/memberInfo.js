@@ -166,17 +166,14 @@ export const getMemberScoreList =
 
 //获取用户浏览记录
 export const getMemberbrowseList =
-  (page, mx) => {
+  (params) => {
 
     return request({
       url: `/api/Membergoodsbrowse/browse_list`,
       headers: {
         'X-DS-KEY': $cookies.get('token'),
       },
-      params: {
-        'page': page,
-        'mx': mx
-      },
+      params:params,
       method: 'GET'
     })
   }

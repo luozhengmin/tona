@@ -21,25 +21,32 @@
         <div>当前还未浏览足迹记录</div>
       </div>
       <div class="list">
-        <van-row gutter="15">
-          <div class="date-item"  v-for="(itemfoot,j) in list" :key="j">
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          @load="getFooter"
+          :offset="50"
+          finished-text="没有更多了">
+          <div class="date-item fix"  v-for="(itemfoot,j) in list" :key="j">
             <div class="date">{{itemfoot.browsetime_day}}</div>
-            <van-col span="12" style="margin-bottom:15px" v-for="(itemchild,i) in itemfoot.child" :key="i">
-              <div class="prod">
-                <div @click="toProductDetail(itemchild.goods_id)">
-                  <img :src="itemchild.goods_image_url" />
-                </div>
-                <div class="title">{{itemchild.goods_name}}</div>
-                <div class="desc">{{itemchild.goods_name}}</div>
-                <div class="bottom">
-                  <div>
-                    <span class="fuhao">￥</span>{{itemchild.goods_promotion_price}}
+            <van-row gutter="15" type="flex" justify="space-between">
+              <van-col span="12" style="margin-bottom:15px" v-for="(itemchild,i) in itemfoot.goods" :key="i">
+                <div class="prod">
+                  <div @click="toProductDetail(itemchild.goods_id)">
+                    <img :src="itemchild.goods_image_url" />
+                  </div>
+                  <div class="title">{{itemchild.goods_name}}</div>
+                  <div class="desc">{{itemchild.goods_advword}}</div>
+                  <div class="bottom">
+                    <div>
+                      <span class="fuhao">￥</span>{{itemchild.goods_promotion_price}}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </van-col>
+              </van-col>
+            </van-row>
           </div>
-        </van-row>
+        </van-list>
       </div>
     </div>
     <van-popup v-model="show" position="bottom" :style="{ height: '28%' }" class="track">
@@ -64,16 +71,17 @@
       return{
         messageList : [],
         page : 1,
-        perpage : 10,
+        page_total : 0,
+        loading: false,
+        finished: false,
         show: false,
         active: 0,
-        list: [{}],
+        list: [],
       }
     },
     created: function () {
-        //获取浏览足迹
-
-        this.getBrowseList()
+      //获取浏览足迹
+      this.getFooter()
     },
     methods: {
       showAction(){
@@ -88,7 +96,7 @@
           response => {
             if(response.code == 10000 && response.result == 1){
               Toast.success('清除成功')
-              this.getBrowseList()
+              this.getFooter()
               this.show = false
             }else{
               Toast.fail('清除失败')
@@ -100,27 +108,26 @@
         )
       },
 
-      getBrowseList(){
-        getMemberbrowseList().then(
-          response => {
-            let dataInfo = {};
-            response.result.goodsbrowse_list.forEach((item, index) => {
-              item.goods_name = stringInterception(item.goods_name,10)
-              let { browsetime_day } = item
-              if (!dataInfo[browsetime_day]) {
-                dataInfo[browsetime_day] = {
-                  browsetime_day,
-                  child: []
-                }
-              }
-              dataInfo[browsetime_day].child.push(item);
-            });
-            this.list = Object.values(dataInfo)
-
-          },
-          error => {}
-        )
+      getFooter() {
+        let params = {
+          page: this.page,
+          pagesize: 5
+        };
+        getMemberbrowseList(params).then(res => {
+          this.list = res.result.goodsbrowse_list;
+          this.page_total = res.result.page_total;
+          console.log(this.page_total)
+          if (this.page < this.page_total) {
+            this.page++;
+          } else {
+            this.finished = true;
+          }
+          this.loading = false;
+        }).catch((error) => {
+          console.log("error")
+        });
       },
+
       // 商品详情页
       toProductDetail(id) {
         this.$router.push({ name: 'ProductDetail', query: { id : id }})
@@ -146,7 +153,7 @@
       .date {
         font-size: 16px;
         color: #323232;
-        padding: 15px;
+        padding: 12px 0;
       }
     }
     .card {

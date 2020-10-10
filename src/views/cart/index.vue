@@ -13,38 +13,7 @@
       </div>
       <transition name="van-slide-down">
         <div class="slideNav" v-if="isActive">
-          <ul class="ab fix">
-            <li>
-              <router-link to="/BrandList-1">
-                <img src="../../assets/image/nav05.png" />
-                <span>品牌馆</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Design">
-                <img src="../../assets/image/nav04.png" />
-                <span>优秀设计</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/GlobalStore">
-                <img src="../../assets/image/nav03.png" />
-                <span>全球门店</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/Investment">
-                <img src="../../assets/image/nav02.png" />
-                <span>招商加盟</span>
-              </router-link>
-            </li>
-            <li>
-              <p @click="goPage('https://www.tona.com/Index/lists/catid/1.html')">
-                <img src="../../assets/image/nav01.png">
-                <span>关于我们</span>
-              </p>
-            </li>
-          </ul>
+          <nav-menu></nav-menu>
         </div>
       </transition>
     </div>
@@ -141,7 +110,9 @@ import {
   submitCart,
   delCart
 } from "../../api/memberCart";
+import NavMenu from "../index/navMenu.vue";
 export default {
+  components: {NavMenu},
   data() {
     return {
       cartList: [], // 购物车列表
@@ -164,9 +135,6 @@ export default {
     this.getGuesslike();
   },
   methods: {
-    goPage (url) {
-      window.location.href = url
-    },
     share() {
       Toast({
         message: "分享成功",
@@ -301,6 +269,9 @@ export default {
       // submitCart({ cart_id: ids.join(",") }).then(res => {
       //   this.$router.push("/confirm");
       // });
+      if(that.selectCount = 0){
+        Toast('您还未选择商品哦');
+      }
     },
     del() {
       let list = this.getSelectedGoods();
