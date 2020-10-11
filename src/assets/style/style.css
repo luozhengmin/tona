@@ -403,6 +403,6 @@ img{ -webkit-touch-callout: none; }
 .active05 .detail-con{display:block;}
 .list .van-list__error-text, .list .van-list__finished-text,.list .van-list__loading{line-height:20px;}
 .date-item .van-row{flex-direction:row;flex-wrap:wrap;}
-.date-item .van-row .van-col:nth-child(odd){padding-right:7.5px;}
+.list .van-row .van-col:nth-child(odd){padding-right:7.5px;}
 
 

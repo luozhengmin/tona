@@ -116,4 +116,7 @@ export default {
   flex-direction:row;
   flex-wrap:wrap;
 }
+.list .van-row .van-col:nth-child(odd){
+  padding-right:7.5px;
+}
 </style>

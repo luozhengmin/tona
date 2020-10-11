@@ -24,17 +24,18 @@
       <div class="item">
         <van-field
           rows="3"
+          v-model="content"
           autosize
           type="textarea"
           placeholder="请写下您对朵纳的感受，我们将认真听取您的意见，努力提供更优质的服务。"
         />
       </div>
       <div class="item">
-        <van-field placeholder="手机/邮箱/QQ(选填)" />
+        <van-field placeholder="手机/邮箱/QQ(选填)" v-model="phone"/>
       </div>
     </div>
     <div class="upload-1">
-      <van-uploader v-model="fileList"  :max-count="6" upload-icon="plus" upload-text="添加图片(最多六张)"/>
+      <van-uploader v-model="fileList"  :max-count="6" upload-icon="plus" :after-read="afterRead" upload-text="添加图片(最多六张)"/>
     </div>
     <div class="btn">
       <van-button color="#1b1b1b" block @click="save()">提交</van-button>
@@ -53,20 +54,59 @@
 </template>
 
 <script>
+import { Toast } from "vant";
+import axios from "../../../utils/request";
+import FeedBackApi from "../../../api/FeedBackApi";
 export default {
-  data() {
+  data(){
     return {
       value3: "",
-      columns3: ["淋浴房", "浴缸", "智能马桶", "浴室柜", "建材", "家居"],
-      showPicker3: false,
       fileList: [],
+      content:'',
+      phone:'',
+      fan_image:'',
+      columns3: [],
+      showPicker3: false,
     };
+  },
+  created(){
+    this.getFeedback();
   },
   methods: {
     onConfirm3(value) {
       this.value3 = value;
       this.showPicker3 = false;
-    }
+    },
+    getFeedback(){
+      FeedBackApi.get().then(res =>{
+        console.log(res)
+        this.columns3 = res.result.options
+      })
+    },
+    afterRead(file) {
+      console.log(file);
+      let formData = new FormData();
+      formData.append("file", file.file);
+      FeedBackApi.upload(formData).then(res => {
+        console.log(res);
+      });
+    },
+    save() {
+      if (!this.value3) {
+        Toast.fail("请选择反馈类型");
+        return;
+      }
+      let params = {
+        mbfb_cate: this.value3,
+        mbfb_contact: this.phone,
+        mbfb_content: this.content,
+        mbfb_images:this.fan_image,
+      };
+      FeedBackApi.submit(params).then(res => {
+        console.log(res);
+        Toast.success("提交成功");
+      });
+    },
   }
 };
 </script>
