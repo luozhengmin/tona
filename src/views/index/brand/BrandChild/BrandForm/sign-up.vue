@@ -56,7 +56,8 @@
           <van-field
             v-model="params.phone"
             type="tel"
-            placeholder="请填写手机号">
+            placeholder="请填写手机号" maxlength='11' min="0"
+            onkeyup="value=value.replace(/[^0-9]/g,'')">
             <template #label>
               <span><em>*</em>手机号</span>
             </template>
@@ -291,14 +292,14 @@
           Toast.fail("请输入姓名");
           return;
         }
-//        if (!this.params.phone) {
-//          Toast.fail("请输入手机号");
-//          return;
-//        }
-//        if (!this.params.code) {
-//          Toast.fail("请输入验证码");
-//          return;
-//        }
+        if (!this.params.phone) {
+          Toast.fail("请输入手机号");
+          return;
+        }
+        if (!this.params.code) {
+          Toast.fail("请输入验证码");
+          return;
+        }
         if (!this.params.region) {
           Toast.fail("请选择地区");
           return;

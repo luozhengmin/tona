@@ -64,7 +64,6 @@ export default {
       fileList: [],
       content:'',
       phone:'',
-      fan_image:'',
       columns3: [],
       showPicker3: false,
     };
@@ -89,6 +88,7 @@ export default {
       formData.append("file", file.file);
       FeedBackApi.upload(formData).then(res => {
         console.log(res);
+        file.url = res.result.file_path;
       });
     },
     save() {
@@ -100,7 +100,6 @@ export default {
         mbfb_cate: this.value3,
         mbfb_contact: this.phone,
         mbfb_content: this.content,
-        mbfb_images:this.fan_image,
       };
       FeedBackApi.submit(params).then(res => {
         console.log(res);

@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="btns">
-      <van-button type="default" size="small" color="#888" plain>查看订单</van-button>
+      <van-button type="default" size="small" color="#888" plain @click="goPay">查看订单</van-button>
       <van-button type="default" size="small" color="#888" plain @click="goIndex">回到首页</van-button>
     </div>
     <div class="info">
@@ -53,6 +53,9 @@ export default {
     goIndex() {
       this.$router.push({ name: "Index" });
     },
+    goPay(){
+      this.$router.push({name:"pay-detail"});
+    }
   },
 };
 </script>

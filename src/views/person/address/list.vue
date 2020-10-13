@@ -102,6 +102,7 @@ export default {
   .address-list{
     background-color: #f7f7f7;
     height: 100%;
+    padding-bottom:60px;
     .van-address-list {
       padding: 0;
       .van-tag--round {

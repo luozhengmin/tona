@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="container">
     <div class="head fix">
       <div class="wrap fix">
@@ -18,19 +18,22 @@
         <van-icon name="clock-o" />剩余59:50
       </span>
     </div>
-    <div class="contact">
-      <div class="top">
-        <span>飞扬</span>
-        <span>133****8795</span>
-        <van-tag color="#f4523b">默认</van-tag>
+    <div class="contact fix ab">
+      <div class="add-cir ab">
+        <van-icon name="location" color="#fff" size="20" />
       </div>
-      <div class="bottom">
-        <van-icon name="location" color="#f4523b" size="20" />
-        <span>广东省深圳市南山区科兴科学园</span>
+      <div class="address fix">
+        <div class="top">
+          <span>飞扬</span>
+          <span>133****8795</span>
+        </div>
+        <div class="bottom">
+          <span>广东省深圳市南山区科兴科学园</span>
+        </div>
       </div>
     </div>
     <div class="card-list">
-      <div class="product-card" v-for="i in 2" :key="i">
+      <div class="product-card">
         <div class="store">TONA官方旗舰店</div>
         <div class="product" v-for="j in 2" :key="j">
           <van-card thumb="https://img.yzcdn.cn/vant/ipad.jpeg">
@@ -42,10 +45,10 @@
             </template>
             <template slot="desc">
               <div class="desc num">
-                <span>颜色</span>
+                <span></span>
                 <span>x 2</span>
               </div>
-              <div class="desc">规格</div>
+              <div class="desc"></div>
             </template>
           </van-card>
         </div>
@@ -63,9 +66,7 @@
 
     <div class="order-info">
       <div class="title">订单信息</div>
-      <div class="split">
-        <van-divider />
-      </div>
+      <div class="split"></div>
       <div class="item">
         发票类型：
         <span>纸质发票</span>
@@ -80,7 +81,7 @@
       </div>
     </div>
 
-    <div class="order-info" style="padding-bottom:10px">
+    <div class="order-info" style="padding-bottom:72px;">
       <div class="title"></div>
       <div class="item" style="display:flex;align-items:center;justify-content: space-between;">
         <div>
@@ -94,34 +95,26 @@
         <span>2020-02-02 02:02:02</span>
       </div>
       <div class="item">
-        创建时间：
+        提交时间：
         <span>2020-02-02 02:02:02</span>
       </div>
       <div class="item">
-        创建时间：
+        付款时间：
         <span>2020-02-02 02:02:02</span>
       </div>
       <div class="item">
-        创建时间：
+        成交时间：
         <span>2020-02-02 02:02:02</span>
       </div>
       <div class="item">
-        创建时间：
-        <span>2020-02-02 02:02:02</span>
-      </div>
-      <div class="item">
-        创建时间：
-        <span>2020-02-02 02:02:02</span>
+        支付方式：
+        <span>余额支付</span>
       </div>
     </div>
 
     <div class="bottom-bar">
-      <div class="split">
-        <van-divider />
-      </div>
-      <van-button plain size="small" round>确认支付</van-button>
-      <van-button plain size="small" round>查看物流</van-button>
-      <van-button plain size="small" round>确认收货</van-button>
+      <van-button plain size="small" round>删除订单</van-button>
+      <van-button plain size="small" round>重新购买</van-button>
     </div>
   </div>
 </template>
@@ -129,7 +122,7 @@
 <script>
 import { Toast } from "vant";
 export default {
-  name: "",
+  name: "pay-detail",
   data() {
     return {};
   },
@@ -164,15 +157,15 @@ export default {
     background-color: #fff;
     padding: 20px 15px;
     margin-bottom: 15px;
+    align-items:center;
     .top {
       font-size: 16px;
       font-weight: bolder;
       color: #232323;
       display: flex;
       align-items: center;
-      padding-left: 20px;
       span {
-        margin: 0 5px;
+        margin-right:10px;
       }
     }
     .bottom {
@@ -181,9 +174,6 @@ export default {
       display: flex;
       align-items: center;
       padding: 5px 0;
-      span {
-        margin-left: 10px;
-      }
     }
   }
   .card-list {
@@ -225,6 +215,7 @@ export default {
         }
       }
       .van-field {
+        padding:4px 0;
         padding-left: 0;
         padding-right: 0;
         .van-field__control {
@@ -243,14 +234,11 @@ export default {
   .order-info {
     background-color: #fff;
     margin-bottom: 15px;
-    padding-bottom: 15px;
+    padding-bottom:15px;
     .title {
       font-size: 16px;
       padding: 0 16px;
       padding-top: 16px;
-    }
-    .split {
-      margin: 0;
     }
     .item {
       color: #323232;
@@ -268,6 +256,7 @@ export default {
     padding: 15px;
     text-align: right;
     background-color: #fff;
+    border-top:solid 1px #eee;
     button {
       margin: 0 5px;
       color: #888888;
@@ -285,4 +274,7 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
+.split{width:100%;margin:14px 0 10px 0;height:1px;background-color:#eee;}
+.add-cir{width:28px;height:28px;border-radius:50%;background-color:#f4523b;margin-right:12px;align-items:center;justify-content:center;}
+.address{width:calc(100% - 40px);}
 </style>

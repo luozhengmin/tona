@@ -16,7 +16,8 @@
     <div class="form">
       <van-cell-group>
         <van-field label="姓名" placeholder="输入收货人姓名" v-model="name" ></van-field>
-        <van-field label="手机号码" placeholder="输入手机号码" v-model="phone"></van-field>
+        <van-field label="手机号码" placeholder="输入手机号码" v-model="phone" maxlength='11' min="0"
+                   onkeyup="value=value.replace(/[^0-9]/g,'')" type="tel"></van-field>
         <van-field label="邮政编码" placeholder="输入邮政编码" v-model="zipcode" ></van-field>
         <van-field
           readonly

@@ -36,7 +36,8 @@
               </span>
           </template>
         </van-field>
-        <van-field v-model="yuyueParams.phone" type="number"  placeholder="请输入手机号">
+        <van-field v-model="yuyueParams.phone" type="tel" placeholder="请输入手机号" maxlength='11' min="0"
+                   onkeyup="value=value.replace(/[^0-9]/g,'')">
           <template #label>
               <span>
                 <em>*</em>手机号码
