@@ -55,6 +55,19 @@ export const updateMemberInfo =
     })
   }
 
+// 用户密码修改
+export const updatePassword =
+  (params) => {
+    return request({
+      url: `/api/Memberaccount/modify_password`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: params,
+      method: 'POST'
+    })
+  }
+
 
 // 获取用户地址列表
 export const getMemberAddressList =
@@ -173,7 +186,7 @@ export const getMemberbrowseList =
       headers: {
         'X-DS-KEY': $cookies.get('token'),
       },
-      params:params,
+      params: params,
       method: 'GET'
     })
   }
