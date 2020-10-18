@@ -3,21 +3,34 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="head-ss fix">
-          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
-        <div class="head-logo">
-          修改密码
-        </div>
+        <div class="head-logo">修改密码</div>
         <div class="p-btn">
-          <router-link to="">完成</router-link>
+          <!-- <router-link to="">完成</router-link> -->
         </div>
       </div>
     </div>
 
     <div class="form b-password">
-      <van-field label="旧密码" placeholder="请输入旧密码"></van-field>
-      <van-field label="新密码" placeholder="请输入新密码（6至8位数字或字母）"></van-field>
-      <van-field label="确认密码" placeholder="请再次输入密码"></van-field>
+      <van-field
+        v-model="password"
+        type="password"
+        label="旧密码"
+        placeholder="请输入旧密码"
+      ></van-field>
+      <van-field
+        v-model="password1"
+        type="password"
+        label="新密码"
+        placeholder="请输入新密码（6至8位数字或字母）"
+      ></van-field>
+      <van-field
+        v-model="password2"
+        type="password"
+        label="确认密码"
+        placeholder="请再次输入密码"
+      ></van-field>
     </div>
 
     <div class="btn">
@@ -27,12 +40,17 @@
 </template>
 
 <script>
+import { updateMemberInfo } from "../../api/memberInfo";
 import areaList from "@/json/area";
 import { Toast } from "vant";
 export default {
   name: "",
   data() {
-    return {};
+    return {
+      password: "",
+      password1: "",
+      password2: "",
+    };
   },
   methods: {
     onConfirm(time) {
@@ -40,16 +58,37 @@ export default {
       this.showPicker = false;
     },
     onConfirmArea(values) {
-      this.value = values.map(item => item.name).join("/");
+      this.value = values.map((item) => item.name).join("/");
       this.showArea = false;
     },
     save() {
-      Toast({
-        message: "保存成功",
-        icon: "passed"
+      if (!this.password) {
+        Toast({
+          message: "旧密码不能为空",
+        });
+        return;
+      }
+      if (this.password1 != this.password2) {
+        Toast({
+          message: "两次密码不一致",
+        });
+        return;
+      }
+      var params = {
+        password: this.password,
+        password1: this.password1,
+      };
+      updateMemberInfo(params).then((res) => {
+        this.password = "";
+        this.password1 = "";
+        this.password2 = "";
+        Toast({
+          message: "修改成功",
+          icon: "passed",
+        });
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -61,14 +100,18 @@ export default {
     font-size: 15px;
     .van-cell {
       font-size: 15px;
-      line-height:1.8;
+      line-height: 1.8;
     }
   }
   .btn {
     margin-top: 30px;
     padding: 0 15px;
-    .van-button{border-radius:4px;}
+    .van-button {
+      border-radius: 4px;
+    }
   }
 }
-  .b-password .van-field__label{width:5.2em;}
+.b-password .van-field__label {
+  width: 5.2em;
+}
 </style>

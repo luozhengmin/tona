@@ -11,13 +11,18 @@
     <div class="contact ab">
       <div class="contact-l ac">
         <div class="top">
-          <span>{{address_info.address_realname}}</span>
-          <span>{{address_info.address_mob_phone}}</span>
-          <van-tag v-if="address_info.address_is_default=='1'" color="#f4523b">默认</van-tag>
+          <span>{{ address_info.address_realname }}</span>
+          <span>{{ address_info.address_mob_phone }}</span>
+          <van-tag v-if="address_info.address_is_default == '1'" color="#f4523b"
+            >默认</van-tag
+          >
         </div>
         <div class="bottom">
           <van-icon name="location" color="#f4523b" size="20" />
-          <span>{{address_info.area_info}} {{address_info.address_detail}}</span>
+          <span
+            >{{ address_info.area_info }}
+            {{ address_info.address_detail }}</span
+          >
         </div>
       </div>
       <div class="contact-r">
@@ -27,27 +32,45 @@
       </div>
     </div>
     <div class="card-list">
-      <div class="product-card" v-for="item in store_cart_list" :key="item.store_id">
-        <div class="store">{{item.store_name}}</div>
-        <div class="product" v-for="goods in item.goods_list" :key="goods.goods_id">
+      <div
+        class="product-card"
+        v-for="item in store_cart_list"
+        :key="item.store_id"
+      >
+        <div class="store">{{ item.store_name }}</div>
+        <div
+          class="product"
+          v-for="goods in item.goods_list"
+          :key="goods.goods_id"
+        >
           <van-card :thumb="goods.goods_image_url">
             <template slot="title">
               <div class="title">
-                <span>{{goods.goods_name}}</span>
-                <div>￥{{goods.goods_price}}</div>
+                <span>{{ goods.goods_name }}</span>
+                <div>￥{{ goods.goods_price }}</div>
               </div>
             </template>
             <template slot="desc">
               <div class="desc num">
                 <span></span>
-                <span>x {{goods.goods_num}}</span>
+                <span>x {{ goods.goods_num }}</span>
               </div>
               <div class="desc"></div>
             </template>
           </van-card>
         </div>
-        <van-field readonly input-align="right" label="商品合计" :value="'￥'+item.store_goods_total" />
-        <van-field readonly input-align="right" label="运费" :value="'￥'+item.store_freight_total" />
+        <van-field
+          readonly
+          input-align="right"
+          label="商品合计"
+          :value="'￥' + item.store_goods_total"
+        />
+        <van-field
+          readonly
+          input-align="right"
+          label="运费"
+          :value="'￥' + item.store_freight_total"
+        />
         <van-field
           readonly
           clickable
@@ -70,21 +93,33 @@
         readonly
         input-align="right"
         label="使用余额"
-        :placeholder="'可用金额:'+available_predeposit+'元'"
+        :placeholder="'可用金额:' + available_predeposit + '元'"
       >
         <template #right-icon>
-          <van-checkbox v-model="userBalance" checked-color="#f4523b"></van-checkbox>
+          <van-checkbox
+            v-model="userBalance"
+            checked-color="#f4523b"
+          ></van-checkbox>
         </template>
       </van-field>
 
       <van-cell-group>
-        <van-field type="password" v-model="password" label="支付密码" placeholder="支付密码" />
+        <van-field
+          type="password"
+          v-model="password"
+          label="支付密码"
+          placeholder="支付密码"
+        />
       </van-cell-group>
     </div>
-    <div style="height:60px;"></div>
+    <div style="height: 60px"></div>
     <div class="bottom-bar">
-      <van-submit-bar :price="order_amount" button-text="提交订单" @submit="onSubmit">
-        <span class="num-text">共 {{order_count}} 件</span>
+      <van-submit-bar
+        :price="order_amount"
+        button-text="提交订单"
+        @submit="onSubmit"
+      >
+        <span class="num-text">共 {{ order_count }} 件</span>
       </van-submit-bar>
     </div>
 
@@ -140,7 +175,12 @@ export default {
           return;
         }
         this.vat_hash = res.result.vat_hash;
-        this.address_info = res.result.address_info;
+        var addressInfo = $cookies.get("selectedAddress");
+        if (addressInfo) {
+          this.address_info = addressInfo;
+        } else {
+          this.address_info = res.result.address_info;
+        }
         this.address_api = res.result.address_api;
         this.store_cart_list = res.result.store_cart_list;
         this.inv_info = res.result.inv_info;
@@ -292,7 +332,7 @@ export default {
   .jifen {
     margin-bottom: 50px;
     background-color: #fff;
-    padding-bottom:0px;
+    padding-bottom: 0px;
     button {
       margin: 12px 0 0 15px;
     }

@@ -55,6 +55,71 @@ export const updateMemberInfo =
     })
   }
 
+// 用户密码修改
+export const updatePassword =
+  (params) => {
+    return request({
+      url: `/api/Memberaccount/modify_password`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: params,
+      method: 'POST'
+    })
+  }
+
+// 发送验证码
+export const sendCode =
+  (params) => {
+    return request({
+      url: `/api/Memberaccount/check_auth_code`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: params,
+      method: 'POST'
+    })
+  }
+
+// 验证手机号
+export const validMobile =
+  (params) => {
+    return request({
+      url: `/api/Memberaccount/get_mobile_info`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: params,
+      method: 'POST'
+    })
+  }
+
+// 修改手机号发送验证码
+export const sendSmsCode =
+  (params) => {
+    return request({
+      url: `/api/Memberaccount/bind_mobile_step1`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: params,
+      method: 'POST'
+    })
+  }
+
+// 验证验证码并保存信息
+export const saveMobile =
+  (params) => {
+    return request({
+      url: `/api/Memberaccount/bind_mobile_step2`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: params,
+      method: 'POST'
+    })
+  }
+
 
 // 获取用户地址列表
 export const getMemberAddressList =
@@ -173,7 +238,7 @@ export const getMemberbrowseList =
       headers: {
         'X-DS-KEY': $cookies.get('token'),
       },
-      params:params,
+      params: params,
       method: 'GET'
     })
   }

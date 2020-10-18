@@ -3,11 +3,9 @@
     <div class="head fix">
       <div class="wrap fix">
         <div class="head-ss fix">
-          <van-icon name="arrow-left" @click="$router.go(-1)"/>
+          <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
-        <div class="head-logo">
-          修改手机号
-        </div>
+        <div class="head-logo">修改手机号</div>
       </div>
     </div>
 
@@ -17,7 +15,7 @@
     </div>
 
     <div class="form">
-      <van-field readonly value="188****7686">
+      <van-field readonly v-model="mobile">
         <template #button>
           <van-button
             plain
@@ -25,7 +23,8 @@
             size="small"
             :disabled="disabled"
             @click="sendSms"
-          >{{smsBtn}}</van-button>
+            >{{ smsBtn }}</van-button
+          >
         </template>
       </van-field>
       <van-field placeholder="请输入验证码"></van-field>
@@ -36,8 +35,8 @@
     </div>
 
     <div class="tips">
-      <p style="display: flex;align-items: center;">
-        <van-icon name="warning" style="margin-right:5px" />温馨提示：
+      <p style="display: flex; align-items: center">
+        <van-icon name="warning" style="margin-right: 5px" />温馨提示：
       </p>
       <p>手机号码修改成功后需要使用新的手机号码进行登录</p>
     </div>
@@ -45,34 +44,46 @@
 </template>
 
 <script>
+import { validMobile, sendSmsCode, sendCode } from "../../api/memberInfo";
 import areaList from "@/json/area";
 import { Toast } from "vant";
 export default {
   name: "",
   data() {
     return {
+      mobile: "",
+      mobile1: "",
       smsBtn: "获取验证码",
-      disabled: false
+      disabled: false,
     };
+  },
+  mounted() {
+    this.mobile = this.$route.query.mobile;
+    var userInfo = $cookies.get("user_info");
+    this.mobile1 = userInfo.member_mobile;
   },
   methods: {
     sendSms() {
-      var count = 60;
-      var that = this;
-      let interVal = setInterval(function() {
-        that.disabled = true;
-        that.smsBtn = count + "秒后重试";
-        count--;
-        if (count == 0) {
-          that.smsBtn = "获取验证码";
-          that.disabled = false;
-          clearInterval(interVal);
-        }
-      }, 1000);
+      sendCode({ type: "mobile" }, (res) => {
+        Toast({
+          message: "验证码已发送",
+        });
+        var count = 60;
+        var that = this;
+        let interVal = setInterval(function () {
+          that.disabled = true;
+          that.smsBtn = count + "秒后重试";
+          count--;
+          if (count == 0) {
+            that.smsBtn = "获取验证码";
+            that.disabled = false;
+            clearInterval(interVal);
+          }
+        }, 1000);
+      });
     },
     next() {},
-
-  }
+  },
 };
 </script>
 
@@ -80,22 +91,32 @@ export default {
 .container {
   background-color: #f7f7f7;
   height: 100%;
-  .step{
-    text-align:center;
-    font-size:14px;color:#888;
-    margin-bottom:12px;
+  .step {
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 12px;
     background: url("../../assets/image/step-bj.jpg");
-    background-size:cover;
-    width:100%;height:40px;
-    .step-1,.step-2{width:50%;height:40px;line-height:40px;position:relative;}
-    .step-active{color:#323232;}
+    background-size: cover;
+    width: 100%;
+    height: 40px;
+    .step-1,
+    .step-2 {
+      width: 50%;
+      height: 40px;
+      line-height: 40px;
+      position: relative;
+    }
+    .step-active {
+      color: #323232;
+    }
   }
   .form {
     font-size: 14px;
     .van-cell {
       font-size: 14px;
-      line-height:1.8px;
-      border-bottom:solid 1px #eee;
+      line-height: 1.8px;
+      border-bottom: solid 1px #eee;
     }
     .van-button--disabled {
       color: #fff !important;
@@ -104,9 +125,11 @@ export default {
     }
   }
   .btn {
-    margin-top:20px;
+    margin-top: 20px;
     padding: 0 15px;
-    .van-button{border-radius:4px;}
+    .van-button {
+      border-radius: 4px;
+    }
   }
   .tips {
     padding: 0 15px;

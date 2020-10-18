@@ -6,7 +6,11 @@
           <van-icon name="arrow-left" @click="$router.go(-1)" />
         </div>
         <div class="head-logo">填写报备信息</div>
-        <div class="menu-ico" v-bind:class="{active:isActive}" v-on:click="isActive=!isActive">
+        <div
+          class="menu-ico"
+          v-bind:class="{ active: isActive }"
+          v-on:click="isActive = !isActive"
+        >
           <span></span>
         </div>
       </div>
@@ -31,25 +35,31 @@
           </h2>
         </div>
         <div class="information-list">
-          <van-field v-model="params.designer_name" type="name" placeholder="请输入姓名">
+          <van-field
+            v-model="params.designer_name"
+            type="name"
+            placeholder="请输入姓名"
+          >
             <template #label>
-              <span>
-                <em>*</em>姓名
-              </span>
+              <span> <em>*</em>姓名 </span>
             </template>
           </van-field>
-          <van-field v-model="params.designer_phone" type="tel" placeholder="请填写手机号">
+          <van-field
+            v-model="params.designer_phone"
+            type="tel"
+            placeholder="请填写手机号"
+          >
             <template #label>
-              <span>
-                <em>*</em>手机号
-              </span>
+              <span> <em>*</em>手机号 </span>
             </template>
           </van-field>
-          <van-field v-model="params.code" type="number" placeholder="请输入短信验证码">
+          <van-field
+            v-model="params.code"
+            type="number"
+            placeholder="请输入短信验证码"
+          >
             <template #label>
-              <span>
-                <em>*</em>验证码
-              </span>
+              <span> <em>*</em>验证码 </span>
             </template>
             <template #button>
               <van-button size="small" type="primary">获取验证码</van-button>
@@ -62,9 +72,7 @@
             placeholder="请选择地区"
           >
             <template #label>
-              <span>
-                <em>*</em>地区
-              </span>
+              <span> <em>*</em>地区 </span>
             </template>
           </van-field>
         </div>
@@ -77,25 +85,30 @@
           </h2>
         </div>
         <div class="information-list">
-          <van-field v-model="params.yezhu_name" type="name" placeholder="请输入姓名">
+          <van-field
+            v-model="params.yezhu_name"
+            type="name"
+            placeholder="请输入姓名"
+          >
             <template #label>
-              <span>
-                <em>*</em>姓名
-              </span>
+              <span> <em>*</em>姓名 </span>
             </template>
           </van-field>
-          <van-field v-model="params.yezhu_phone" type="tel" placeholder="请填写手机号">
+          <van-field
+            v-model="params.yezhu_phone"
+            type="tel"
+            placeholder="请填写手机号"
+          >
             <template #label>
-              <span>
-                <em>*</em>手机号
-              </span>
+              <span> <em>*</em>手机号 </span>
             </template>
           </van-field>
           <van-checkbox
             v-model="params.yezhu_hide"
             shape="square"
             checked-color="#f4523b"
-          >不允许商家私下联系业主</van-checkbox>
+            >不允许商家私下联系业主</van-checkbox
+          >
           <van-field
             v-model="params.yezhu_region"
             right-icon="arrow-down"
@@ -103,9 +116,7 @@
             placeholder="请选择地区"
           >
             <template #label>
-              <span>
-                <em>*</em>地区
-              </span>
+              <span> <em>*</em>地区 </span>
             </template>
           </van-field>
           <van-field
@@ -117,34 +128,44 @@
             @click="showPicker = true"
           >
             <template #label>
-              <span>
-                <em>*</em>预计到店
-              </span>
+              <span> <em>*</em>预计到店 </span>
             </template>
             <template #right-icon>
               <i class="iconfont icon-riqi"></i>
             </template>
           </van-field>
-          <van-field v-model="params.yezhu_address" type="name" placeholder="可填写业主详细位置，最多200字">
+          <van-field
+            v-model="params.yezhu_address"
+            type="name"
+            placeholder="可填写业主详细位置，最多200字"
+          >
             <template #label>
-              <span>
-                <em>*</em>详细地址
-              </span>
+              <span> <em>*</em>详细地址 </span>
             </template>
           </van-field>
-          <van-field v-model="attachment" type="name" placeholder="选择方案附件PDF">
+          <van-field
+            v-model="attachment"
+            readonly
+            type="name"
+            placeholder="选择方案附件PDF"
+          >
             <template #label>
-              <span>
-                <em>*</em>上传附件
-              </span>
+              <span> <em>*</em>上传附件 </span>
             </template>
             <template #button>
-              <van-button size="small" type="primary">上传附件</van-button>
+              <van-uploader>
+                <van-button size="small" type="primary">上传附件</van-button>
+              </van-uploader>
             </template>
           </van-field>
           <div class="upload ab fix">
             <h2>上传图片</h2>
-            <van-uploader v-model="fileList" :max-count="1" upload-icon="plus" upload-text="添加图片" />
+            <van-uploader
+              v-model="fileList"
+              :max-count="1"
+              upload-icon="plus"
+              upload-text="添加图片"
+            />
           </div>
           <van-field
             class="t-remark"
@@ -159,10 +180,16 @@
         </div>
       </div>
 
-      <van-button type="primary" block color="#323232" @click="tapeCommit">立即提交</van-button>
+      <van-button type="primary" block color="#323232" @click="tapeCommit"
+        >立即提交</van-button
+      >
     </div>
     <!--地址区域开始-->
-    <van-popup v-model="showDesign" position="bottom" :style="{ height: '40%' }">
+    <van-popup
+      v-model="showDesign"
+      position="bottom"
+      :style="{ height: '40%' }"
+    >
       <van-area
         :area-list="areaList"
         :columns-num="2"
@@ -182,13 +209,17 @@
     </van-popup>
     <!--地址区域结束-->
     <van-popup v-model="showPicker" position="bottom">
-      <van-datetime-picker type="date" @confirm="onConfirmDate" @cancel="showPicker = false" />
+      <van-datetime-picker
+        type="date"
+        @confirm="onConfirmDate"
+        @cancel="showPicker = false"
+      />
     </van-popup>
 
     <div class="toast" v-show="toastShow">
       <i class="van-icon van-icon-checked"></i>
-      <h2>{{toastText}}</h2>
-      <p>{{toastState}}</p>
+      <h2>{{ toastText }}</h2>
+      <p>{{ toastState }}</p>
     </div>
     <van-overlay :show="toastShow" @click="toastShow = false" />
   </div>
@@ -205,7 +236,8 @@ import NavMenu from "../../../navMenu.vue";
 export default {
   components: {
     NavMenu,
-    IndexBanner },
+    IndexBanner,
+  },
   name: "Tape",
   created() {
     this.store_id = this.$route.query.store_id;
@@ -225,7 +257,7 @@ export default {
         appointment_arrival_date: "",
         yezhu_hide: false,
         yezhu_name: "",
-        yezhu_phone: ""
+        yezhu_phone: "",
       },
 
       showDesign: false,
@@ -238,16 +270,16 @@ export default {
       toastShow: false,
       toastText: "已提交",
       toastState: "带单信息提交成功，请耐心等待",
-      banners: []
+      banners: [],
     };
   },
   methods: {
     onConfirmDesign(values) {
-      this.params.designer_region = values.map(item => item.name).join("/");
+      this.params.designer_region = values.map((item) => item.name).join("/");
       this.showDesign = false;
     },
     onConfirmOwner(values) {
-      this.params.yezhu_region = values.map(item => item.name).join("/");
+      this.params.yezhu_region = values.map((item) => item.name).join("/");
       this.showOwner = false;
     },
     onConfirmDate(time) {
@@ -257,17 +289,24 @@ export default {
     tapeCommit() {
       this.params.store_id = this.store_id;
       console.log(this.params);
-      StoreApi.bao_bei(this.params).then(res => {
-        console.log(res);
-        this.toastShow = true;
+      StoreApi.bao_bei(this.params).then((res) => {
+        if (res.code == 10000) {
+          this.toastShow = true;
+        } else {
+          Toast({
+            message: res.message,
+          });
+        }
       });
     },
     getBanners() {
-      axios.post("/api/Index/getAppadList/ap_id/", { ap_id: 11 }).then(res => {
-        this.banners = res.result.ad_list;
-      });
+      axios
+        .post("/api/Index/getAppadList/ap_id/", { ap_id: 11 })
+        .then((res) => {
+          this.banners = res.result.ad_list;
+        });
     },
-  }
+  },
 };
 </script>
 

@@ -211,7 +211,7 @@
         <van-goods-action-icon
           icon="shopping-cart-o"
           :badge="carNum==0?'':carNum"
-          @click="$router.push({ name: 'cart'})"
+          @click="$cookies.set('lastTabIndex',3);$router.push({ name: 'cart'})"
         />
         <van-goods-action-icon icon="star-o" @click="shouCang"/>
         <van-goods-action-button

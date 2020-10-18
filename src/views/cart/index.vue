@@ -52,7 +52,7 @@
               </div>
             </template>
             <template slot="num">
-              <van-stepper :value="item.goods_num" />
+              <van-stepper v-model="item.goods_num" />
             </template>
           </van-card>
         </div>
@@ -144,7 +144,7 @@ export default {
     // 选中单个商品
     ischeck(item, pro) {
       // 为未选中的时候改变为false，反之为true
-      !pro.isChecked ? this._checkTrue(item, pro) : this._checkFalse(item, pro);
+      pro.isChecked ? this._checkTrue(item, pro) : this._checkFalse(item, pro);
     },
     // 修改单个商品的true
     _checkTrue(item, pro) {
@@ -209,7 +209,7 @@ export default {
     checkAll() {
       // 方法内调用方法
       this.isCheckAll = !this.isCheckAll;
-      this.isCheckAll
+      !this.isCheckAll
         ? this.cartList.forEach(item => {
             this._shopTrue(item);
           })

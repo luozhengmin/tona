@@ -50,6 +50,9 @@ StoreApi.designList = (id, params) => {
 StoreApi.bao_bei = (params) => {
   return request({
     url: `${baseUrl}/baobei_daidan`,
+    headers: {
+      'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+    },
     data: params,
     method: 'post'
   })
