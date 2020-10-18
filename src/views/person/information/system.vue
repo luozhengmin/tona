@@ -25,12 +25,14 @@
           :offset="50"
           finished-text="没有更多了"
         >
-        <div class="active-item" v-for="(item,index) in systemList" :key="index">
+        <div class="active-item" v-for="(item,index) in systemList" :key="item.message_id" @click="getRead(item.message_id)">
           <time>{{item.message_time}}</time>
           <div class="active-main">
             <div class="title ab">
               <h2 class="ac">{{item.from_member_name}}</h2>
-              <span></span>
+              <span :class="[{'is-open': item.is_open = 0},
+            {'is-close': item.is_open = 1},
+            ]"></span>
             </div>
             <p>{{item.message_body}}</p>
           </div>
@@ -46,7 +48,7 @@
 </template>
 
 <script>
-  import { getMemberMessageList } from '../../../api/memberMessage'
+  import { getMemberMessageList,getMemberRead} from '../../../api/memberMessage'
   export default {
     name: "system",
     data(){
@@ -56,11 +58,11 @@
         loading:false,
         page: 1,
         per_page: 10,
-        pagetotal:0
+        pagetotal:0,
       }
     },
     created() {
-      this.getSystemList()
+      this.getSystemList();
     },
     methods: {
         getSystemList(){
@@ -75,6 +77,15 @@
               this.loading = false;
             }
           )
+        },
+        getRead(message_id){
+          let params = {
+            type:1,
+            id:message_id
+          };
+          getMemberRead(params).then(res=>{
+            console.log(res)
+          })
         }
     }
 
@@ -96,7 +107,9 @@
             align-items:center;
             margin-bottom:6px;
             h2{font-size:15px;color:#383838;}
-            span{width:8px;height:8px;border-radius:50%;background-color:#f4523b;display:block;}
+            span{width:8px;height:8px;border-radius:50%;display:block;}
+            span.is-open{background-color:#f4523b;}
+            span.is-close{background-color:#ccc;}
           }
           p{font-size:13px;color:#383838;}
         }

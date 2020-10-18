@@ -122,3 +122,15 @@ export const getMemberActiveDetail =
       method: 'GET'
     })
   }
+// 消息设置已读
+export const getMemberRead =
+  (params) => {
+    return request({
+      url: `/api/member_message/message_read_ajax`,
+      headers: {
+        'X-DS-KEY': $cookies.get('token'),//设置请求头请求格式为JSON
+      },
+      data: params,
+      method: 'POST'
+    })
+  }

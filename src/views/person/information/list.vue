@@ -27,7 +27,7 @@
             <i class="iconfont">&#xe64a;</i>
           </template>
         </van-cell>
-        <van-cell :value="messageInfo.sys_message" is-link center label="秒杀专区暂时下线公告" to="/information/system">
+        <van-cell :value="messageInfo.sys_message" :class="{'hide': messageInfo.sys_message = 0}" is-link center label="秒杀专区暂时下线公告" to="/information/system">
           <template #title>
             <span class="custom-title">系统消息</span>
           </template>
