@@ -404,5 +404,6 @@ img{ -webkit-touch-callout: none; }
 .list .van-list__error-text, .list .van-list__finished-text,.list .van-list__loading{line-height:20px;}
 .date-item .van-row{flex-direction:row;flex-wrap:wrap;}
 .list .van-row .van-col:nth-child(odd){padding-right:7.5px;}
+.hide .van-cell__value span{display:none;}
 
 
